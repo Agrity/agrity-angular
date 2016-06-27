@@ -1,1 +1,1 @@
-# angular2-course
+# agrity-app
