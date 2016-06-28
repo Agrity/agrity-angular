@@ -1,13 +1,15 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
 import {BidService} from './bid.service';
+import {Bid} from './bid';
 import {UserService} from '../users/user.service';
 import {SpinnerComponent} from '../shared/spinner.component';
 import {PaginationComponent} from '../shared/pagination.component';
 
 @Component({
-  templateUrl: 'app/makebid/makebid.component.html',
+  templateUrl: 'app/bids/makebid.component.html',
   styles: [`
     .posts li { cursor: default; }
     .posts li:hover { background: #ecf0f1; } 
@@ -25,61 +27,67 @@ import {PaginationComponent} from '../shared/pagination.component';
 })
 
 export class MakeBidComponent implements OnInit {
-  posts = [];
-  pagedPosts = [];
-  users = [];
-  postsLoading;
-  commentsLoading;
-  currentPost;
-  pageSize = 10;
+
+  private newBidForm: ControlGroup;
+  private bid: Bid = new Bid();
 
   constructor(
+    fb: FormBuilder,
     private _bidService: BidService,
     private _userService: UserService) {
+    this.newgrowerform = fb.group({
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      email: ['', BasicValidators.email],
+      phone: []
+    });
   }
 
   ngOnInit() {
-    this.loadUsers();
-    this.loadPosts();        
+    //this.loadUsers();
+    //this.loadPosts();        
   }
 
-  private loadUsers(){
-    this._userService.getUsers()
-    .subscribe(users => this.users = users);
+  save() {
   }
 
-  private loadPosts(filter?){
-    this.postsLoading = true; 
-    this._bidService.getPosts(filter)
-    .subscribe(
-      posts => {
-        this.posts = posts;
-        this.pagedPosts = _.take(this.posts, this.pageSize);
-      },
-      null,
-      () => { this.postsLoading = false; });
-  }
+  //private loadUsers(){
+  //  this._userService.getUsers()
+  //  .subscribe(users => this.users = users);
+  //}
 
-  reloadPosts(filter){
-    this.currentPost = null;
+  //private loadPosts(filter?){
+  //  this.postsLoading = true; 
+  //  //this._bidService.getPosts(filter)
+  //  //.subscribe(
+  //  //  posts => {
+  //  //    this.posts = posts;
+  //  //    this.pagedPosts = _.take(this.posts, this.pageSize);
+  //  //  },
+  //  //  null,
+  //  //  () => { this.postsLoading = false; });
+  //}
 
-    this.loadPosts(filter);
-  }
+  //reloadPosts(filter){
+  //  this.currentPost = null;
 
-  select(post){
-    this.currentPost = post; 
+  //  this.loadPosts(filter);
+  //}
 
-    this.commentsLoading = true;
-    this._bidService.getComments(post.id)
-      .subscribe(
-        comments => 
-        this.currentPost.comments = comments,
-          null,
-        () => this.commentsLoading = false); 
-  } 
+  //select(post){
+  //  this.currentPost = post; 
 
-  onPageChanged(page) {
-    var startIndex = (page - 1) * this.pageSize;
-    this.pagedPosts = _.take(_.rest(this.posts, startIndex), this.pageSize);
-  }
+  //  this.commentsLoading = true;
+  //  this._bidService.getComments(post.id)
+  //    .subscribe(
+  //      comments => 
+  //      this.currentPost.comments = comments,
+  //        null,
+  //      () => this.commentsLoading = false); 
+  //} 
+
+  //onPageChanged(page) {
+  //  var startIndex = (page - 1) * this.pageSize;
+  //  this.pagedPosts = _.take(_.rest(this.posts, startIndex), this.pageSize);
+  //}
 }
