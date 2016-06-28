@@ -13,6 +13,7 @@ import {User} from './user';
   directives: [RouterLink, ROUTER_DIRECTIVES],
   providers: [UserService]
 })
+
 export class NewGrowerComponent implements OnInit, CanDeactivate {
   newgrowerform: ControlGroup;
   title: string;

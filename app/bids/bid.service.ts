@@ -3,7 +3,7 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class MakeBidService {
+export class BidService {
 	private _url = "http://jsonplaceholder.typicode.com/posts";
 
 	constructor(private _http: Http) {
