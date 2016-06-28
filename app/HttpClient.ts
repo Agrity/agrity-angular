@@ -7,7 +7,7 @@ export class HttpClient {
   constructor(private _http: Http) {} 
 
   createAuthorizationHeader(headers:Headers) {
-    headers.append('X-ADMIN-TOKEN', localStorage.getItem('X-ADMIN-TOKEN'); 
+    headers.append('X-ADMIN-TOKEN', localStorage.getItem('X-ADMIN-TOKEN')); 
   }
 
   get(url) {
