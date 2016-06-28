@@ -5,6 +5,7 @@ import {provide} from '@angular/core';
 import {HttpClient} from './HttpClient';
 import {Config} from './config/Config';
 import {HandlerLoginService} from './handler-login/handler-login.service';
+import {ErrorHandling} from './ErrorHandling';
 
 import {AppComponent} from './app.component';
 
@@ -13,5 +14,6 @@ bootstrap(AppComponent,
            HTTP_PROVIDERS,
            provide(HttpClient, {useClass: HttpClient}),
            provide(Config, {useClass: Config}),
-           provide(HandlerLoginService, {useClass: HandlerLoginService})
+           provide(HandlerLoginService, {useClass: HandlerLoginService}),
+           provide(ErrorHandling, {useClass: ErrorHandling})
           ]);
