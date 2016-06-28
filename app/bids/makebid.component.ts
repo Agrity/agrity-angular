@@ -35,12 +35,12 @@ export class MakeBidComponent implements OnInit {
     fb: FormBuilder,
     private _bidService: BidService,
     private _userService: UserService) {
-    this.newgrowerform = fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', BasicValidators.email],
-      phone: []
-    });
+    //this.newBidForm = fb.group({
+    //  first_name: ['', Validators.required],
+    //  last_name: ['', Validators.required],
+    //  email: ['', BasicValidators.email],
+    //  phone: []
+    //});
   }
 
   ngOnInit() {
