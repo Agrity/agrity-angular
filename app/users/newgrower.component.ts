@@ -63,11 +63,14 @@ export class NewGrowerComponent implements OnInit, CanDeactivate {
         if (this.user) 
             result = this._userService.updateUser(this.user);
         else
-            result = this._userService.addUser(this.user)
+            result = this._userService.addUser(this.user);
             
-		result.subscribe(x => {
+        result.subscribe(x => {
             // Ideally, here we'd want:
             // this.newgrowerform.markAsPristine();
+            for (var propName in x) {
+              console.log(propName, x[propName]);
+            }
             this._router.navigate(['Users']);
         });
 	}
