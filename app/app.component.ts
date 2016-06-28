@@ -8,9 +8,11 @@ import {NewGrowerComponent} from './users/newgrower.component';
 import {MakeBidComponent} from './makebid/makebid.component';
 import {ProfileComponent} from './profile/profile.component';
 import {NotFoundComponent} from './not-found.component';
+import {HandlerLoginComponent} from './handler-login/handler-login.component'
 
 @RouteConfig([
 	{ path: '/', name: 'Home', component: HomeComponent },
+	{ path: '/handler-login', name: 'Handler Login', component: HandlerLoginComponent },
 	{ path: '/users', name: 'Users', component: UsersComponent },
 	{ path: '/users/:id', name: 'EditUser', component: NewGrowerComponent },
 	{ path: '/users/new', name: 'NewGrower', component: NewGrowerComponent },

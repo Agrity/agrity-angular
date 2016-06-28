@@ -60,9 +60,9 @@ export class NewGrowerComponent implements OnInit, CanDeactivate {
     save(){
         var result;
         
-        if (this.user) 
-            result = this._userService.updateUser(this.user);
-        else
+        //if (this.user) 
+        //    result = this._userService.updateUser(this.user);
+        //else
             result = this._userService.addUser(this.user);
             
         result.subscribe(x => {

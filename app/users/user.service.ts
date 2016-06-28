@@ -6,7 +6,7 @@ import {HttpClient} from '../HttpClient';
 
 @Injectable()
 export class UserService {
-	private _url = "http://localhost:9000/admin/offers";
+	private _url = "http://localhost:9000/handler/growers";
 
 	constructor(private _http: HttpClient){
 	}
