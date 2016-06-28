@@ -3,23 +3,28 @@ import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
 import {NavBarComponent} from './navbar.component';
 import {HomeComponent} from './home.component';
-import {UsersComponent} from './users/users.component';
 import {NewGrowerComponent} from './users/newgrower.component';
-import {MakeBidComponent} from './makebid/makebid.component';
+import {MakeBidComponent} from './bids/makebid.component';
 import {ProfileComponent} from './profile/profile.component';
 import {NotFoundComponent} from './not-found.component';
 import {HandlerLoginComponent} from './handler-login/handler-login.component'
+import {ViewBidsComponent} from './bids/view-bids.component'
 
 @RouteConfig([
-	{ path: '/', name: 'Home', component: HomeComponent },
-	{ path: '/handler-login', name: 'Handler Login', component: HandlerLoginComponent },
-	{ path: '/users', name: 'Users', component: UsersComponent },
-	{ path: '/users/:id', name: 'EditUser', component: NewGrowerComponent },
-	{ path: '/users/new', name: 'NewGrower', component: NewGrowerComponent },
-    { path: '/makebid', name: 'MakeBid', component: MakeBidComponent },
-    { path: '/profile', name: 'Profile', component: ProfileComponent },
-    { path: '/not-found', name: 'NotFound', component: NotFoundComponent },
-	{ path: '/*other', name: 'Other', redirectTo: ['Home'] }
+  { path: '/', name: 'Home', component: HomeComponent },
+
+  { path: '/handler-login', name: 'Handler Login', component: HandlerLoginComponent },
+
+  { path: '/bids', name: 'View Bids', component: ViewBidsComponent },
+  { path: '/bids/new', name: 'Make Bid', component: MakeBidComponent },
+
+  { path: '/users/:id', name: 'EditUser', component: NewGrowerComponent },
+  { path: '/users/new', name: 'NewGrower', component: NewGrowerComponent },
+
+  { path: '/profile', name: 'Profile', component: ProfileComponent },
+
+  { path: '/not-found', name: 'NotFound', component: NotFoundComponent },
+  { path: '/*other', name: 'Other', redirectTo: ['Home'] }
 ])
 @Component({
     selector: 'my-app',
