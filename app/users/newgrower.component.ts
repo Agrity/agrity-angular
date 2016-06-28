@@ -40,7 +40,7 @@ export class NewGrowerComponent implements OnInit, CanDeactivate {
     if (!id)
       return;
 
-    this._userService.getUser(id)
+    this._userService.getUser(+id)
     .subscribe(
       user => this.user = user,
         response => {
@@ -68,10 +68,15 @@ export class NewGrowerComponent implements OnInit, CanDeactivate {
     result.subscribe(x => {
       // Ideally, here we'd want:
       // this.newgrowerform.markAsPristine();
+      console.log("Received Data: ");
       for (var propName in x) {
         console.log(propName, x[propName]);
       }
-      //this._router.navigate(['Users']);
+
+      this.user = User.decode(x);
+      console.log(this.user);
+
+      // TODO Clean Form Values.
     });
   }
 }
