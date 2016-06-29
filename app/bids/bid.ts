@@ -40,6 +40,9 @@ export class Bid {
 
   static decode(bidJson: Object): Bid {
     var bid  = new Bid();
+    
+    bid.bid_id = bidJson['id'];
+
     bid.growerIds = []; 
     var growers = bidJson['noResponseGrowers'];
     if (growers != null) {
