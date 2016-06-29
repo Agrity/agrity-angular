@@ -9,6 +9,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {NotFoundComponent} from './not-found.component';
 import {HandlerLoginComponent} from './handler-login/handler-login.component'
 import {ViewBidsComponent} from './bids/view-bids.component'
+import {ViewBidComponent} from './bids/view-bid.component'
 
 @RouteConfig([
   { path: '/', name: 'Home', component: HomeComponent },
@@ -16,6 +17,7 @@ import {ViewBidsComponent} from './bids/view-bids.component'
   { path: '/handler-login', name: 'Handler Login', component: HandlerLoginComponent },
 
   { path: '/bids', name: 'View Bids', component: ViewBidsComponent },
+  { path: '/bids/:id', name: 'View Bid', component: ViewBidComponent },
   { path: '/bids/new', name: 'Make Bid', component: MakeBidComponent },
 
   { path: '/users/:id', name: 'EditUser', component: NewGrowerComponent },

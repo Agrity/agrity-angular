@@ -1,3 +1,5 @@
+import {User} from '../users/user';
+
 export class Bid {
   bid_id: number;
   almondVariety: String;
@@ -55,5 +57,35 @@ export class Bid {
     bid.comment = bidJson['comment'];
 
     return bid;
+  }
+
+  static decodeBidAcceptGrowers(bidJson: Object): User[] {
+    return this.decodeBidGrowers('acceptedGrowers', bidJson);
+  }
+
+  static decodeBidRejectGrowers(bidJson: Object): User[] {
+    return this.decodeBidGrowers('rejectedGrowers', bidJson);
+  }
+
+  static decodeBidCallRequestedGrowers(bidJson: Object): User[] {
+    return this.decodeBidGrowers('callRequestedGrowers', bidJson);
+  }
+
+  static decodeBidNoResponseGrowers(bidJson: Object): User[] {
+    return this.decodeBidGrowers('noResponseGrowers', bidJson);
+  }
+
+  // TODO Should remove this and just have the bid model hold
+  //      lists of Users.
+  private static decodeBidGrowers(growersKey: string, bidJson: Object): User[] {
+    var growers: User[] = [];
+
+    var growersObject = bidJson[growersKey];
+    if (growersObject != null) {
+      for (var growerIdx in growersObject) {
+        growers.push(User.decode(growersObject[growerIdx])); 
+      }
+    } 
+    return growers;
   }
 }
