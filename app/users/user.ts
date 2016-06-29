@@ -5,6 +5,10 @@ export class User {
   email: string; 
   phone: string;
 
+  // NOTE: Temporary hack to allow selection from list.
+  //       Do not send, or expect to recieve, to server.
+  selected: boolean;
+
   encode(): string {
     // NOTE: Play Framework won't recognize fields that aren't changed to
     //       String class. Unsure why.
@@ -22,14 +26,24 @@ export class User {
     user.first_name = userJson['firstName'];
     user.last_name = userJson['lastName'];
 
-    if (userJson['emailAddressStrings'] != null) {
-      user.email = userJson['emailAddressStrings'][0];
+    var emailAddressStrings = userJson['emailAddressStrings'];
+    if (emailAddressStrings != null) {
+      // NOTE: Temporary hack until front-end supports multiple emails.
+      var emailString: string = emailAddressStrings[0];
+      user.email = emailString != undefined 
+          ? emailString
+          : null;
     } else {
-      user.phone = null;
+      user.email = null;
     }
 
-    if (userJson['phoneNumbers'] != null) {
-      user.phone = userJson['phoneNumbers'][0];
+    var phoneNumberStrings = userJson['phoneNumbers'];
+    if (phoneNumberStrings != null) {
+      // NOTE: Temporary hack until front-end supports multiple emails.
+      var phoneString: string = phoneNumberStrings[0];
+      user.phone = phoneString != undefined 
+          ? phoneString
+          : null;
     } else {
       user.phone = null;
     }

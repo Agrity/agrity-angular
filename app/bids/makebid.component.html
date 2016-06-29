@@ -8,42 +8,43 @@
 			<!-- Form section
 			================================================== -->
 			<div class="col-md-6 col-sm-6 wow fadeInDown" data-wow-delay="0.6s">
-				<form [ngFormModel]="makebidform" (ngSubmit)="save()">
+				<form [ngFormModel]="newBidForm" (ngSubmit)="save()">
 					<h9 class="wow fadeInDown">CREATE YOUR BID</h9>
 
 					<div np-app="makebidform" class="col-md-12 col-sm-12">
                         
                         <div class="form-group">										
-                            <input type="text" [(ngModel)]="almondVariety" #almond_variety="ngForm" ngControl="almond_variety" class="form-control" placeholder="Choose Almond Variety" name="almond variety" id="almond variety" list="almonds"> 
+                            <input type="text" [(ngModel)]="bid.almondVariety" #almond_variety="ngForm" ngControl="almondVariety" class="form-control" placeholder="Choose Almond Variety" name="almond variety" id="almond variety" list="almonds"> 
+                            <!-- TODO Change to Data Souce in Component -->
                             <datalist id="almonds">
-                                <option>NonPareil</option>
-                                <option>Carmel</option>
-                                <option>Butte</option>
-                                <option>Padre</option>
-                                <option>Mission</option>
-                                <option>Monterey</option>
-                                <option>Padre</option>
-                                <option>Sonora</option>
-                                <option>Fritz</option>
-                                <option>Price</option>
-                                <option>Peerless</option>
+                                <option>NONPAREIL</option>
+                                <option>CARMEL</option>
+                                <option>BUTTE</option>
+                                <option>PADRE</option>
+                                <option>MISSION</option>
+                                <option>MONTEREY</option>
+                                <option>SONORA</option>
+                                <option>FRITZ</option>
+                                <option>PRICE</option>
+                                <option>PEERLESS</option>
                             </datalist>
                         </div>
 
                         <div class="form-group">										
-                            <input [(ngModel)]="pricePerPound" #price_per_pound="ngForm" ngControl="price_per_pound" type="number" class="form-control" placeholder="Price Per Pound" name="price" id="price">
+                            <input [(ngModel)]="bid.pricePerPound" #price_per_pound="ngForm" ngControl="pricePerPound" type="number" class="form-control" placeholder="Price Per Pound" name="price" id="price">
                         </div>
 
 					<div class="form-group">										
-                        <input [(ngModel)]="almondPounds" #almond_pounds="ngForm" ngControl="almond_pounds" type="number" class="form-control" placeholder="Pounds" name="pounds">
+                        <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Pounds" name="pounds">
                     </div>
                         <div class="ui-widget">
 						<input id="tags" size="50" class="form-control" placeholder="Size" name="size">
 						</div>
 
-                        <textarea [(ngModel)]="comment" name="comment" rows="2" class="form-control" id="comment" placeholder="Comments" message="comment"></textarea>
+                        <textarea [(ngModel)]="bid.comment" ngControl="comment" name="comment" rows="2" class="form-control" id="comment" placeholder="Comments" message="comment"></textarea>
 
 					</div>
+						<input name="submit" type="submit" class="form-control" id="submit" value="Complete Bid">
 				</form>
 			</div>
 
@@ -54,13 +55,16 @@
 
 				<h8>Choose Growers</h8><br>
 					<!--<input ng-model="complete" id="myAutocomplete" type="text" style="width:400px;"/>-->
-					<input type="checkbox">
-						<h7>Larsen</h7>
+            <!-- TODO Change this to an imported component. -->
+            <div *ngFor="let grower of growers; let i = index">
+              <input type="checkbox" [(ngModel)]="grower.selected">
+              <h7>{{ grower.first_name }} {{ grower.last_name }}</h7>
+            </div>
 
 
 				</div><br>
 					<div class="col-md-6 col-sm-6">
-						<input [routerLink]="['View Bids']" name="submit" type="submit" class="form-control" id="submit" value="Complete Bid">
+            <!-- <input name="submit" type="submit" class="form-control" id="submit" value="Complete Bid"> -->
 					</div>
 					<div class="col-md-6 col-sm-6">
 						<input [routerLink]="['Home']" name="cancel" type="submit" class="form-control" id="submit" value="Cancel Bid">
