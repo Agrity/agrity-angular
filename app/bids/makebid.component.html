@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group">										
-                            <input [(ngModel)]="bid.pricePerPound" #price_per_pound="ngForm" ngControl="pricePerPound" type="number" class="form-control" placeholder="Price Per Pound" name="price" id="price">
+                            <input [(ngModel)]="bid.pricePerPound" #price_per_pound="ngForm" ngControl="pricePerPound" type="number" step="0.01" class="form-control" placeholder="Price Per Pound" name="price" id="price">
                         </div>
 
 					<div class="form-group">										
@@ -44,7 +44,9 @@
                         <textarea [(ngModel)]="bid.comment" ngControl="comment" name="comment" rows="2" class="form-control" id="comment" placeholder="Comments" message="comment"></textarea>
 
 					</div>
+					<div style="padding-left:110px;">
 						<input name="submit" type="submit" class="form-control" id="submit" value="Complete Bid">
+					</div>
 				</form>
 			</div>
 
@@ -63,11 +65,11 @@
 
 
 				</div><br>
-					<div class="col-md-6 col-sm-6">
+					<!--<div class="col-md-6 col-sm-6">-->
             <!-- <input name="submit" type="submit" class="form-control" id="submit" value="Complete Bid"> -->
-					</div>
-					<div class="col-md-6 col-sm-6">
-						<input [routerLink]="['Home']" name="cancel" type="submit" class="form-control" id="submit" value="Cancel Bid">
+					<!--</div>-->
+					<div class="col-md-6 col-sm-6" style="padding-left:160px;">
+						<input [routerLink]="['Home']" name="submit" type="cancel" id="submit" value="Cancel Bid">
 					</div>
 			</div>
 

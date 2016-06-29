@@ -1,32 +1,30 @@
 <!-- Login Section
 ================================================== -->
-<div class="container">
+<section class="parallax-section" id="login">
+<div class="container" style="padding:150px 0px 100px 350px;">
   <div class="row">
-   
-    <!-- Backend Hacks -->
-    <div> Space </div>
-    <div> Space </div>
-    <div> Space </div>
-
-    <div class="input-group">
+        <center><h6 style="padding:0 435px 10px 0;">Sign In</h6></center>
+    <center><div class="col-md-6 col-sm-6">
+    <div class="form-group">
       <input type="text" class="form-control" placeholder="Email Address" required
           [(ngModel)]="loginInfo.emailAddress">
     </div>
 
-      TODO: Remove : {{ loginInfo.emailAddress }}
+      <!--TODO: Remove : {{ loginInfo.emailAddress }}-->
 
-    <div class="input-group">
+    <div class="form-group">
       <input type="text" class="form-control" placeholder="Password" required
           [(ngModel)]="loginInfo.password">
     </div>
-
-    <div class="input-group">
-      <button type="button" class="btn btn-default" (click)="login()">Login</button>
+<br>
+    <div class="form-group">
+      <input style="margin: 0 auto; width: 50%; padding-left: 13px;" name="submit" type="submit" class="form-control" id="submit" value="Login" (click)="login()">
     </div>
-
-    <div class="input-group">
-      <button type="button" class="btn btn-default" (click)="logout()">Logout</button>
+    <div class="form-group">
+      <input style="margin: 0 auto; width: 50%; padding-left: 72px;" name="submit" type="cancel" class="form-control" id="submit" value="Logout" (click)="logout()">
     </div>
+      </div></center>
 
   </div>
 </div>
+</section>

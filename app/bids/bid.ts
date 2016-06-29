@@ -2,13 +2,13 @@ import {User} from '../users/user';
 
 export class Bid {
   bid_id: number;
-  almondVariety: String;
-  almondPounds: String;
-  pricePerPound: String;
-  paymentDate: String;
-  comment: String;
+  almondVariety: string;
+  almondPounds: string;
+  pricePerPound: string;
+  paymentDate: string;
+  comment: string;
 
-  managementType: String;
+  managementType: string;
   managementTypeDelay: number;
 
   growerIds: number[];
@@ -26,15 +26,15 @@ export class Bid {
     //       String class. Unsure why.
     return JSON.stringify({
       'grower_ids': this.growerIds,
-      'almond_variety': this.almondVariety.toString(),
-      'almond_pounds': this.almondPounds.toString(),
-      'price_per_pound': this.pricePerPound.toString(),
+      'almond_variety': this.getString(this.almondVariety),
+      'almond_pounds': this.getString(this.almondPounds),
+      'price_per_pound': this.getString(this.pricePerPound),
       'management_type': {
-        'type': this.managementType.toString(),
-        'delay': this.managementTypeDelay.toString()
+        'type': this.getString(this.managementType),
+        'delay': this.managementTypeDelay,
       },
-      'payment_date': this.paymentDate.toString(),
-      'comment': this.comment.toString(),
+      'payment_date': this.getString(this.paymentDate),
+      'comment': this.getString(this.comment),
     });
   }
 
@@ -87,5 +87,11 @@ export class Bid {
       }
     } 
     return growers;
+  }
+
+  private getString(field: string): String {
+    return field != null
+      ? field.toString()
+      : "";
   }
 }
