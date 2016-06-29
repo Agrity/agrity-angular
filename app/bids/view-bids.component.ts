@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
 import {Observable} from 'rxjs/Observable';
+import {BidService} from './bid.service';
+import {Bid} from './bid';
+import {ErrorHandling} from '../ErrorHandling';
 
 @Component({
   templateUrl: 'app/bids/view-bids.component.html',
@@ -22,34 +25,32 @@ import {Observable} from 'rxjs/Observable';
     }
   `], 
   styleUrls: ['assets/stylesheets/style.css'],
+  providers: [BidService],
   directives: [RouterLink, ROUTER_DIRECTIVES]
 })
 
 export class ViewBidsComponent implements OnInit {
 
-  constructor(){
+  private bids: Bid[];
+
+  constructor(
+    private _bidService: BidService,
+    private _errorHandling: ErrorHandling) {
   }
 
   ngOnInit(){
-    // TODO Fetch and Display Bids
+    // Load Bids
+    this.bids = [];
+    this._bidService.getBids()
+      .subscribe(
+        bids => {
+          console.log(bids);
+          for (var bidIdx in bids) {
+            this.bids.push(Bid.decode(bids[bidIdx]));
+          }
+          console.log(this.bids);
+        },
+        error => this._errorHandling.handleHttpError(error));
+
   } 
-
-  //deleteUser(user){
-  //  if (confirm("Are you sure you want to delete " + user.name + "?")) {
-  //    var index = this.users.indexOf(user)
-  //    // Here, with the splice method, we remove 1 object
-  //    // at the given index.
-  //    this.users.splice(index, 1);
-
-  //    this._service.deleteUser(user.id)
-  //      .subscribe(null, 
-  //                 err => {
-  //                   alert("Could not delete the user.");
-  //                   // Revert the view back to its original state
-  //                   // by putting the user object at the index
-  //                   // it used to be.
-  //                   this.users.splice(index, 0, user);
-  //                 });
-  //  }
-  //}
 }

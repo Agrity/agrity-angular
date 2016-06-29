@@ -13,10 +13,10 @@ export class User {
     // NOTE: Play Framework won't recognize fields that aren't changed to
     //       String class. Unsure why.
     return JSON.stringify({
-      'first_name': this.first_name.toString(),
-      'last_name': this.last_name.toString(),
-      'email_addresses': [this.email.toString()],
-      'phone_numbers': [this.phone.toString()],
+      'first_name': this.getString(this.first_name),
+      'last_name': this.getString(this.last_name),
+      'email_addresses': [this.getString(this.email)],
+      'phone_numbers': [this.getString(this.phone)]
     });
   }
 
@@ -49,5 +49,11 @@ export class User {
     }
 
     return user;
+  }
+
+  private getString(field: string): String {
+    return field != null
+      ? field.toString()
+      : "";
   }
 }
