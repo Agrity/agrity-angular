@@ -28,9 +28,11 @@ h1,h2,h3,h4,h5 {
 }
 
 h1 {
-  font-size: 62px;
+  font-size: 65px;
   line-height: 72px;
   color: #ffffff;
+  text-shadow: -0.5px 0 #303030, 0 0.5px #303030, 0.5px 0 #303030, 0 -0.5px #303030;
+
 }
 
 h2 {
@@ -46,7 +48,8 @@ h3 {
   font-size: 16px;
   letter-spacing: 26px;
   letter-spacing: 2px;
-  text-shadow: 1px rgba(0,0,0,0.5) #ffffff;
+  /*text-shadow: 1px rgba(0,0,0,0.5) #ffffff;*/
+  text-shadow: -0.5px 0 #303030, 0 0.5px #303030, 0.5px 0 #303030, 0 -0.5px #303030;
 }
 
 h5 {
