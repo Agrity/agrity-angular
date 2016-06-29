@@ -21,10 +21,8 @@ import {ViewUserComponent} from './users/view-user.component'
   { path: '/bids/:id', name: 'View Bid', component: ViewBidComponent },
   { path: '/bids/new', name: 'Make Bid', component: MakeBidComponent },
 
-  { path: '/users/:id', name: 'EditUser', component: NewGrowerComponent },
+  { path: '/users/:id', name: 'ViewUser', component: ViewUserComponent },
   { path: '/users/new', name: 'NewGrower', component: NewGrowerComponent },
-  
-  { path: '/users/view', name: 'ViewUser', component: ViewUserComponent },
 
   { path: '/profile', name: 'Profile', component: ProfileComponent },
 

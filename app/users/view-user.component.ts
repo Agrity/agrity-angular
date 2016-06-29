@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
+import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams} from '@angular/router-deprecated';
 
 import {Observable} from 'rxjs/Observable';
 import {UserService} from './user.service';
@@ -17,19 +17,24 @@ import {ErrorHandling} from '../ErrorHandling';
 })
 
 export class ViewUserComponent implements OnInit {
+  
+  private userId: number;
 
   private user: User = new User();
   private bids: Bid[];  
 
   constructor(
-    private _userService: UserService,
-    private _bidService: BidService,
-    private _errorHandling: ErrorHandling) {
+      params: RouteParams,
+      private _userService: UserService,
+      private _bidService: BidService,
+      private _errorHandling: ErrorHandling) {
+
+    this.userId = +params.get('id');
   }
 
   ngOnInit(){
     // Load user
-    this._userService.getUser(1)
+    this._userService.getUser(this.userId)
       .subscribe(
         user => {
           this.user = User.decode(user);
@@ -37,7 +42,7 @@ export class ViewUserComponent implements OnInit {
         error => this._errorHandling.handleHttpError(error));
 
     this.bids = [];
-    this._bidService.getGrowerBids(1)
+    this._bidService.getGrowerBids(this.userId)
       .subscribe(
         bids => {
           for (var bidIdx in bids) {
