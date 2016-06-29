@@ -12,9 +12,9 @@
 		Current Bids
 	</h2>
 	  <div class="wow fadeInDown" data-wow-delay="0.3s">
-	  <button style="width:90%; height:100px; font-size:2.5em; text-align:left; padding-left: 50px;" type="button" class="btn btn-info" data-toggle="collapse" data-target="#group1">
+	  <button *ngFor="let bid of bids" style="width:90%; height:100px; font-size:2.5em; text-align:left; padding-left: 50px;" type="button" class="btn btn-info" data-toggle="collapse" data-target="#group1">
 	  	<table id="buttonCols" style="width:100%">
-		<tr *ngFor="let bid of bids">
+		<tr>
 	  		<td class="offerButton">{{ bid.almondVariety }}</td>
 	  		<td class="offerButton">23/25</td>
 	  		<td class="offerButton">{{ bid.almondPounds }}</td>
