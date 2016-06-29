@@ -484,6 +484,7 @@ input[type=checkbox]:checked + label:before {
   color:#ffffff;
   padding-left: 80px;
   position:right;
+  align-content: right;
   border:none;
   border-radius: 4px;
   font-weight: bold;
