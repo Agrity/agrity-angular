@@ -29,6 +29,12 @@ export class BidService {
       .catch(this._errorHandling.handleHttpError);
   }
 
+  getGrowerBids(growerId: number) {
+    return this._http.get(this.getGrowerBidsUrl(growerId))
+      .map(res => res.json())
+      .catch(this._errorHandling.handleHttpError);
+  }
+
   createBid(bid: Bid) {
     if (bid == null) {
       this._errorHandling.handleError("Attempted to add null Bid.");
@@ -42,5 +48,10 @@ export class BidService {
 
   private getBidUrl(bidId: number){
     return this._bidsUrl + "/" + bidId;
+  }
+
+  private getGrowerBidsUrl(growerId: number) {
+    return this._config.getServerDomain()
+        + "/handler/growers/" + growerId + "/offers";
   }
 }
