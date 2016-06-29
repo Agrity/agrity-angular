@@ -7,16 +7,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" [routerLink]="['Home']">Agrity</a>
+      <a class="navbar-brand" [routerLink]="['Handler Login']">Agrity</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right main-navigation">
-        <li [class.active]="isCurrentRoute(['Home'])"><a [routerLink]="['Home']" class="smoothScroll">HOME</a></li>
-        <li [class.active]="isCurrentRoute(['View Bids'])"><a [routerLink]="['View Bids']" class="smoothScroll">BIDS</a></li>
-        <li [class.active]="isCurrentRoute(['NewGrower'])"><a [routerLink]="['NewGrower']" class="smoothScroll">ADD GROWER</a></li>
-        <li [class.active]="isCurrentRoute(['Profile'])"><a [routerLink]="['Profile']" class="smoothScroll">PROFILE</a></li>
+        <li><a [routerLink]="['Home']" class="smoothScroll">HOME</a></li>
+        <li><a [routerLink]="['View Bids']" class="smoothScroll">BIDS</a></li>
+        <li><a [routerLink]="['NewGrower']" class="smoothScroll">ADD GROWER</a></li>
+        <li><a [routerLink]="['Profile']" class="smoothScroll">PROFILE</a></li>
 
       </ul>
     </div><!-- /.navbar-collapse -->
