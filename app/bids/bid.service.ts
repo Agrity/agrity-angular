@@ -9,18 +9,24 @@ import {Bid} from './bid';
 
 @Injectable()
 export class BidService {
-	private _bidUrl;
+	private _bidsUrl;
 
 	constructor(private _http: HttpClient,
               private _config: Config,
               private _errorHandling: ErrorHandling) {
-    this._bidUrl = _config.getServerDomain() + '/handler/offers';
+    this._bidsUrl = _config.getServerDomain() + '/handler/offers';
 	}
 
   getBids() {
+    return this._http.get(this._bidsUrl)
+      .map(res => res.json())
+      .catch(this._errorHandling.handleHttpError);
   }
 
   getBid(bidId: number) {
+    return this._http.get(this.getBidUrl(bidId))
+      .map(res => res.json())
+      .catch(this._errorHandling.handleHttpError);
   }
 
   createBid(bid: Bid) {
@@ -29,8 +35,12 @@ export class BidService {
       return null;
     }
 
-    return this._http.jsonPost(this._bidUrl, bid.encode())
+    return this._http.jsonPost(this._bidsUrl, bid.encode())
       .map(res => res.json())
       .catch(this._errorHandling.handleHttpError);
+  }
+
+  private getBidUrl(bidId: number){
+    return this._bidsUrl + "/" + bidId;
   }
 }
