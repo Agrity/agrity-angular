@@ -36,24 +36,25 @@ export class Bid {
     });
   }
 
-  //static decode(userJson: Object): User {
-  //  var user  = new User();
-  //  user.grower_id = userJson['id'];
-  //  user.first_name = userJson['firstName'];
-  //  user.last_name = userJson['lastName'];
+  static decode(bidJson: Object): Bid {
+    var bid  = new Bid();
 
-  //  if (userJson['emailAddressStrings'] != null) {
-  //    user.email = userJson['emailAddressStrings'][0];
-  //  } else {
-  //    user.phone = null;
-  //  }
+    bid.growerIds = [];
+    var growers = bidJson['noResponseGrowers'];
+    if (growers != null) {
+      for (var grower in growers) {
+        bid.growerIds.push(grower['id']); 
+      }
+    } 
 
-  //  if (userJson['phoneNumbers'] != null) {
-  //    user.phone = userJson['phoneNumbers'][0];
-  //  } else {
-  //    user.phone = null;
-  //  }
+    bid.almondVariety = bidJson['almondVariety'];
+    bid.almondPounds = bidJson['almondPounds'];
+    bid.pricePerPound = bidJson['pricePerPound'];
+    bid.managementType = null;
+    bid.managementTypeDelay = null;
+    bid.paymentDate = bidJson['paymentDate'];
+    bid.comment = bidJson['comment'];
 
-  //  return user;
-  //}
+    return bid;
+  }
 }
