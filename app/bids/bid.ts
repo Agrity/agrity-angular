@@ -3,6 +3,7 @@ import {User} from '../users/user';
 export class Bid {
   bid_id: number;
   almondVariety: string;
+  almondSize: string;
   almondPounds: string;
   pricePerPound: string;
   paymentDate: string;
@@ -27,6 +28,7 @@ export class Bid {
     return JSON.stringify({
       'grower_ids': this.growerIds,
       'almond_variety': this.getString(this.almondVariety),
+      'almond_size': this.getString(this.almondSize),
       'almond_pounds': this.getString(this.almondPounds),
       'price_per_pound': this.getString(this.pricePerPound),
       'management_type': {
@@ -52,6 +54,7 @@ export class Bid {
     } 
 
     bid.almondVariety = bidJson['almondVariety'];
+    bid.almondSize = bidJson['almondSize'];
     bid.almondPounds = bidJson['almondPounds'];
     bid.pricePerPound = bidJson['pricePerPound'];
     bid.managementType = null;
