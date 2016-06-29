@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
+import {User} from '../users/user'
 import {BidService} from './bid.service';
 import {Bid} from './bid';
 import {ErrorHandling} from '../ErrorHandling';
@@ -30,24 +31,37 @@ import {PaginationComponent} from '../shared/pagination.component';
 export class MakeBidComponent implements OnInit {
 
   private newBidForm: ControlGroup;
+
   private bid: Bid = new Bid();
+
+  private growers: User[];
 
   constructor(
     fb: FormBuilder,
     private _bidService: BidService,
     private _userService: UserService,
     private _errorHandling: ErrorHandling) {
-    //this.newBidForm = fb.group({
-    //  first_name: ['', Validators.required],
-    //  last_name: ['', Validators.required],
-    //  email: ['', BasicValidators.email],
-    //  phone: []
-    //});
+    this.newBidForm = fb.group({
+      almondVariety: ['', Validators.required],
+      pricePerPound: ['', Validators.required],
+      almondPounds: ['', Validators.required],
+      comment: []
+    });
   }
 
   ngOnInit() {
-    //this.loadUsers();
-    //this.loadPosts();        
+    // Load in Growers
+    this.growers = [];
+    this._userService.getUsers()
+      .subscribe(
+        users => {
+          console.log(users);
+          for (var userIdx in users) {
+            this.growers.push(User.decode(users[userIdx]));
+          }
+          console.log(this.growers);
+        },
+        error => this._errorHandling.handleHttpError(error));
   }
 
   callGetBidsExample() {
@@ -95,46 +109,26 @@ export class MakeBidComponent implements OnInit {
   }
 
   save() {
+    this.growers.forEach(grower => console.log(grower));
+
+    this.bid.growerIds
+        = this.growers
+            .filter(grower => grower.selected)
+            .map(grower => grower.grower_id);
+
+
+    this.bid.paymentDate = ''; // Not Implemented On Server
+
+    this.bid.managementType = 'FCFSService';
+    this.bid.managementTypeDelay = 5;
+
+    this._bidService.createBid(this.bid)
+      .subscribe(
+        bid => {
+          console.log("Bid Created: ");
+          console.log(bid);
+        },
+        error => this._errorHandling.handleHttpError(error));
     console.log("saved");
   }
-
-  //private loadUsers(){
-  //  this._userService.getUsers()
-  //  .subscribe(users => this.users = users);
-  //}
-
-  //private loadPosts(filter?){
-  //  this.postsLoading = true; 
-  //  //this._bidService.getPosts(filter)
-  //  //.subscribe(
-  //  //  posts => {
-  //  //    this.posts = posts;
-  //  //    this.pagedPosts = _.take(this.posts, this.pageSize);
-  //  //  },
-  //  //  null,
-  //  //  () => { this.postsLoading = false; });
-  //}
-
-  //reloadPosts(filter){
-  //  this.currentPost = null;
-
-  //  this.loadPosts(filter);
-  //}
-
-  //select(post){
-  //  this.currentPost = post; 
-
-  //  this.commentsLoading = true;
-  //  this._bidService.getComments(post.id)
-  //    .subscribe(
-  //      comments => 
-  //      this.currentPost.comments = comments,
-  //        null,
-  //      () => this.commentsLoading = false); 
-  //} 
-
-  //onPageChanged(page) {
-  //  var startIndex = (page - 1) * this.pageSize;
-  //  this.pagedPosts = _.take(_.rest(this.posts, startIndex), this.pageSize);
-  //}
 }

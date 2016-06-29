@@ -24,15 +24,15 @@ export class Bid {
     //       String class. Unsure why.
     return JSON.stringify({
       'grower_ids': this.growerIds,
-      'almond_variety': this.almondVariety,
-      'almond_pounds': this.almondPounds,
-      'price_per_pound': this.pricePerPound,
+      'almond_variety': this.almondVariety.toString(),
+      'almond_pounds': this.almondPounds.toString(),
+      'price_per_pound': this.pricePerPound.toString(),
       'management_type': {
-        'type': this.managementType,
-        'delay': this.managementTypeDelay
+        'type': this.managementType.toString(),
+        'delay': this.managementTypeDelay.toString()
       },
-      'payment_date': this.paymentDate,
-      'comment': this.comment,
+      'payment_date': this.paymentDate.toString(),
+      'comment': this.comment.toString(),
     });
   }
 
