@@ -13,15 +13,15 @@
       <!--TODO: Remove : {{ loginInfo.emailAddress }}-->
 
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Password" required
+      <input type="password" class="form-control" placeholder="Password" required
           [(ngModel)]="loginInfo.password">
     </div>
 <br>
     <div class="form-group">
-      <input style="margin: 0 auto; width: 50%; padding-left: 13px;" name="submit" type="submit" class="form-control" id="submit" value="Login" (click)="login()">
+      <input style="margin: 0 auto; width: 50%; padding-left: 13px;" name="submit" type="submit" class="form-control" id="submit" value="Login" [routerLink]="['Home']" (click)="login()">
     </div>
     <div class="form-group">
-      <input style="margin: 0 auto; width: 50%; padding-left: 72px;" name="submit" type="cancel" class="form-control" id="submit" value="Logout" (click)="logout()">
+      <input style="margin: 0 auto; width: 50%; padding-left: 13px; background-color:#a70000;" name="submit" type="submit" class="hover-item" id="submit" value="Logout" [routerLink]="['Home']" (click)="logout()">
     </div>
       </div></center>
 

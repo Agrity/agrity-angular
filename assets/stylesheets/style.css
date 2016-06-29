@@ -126,6 +126,14 @@ input[type=checkbox]:checked + label:before {
     margin: 0 auto;
 }
 
+.hover-item {
+  background-color: #a70000;
+}
+
+.hover-item:hover {
+  background-color:#a70000;
+}
+
 
 /* navigation styles
 /* ========================================== */
@@ -337,6 +345,10 @@ input[type=checkbox]:checked + label:before {
   }
   td.state{
     text-align:right;
+  }
+
+  table td1 {
+    width: 500px;
   }
 
 /* login section styles
@@ -597,16 +609,13 @@ input[type=checkbox]:checked + label:before {
     background-color:#cc8500;
   }
 
-  #buttonA, #buttonR, #buttonP {
+  #buttonA, #buttonR, #buttonP, #buttonC {
     text-decoration: none;
     outline:red;
     border:none;
     box-shadow:none;
-
     width:70%; 
-    height:auto; 
     margin-left:100px;
-
     font-size: 150%;
   }
 
@@ -629,6 +638,13 @@ input[type=checkbox]:checked + label:before {
   }
   #buttonP:hover {
     background-color: hsla(0, 0%, 40%, 0.9);
+  }
+
+  #buttonC {
+    background-color: hsla(234, 78%, 52%, 0.9); 
+  }
+  #buttonC:hover {
+    background-color: hsla(234, 78%, 52%, 0.9);
   }
       
 /* footer section styles
