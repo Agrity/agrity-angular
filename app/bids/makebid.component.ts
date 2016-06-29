@@ -43,8 +43,10 @@ export class MakeBidComponent implements OnInit {
     private _errorHandling: ErrorHandling) {
     this.newBidForm = fb.group({
       almondVariety: ['', Validators.required],
+      almondSize: ['', Validators.required],
       pricePerPound: ['', Validators.required],
       almondPounds: ['', Validators.required],
+      delay: ['', Validators.required],
       comment: []
     });
   }
@@ -55,62 +57,14 @@ export class MakeBidComponent implements OnInit {
     this._userService.getUsers()
       .subscribe(
         users => {
-          console.log(users);
           for (var userIdx in users) {
             this.growers.push(User.decode(users[userIdx]));
           }
-          console.log(this.growers);
-        },
-        error => this._errorHandling.handleHttpError(error));
-  }
-
-  callGetBidsExample() {
-    this._bidService.getBids()
-      .subscribe(
-        bids => {
-          console.log("Bids Received: ");
-          for (var propName in bids) {
-            console.log(propName, bids[propName]);
-          }
-        },
-        error => this._errorHandling.handleHttpError(error));
-  }
-
-  callGetBidExample() {
-    this._bidService.getBid(1)
-      .subscribe(
-        bid => {
-          console.log("Bid Received: ");
-          console.log(bid);
-        },
-        error => this._errorHandling.handleHttpError(error));
-  }
-
-  callCreateBidExample() {
-    var bid: Bid = new Bid();
-    bid.almondVariety = 'NP';
-    bid.almondPounds = '44000';
-    bid.pricePerPound = '$3.55'
-    bid.paymentDate = '';
-    bid.comment = 'Super Cool Comment';
-
-    bid.managementType = 'FCFSService';
-    bid.managementTypeDelay = 5;
-
-    bid.growerIds = [1, 2]
-
-    this._bidService.createBid(bid)
-      .subscribe(
-        bid => {
-          console.log("Bid Created: ");
-          console.log(bid);
         },
         error => this._errorHandling.handleHttpError(error));
   }
 
   save() {
-    this.growers.forEach(grower => console.log(grower));
-
     this.bid.growerIds
         = this.growers
             .filter(grower => grower.selected)
@@ -120,15 +74,18 @@ export class MakeBidComponent implements OnInit {
     this.bid.paymentDate = ''; // Not Implemented On Server
 
     this.bid.managementType = 'FCFSService';
-    this.bid.managementTypeDelay = 5;
+
+    if (this.bid.managementTypeDelay < 0)
+      this.bid.managementTypeDelay *= -1
+
+    console.log(this.bid);
 
     this._bidService.createBid(this.bid)
       .subscribe(
         bid => {
           console.log("Bid Created: ");
-          console.log(bid);
+          console.log(Bid.decode(bid));
         },
         error => this._errorHandling.handleHttpError(error));
-    console.log("saved");
   }
 }

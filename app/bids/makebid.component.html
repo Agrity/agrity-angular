@@ -30,16 +30,22 @@
                             </datalist>
                         </div>
 
+                        <!-- ALMOND SIZE -->
+                        <div class="form-group">										
+                          <input [(ngModel)]="bid.almondSize" #almond_size="ngForm" ngControl="almondSize" type="text" step="0.01" class="form-control" placeholder="Almond Size" name="size" id="size">
+                        </div>
+
                         <div class="form-group">										
                             <input [(ngModel)]="bid.pricePerPound" #price_per_pound="ngForm" ngControl="pricePerPound" type="number" step="0.01" class="form-control" placeholder="Price Per Pound" name="price" id="price">
                         </div>
 
-					<div class="form-group">										
+                <div class="form-group">										
                         <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Pounds" name="pounds">
                     </div>
-                        <div class="ui-widget">
-						<input id="tags" size="50" class="form-control" placeholder="Size" name="size">
-						</div>
+
+                        <div class="form-group">										
+                          <input [(ngModel)]="bid.managementTypeDelay" #managementTypeDelay="ngForm" ngControl="delay" type="number" step="1" class="form-control" placeholder="Bid Duration (minutes)" name="delay" id="delay">
+                        </div>
 
                         <textarea [(ngModel)]="bid.comment" ngControl="comment" name="comment" rows="2" class="form-control" id="comment" placeholder="Comments" message="comment"></textarea>
 
@@ -68,7 +74,7 @@
 					<!--<div class="col-md-6 col-sm-6">-->
             <!-- <input name="submit" type="submit" class="form-control" id="submit" value="Complete Bid"> -->
 					<!--</div>-->
-					<div class="col-md-6 col-sm-6" style="padding-left:160px;">
+					<div class="col-sm-12" style="padding-left:160px;">
 						<input [routerLink]="['Home']" name="submit" type="cancel" id="submit" value="Cancel Bid">
 					</div>
 			</div>
