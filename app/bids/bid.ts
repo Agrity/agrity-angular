@@ -9,12 +9,12 @@ export class Bid {
   managementType: String;
   managementTypeDelay: number;
 
-  growerIds: [number];
+  growerIds: number[];
 
-  acceptedGrowers: [number];
-  rejectedGrowers: [number];
-  callRequestedGrowers: [number];
-  noResponseGrowers: [number];
+  acceptedGrowers: number[];
+  rejectedGrowers: number[];
+  callRequestedGrowers: number[];
+  noResponseGrowers: number[];
 
   currentlyOpen: boolean;
 
@@ -38,12 +38,11 @@ export class Bid {
 
   static decode(bidJson: Object): Bid {
     var bid  = new Bid();
-
-    bid.growerIds = [];
+    bid.growerIds = []; 
     var growers = bidJson['noResponseGrowers'];
     if (growers != null) {
-      for (var grower in growers) {
-        bid.growerIds.push(grower['id']); 
+      for (var growerIdx in growers) {
+        bid.growerIds.push(growers[growerIdx]['id']); 
       }
     } 
 
