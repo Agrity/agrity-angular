@@ -14,12 +14,12 @@
 	  <div class="wow fadeInDown" data-wow-delay="0.3s">
 	  <button style="width:90%; height:100px; font-size:2.5em; text-align:left; padding-left: 50px;" type="button" class="btn btn-info" data-toggle="collapse" data-target="#group1">
 	  	<table id="buttonCols" style="width:100%">
-		<tr>
-	  		<td class="offerButton">{{ almond_variety }}</td>
-	  		<!--<td class="offerButton">23/25</td>-->
-	  		<td class="offerButton">{{ almond_pounds }}</td>
-	  		<td class="offerButton">{{ price_per_pound }}</td> 
-	  		<td class="offerButton">{{ payment_date }}</td>
+		<tr *ngFor="let bid of bids" value="{{ bid.id }}">
+	  		<td class="offerButton">{{ bid.almondVariety }}</td>
+	  		<td class="offerButton">23/25</td>
+	  		<td class="offerButton">{{ bid.almondPounds }}</td>
+	  		<td class="offerButton">{{ bid.pricePerPound }}</td> 
+	  		<td class="offerButton">{{ bid.paymentDate }}</td>
 	  	</tr>
 		</table>
 	  	</button>
@@ -29,10 +29,10 @@
 	    <ul style="list-style:none; padding-top:10px;">
 	    	<li>
 	    	<div class="container" style="padding-bottom:10px;">
-	    	<button id="buttonA" type="button" class="btn btn-info" [routerLink]="['EditUser', { id:user.id }]">
+	    	<button id="buttonA" type="button" class="btn btn-info" [routerLink]="['Profile', { id:user.id }]">
 	    		<table id="buttonCols" style="width:100%"><tr *ngFor="let user of users">
 	    			<td class="pic"><input type="image" id="myimage" src="images/farmer3.jpg"/></td>
-	    			<td class="name"><strong>{{ user.first_name }}</strong></td>
+	    			<td class="name"><strong>{{ user.first_name }} {{ user.last_name }}</strong></td>
 	    			<td class="state"><strong>Accepted</strong></td></tr>
 	    		</table>
 	    	</button>
@@ -41,7 +41,53 @@
 
 	    </ul>
 	  </div>
+
+	  <!--<!--<div class="row">
+    <div class="col-md-6">
+        <select class="form-control" (change)="reloadPosts({ bidId: bid.value })" #u>
+            <option value="">Select a bid...</option>
+            <option *ngFor="let bid of bids" value="{{ bid.id }}">
+                {{ bid.paymentDate }}
+            </option>
+        </select>
+        <spinner [visible]="bidsLoading"></spinner>
+        <pagination [items]="bids" (page-changed)="onPageChanged($event)"></pagination>
+        <ul class="list-group bids">
+            <li *ngFor="let post of pagedPosts" class="list-group-item" [class.active]="currentPost == post" (click)="select(post)">
+                {{ bid.almondVariety }} {{ bid.almondPounds }} {{ bid.pricePerPound }} {{ bid.paymentDate }}
+            </li>
+        </ul>
+    </div>-->
+    <!--<div class="col-md-6">
+        <div *ngIf="currentPost" class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ currentPost.title }}</h3>
+            </div>
+            <div class="panel-body">
+                <p>{{ currentPost.body }}</p>
+                <hr/>
+                <spinner [visible]="commentsLoading"></spinner>
+                <div class="media" *ngFor="let comment of currentPost.comments">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object thumbnail" src="http://lorempixel.com/80/80/people?random={{ comment.id }}" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            {{ comment.name }}
+                        </h4> 
+                        {{ comment.body }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+
+
 	</div>
 
 	</div>
+
 </body>
