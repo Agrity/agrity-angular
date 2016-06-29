@@ -4,6 +4,7 @@ import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteC
 
 import {BidService} from './bid.service';
 import {Bid} from './bid';
+import {ErrorHandling} from '../ErrorHandling';
 import {UserService} from '../users/user.service';
 import {SpinnerComponent} from '../shared/spinner.component';
 import {PaginationComponent} from '../shared/pagination.component';
@@ -34,7 +35,8 @@ export class MakeBidComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private _bidService: BidService,
-    private _userService: UserService) {
+    private _userService: UserService,
+    private _errorHandling: ErrorHandling) {
     //this.newBidForm = fb.group({
     //  first_name: ['', Validators.required],
     //  last_name: ['', Validators.required],
@@ -48,7 +50,52 @@ export class MakeBidComponent implements OnInit {
     //this.loadPosts();        
   }
 
+  callGetBidsExample() {
+    this._bidService.getBids()
+      .subscribe(
+        bids => {
+          console.log("Bids Received: ");
+          for (var propName in bids) {
+            console.log(propName, bids[propName]);
+          }
+        },
+        error => this._errorHandling.handleHttpError(error));
+  }
+
+  callGetBidExample() {
+    this._bidService.getBid(1)
+      .subscribe(
+        bid => {
+          console.log("Bid Received: ");
+          console.log(bid);
+        },
+        error => this._errorHandling.handleHttpError(error));
+  }
+
+  callCreateBidExample() {
+    var bid: Bid = new Bid();
+    bid.almondVariety = 'NP';
+    bid.almondPounds = '44000';
+    bid.pricePerPound = '$3.55'
+    bid.paymentDate = '';
+    bid.comment = 'Super Cool Comment';
+
+    bid.managementType = 'FCFSService';
+    bid.managementTypeDelay = 5;
+
+    bid.growerIds = [1, 2]
+
+    this._bidService.createBid(bid)
+      .subscribe(
+        bid => {
+          console.log("Bid Created: ");
+          console.log(bid);
+        },
+        error => this._errorHandling.handleHttpError(error));
+  }
+
   save() {
+    console.log("saved");
   }
 
   //private loadUsers(){
