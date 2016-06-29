@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, coreBootstrap} from '@angular/core';
 import {RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
 import {Observable} from 'rxjs/Observable';
 import {BidService} from './bid.service';
 import {Bid} from './bid';
 import {ErrorHandling} from '../ErrorHandling';
+import {Collapse} from './collapse';
+import {ViewBidComponent} from './view-bid.component';
 
 @Component({
   templateUrl: 'app/bids/view-bids.component.html',
@@ -26,12 +28,14 @@ import {ErrorHandling} from '../ErrorHandling';
   `], 
   styleUrls: ['assets/stylesheets/style.css'],
   providers: [BidService],
-  directives: [RouterLink, ROUTER_DIRECTIVES]
+  directives: [RouterLink, ROUTER_DIRECTIVES, Collapse]
 })
 
 export class ViewBidsComponent implements OnInit {
 
   private bids: Bid[];
+  public isCollapsed: boolean = false;
+
 
   constructor(
     private _bidService: BidService,
