@@ -1,0 +1,21 @@
+<div>
+  <h1> User Details </h1> 
+
+  <h2> {{ user.first_name }} </h2>
+  <h2> {{ user.last_name }} </h2>
+  <h2> {{ user.email }} </h2>
+  <h2> {{ user.phone}} </h2>
+
+  <h1> User Bids </h1> 
+
+    <table style="width:100%">
+      <tr *ngFor="let bid of bids">
+        <td> {{ bid.bid_id }} </td> 
+        <td> {{ bid.almondVariety }} </td>
+        <td> {{ bid.almondSize }} </td>
+        <td> {{ bid.almondPounds }} </td>
+        <td> {{ bid.pricePerPound }} </td> 
+        <td> {{ bid.paymentDate }} </td>
+      </tr>
+    </table>
+</div>
