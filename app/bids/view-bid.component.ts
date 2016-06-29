@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
+import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams} from '@angular/router-deprecated';
 
 import {Observable} from 'rxjs/Observable';
 import {BidService} from './bid.service';
@@ -32,6 +32,8 @@ import {User} from '../users/user';
 
 export class ViewBidComponent implements OnInit {
 
+  private bidId: number;
+
   private bid: Bid = new Bid();
 
   private acceptedGrowers: User[];
@@ -40,18 +42,20 @@ export class ViewBidComponent implements OnInit {
   private noResponseGrowers: User[];
 
   constructor(
-    private _bidService: BidService,
-    private _errorHandling: ErrorHandling) {
+      params: RouteParams,
+      private _bidService: BidService,
+      private _errorHandling: ErrorHandling) {
+
+    // TODO Verify id is integer.
+    this.bidId = +params.get('id');
   }
 
   ngOnInit(){
     // Load Bid
-    this._bidService.getBid(1)
+    this._bidService.getBid(this.bidId)
       .subscribe(
         bid => {
-          console.log(bid);
           this.bid = Bid.decode(bid);
-          console.log(this.bid);
 
           // TODO Temporary Hack. Should change to store growers in bid
           //      item itself.
