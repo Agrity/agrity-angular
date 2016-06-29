@@ -1,0 +1,44 @@
+<!-- Bid section
+================================================== -->
+<div>space</div>
+<div>space</div>
+<div>space</div>
+<div>space</div>
+
+<h3> Bid Details </h3>
+
+<h5>Almond Variety: {{ bid.almondVariety }}</h5>
+<h5>Almond Pounds: {{ bid.almondPounds }}</h5>
+<h5>Price Per Pound: {{ bid.pricePerPound }}</h5>
+<h5>Payment Date: -- Under Construction --</h5>
+<h5>Comment:</h5>
+<p>{{ bid.comment }}</p>
+
+<!-- TODO Create template and use that within every for loop. -->
+<h4>Accepted Growers</h4>
+<ul>
+  <div *ngFor="let grower of acceptedGrowers">
+    <li>{{ grower.first_name }} {{ grower.last_name }}</li>
+  </div>
+</ul>
+
+<h4>Rejected Growers</h4>
+<ul>
+  <div *ngFor="let grower of rejectedGrowers">
+    <li>{{ grower.first_name }} {{ grower.last_name }}</li>
+  </div>
+</ul>
+
+<h4>Call Requested Growers</h4>
+<ul>
+  <div *ngFor="let grower of callRequestedGrowers">
+    <li>{{ grower.first_name }} {{ grower.last_name }}</li>
+  </div>
+</ul>
+
+<h4>No Response Growers</h4>
+<ul>
+  <div *ngFor="let grower of noResponseGrowers">
+    <li>{{ grower.first_name }} {{ grower.last_name }}</li>
+  </div>
+</ul>
