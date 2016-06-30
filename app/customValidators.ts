@@ -8,10 +8,16 @@ export class CustomValidators{
       return valid ? null : { name: true };   
     }
 
-    static phone(control: Control){
-      var regEx = /-/;
-      var valid = true; // regEx.test(control.value);
-      return valid ? null : { "phone": true };
+    static phoneThree(control: Control){
+      var regEx = /^\d{3}$/;
+      var valid = regEx.test(control.value);
+      return valid ? null : { "phoneThree": true };
+    }
+
+    static phoneFour(control: Control){
+      var regEx = /^\d{4}$/; 
+      var valid = regEx.test(control.value);
+      return valid ? null : { "phoneFour": true };
     }
 
     static almondVariety(control: Control){

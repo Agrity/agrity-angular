@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import {UserService} from './user.service';
 import {User} from './user';
 import {ErrorHandling} from '../ErrorHandling';
+import {Phone} from './phone';
 
 
 @Component({
