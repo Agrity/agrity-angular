@@ -87,8 +87,10 @@ export class NewGrowerComponent implements OnInit {
 
       this.user = User.decode(x);
       console.log(this.user);
-      alert(this.user.first_name + " " + this.user.last_name + " has been added to list of growers."); 
+      alert(this.user.first_name + " " + this.user.last_name
+            + " has been added to list of growers.\n Viewing grower feature under construction."); 
 
+      this._router.navigateByUrl('/');
     });
   }
 }

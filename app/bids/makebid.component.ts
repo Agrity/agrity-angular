@@ -99,7 +99,9 @@ export class MakeBidComponent implements OnInit {
       .subscribe(
         bid => {
           console.log("Bid Created: ");
+          var bidModel: Bid = Bid.decode(bid);
           console.log(Bid.decode(bid));
+          this._router.navigateByUrl('/bids/' + bidModel.bid_id);
         },
         error => {
           this._errorHandling.handleHttpError(error);
