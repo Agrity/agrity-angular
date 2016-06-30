@@ -4,6 +4,8 @@ import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteC
 
 
 import {BasicValidators} from '../shared/basicValidators';
+import {CustomValidators} from '../customValidators';
+
 import {UserService} from './user.service';
 import {User} from './user';
 
@@ -14,7 +16,7 @@ import {User} from './user';
   providers: [UserService]
 })
 
-export class NewGrowerComponent implements OnInit, CanDeactivate {
+export class NewGrowerComponent implements OnInit {
   newgrowerform: ControlGroup;
   title: string;
   user = new User();
@@ -26,10 +28,10 @@ export class NewGrowerComponent implements OnInit, CanDeactivate {
     private _userService: UserService
   ) {
     this.newgrowerform = fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
+      first_name: ['', CustomValidators.isName],
+      last_name: ['', CustomValidators.isName],
       email: ['', BasicValidators.email],
-      phone: []
+      phone: ['', CustomValidators.phone]
     });
   }
 
@@ -51,12 +53,12 @@ export class NewGrowerComponent implements OnInit, CanDeactivate {
       });
   }
 
-  routerCanDeactivate(){
-    if (this.newgrowerform.dirty)
-      return confirm('You have unsaved changes. Are you sure you want to navigate away?');
+  // routerCanDeactivate(){
+  //   if (this.newgrowerform.dirty)
+  //     return confirm('You have unsaved changes. Are you sure you want to navigate away?');
 
-    return true; 
-  }
+  //   return true; 
+  // }
 
   save(){
     var result;
@@ -76,8 +78,8 @@ export class NewGrowerComponent implements OnInit, CanDeactivate {
 
       this.user = User.decode(x);
       console.log(this.user);
+      alert("Grower added to list of growers."); 
 
-      // TODO Clean Form Values.
     });
   }
 }
