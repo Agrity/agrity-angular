@@ -82,7 +82,7 @@ export class NewGrowerComponent implements OnInit {
       // this.newgrowerform.markAsPristine();
 
       this.user = User.decode(x);
-      this._router.navigateByUrl('users');
+      this._router.navigateByUrl('/users');
     });
   }
 }
