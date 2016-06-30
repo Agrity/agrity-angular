@@ -4,7 +4,7 @@
 	<div class="resizeImage">
 		<img src="assets/img/farmer3.jpg" onError="this.onerror=null;this.src='images/profile-icon.jpg';">
 	</div>
-		<h1>Alan Jensen</h1>
+		<h1 *ngFor="let grower of growers">{{ grower.first_name }} {{ grower.last_name }}</h1>
 
 	<!-- </div> -->
 </section>
@@ -14,25 +14,25 @@
 <section id="testimonial" class="parallax-section">
 	<div class="container">
 		<div class="row">
-			<h2>About Alan Jensen</h2>
+			<h2 *ngFor="let grower of growers">About {{ grower.first_name }} {{ grower.last_name }}</h2>
 							
 			<table>
 				<tr>	
-					<td><h3><u>Phone Number</u></h3></td>
-					<td><h3><u>Email</u></h3></td>
-					<td><h3><u>Acreage</u></h3></td>
-					<td><h3><u>Almond Varieties</u></h3></td>
+					<td><h8><u>Phone Number</u></h8></td>
+					<td><h8><u>E-Mail</u></h8></td>
+					<td><h8><u>Acreage</u></h8></td>
+					<td><h8><u>Almond Varieties</u></h8></td>
 				</tr>
-				<tr>
-					<td><b>(213) 268-0235</b></td>
-					<td><b>larsenj@stanford.edu</b></td>
-					<td><b>300 Acres</b></td>
-					<td><b>60% Nonpareil<br>30% Carmel<br>10% Butte Padre</b></td>
+				<tr *ngFor="let grower of growers">
+					<td><b>{{ grower.phone }}</b></td>
+					<td><b>{{ grower.email }}</b></td>
+					<td><b>-- Under Construction</b></td>
+					<td><b>-- Under Construction --</b></td>
 				</tr>
 			</table>
 			
 			<div class="Bio">
-				<p>High quality grower. Supplies clean product year after year. Requires weekly interaction on current bids.</p>
+				<p>-- Under Construction --</p>
 			</div>
 		</div>
 	</div>

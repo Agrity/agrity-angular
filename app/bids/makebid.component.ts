@@ -51,6 +51,10 @@ export class MakeBidComponent implements OnInit {
       pricePerPound: ['', Validators.required],
       almondSize: ['', Validators.required],
       almondPounds: ['', Validators.required],
+      startPaymentMonth: ['', Validators.required],
+      startPaymentYear: ['', Validators.required],
+      endPaymentMonth: ['', Validators.required],
+      endPaymentYear: ['', Validators.required],
       delay: ['', Validators.required],
       comment: []
     });
@@ -86,7 +90,13 @@ export class MakeBidComponent implements OnInit {
             .map(grower => grower.grower_id);
 
 
-    this.bid.paymentDate = ''; // Not Implemented On Server
+    //this.bid.paymentDate = ''; // Not Implemented On Server
+    var space = " ";
+    var temp1 = this.bid.startPaymentMonth.concat(space);
+    this.bid.startPaymentDate = temp1.concat(this.bid.startPaymentYear);
+
+    var temp2 = this.bid.endPaymentMonth.concat(space);
+    this.bid.endPaymentDate = temp2.concat(this.bid.endPaymentYear);
 
     this.bid.managementType = 'FCFSService';
 
@@ -99,6 +109,7 @@ export class MakeBidComponent implements OnInit {
       .subscribe(
         bid => {
           console.log("Bid Created: ");
+          console.log(bid);
           var bidModel: Bid = Bid.decode(bid);
           console.log(Bid.decode(bid));
           this._router.navigateByUrl('/bids/' + bidModel.bid_id);
