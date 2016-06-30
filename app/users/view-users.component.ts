@@ -3,14 +3,13 @@ import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/route
 
 import {Config} from '../config/Config';
 import {Observable} from 'rxjs/Observable';
-import {BidService} from './bid.service';
-import {Bid} from './bid';
+import {UserService} from './user.service';
+import {User} from './user';
 import {ErrorHandling} from '../ErrorHandling';
-import {Collapse} from './collapse';
-import {ViewBidComponent} from './view-bid.component';
+
 
 @Component({
-  templateUrl: 'app/bids/view-bids.component.html',
+  templateUrl: 'app/users/view-users.component.html',
   styles: [`
     body {
       background-image:url("assets/img/viewbidpic.jpg");
@@ -28,22 +27,17 @@ import {ViewBidComponent} from './view-bid.component';
     }
   `], 
   styleUrls: ['assets/stylesheets/style.css'],
-  providers: [BidService],
-  directives: [RouterLink, ROUTER_DIRECTIVES, Collapse]
+  providers: [UserService],
+  directives: [RouterLink, ROUTER_DIRECTIVES]
 })
 
-export class ViewBidsComponent implements OnInit {
+export class ViewUsersComponent implements OnInit {
 
-  private bids: Bid[];
-  public isCollapsed: boolean = false;
-
-  private openBids: Bid[];
-  private closedBids: Bid[]; 
-
+  private users: User[];
 
   constructor(
     private _router: Router, 
-    private _bidService: BidService,
+    private _userService: UserService,
     private _errorHandling: ErrorHandling,
     private _config: Config) {
   }
@@ -57,17 +51,13 @@ export class ViewBidsComponent implements OnInit {
     }
 
     // Load Bids
-    this.bids = [];
-    this._bidService.getBids()
+    this.users = [];
+    this._userService.getUsers()
       .subscribe(
-        bids => {
-          for (var bidIdx in bids) {
-            this.bids.push(Bid.decode(bids[bidIdx]));
+        users => {
+          for (var userIdx in users) {
+            this.users.push(User.decode(users[userIdx]));
           }
-          this.openBids = this.bids
-            .filter(bid => bid.currentlyOpen); 
-          this.closedBids = this.bids
-            .filter(bid => !bid.currentlyOpen);
         },
         error => {
           this._errorHandling.handleHttpError(error);
@@ -76,7 +66,7 @@ export class ViewBidsComponent implements OnInit {
 
   } 
 
-  viewBid(bid_id){
-    this._router.navigateByUrl('/bids/' + bid_id);
+  viewUser(user_id){
+    this._router.navigateByUrl('/users/' + user_id);
   }
 }

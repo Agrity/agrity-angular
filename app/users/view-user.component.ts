@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams} from '@angular/router-deprecated';
+import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams} from '@angular/router-deprecated';
 
+import {Config} from '../config/Config';
 import {Observable} from 'rxjs/Observable';
 import {UserService} from './user.service';
 import {User} from './user';
@@ -27,19 +28,31 @@ export class ViewUserComponent implements OnInit {
       params: RouteParams,
       private _userService: UserService,
       private _bidService: BidService,
-      private _errorHandling: ErrorHandling) {
+      private _errorHandling: ErrorHandling,
+      private _config: Config,
+      private _router: Router) {
 
     this.userId = +params.get('id');
   }
 
   ngOnInit(){
+
+    if (!this._config.loggedIn()) {
+      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      this._config.forceLogout();
+      return;   
+    }
+
     // Load user
     this._userService.getUser(this.userId)
       .subscribe(
         user => {
           this.user = User.decode(user);
         },
-        error => this._errorHandling.handleHttpError(error));
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
 
     this.bids = [];
     this._bidService.getGrowerBids(this.userId)
@@ -49,6 +62,9 @@ export class ViewUserComponent implements OnInit {
             this.bids.push(Bid.decode(bids[bidIdx]));
           }
         },
-        error => this._errorHandling.handleHttpError(error));
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
   } 
 }

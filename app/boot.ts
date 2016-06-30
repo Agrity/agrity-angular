@@ -6,6 +6,7 @@ import {HttpClient} from './HttpClient';
 import {Config} from './config/Config';
 import {HandlerLoginService} from './handler-login/handler-login.service';
 import {ErrorHandling} from './ErrorHandling';
+import {NavBarComponent} from './navbar.component';
 
 import {AppComponent} from './app.component';
 
@@ -15,5 +16,6 @@ bootstrap(AppComponent,
            provide(HttpClient, {useClass: HttpClient}),
            provide(Config, {useClass: Config}),
            provide(HandlerLoginService, {useClass: HandlerLoginService}),
-           provide(ErrorHandling, {useClass: ErrorHandling})
+           provide(ErrorHandling, {useClass: ErrorHandling}),
+           NavBarComponent
           ]);

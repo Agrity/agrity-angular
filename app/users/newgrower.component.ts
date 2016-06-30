@@ -2,10 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
-
+import {Config} from '../config/Config';
 import {BasicValidators} from '../shared/basicValidators';
+import {CustomValidators} from '../customValidators';
+
 import {UserService} from './user.service';
 import {User} from './user';
+import {ErrorHandling} from '../ErrorHandling';
 
 @Component({
   templateUrl: 'app/users/newgrower.component.html',
@@ -14,7 +17,7 @@ import {User} from './user';
   providers: [UserService]
 })
 
-export class NewGrowerComponent implements OnInit, CanDeactivate {
+export class NewGrowerComponent implements OnInit {
   newgrowerform: ControlGroup;
   title: string;
   user = new User();
@@ -23,17 +26,26 @@ export class NewGrowerComponent implements OnInit, CanDeactivate {
     fb: FormBuilder,
     private _router: Router,
     private _routeParams: RouteParams,
-    private _userService: UserService
+    private _userService: UserService,
+    private _config: Config,
+    private _errorHandling: ErrorHandling
   ) {
     this.newgrowerform = fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
+      first_name: ['', CustomValidators.isName],
+      last_name: ['', CustomValidators.isName],
       email: ['', BasicValidators.email],
-      phone: []
+      phone: ['', CustomValidators.phone]
     });
   }
 
   ngOnInit(){
+
+    if (!this._config.loggedIn()) {
+      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      this._config.forceLogout();
+      return;   
+    }
+
     var id = this._routeParams.get("id");
 
     this.title = id ? "Edit User" : "New User";
@@ -42,21 +54,20 @@ export class NewGrowerComponent implements OnInit, CanDeactivate {
       return;
 
     this._userService.getUser(+id)
-    .subscribe(
-      user => this.user = user,
-        response => {
-        if (response.status == 404) {
-          this._router.navigate(['NotFound']);
-        }
-      });
+      .subscribe(
+        user => this.user = user,
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
   }
 
-  routerCanDeactivate(){
-    if (this.newgrowerform.dirty)
-      return confirm('You have unsaved changes. Are you sure you want to navigate away?');
+  // routerCanDeactivate(){
+  //   if (this.newgrowerform.dirty)
+  //     return confirm('You have unsaved changes. Are you sure you want to navigate away?');
 
-    return true; 
-  }
+  //   return true; 
+  // }
 
   save(){
     var result;
@@ -69,15 +80,9 @@ export class NewGrowerComponent implements OnInit, CanDeactivate {
     result.subscribe(x => {
       // Ideally, here we'd want:
       // this.newgrowerform.markAsPristine();
-      console.log("Received Data: ");
-      for (var propName in x) {
-        console.log(propName, x[propName]);
-      }
 
       this.user = User.decode(x);
-      console.log(this.user);
-
-      // TODO Clean Form Values.
+      this._router.navigateByUrl('/users');
     });
   }
 }

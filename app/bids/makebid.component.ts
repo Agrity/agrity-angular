@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
+import {Config} from '../config/Config'
 import {User} from '../users/user'
 import {BidService} from './bid.service';
 import {Bid} from './bid';
@@ -9,6 +10,8 @@ import {ErrorHandling} from '../ErrorHandling';
 import {UserService} from '../users/user.service';
 import {SpinnerComponent} from '../shared/spinner.component';
 import {PaginationComponent} from '../shared/pagination.component';
+
+import {CustomValidators} from '../customValidators'; 
 
 @Component({
   templateUrl: 'app/bids/makebid.component.html',
@@ -40,11 +43,13 @@ export class MakeBidComponent implements OnInit {
     fb: FormBuilder,
     private _bidService: BidService,
     private _userService: UserService,
-    private _errorHandling: ErrorHandling) {
+    private _errorHandling: ErrorHandling,
+    private _config: Config,
+    private _router: Router) {
     this.newBidForm = fb.group({
       almondVariety: ['', Validators.required],
-      almondSize: ['', Validators.required],
       pricePerPound: ['', Validators.required],
+      almondSize: ['', Validators.required],
       almondPounds: ['', Validators.required],
       delay: ['', Validators.required],
       comment: []
@@ -52,6 +57,13 @@ export class MakeBidComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if (!this._config.loggedIn()) {
+      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      this._config.forceLogout();
+      return;   
+    }
+
     // Load in Growers
     this.growers = [];
     this._userService.getUsers()
@@ -61,7 +73,10 @@ export class MakeBidComponent implements OnInit {
             this.growers.push(User.decode(users[userIdx]));
           }
         },
-        error => this._errorHandling.handleHttpError(error));
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
   }
 
   save() {
@@ -84,8 +99,13 @@ export class MakeBidComponent implements OnInit {
       .subscribe(
         bid => {
           console.log("Bid Created: ");
+          var bidModel: Bid = Bid.decode(bid);
           console.log(Bid.decode(bid));
+          this._router.navigateByUrl('/bids/' + bidModel.bid_id);
         },
-        error => this._errorHandling.handleHttpError(error));
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
   }
 }

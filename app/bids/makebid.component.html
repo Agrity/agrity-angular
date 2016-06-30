@@ -39,19 +39,20 @@
                             <input [(ngModel)]="bid.pricePerPound" #price_per_pound="ngForm" ngControl="pricePerPound" type="number" step="0.01" class="form-control" placeholder="Price Per Pound" name="price" id="price">
                         </div>
 
-                <div class="form-group">										
-                        <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Pounds" name="pounds">
-                    </div>
-
                         <div class="form-group">										
-                          <input [(ngModel)]="bid.managementTypeDelay" #managementTypeDelay="ngForm" ngControl="delay" type="number" step="1" class="form-control" placeholder="Bid Duration (minutes)" name="delay" id="delay">
+                            <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Pounds" name="pounds">
                         </div>
-
+                    
+                        <div class="form-group">										
+                            <h10>THIS IS THE NUMBER OF MINUTES YOUR GROWERS WILL HAVE TO RESPOND TO YOUR BID.</h10>
+                            <input [(ngModel)]="bid.managementTypeDelay" #managementTypeDelay="ngForm" ngControl="delay" type="number" step="1" class="form-control" placeholder="Bid Duration (minutes)" name="delay" id="delay">
+                        </div>
+                        
                         <textarea [(ngModel)]="bid.comment" ngControl="comment" name="comment" rows="2" class="form-control" id="comment" placeholder="Comments" message="comment"></textarea>
 
 					</div>
-					<div style="padding-left:110px;">
-						<input name="submit" type="submit" class="form-control" id="submit" value="Complete Bid">
+					<div [hidden]="!newBidForm.valid" style="padding-left:110px;">
+						<input [disabled]="!newBidForm.valid"  name="submit" type="submit" class="form-control" id="submit" value="Complete Bid">
 					</div>
 				</form>
 			</div>
