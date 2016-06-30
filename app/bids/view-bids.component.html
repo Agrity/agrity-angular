@@ -12,7 +12,7 @@
 		Current Bids
 	</h2>
 	  <div *ngFor="let bid of bids" class="wow fadeInDown" data-wow-delay="0.3s">
-	  <button (click)="isCollapsedContent = !isCollapsedContent" style="width:90%; height:100px; font-size:2.5em; text-align:left; padding: 0 0 10px 50px;" type="button" class="btn btn-info">
+	  <button (click)="viewBid(bid.bid_id)" style="width:90%; height:100px; font-size:2.5em; text-align:left; padding-left:50px; margin-bottom:10px;" type="button" class="btn btn-info">
 	  	<table id="buttonCols" style="width:100%">
 		<tr>
 	  		<td class="offerButton">{{ bid.almondVariety }}</td>

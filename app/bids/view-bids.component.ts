@@ -1,6 +1,7 @@
 import {Component, OnInit, coreBootstrap} from '@angular/core';
-import {RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
+import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
+import {Config} from '../config/Config';
 import {Observable} from 'rxjs/Observable';
 import {BidService} from './bid.service';
 import {Bid} from './bid';
@@ -38,11 +39,20 @@ export class ViewBidsComponent implements OnInit {
 
 
   constructor(
+    private _router: Router, 
     private _bidService: BidService,
-    private _errorHandling: ErrorHandling) {
+    private _errorHandling: ErrorHandling,
+    private _config: Config) {
   }
 
   ngOnInit(){
+
+    if (!this._config.loggedIn()) {
+      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      this._config.forceLogout();
+      return;   
+    }
+
     // Load Bids
     this.bids = [];
     this._bidService.getBids()
@@ -54,7 +64,14 @@ export class ViewBidsComponent implements OnInit {
           }
           console.log(this.bids);
         },
-        error => this._errorHandling.handleHttpError(error));
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
 
   } 
+
+  viewBid(bid_id){
+    this._router.navigateByUrl('/bids/' + bid_id);
+  }
 }
