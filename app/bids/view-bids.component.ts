@@ -48,8 +48,8 @@ export class ViewBidsComponent implements OnInit {
   ngOnInit(){
 
     if (!this._config.loggedIn()) {
-      this._router.navigateByUrl('/handler-login');
       alert("Please Login. If this issue continues try logging out, then logging back in.");
+      this._config.forceLogout();
       return;   
     }
 
@@ -66,6 +66,7 @@ export class ViewBidsComponent implements OnInit {
         },
         error => {
           this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
         });
 
   } 

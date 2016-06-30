@@ -28,7 +28,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(){
 
     if (!this._config.loggedIn()) {
-      this._router.navigateByUrl('/handler-login');
+      this._config.forceLogout();
       return;   
     }
 
@@ -37,7 +37,10 @@ export class NavBarComponent implements OnInit {
             handler => {
               this.handler = Handler.decode(handler);
             },
-            error => this._errorHandling.handleHttpError(error));
+          error => {
+            this._errorHandling.handleHttpError(error);
+            this._config.forceLogout();
+          });
   }
 
   isCurrentRoute(route){

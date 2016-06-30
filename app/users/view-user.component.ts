@@ -38,8 +38,8 @@ export class ViewUserComponent implements OnInit {
   ngOnInit(){
 
     if (!this._config.loggedIn()) {
-      this._router.navigateByUrl('/handler-login');
       alert("Please Login. If this issue continues try logging out, then logging back in.");
+      this._config.forceLogout();
       return;   
     }
 
@@ -49,7 +49,10 @@ export class ViewUserComponent implements OnInit {
         user => {
           this.user = User.decode(user);
         },
-        error => this._errorHandling.handleHttpError(error));
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
 
     this.bids = [];
     this._bidService.getGrowerBids(this.userId)
@@ -59,6 +62,9 @@ export class ViewUserComponent implements OnInit {
             this.bids.push(Bid.decode(bids[bidIdx]));
           }
         },
-        error => this._errorHandling.handleHttpError(error));
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
   } 
 }

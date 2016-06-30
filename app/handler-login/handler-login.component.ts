@@ -40,6 +40,9 @@ export class HandlerLoginComponent {
           this._handlerLoginService.eraseHandlerAuthToken();
           this._location.go('/');
         },
-        error => console.log("Error: " + error));
+        error => {
+          console.log("Error: " + error)
+          this._config.forceLogout();
+        });
   }
 }

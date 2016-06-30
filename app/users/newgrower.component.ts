@@ -8,6 +8,7 @@ import {CustomValidators} from '../customValidators';
 
 import {UserService} from './user.service';
 import {User} from './user';
+import {ErrorHandling} from '../ErrorHandling';
 
 @Component({
   templateUrl: 'app/users/newgrower.component.html',
@@ -26,7 +27,8 @@ export class NewGrowerComponent implements OnInit {
     private _router: Router,
     private _routeParams: RouteParams,
     private _userService: UserService,
-    private _config: Config
+    private _config: Config,
+    private _errorHandling: ErrorHandling
   ) {
     this.newgrowerform = fb.group({
       first_name: ['', CustomValidators.isName],
@@ -39,8 +41,8 @@ export class NewGrowerComponent implements OnInit {
   ngOnInit(){
 
     if (!this._config.loggedIn()) {
-      this._router.navigateByUrl('/handler-login');
       alert("Please Login. If this issue continues try logging out, then logging back in.");
+      this._config.forceLogout();
       return;   
     }
 
@@ -52,13 +54,12 @@ export class NewGrowerComponent implements OnInit {
       return;
 
     this._userService.getUser(+id)
-    .subscribe(
-      user => this.user = user,
-        response => {
-        if (response.status == 404) {
-          this._router.navigate(['NotFound']);
-        }
-      });
+      .subscribe(
+        user => this.user = user,
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
   }
 
   // routerCanDeactivate(){

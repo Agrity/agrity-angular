@@ -59,8 +59,8 @@ export class MakeBidComponent implements OnInit {
   ngOnInit() {
 
     if (!this._config.loggedIn()) {
-      this._router.navigateByUrl('/handler-login');
       alert("Please Login. If this issue continues try logging out, then logging back in.");
+      this._config.forceLogout();
       return;   
     }
 
@@ -73,7 +73,10 @@ export class MakeBidComponent implements OnInit {
             this.growers.push(User.decode(users[userIdx]));
           }
         },
-        error => this._errorHandling.handleHttpError(error));
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
   }
 
   save() {
@@ -98,6 +101,9 @@ export class MakeBidComponent implements OnInit {
           console.log("Bid Created: ");
           console.log(Bid.decode(bid));
         },
-        error => this._errorHandling.handleHttpError(error));
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
   }
 }

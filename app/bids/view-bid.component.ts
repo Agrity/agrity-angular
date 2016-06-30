@@ -67,10 +67,11 @@ export class ViewBidComponent implements OnInit {
   ngOnInit(){
 
     if (!this._config.loggedIn()) {
-      this._router.navigateByUrl('/handler-login');
       alert("Please Login. If this issue continues try logging out, then logging back in.");
+      this._config.forceLogout();
       return;   
     }
+
     // Load Bid
     this._bidService.getBid(this.bidId)
       .subscribe(
@@ -84,7 +85,10 @@ export class ViewBidComponent implements OnInit {
           this.callRequestedGrowers = Bid.decodeBidCallRequestedGrowers(bid);
           this.noResponseGrowers = Bid.decodeBidNoResponseGrowers(bid);
         },
-        error => this._errorHandling.handleHttpError(error));
+        error => {
+          this._errorHandling.handleHttpError(error);
+          this._config.forceLogout();
+        });
   } 
 
 }
