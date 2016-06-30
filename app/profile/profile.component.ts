@@ -5,6 +5,8 @@ import {ProfileService} from './profile.service';
 import {UserService} from '../users/user.service';
 import {SpinnerComponent} from '../shared/spinner.component';
 import {PaginationComponent} from '../shared/pagination.component';
+import {User} from '../users/user';
+import {ErrorHandling} from '../ErrorHandling';
 
 @Component({
     templateUrl: 'app/profile/profile.component.html',
