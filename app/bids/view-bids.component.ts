@@ -37,6 +37,9 @@ export class ViewBidsComponent implements OnInit {
   private bids: Bid[];
   public isCollapsed: boolean = false;
 
+  private openBids: Bid[];
+  private closedBids: Bid[]; 
+
 
   constructor(
     private _router: Router, 
@@ -58,11 +61,13 @@ export class ViewBidsComponent implements OnInit {
     this._bidService.getBids()
       .subscribe(
         bids => {
-          console.log(bids);
           for (var bidIdx in bids) {
             this.bids.push(Bid.decode(bids[bidIdx]));
           }
-          console.log(this.bids);
+          this.openBids = this.bids
+            .filter(bid => bid.currentlyOpen); 
+          this.closedBids = this.bids
+            .filter(bid => !bid.currentlyOpen);
         },
         error => {
           this._errorHandling.handleHttpError(error);
