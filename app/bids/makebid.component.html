@@ -31,7 +31,7 @@
                         </div>
 
                         <!-- ALMOND SIZE -->
-                        <div class="form-group">										
+                        <div class="form-group">	
                           <input [(ngModel)]="bid.almondSize" #almond_size="ngForm" ngControl="almondSize" type="text" step="0.01" class="form-control" placeholder="Almond Size" name="size" id="size">
                         </div>
 
@@ -41,6 +41,63 @@
 
                         <div class="form-group">										
                             <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Pounds" name="pounds">
+                        </div>
+
+                        <div class="form-group">
+                          <h10>Payment Date:<br/></h10>
+                          <h11>From</h11>	
+                          <input [(ngModel)]="bid.startPaymentMonth" #start_payment_month="ngForm" ngControl="startPaymentMonth" class="form-control" type="text" placeholder="Month" name="start month" id="start month" list="months">
+                          <datalist id="months">
+                          	<option>January</option>
+                          	<option>February</option>
+                          	<option>March</option>
+                          	<option>April</option>
+                          	<option>May</option>
+                          	<option>June</option>
+                          	<option>July</option>
+                          	<option>August</option>
+                          	<option>September</option>
+                          	<option>October</option>
+                          	<option>November</option>
+                          	<option>December</option>
+                          </datalist> 
+                        </div>
+
+                        <div class="form-group">
+                          <input [(ngModel)]="bid.startPaymentYear" #start_payment_year="ngForm" ngControl="startPaymentYear" class="form-control" type="text" placeholder="Year" name="start year" id="start year" list="years">
+                          <datalist id="years">
+                          	<option>2016</option>
+                          	<option>2017</option>
+                          	<option>2018</option>
+                          </datalist>
+                        </div>
+
+                        <div class="form-group">
+                          <h11>To</h11>
+                          <input [(ngModel)]="bid.endPaymentMonth" #end_payment_month="ngForm" ngControl="endPaymentMonth" class="form-control" type="text" placeholder="Month" name="end month" id="end month" list="months">
+                          <datalist id="months">
+                          	<option>January</option>
+                          	<option>February</option>
+                          	<option>March</option>
+                          	<option>April</option>
+                          	<option>May</option>
+                          	<option>June</option>
+                          	<option>July</option>
+                          	<option>August</option>
+                          	<option>September</option>
+                          	<option>October</option>
+                          	<option>November</option>
+                          	<option>December</option>
+                          </datalist> 
+                        </div>
+
+                        <div class="form-group">
+                          <input [(ngModel)]="bid.endPaymentYear" #end_payment_year="ngForm" ngControl="endPaymentYear" class="form-control" type="text" placeholder="Year" name="end year" id="end year" list="years">
+                          <datalist id="years">
+                          	<option>2016</option>
+                          	<option>2017</option>
+                          	<option>2018</option>
+                          </datalist>
                         </div>
                     
                         <div class="form-group">										
