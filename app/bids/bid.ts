@@ -61,6 +61,7 @@ export class Bid {
     bid.managementTypeDelay = null;
     bid.paymentDate = bidJson['paymentDate'];
     bid.comment = bidJson['comment'];
+    bid.currentlyOpen = bidJson['offerCurrentlyOpen'];
 
     return bid;
   }
