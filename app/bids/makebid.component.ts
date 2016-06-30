@@ -52,7 +52,7 @@ export class MakeBidComponent implements OnInit {
       almondSize: ['', Validators.required],
       almondPounds: ['', Validators.required],
       delay: ['', Validators.required],
-      comment: ['', Validators.required]
+      comment: []
     });
   }
 
