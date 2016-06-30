@@ -6,7 +6,12 @@ export class Bid {
   almondSize: string;
   almondPounds: string;
   pricePerPound: string;
-  paymentDate: string;
+  startPaymentMonth: string;
+  startPaymentYear: string;
+  endPaymentMonth: string;
+  endPaymentYear: string;
+  startPaymentDate: string;
+  endPaymentDate: string;
   comment: string;
 
   managementType: string;
@@ -35,7 +40,8 @@ export class Bid {
         'type': this.getString(this.managementType),
         'delay': this.managementTypeDelay,
       },
-      'payment_date': this.getString(this.paymentDate),
+      'start_payment_date': this.getString(this.startPaymentDate),
+      'end_payment_date': this.getString(this.endPaymentDate),
       'comment': this.getString(this.comment),
     });
   }
@@ -59,7 +65,8 @@ export class Bid {
     bid.pricePerPound = bidJson['pricePerPound'];
     bid.managementType = null;
     bid.managementTypeDelay = null;
-    bid.paymentDate = bidJson['paymentDate'];
+    bid.startPaymentDate = bidJson['startPaymentDateAsString'];
+    bid.endPaymentDate = bidJson['endPaymentDateAsString'];
     bid.comment = bidJson['comment'];
     bid.currentlyOpen = bidJson['offerCurrentlyOpen'];
 
