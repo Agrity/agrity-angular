@@ -47,12 +47,12 @@ export class MakeBidComponent implements OnInit {
     private _config: Config,
     private _router: Router) {
     this.newBidForm = fb.group({
-      almondVariety: ['', CustomValidators.almondVariety],
-      pricePerPound: ['', CustomValidators.pricePerPound],
-      almondSize: ['', CustomValidators.almondSize],
-      almondPounds: ['', CustomValidators.almondPounds],
-      delay: ['', CustomValidators.delay],
-      comment: ['', CustomValidators.comment]
+      almondVariety: ['', Validators.required],
+      pricePerPound: ['', Validators.required],
+      almondSize: ['', Validators.required],
+      almondPounds: ['', Validators.required],
+      delay: ['', Validators.required],
+      comment: ['', Validators.required]
     });
   }
 
