@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
+import {Config} from '../config/Config'
 import {User} from '../users/user'
 import {BidService} from './bid.service';
 import {Bid} from './bid';
@@ -42,7 +43,9 @@ export class MakeBidComponent implements OnInit {
     fb: FormBuilder,
     private _bidService: BidService,
     private _userService: UserService,
-    private _errorHandling: ErrorHandling) {
+    private _errorHandling: ErrorHandling,
+    private _config: Config,
+    private _router: Router) {
     this.newBidForm = fb.group({
       almondVariety: ['', CustomValidators.almondVariety],
       pricePerPound: ['', CustomValidators.pricePerPound],
@@ -54,6 +57,13 @@ export class MakeBidComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if (!this._config.loggedIn()) {
+      this._router.navigateByUrl('/handler-login');
+      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      return;   
+    }
+
     // Load in Growers
     this.growers = [];
     this._userService.getUsers()

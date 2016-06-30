@@ -8,6 +8,12 @@ export class Config {
 
   public getHandlerAuthHeaderKey(): string {
     return 'X-HANDLER-TOKEN';
+  }
 
+  public loggedIn(): boolean {
+    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) == "") {
+      return false;
+    }
+    return true; 
   }
 }
