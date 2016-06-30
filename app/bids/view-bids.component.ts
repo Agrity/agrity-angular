@@ -1,5 +1,5 @@
 import {Component, OnInit, coreBootstrap} from '@angular/core';
-import {RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
+import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
 import {Observable} from 'rxjs/Observable';
 import {BidService} from './bid.service';
@@ -38,6 +38,7 @@ export class ViewBidsComponent implements OnInit {
 
 
   constructor(
+    private _router: Router, 
     private _bidService: BidService,
     private _errorHandling: ErrorHandling) {
   }
@@ -57,4 +58,8 @@ export class ViewBidsComponent implements OnInit {
         error => this._errorHandling.handleHttpError(error));
 
   } 
+
+  viewBid(bid_id){
+    this._router.navigateByUrl('/bids/' + bid_id);
+  }
 }

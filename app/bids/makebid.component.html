@@ -51,8 +51,8 @@
                         <textarea [(ngModel)]="bid.comment" ngControl="comment" name="comment" rows="2" class="form-control" id="comment" placeholder="Comments" message="comment"></textarea>
 
 					</div>
-					<div style="padding-left:110px;">
-						<input [routerLink]="['View Bids']" name="submit" type="submit" class="form-control" id="submit" value="Complete Bid">
+					<div [hidden]="!newBidForm.valid" style="padding-left:110px;">
+						<input [disabled]="!newBidForm.valid"  name="submit" type="submit" class="form-control" id="submit" value="Complete Bid">
 					</div>
 				</form>
 			</div>

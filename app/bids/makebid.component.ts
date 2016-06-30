@@ -10,6 +10,8 @@ import {UserService} from '../users/user.service';
 import {SpinnerComponent} from '../shared/spinner.component';
 import {PaginationComponent} from '../shared/pagination.component';
 
+import {CustomValidators} from '../customValidators'; 
+
 @Component({
   templateUrl: 'app/bids/makebid.component.html',
   styles: [`
@@ -42,12 +44,12 @@ export class MakeBidComponent implements OnInit {
     private _userService: UserService,
     private _errorHandling: ErrorHandling) {
     this.newBidForm = fb.group({
-      almondVariety: ['', Validators.required],
-      almondSize: ['', Validators.required],
-      pricePerPound: ['', Validators.required],
-      almondPounds: ['', Validators.required],
-      delay: ['', Validators.required],
-      comment: []
+      almondVariety: ['', CustomValidators.almondVariety],
+      pricePerPound: ['', CustomValidators.pricePerPound],
+      almondSize: ['', CustomValidators.almondSize],
+      almondPounds: ['', CustomValidators.almondPounds],
+      delay: ['', CustomValidators.delay],
+      comment: ['', CustomValidators.comment]
     });
   }
 
