@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
-
+import {Config} from '../config/Config';
 import {BasicValidators} from '../shared/basicValidators';
 import {CustomValidators} from '../customValidators';
 
@@ -25,7 +25,8 @@ export class NewGrowerComponent implements OnInit {
     fb: FormBuilder,
     private _router: Router,
     private _routeParams: RouteParams,
-    private _userService: UserService
+    private _userService: UserService,
+    private _config: Config
   ) {
     this.newgrowerform = fb.group({
       first_name: ['', CustomValidators.isName],
@@ -36,6 +37,13 @@ export class NewGrowerComponent implements OnInit {
   }
 
   ngOnInit(){
+
+    if (!this._config.loggedIn()) {
+      this._router.navigateByUrl('/handler-login');
+      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      return;   
+    }
+
     var id = this._routeParams.get("id");
 
     this.title = id ? "Edit User" : "New User";
@@ -78,7 +86,7 @@ export class NewGrowerComponent implements OnInit {
 
       this.user = User.decode(x);
       console.log(this.user);
-      alert("Grower added to list of growers."); 
+      alert(this.user.first_name + this.user.last_name + " has been added to list of growers."); 
 
     });
   }

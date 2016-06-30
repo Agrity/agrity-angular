@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams} from '@angular/router-deprecated';
+import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams, Router} from '@angular/router-deprecated';
 
+import {Config} from '../config/Config'; 
 import {Observable} from 'rxjs/Observable';
 import {BidService} from './bid.service';
 import {Bid} from './bid';
@@ -55,13 +56,21 @@ export class ViewBidComponent implements OnInit {
   constructor(
       params: RouteParams,
       private _bidService: BidService,
-      private _errorHandling: ErrorHandling) {
+      private _errorHandling: ErrorHandling,
+      private _config: Config,
+      private _router: Router) {
 
     // TODO Verify id is integer.
     this.bidId = +params.get('id');
   }
 
   ngOnInit(){
+
+    if (!this._config.loggedIn()) {
+      this._router.navigateByUrl('/handler-login');
+      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      return;   
+    }
     // Load Bid
     this._bidService.getBid(this.bidId)
       .subscribe(

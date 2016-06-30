@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams} from '@angular/router-deprecated';
+import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams} from '@angular/router-deprecated';
 
+import {Config} from '../config/Config';
 import {Observable} from 'rxjs/Observable';
 import {UserService} from './user.service';
 import {User} from './user';
@@ -27,12 +28,21 @@ export class ViewUserComponent implements OnInit {
       params: RouteParams,
       private _userService: UserService,
       private _bidService: BidService,
-      private _errorHandling: ErrorHandling) {
+      private _errorHandling: ErrorHandling,
+      private _config: Config,
+      private _router: Router) {
 
     this.userId = +params.get('id');
   }
 
   ngOnInit(){
+
+    if (!this._config.loggedIn()) {
+      this._router.navigateByUrl('/handler-login');
+      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      return;   
+    }
+
     // Load user
     this._userService.getUser(this.userId)
       .subscribe(
