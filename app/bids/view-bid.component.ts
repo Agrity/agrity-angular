@@ -77,4 +77,5 @@ export class ViewBidComponent implements OnInit {
         },
         error => this._errorHandling.handleHttpError(error));
   } 
+
 }
