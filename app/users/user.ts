@@ -1,9 +1,11 @@
+import {Phone} from './phone';
+
 export class User {
   grower_id: number;
   first_name: string;
   last_name: string;
   email: string; 
-  phone: string;
+  phone: Phone = new Phone(); 
 
   // NOTE: Temporary hack to allow selection from list.
   //       Do not send, or expect to recieve, to server.
@@ -16,7 +18,7 @@ export class User {
       'first_name': this.getString(this.first_name),
       'last_name': this.getString(this.last_name),
       'email_addresses': [this.getString(this.email)],
-      'phone_numbers': [this.getString(this.phone)]
+      'phone_numbers': [this.phone.getAsString().toString()]
     });
   }
 
@@ -37,17 +39,18 @@ export class User {
       user.email = null;
     }
 
-    var phoneNumberStrings = userJson['phoneNumbers'];
+    var phoneNumberStrings = userJson['phoneNumsStrings'];
     if (phoneNumberStrings != null) {
       // NOTE: Temporary hack until front-end supports multiple emails.
       var phoneString: string = phoneNumberStrings[0];
-      user.phone = phoneString != undefined 
-          ? phoneString
-          : null;
-    } else {
-      user.phone = null;
-    }
-
+      if (phoneString != undefined) {
+        user.phone.phone_1 = phoneString.substring(2,5);
+        user.phone.phone_2 = phoneString.substring(5,8);
+        user.phone.phone_3 = phoneString.substring(8,12);
+      } else {
+        user.phone = null;
+      }
+    }  
     return user;
   }
 

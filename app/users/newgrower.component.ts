@@ -9,6 +9,7 @@ import {CustomValidators} from '../customValidators';
 import {UserService} from './user.service';
 import {User} from './user';
 import {ErrorHandling} from '../ErrorHandling';
+import {Phone} from './phone';
 
 @Component({
   templateUrl: 'app/users/newgrower.component.html',
@@ -34,7 +35,9 @@ export class NewGrowerComponent implements OnInit {
       first_name: ['', CustomValidators.isName],
       last_name: ['', CustomValidators.isName],
       email: ['', BasicValidators.email],
-      phone: ['', CustomValidators.phone]
+      phone_1: ['', CustomValidators.phoneThree],
+      phone_2: ['', CustomValidators.phoneThree],
+      phone_3: ['', CustomValidators.phoneFour]
     });
   }
 
@@ -72,15 +75,10 @@ export class NewGrowerComponent implements OnInit {
   save(){
     var result;
 
-    //if (this.user) 
-    //    result = this._userService.updateUser(this.user);
-    //else
     result = this._userService.addUser(this.user);
-
     result.subscribe(x => {
       // Ideally, here we'd want:
       // this.newgrowerform.markAsPristine();
-
       this.user = User.decode(x);
       this._router.navigateByUrl('/users');
     });
