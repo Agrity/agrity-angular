@@ -44,7 +44,7 @@
                         </div>
                     
                         <div class="form-group">										
-                            <h10>THE NUMBER OF MINUTES YOUR GROWERS WILL HAVE TO RESPOND TO YOUR BID.</h10>
+                            <h10>THIS IS THE NUMBER OF MINUTES YOUR GROWERS WILL HAVE TO RESPOND TO YOUR BID.</h10>
                             <input [(ngModel)]="bid.managementTypeDelay" #managementTypeDelay="ngForm" ngControl="delay" type="number" step="1" class="form-control" placeholder="Bid Duration (minutes)" name="delay" id="delay">
                         </div>
                         
@@ -52,7 +52,7 @@
 
 					</div>
 					<div style="padding-left:110px;">
-						<input name="submit" type="submit" class="form-control" id="submit" value="Complete Bid">
+						<input [routerLink]="['View Bids']" name="submit" type="submit" class="form-control" id="submit" value="Complete Bid">
 					</div>
 				</form>
 			</div>

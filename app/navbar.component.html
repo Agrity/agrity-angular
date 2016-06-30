@@ -17,6 +17,8 @@
         <li><a [routerLink]="['View Bids']" class="smoothScroll">BIDS</a></li>
         <li><a [routerLink]="['NewGrower']" class="smoothScroll">ADD GROWER</a></li>
         <li><a [routerLink]="['Profile']" class="smoothScroll">PROFILE</a></li>
+        <li><a *ngFor="let handler_id of handler" class="smoothScroll">{{ handler.company_name }}</a></li>
+
 
       </ul>
     </div><!-- /.navbar-collapse -->
