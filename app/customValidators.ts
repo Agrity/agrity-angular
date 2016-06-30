@@ -5,7 +5,6 @@ export class CustomValidators{
     static isName(control: Control){
       var regEx = /^[a-zA-Z ]+$/
       var valid = regEx.test(control.value) && control.value != null;
-      console.log(control.value);
       return valid ? null : { name: true };   
     }
 

@@ -80,16 +80,9 @@ export class NewGrowerComponent implements OnInit {
     result.subscribe(x => {
       // Ideally, here we'd want:
       // this.newgrowerform.markAsPristine();
-      console.log("Received Data: ");
-      for (var propName in x) {
-        console.log(propName, x[propName]);
-      }
 
       this.user = User.decode(x);
-      alert(this.user.first_name + " " + this.user.last_name
-            + " has been added to list of growers.\n Viewing grower feature under construction."); 
-
-      this._router.navigateByUrl('/');
+      this._router.navigateByUrl('users');
     });
   }
 }
