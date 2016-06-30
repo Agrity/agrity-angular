@@ -16,8 +16,7 @@
         <li><a [routerLink]="['Home']" class="smoothScroll">HOME</a></li>
         <li><a [routerLink]="['View Bids']" class="smoothScroll">BIDS</a></li>
         <li><a [routerLink]="['NewGrower']" class="smoothScroll">ADD GROWER</a></li>
-        <li><a *ngIf="handler == null" [routerLink]="['Handler Login']" class="smoothScroll">LOGIN</a>
-            <a *ngIf="handler !== null" [routerLink]="['Handler Login']" class="smoothScroll"> {{ handler.company_name }}</a>
+        <li><a *ngIf="handler !== null" [routerLink]="['Handler Login']" class="smoothScroll"> {{ handler.company_name }}</a>
         </li>
 
 
