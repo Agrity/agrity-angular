@@ -7,10 +7,11 @@ import {NewGrowerComponent} from './users/newgrower.component';
 import {MakeBidComponent} from './bids/makebid.component';
 import {ProfileComponent} from './profile/profile.component';
 import {NotFoundComponent} from './not-found.component';
-import {HandlerLoginComponent} from './handler-login/handler-login.component'
-import {ViewBidsComponent} from './bids/view-bids.component'
-import {ViewBidComponent} from './bids/view-bid.component'
-import {ViewUserComponent} from './users/view-user.component'
+import {HandlerLoginComponent} from './handler-login/handler-login.component';
+import {ViewBidsComponent} from './bids/view-bids.component';
+import {ViewBidComponent} from './bids/view-bid.component';
+import {ViewUserComponent} from './users/view-user.component';
+import {ViewUsersComponent} from './users/view-users.component';
 
 @RouteConfig([
   { path: '/', name: 'Home', component: HomeComponent },
@@ -21,6 +22,7 @@ import {ViewUserComponent} from './users/view-user.component'
   { path: '/bids/:id', name: 'View Bid', component: ViewBidComponent },
   { path: '/bids/new', name: 'Make Bid', component: MakeBidComponent },
 
+  { path: '/users', name: 'ViewUsers', component: ViewUsersComponent},
   { path: '/users/:id', name: 'ViewUser', component: ViewUserComponent },
   { path: '/users/new', name: 'NewGrower', component: NewGrowerComponent },
 
