@@ -22,7 +22,7 @@ import {ViewUsersComponent} from './users/view-users.component';
   { path: '/bids/:id', name: 'View Bid', component: ViewBidComponent },
   { path: '/bids/new', name: 'Make Bid', component: MakeBidComponent },
 
-  { path: '/users', name: 'ViewUsers', component: ViewUsersComponent}
+  { path: '/users', name: 'ViewUsers', component: ViewUsersComponent},
   { path: '/users/:id', name: 'ViewUser', component: ViewUserComponent },
   { path: '/users/new', name: 'NewGrower', component: NewGrowerComponent },
 
