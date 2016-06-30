@@ -11,38 +11,68 @@
 		</div>
 		Current Bids
 	</h2>
-	  <div class="wow fadeInDown" data-wow-delay="0.3s">
-	  <button *ngFor="let bid of bids" style="width:90%; height:100px; font-size:2.5em; text-align:left; padding-left: 50px;" type="button" class="btn btn-info" data-toggle="collapse" data-target="#group1">
+	  <div *ngFor="let bid of bids" class="wow fadeInDown" data-wow-delay="0.3s">
+	  <button (click)="isCollapsedContent = !isCollapsedContent" style="width:90%; height:100px; font-size:2.5em; text-align:left; padding: 0 0 10px 50px;" type="button" class="btn btn-info">
 	  	<table id="buttonCols" style="width:100%">
 		<tr>
 	  		<td class="offerButton">{{ bid.almondVariety }}</td>
-	  		<td class="offerButton">23/25</td>
-	  		<td class="offerButton">{{ bid.almondPounds }}</td>
-	  		<td class="offerButton">{{ bid.pricePerPound }}</td> 
-	  		<td class="offerButton">{{ bid.paymentDate }}</td>
+	  		<td class="offerButton">Size: {{ bid.almondSize }}</td>
+	  		<td class="offerButton">Pounds: {{ bid.almondPounds }}</td>
+	  		<td class="offerButton">Price: {{ bid.pricePerPound }}</td> 
+	  		<td class="offerButton">-- Under Construction --</td>
 	  	</tr>
+		  <!--<tr>{{ bid.comment }}</tr>-->
 		</table>
 	  	</button>
-	  	</div>
-	  
-	  <!--<div id="group1" class="collapse">
-	    <ul style="list-style:none; padding-top:10px;">
-	    	<li>
-	    	<div class="container" style="padding-bottom:10px;">
-	    	<button id="buttonA" type="button" class="btn btn-info" [routerLink]="['Profile', { id:user.growers }]">
-	    		<table id="buttonCols" style="width:100%"><tr *ngFor="let user of users">
-	    			<td class="pic"><input type="image" id="myimage" src="images/farmer3.jpg"/></td>
-	    			<td class="name"><strong>{{ user.first_name }} {{ user.last_name }}</strong></td>
+
+	  <!--<div [collapse]="isCollapsedContent">
+			<div class="container" style="padding-bottom:10px;">
+	    	<button id="buttonA" type="button" class="btn btn-info">
+	    		<table id="buttonCols" style="width:100%"><tr>
+	    			<td class="pic"><input type="image" id="myimage" src="assets/img/farmer3.jpg"/></td>
+	    			<td *ngFor="let grower of acceptedGrowers" class="name"><strong>{{ grower.first_name }} {{ grower.last_name }}</strong></td>
 	    			<td class="state"><strong>Accepted</strong></td></tr>
 	    		</table>
 	    	</button>
+			</div>
+
+			<div class="container" style="padding-bottom:10px;">
+	    	<button id="buttonR" type="button" class="btn btn-info">
+	    		<table id="buttonCols" style="width:100%"><tr>
+	    			<td class="pic"><input type="image" id="myimage" src="assets/img/farmer3.jpg"/></td>
+	    			<td *ngFor="let grower of rejectedGrowers" class="name">{{ grower.first_name }} {{ grower.last_name }}</td>
+	    			<td class="state"><strong>Rejected</strong></td></tr>
+	    		</table>
+	    	</button>
+			</div>
+
+			<div class="container" style="padding-bottom:10px;">
+	    	<button id="buttonC" type="button" class="btn btn-info">
+	    		<table id="buttonCols" style="width:100%"><tr>
+	    			<td class="pic"><input type="image" id="myimage" src="assets/img/farmer3.jpg"/></td>
+	    			<td *ngFor="let grower of callRequestedGrowers" class="name"><strong>{{ grower.first_name }} {{ grower.last_name }}</strong></td>
+	    			<td class="state"><strong>Call Requested</strong></td></tr>
+	    		</table>
+	    	</button>
+			</div>
+
+	    	<div class="container" style="padding-bottom:10px;">
+	    	<button id="buttonP" type="button" class="btn btn-info">
+	    		<table id="buttonCols" style="width:100%"><tr>
+	    			<td class="pic"><input type="image" id="myimage" src="assets/img/farmer3.jpg"/></td>
+	    			<td *ngFor="let grower of noResponseGrowers" class="name"><li>{{ grower.first_name }} {{ grower.last_name }}</li></td>
+	    			<td class="state"><strong>No Response</strong></td></tr>
+	    		</table>
+	    	</button>
 	    	</div>
-	    	</li>
 
-	    </ul>
-	  </div>-->
+	    	</div>-->
 
-	</div>
+	  </div>
+
+	  </div>
+	  
+
 
 	</div>
 

@@ -24,6 +24,17 @@ import {User} from '../users/user';
       background-color:white;
       background-size:100% 100%;
     }
+
+    button {
+      margin-bottom:10px; 
+      width:90%; 
+      height:50px; 
+      font-size:1.5em; 
+      text-align:left; 
+      padding-bottom:10px;
+      height:auto;
+
+    }
   `], 
   styleUrls: ['assets/stylesheets/style.css'],
   providers: [BidService],
