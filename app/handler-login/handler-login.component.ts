@@ -1,9 +1,11 @@
 import {Component, OnInit, coreBootstrap} from '@angular/core';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
+import {Location} from '@angular/common';
 import {Config} from '../config/Config'
 
 import {LoginInfo} from './login-info'
 import {HandlerLoginService} from './handler-login.service'
+
 
 @Component({
     templateUrl: 'app/handler-login/handler-login.component.html',
@@ -15,7 +17,8 @@ import {HandlerLoginService} from './handler-login.service'
 export class HandlerLoginComponent {
 
   constructor(private _handlerLoginService: HandlerLoginService,
-              private _config: Config) {};
+              private _config: Config,
+              private _location: Location) {};
 
   loginInfo = new LoginInfo('', '');
 
@@ -35,6 +38,7 @@ export class HandlerLoginComponent {
         valid => {
           console.log("Valid: Logged Out");
           this._handlerLoginService.eraseHandlerAuthToken();
+          this._location.go('/');
         },
         error => console.log("Error: " + error));
   }
