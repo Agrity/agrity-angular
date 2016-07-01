@@ -112,7 +112,7 @@ export class MakeBidComponent implements OnInit {
           console.log(bid);
           var bidModel: Bid = Bid.decode(bid);
           console.log(Bid.decode(bid));
-          this._router.navigateByUrl('/bids/' + bidModel.bid_id);
+          this._router.navigateByUrl('/bids');
         },
         error => {
           this._errorHandling.handleHttpError(error);
