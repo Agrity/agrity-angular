@@ -101,36 +101,6 @@
                           	<option>2018</option>
                           </datalist>
                         </div>
-
-                        <div class="form-group">										
-                            <input type="text" [(ngModel)]="bid.almondVariety" #almond_variety="ngForm" ngControl="almondVariety" class="form-control" placeholder="Choose Almond Variety" name="almond variety" id="almond variety" list="almonds"> 
-                            <!-- TODO Change to Data Souce in Component -->
-                            <datalist id="almonds">
-                                <option>NONPAREIL</option>
-                                <option>CARMEL</option>
-                                <option>BUTTE</option>
-                                <option>PADRE</option>
-                                <option>MISSION</option>
-                                <option>MONTEREY</option>
-                                <option>SONORA</option>
-                                <option>FRITZ</option>
-                                <option>PRICE</option>
-                                <option>PEERLESS</option>
-                            </datalist>
-                        </div>
-
-                        <!-- ALMOND SIZE -->
-                        <div class="form-group">	
-                          <input [(ngModel)]="bid.almondSize" #almond_size="ngForm" ngControl="almondSize" type="text" step="0.01" class="form-control" placeholder="Almond Size" name="size" id="size">
-                        </div>
-
-                        <div class="form-group">										
-                            <input [(ngModel)]="bid.pricePerPound" #price_per_pound="ngForm" ngControl="pricePerPound" type="number" step="0.01" class="form-control" placeholder="Price Per Pound" name="price" id="price">
-                        </div>
-
-                        <div class="form-group">										
-                            <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Pounds" name="pounds">
-                        </div>
                     
                         <div class="form-group">										
                             <h10>This is the number of minutes your growers will have to respond to your bid.</h10>
