@@ -614,7 +614,6 @@ input[type=checkbox]:checked + label:before {
 
 .payment {
   display:inline-block;
->>>>>>> master
 }
 
 /* payment date section styles
