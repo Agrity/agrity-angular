@@ -91,4 +91,8 @@ export class ViewBidComponent implements OnInit {
         });
   } 
 
+  viewUser(user_id){
+    this._router.navigateByUrl('/users/' + user_id);
+  }
+
 }
