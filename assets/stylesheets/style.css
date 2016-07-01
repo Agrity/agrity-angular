@@ -560,6 +560,31 @@ input[type=checkbox]:checked + label:before {
   padding-bottom: 10px;
 }
 
+/* payment date section styles
+/* ========================================== */
+#contact .form-control1 {
+  background: rgba(250,250,250,0.3);
+  border-color: #ffffff;
+  color: #ffffff;
+  border-radius: 0px;
+  box-shadow: none;
+  margin-bottom: 5px;
+  margin-right:10px;
+  transition: all 0.4s ease-in-out;
+  padding: 10px;
+  height: auto;
+}
+
+.form-control1::-moz-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+.form-control1:-ms-input-placeholder {
+  color: #ffffff;
+}
+.form-control1::-webkit-input-placeholder {
+  color: #ffffff;
+}
 
 /* payment date section styles
 /* ========================================== */

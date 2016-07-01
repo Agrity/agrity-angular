@@ -29,17 +29,12 @@
                     </div>
 					</div>
 					
-					<div class="form-group">
-					<input [(ngModel)]="user.phone.phone_1" #phone_1="ngForm" ngControl="phone_1" step="1"  class="form-control" placeholder="First three phone digits" name="phone 1" id="phone1">
-					</div>
-
-					<div class="form-group">										
-                        <input [(ngModel)]="user.phone.phone_2" #phone_2="ngForm" ngControl="phone_2" class="form-control" placeholder="Second three phone digits" name="phone 2">
-
-                   </div>
 
 					<div class="form-group">
-					<input [(ngModel)]="user.phone.phone_3" #phone_3="ngForm" ngControl="phone_3" class="form-control" placeholder="Last four phone digits" name="phone 3" id="phone3">
+						<p>Phone Number</p>
+					<input style="width:100px;" [(ngModel)]="user.phone.phone_1" #phone_1="ngForm" ngControl="phone_1" step="1"  class="form-control1" placeholder="(xxx)" name="phone 1" id="phone1">					
+                	<input style="width:100px;" [(ngModel)]="user.phone.phone_2" #phone_2="ngForm" ngControl="phone_2" class="form-control1" placeholder="xxx-" name="phone 2">
+					<input style="width:100px;" [(ngModel)]="user.phone.phone_3" #phone_3="ngForm" ngControl="phone_3" class="form-control1" placeholder="xxxx" name="phone 3" id="phone3">
 					</div>
 		
 				</div>
