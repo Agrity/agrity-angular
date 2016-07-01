@@ -1,5 +1,8 @@
-<<div>
-  <h1> List of Users </h1> 
+<div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.9s" style="background: url('assets/img/login-pic.jpg'); background-size:cover; padding:80px 0 160px 0;">
+  <div class="container">
+	<h2 style="color:white; padding:0px 0px 0px 20px; text-shadow: 0.5px 0.5px #333333;"><font size="+3"></font>
+		Growers in your Database
+	</h2>
 
     <div *ngFor="let user of users" class="wow fadeInDown" data-wow-delay="0.3s">
     <button (click)="viewUser(user.grower_id)" style="width:90%; height:100px; font-size:2.5em; text-align:left; padding-left:50px; margin-bottom:10px;" type="button" class="btn btn-info">
@@ -14,4 +17,5 @@
       </table>
     </button>
     </div>
+</div>
 </div>

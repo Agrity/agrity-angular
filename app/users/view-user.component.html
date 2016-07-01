@@ -1,21 +1,54 @@
-<div>
-  <h1> User Details </h1> 
+<!-- Profile Pic and Cover Photo
+====================================================-->
+<section class="picSection">
+	<div class="resizeImage">
+		<img src="assets/img/farmer3.jpg" onError="this.onerror=null;this.src='images/profile-icon.jpg';">
+	</div>
+		<h1>{{ user.first_name }} {{ user.last_name }}</h1>
 
-  <h2> {{ user.first_name }} </h2>
-  <h2> {{ user.last_name }} </h2>
-  <h2> {{ user.email }} </h2>
-  <h2> {{ user.phone.phone_1 }} {{ user.phone.phone_2 }} {{ user.phone.phone_3 }} </h2>
+</section>
 
-  <h1> User Bids </h1> 
-
-    <table style="width:100%">
-      <tr *ngFor="let bid of bids">
-        <td> {{ bid.bid_id }} </td> 
-        <td> {{ bid.almondVariety }} </td>
-        <td> {{ bid.almondSize }} </td>
-        <td> {{ bid.almondPounds }} </td>
-        <td> {{ bid.pricePerPound }} </td> 
-        <td> {{ bid.paymentDate }} </td>
-      </tr>
-    </table>
-</div>
+<!-- Profile section
+================================================== -->
+<section id="testimonial" class="parallax-section">
+			<table>
+				<tr>	
+					<td><h8><u>Phone Number</u></h8></td>
+					<td><h8><u>E-Mail</u></h8></td>
+					<td><h8><u>Acreage</u></h8></td>
+					<td><h8><u>Almond Varieties</u></h8></td>
+				</tr>
+				<tr>
+					<td><b><h7>{{ user.phone }}</h7></b></td>
+					<td><b><h7>{{ user.email }}</h7></b></td>
+					<td><b><h7>-- Under Construction</h7></b></td>
+					<td><b><h7>-- Under Construction --</h7></b></td>
+				</tr>
+			</table>
+			
+			<div class="Bio">
+        <h2>Bids from {{user.first_name}}</h2>
+        <table class="pure-table pure-table-horizontal" style="width:100%">
+          <thead>
+            <tr>
+                <th>Almond Variety</th>
+                <th>Size</th>
+                <th>Price</th>
+                <th>Pounds</th>
+                <th>Payment Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bid of bids">
+              <td><p1> {{ bid.bid_id }} </p1></td> 
+              <td><p1> {{ bid.almondVariety }}</p1></td>
+              <td><p1> {{ bid.almondSize }} </p1></td>
+              <td><p1> {{ bid.almondPounds }} </p1></td>
+              <td><p1> {{ bid.pricePerPound }} </p1></td> 
+              <td><p1> {{ bid.paymentDate }} </p1></td>
+            </tr>
+          </tbody>
+        </table>
+				<!--<p style="color:black;">Bio: -- Under Construction --</p>-->
+			</div>
+</section>
