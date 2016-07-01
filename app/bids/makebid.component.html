@@ -43,10 +43,11 @@
                             <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Pounds" name="pounds">
                         </div>
 
+<!-- Payment Date section
+================================================== -->
                         <div class="form-group">
-                          <h10>Payment Date:<br/></h10>
-                          <h11>From</h11>	
-                          <input [(ngModel)]="bid.startPaymentMonth" #start_payment_month="ngForm" ngControl="startPaymentMonth" class="form-control" type="text" placeholder="Month" name="start month" id="start month" list="months">
+                          <h10>Payment Date From:<br/></h10>
+                          <input [(ngModel)]="bid.startPaymentMonth" #start_payment_month="ngForm" ngControl="startPaymentMonth" class="form-control1" type="text" placeholder="Month" name="start month" id="start month" list="months">
                           <datalist id="months">
                           	<option>January</option>
                           	<option>February</option>
@@ -64,17 +65,17 @@
                         </div>
 
                         <div class="form-group">
-                          <input [(ngModel)]="bid.startPaymentYear" #start_payment_year="ngForm" ngControl="startPaymentYear" class="form-control" type="text" placeholder="Year" name="start year" id="start year" list="years">
+                          <input [(ngModel)]="bid.startPaymentYear" #start_payment_year="ngForm" ngControl="startPaymentYear" class="form-control1" type="text" placeholder="Year" name="start year" id="start year" list="years">
                           <datalist id="years">
                           	<option>2016</option>
                           	<option>2017</option>
                           	<option>2018</option>
                           </datalist>
                         </div>
+                          <h10>Payment Date To:<br/></h10>
 
                         <div class="form-group">
-                          <h11>To</h11>
-                          <input [(ngModel)]="bid.endPaymentMonth" #end_payment_month="ngForm" ngControl="endPaymentMonth" class="form-control" type="text" placeholder="Month" name="end month" id="end month" list="months">
+                          <input [(ngModel)]="bid.endPaymentMonth" #end_payment_month="ngForm" ngControl="endPaymentMonth" class="form-control1" type="text" placeholder="Month" name="end month" id="end month" list="months">
                           <datalist id="months">
                           	<option>January</option>
                           	<option>February</option>
@@ -92,7 +93,7 @@
                         </div>
 
                         <div class="form-group">
-                          <input [(ngModel)]="bid.endPaymentYear" #end_payment_year="ngForm" ngControl="endPaymentYear" class="form-control" type="text" placeholder="Year" name="end year" id="end year" list="years">
+                          <input [(ngModel)]="bid.endPaymentYear" #end_payment_year="ngForm" ngControl="endPaymentYear" class="form-control1" type="text" placeholder="Year" name="end year" id="end year" list="years">
                           <datalist id="years">
                           	<option>2016</option>
                           	<option>2017</option>
