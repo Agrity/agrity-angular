@@ -11,7 +11,56 @@ import {ErrorHandling} from '../ErrorHandling';
 
 @Component({
   templateUrl: 'app/users/view-user.component.html',
-  styles: [], 
+  styles: [`
+  .picSection img {
+		position:relative;
+		background-color:white;
+		height:180px;
+		width:auto;
+
+		overflow:hidden;
+		border-radius:120px;
+		border-radius:50px;
+		border:4px white solid;
+
+		float:left;
+	}
+
+	.picSection {
+		background-image:url("assets/img/coverpic.jpg");
+		height: 400px;
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-position:center;
+
+		padding-top:280px;
+		padding-left:20px;
+	}
+
+	.picSection h1{
+		color:white;
+		position:relative;
+		left:10px;
+	}
+
+	.Bio {
+		padding-top:60px;
+	}
+
+	h3 {
+		color:black;
+	}
+
+	table {
+		width:100%;
+		table-layout:fixed;
+	}
+
+	td {
+		vertical-align:top;
+		padding:5px;
+	}
+  `], 
   styleUrls: [],
   providers: [UserService, BidService],
   directives: [RouterLink, ROUTER_DIRECTIVES]
