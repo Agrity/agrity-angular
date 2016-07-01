@@ -7,10 +7,11 @@
 
 			<!-- Form section
 			================================================== -->
+      <div class="col-md-12 col-sm-12 wow fadeInDown">
+        <h9 class="wow fadeInDown">CREATE YOUR BID</h9>
+      </div> 
 			<div class="col-md-6 col-sm-6 wow fadeInDown" data-wow-delay="0.6s">
 				<form [ngFormModel]="newBidForm" (ngSubmit)="save()">
-					<h9 class="wow fadeInDown">CREATE YOUR BID</h9>
-
 					<div np-app="makebidform" class="col-md-12 col-sm-12">
                         
                         <div class="form-group">										
@@ -62,9 +63,14 @@
                           	<option>November</option>
                           	<option>December</option>
                           </datalist> 
-                        </div>
 
+<<<<<<< HEAD
+=======
                         <div class="form-group">
+<<<<<<< HEAD
+>>>>>>> master
+=======
+>>>>>>> master
                           <input [(ngModel)]="bid.startPaymentYear" #start_payment_year="ngForm" ngControl="startPaymentYear" class="form-control1" type="text" placeholder="Year" name="start year" id="start year" list="years">
                           <datalist id="years">
                           	<option>2016</option>
@@ -75,6 +81,13 @@
                           <h10>Payment Date To:<br/></h10>
 
                         <div class="form-group">
+<<<<<<< HEAD
+<<<<<<< HEAD
+                          <h10>Payment Date To:<br/></h10>
+=======
+>>>>>>> master
+=======
+>>>>>>> master
                           <input [(ngModel)]="bid.endPaymentMonth" #end_payment_month="ngForm" ngControl="endPaymentMonth" class="form-control1" type="text" placeholder="Month" name="end month" id="end month" list="months">
                           <datalist id="months">
                           	<option>January</option>
@@ -90,9 +103,14 @@
                           	<option>November</option>
                           	<option>December</option>
                           </datalist> 
-                        </div>
 
+<<<<<<< HEAD
+=======
                         <div class="form-group">
+<<<<<<< HEAD
+>>>>>>> master
+=======
+>>>>>>> master
                           <input [(ngModel)]="bid.endPaymentYear" #end_payment_year="ngForm" ngControl="endPaymentYear" class="form-control1" type="text" placeholder="Year" name="end year" id="end year" list="years">
                           <datalist id="years">
                           	<option>2016</option>
@@ -100,9 +118,39 @@
                           	<option>2018</option>
                           </datalist>
                         </div>
+
+                        <div class="form-group">										
+                            <input type="text" [(ngModel)]="bid.almondVariety" #almond_variety="ngForm" ngControl="almondVariety" class="form-control" placeholder="Choose Almond Variety" name="almond variety" id="almond variety" list="almonds"> 
+                            <!-- TODO Change to Data Souce in Component -->
+                            <datalist id="almonds">
+                                <option>NONPAREIL</option>
+                                <option>CARMEL</option>
+                                <option>BUTTE</option>
+                                <option>PADRE</option>
+                                <option>MISSION</option>
+                                <option>MONTEREY</option>
+                                <option>SONORA</option>
+                                <option>FRITZ</option>
+                                <option>PRICE</option>
+                                <option>PEERLESS</option>
+                            </datalist>
+                        </div>
+
+                        <!-- ALMOND SIZE -->
+                        <div class="form-group">	
+                          <input [(ngModel)]="bid.almondSize" #almond_size="ngForm" ngControl="almondSize" type="text" step="0.01" class="form-control" placeholder="Almond Size" name="size" id="size">
+                        </div>
+
+                        <div class="form-group">										
+                            <input [(ngModel)]="bid.pricePerPound" #price_per_pound="ngForm" ngControl="pricePerPound" type="number" step="0.01" class="form-control" placeholder="Price Per Pound" name="price" id="price">
+                        </div>
+
+                        <div class="form-group">										
+                            <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Pounds" name="pounds">
+                        </div>
                     
                         <div class="form-group">										
-                            <h10>THIS IS THE NUMBER OF MINUTES YOUR GROWERS WILL HAVE TO RESPOND TO YOUR BID.</h10>
+                            <h10>This is the number of minutes your growers will have to respond to your bid.</h10>
                             <input [(ngModel)]="bid.managementTypeDelay" #managementTypeDelay="ngForm" ngControl="delay" type="number" step="1" class="form-control" placeholder="Bid Duration (minutes)" name="delay" id="delay">
                         </div>
                         
