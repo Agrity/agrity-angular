@@ -8,10 +8,10 @@
     <button (click)="viewUser(user.grower_id)" style="width:90%; height:100px; font-size:2.5em; text-align:left; padding-left:50px; margin-bottom:10px;" type="button" class="btn btn-info">
       <table id="buttonCols" style="width:100%">
       <tr>
-        <td class="offerButton"> {{ user.first_name }} </td>
-        <td class="offerButton"> {{ user.last_name }} </td>
-        <td class="offerButton"> {{ user.email }} </td> 
-        <td class="offerButton"> {{ user.phone.phone_1 }} {{ user.phone.phone_2 }} {{ user.phone.phone_3 }} </td>
+        <td class="offerButton"> {{ user?.first_name }} </td>
+        <td class="offerButton"> {{ user?.last_name }} </td>
+        <td class="offerButton"> {{ user?.email }} </td> 
+        <td class="offerButton"> {{ user?.phone?.phone_1 }} {{ user?.phone?.phone_2 }} {{ user?.phone?.phone_3 }} </td>
 
       </tr>
       </table>
