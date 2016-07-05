@@ -2,9 +2,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 
-import { Logger } from '../shared/logger.service';
-import { HttpClient } from '../shared/http-client.service'
-import {Config} from '../shared/config.service';
+import { Config, HttpClient, Logger } from '../../shared/index';
 import {LoginInfo} from './login-info';
 
 @Injectable()

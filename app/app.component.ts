@@ -7,7 +7,7 @@ import {NewGrowerComponent} from './users/newgrower.component';
 import {MakeBidComponent} from './bids/makebid.component';
 import {ProfileComponent} from './profile/profile.component';
 import {NotFoundComponent} from './single-pages/not-found.component';
-import {HandlerLoginComponent} from './handler-login/handler-login.component';
+import {HandlerLoginComponent} from './handlers/handler-login/index'
 import {ViewBidsComponent} from './bids/view-bids.component';
 import {ViewBidComponent} from './bids/view-bid.component';
 import {ViewUserComponent} from './users/view-user.component';
