@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
-import {NavBarComponent} from './navbar.component';
+import {NavBarComponent} from './shared/navbar/navbar.component';
 import {HomeComponent} from './home.component';
 import {NewGrowerComponent} from './users/newgrower.component';
 import {MakeBidComponent} from './bids/makebid.component';

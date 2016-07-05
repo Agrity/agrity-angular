@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, Router} from '@angular/router-deprecated';
 
-import {Config} from './config/Config'
+import {Config} from '../../config/Config'
 import {Observable} from 'rxjs/Observable';
-import {HandlerService} from './handler/handler.service';
-import {Handler} from './handler/handler';
-import { Logger } from './shared/logger.service';
+import {HandlerService} from '../../handler/handler.service';
+import {Handler} from '../../handler/handler';
+import { Logger } from '../logger.service.ts';
 
 @Component({
     selector: 'navbar',
@@ -19,32 +19,32 @@ export class NavBarComponent implements OnInit {
 	private handler: Handler = new Handler();  
 
   constructor(
-    	private router: Router,
-    	private handlerService: HandlerService,  
-      private logger : Logger,
-      private config: Config) {
+    	private _router: Router,
+    	private _handlerService: HandlerService,  
+      private logger: Logger,
+      private _config: Config) {
   }
 
   ngOnInit(){
 
-    if (!this.config.loggedIn()) {
-      this.config.forceLogout();
+    if (!this._config.loggedIn()) {
+      this._config.forceLogout();
       return;   
     }
 
-    this.handlerService.getCurrentHandler()
+    this._handlerService.getCurrentHandler()
         .subscribe(
             handler => {
               this.handler = Handler.decode(handler);
             },
           error => {
             this.logger.handleHttpError(error);
-            this.config.forceLogout();
+            this._config.forceLogout();
           });
   }
 
   isCurrentRoute(route){
-      var instruction = this.router.generate(route);
-      return this.router.isRouteActive(instruction);
+      var instruction = this._router.generate(route);
+      return this._router.isRouteActive(instruction);
     }
 }
