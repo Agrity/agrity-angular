@@ -35,7 +35,7 @@ export class GrowerListComponent implements OnInit {
 
     // Load Growers
     this.growers = [];
-    this.growerService.getUsers()
+    this.growerService.getGrowers()
       .subscribe(
         growers => {
           for (var growersIdx in growers) {
@@ -50,7 +50,7 @@ export class GrowerListComponent implements OnInit {
 
   } 
 
-  viewUser(growerId){
+  viewGrower(growerId){
     this.router.navigateByUrl('/users/' + growerId);
   }
 }

@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit {
 	}
     
     private loadUsers(){
-        this.growerService.getUsers()
+        this.growerService.getGrowers()
             .subscribe(users => this.users = users);
     }
     

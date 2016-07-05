@@ -8,54 +8,54 @@ import { Config, HttpClient, Logger } from '../../shared/index';
 
 @Injectable()
 export class GrowerService {
-  private _growersUrl;
+  private growersUrl;
 
-  constructor(private _http: HttpClient,
-              private _config: Config,
+  constructor(private http: HttpClient,
+              private config: Config,
               private logger: Logger){
-    this._growersUrl = this._config.getServerDomain() + "/handler/growers";
+    this.growersUrl = this.config.getServerDomain() + "/handler/growers";
   }
 
-  getUsers(){
-    return this._http.get(this._growersUrl)
+  getGrowers() {
+    return this.http.get(this.growersUrl)
       .map(res => res.json())
       .catch(this.logger.handleHttpError);
   }
     
-  getUser(userId: number){
-    if (userId == null) {
+  getGrower(growerId: number) {
+    if (growerId == null) {
       this.logger.handleError("Attempted to Grower with null id.");
       return null;
     }
 
-    return this._http.get(this.getUserUrl(userId))
+    return this.http.get(this.getGrowerUrl(growerId))
       .map(res => res.json())
       .catch(this.logger.handleHttpError);
   }
     
-  addUser(user){
-    if (user == null) {
+  addGrower(grower) {
+    if (grower == null) {
       this.logger.handleError("Attempted to add null Grower.");
       return null;
     }
 
-    return this._http.jsonPost(this._growersUrl, user.encode())
+    return this.http.jsonPost(this.growersUrl, grower.encode())
       .map(res => res.json())
       .catch(this.logger.handleHttpError);
   }
     
   // TODO Updating Not Implemented on Server Side Yet.
   //updateUser(user){
-  //  return this._http.put(this.getUserUrl(user.id), JSON.stringify(user))
+  //  return this.http.put(this.getUserUrl(user.id), JSON.stringify(user))
   //    .map(res => res.json());
   //}
     
   // TODO Deleteing Not Implemented on Server Side Yet.
-  deleteUser(userId: number){
-    return Observable.throw("Deleting Users Not Yet Implemented.")
+  deleteGrower(growerId: number) {
+    return Observable.throw("Deleting Growers Not Yet Implemented.")
   }
     
-  private getUserUrl(userId){
-    return this._growersUrl + "/" + userId;
+  private getGrowerUrl(growerId) {
+    return this.growersUrl + "/" + growerId;
   }
 }

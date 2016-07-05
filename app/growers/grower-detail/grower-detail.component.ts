@@ -43,7 +43,7 @@ export class GrowerDetailComponent implements OnInit {
     }
 
     // Load grower
-    this.growerService.getUser(this.growerId)
+    this.growerService.getGrower(this.growerId)
       .subscribe(
         grower => {
           this.grower = Grower.decode(grower);

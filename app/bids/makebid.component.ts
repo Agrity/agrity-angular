@@ -65,7 +65,7 @@ export class MakeBidComponent implements OnInit {
 
     // Load in Grower
     this.growers = [];
-    this.growerService.getUsers()
+    this.growerService.getGrowers()
       .subscribe(
         growers => {
           for (var growerIdx in growers) {

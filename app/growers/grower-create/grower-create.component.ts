@@ -64,7 +64,7 @@ export class GrowerCreateComponent implements OnInit {
   save(){
     var result;
 
-    result = this.growerService.addUser(this.grower);
+    result = this.growerService.addGrower(this.grower);
     result.subscribe(x => {
       // Ideally, here we'd want:
       // this.newgrowerform.markAsPristine();
