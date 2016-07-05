@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
-import {Config} from '../config/Config';
+import {Config} from '../shared/config.service';
 import { CustomValidators } from '../shared/custom-validators.service';
 
 import {UserService} from './user.service';

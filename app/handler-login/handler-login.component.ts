@@ -1,7 +1,7 @@
 import {Component, OnInit, coreBootstrap} from '@angular/core';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 import {Location} from '@angular/common';
-import {Config} from '../config/Config'
+import {Config} from '../shared/config.service'
 
 import {LoginInfo} from './login-info'
 import {HandlerLoginService} from './handler-login.service'

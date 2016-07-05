@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams, Router} from '@angular/router-deprecated';
 
-import {Config} from '../config/Config'; 
+import {Config} from '../shared/config.service'; 
 import {Observable} from 'rxjs/Observable';
 import {BidService} from './bid.service';
 import {Bid} from './bid';

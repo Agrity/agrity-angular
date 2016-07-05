@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 
 import { Logger } from '../shared/logger.service';
 import { HttpClient } from '../shared/http-client.service'
-import {Config} from '../config/Config';
+import {Config} from '../shared/config.service';
 import {LoginInfo} from './login-info';
 
 @Injectable()

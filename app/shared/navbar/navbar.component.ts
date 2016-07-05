@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, Router} from '@angular/router-deprecated';
 
-import {Config} from '../../config/Config'
+import {Config} from '../../shared/config.service'
 import {Observable} from 'rxjs/Observable';
 import {HandlerService} from '../../handler/handler.service';
 import {Handler} from '../../handler/handler';

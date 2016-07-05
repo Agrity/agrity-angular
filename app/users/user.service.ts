@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/Rx'; // TODO Remove and Replace with Necassary Functions.
 import {HttpClient} from '../shared/http-client.service';
 import {Logger} from '../shared/logger.service';
-import {Config} from '../config/Config';
+import {Config} from '../shared/config.service';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
