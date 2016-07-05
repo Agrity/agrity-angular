@@ -2,10 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
 import {ProfileService} from './profile.service';
-import {UserService} from '../users/user.service';
 import {SpinnerComponent} from '../shared/spinner.component';
 import {PaginationComponent} from '../shared/pagination.component';
-import {User} from '../users/user';
+import { Grower, GrowerService } from '../growers/shared/index';
 
 @Component({
     templateUrl: 'app/profile/profile.component.html',
@@ -60,7 +59,7 @@ import {User} from '../users/user';
 	}
     `],
     styleUrls: ['assets/stylesheets/style.css'],
-    providers: [ProfileService, UserService],
+    providers: [ProfileService],
     directives: [SpinnerComponent, PaginationComponent, RouterLink, ROUTER_DIRECTIVES]
 })
 export class ProfileComponent implements OnInit {
@@ -74,7 +73,7 @@ export class ProfileComponent implements OnInit {
     
     constructor(
         private _postService: ProfileService,
-        private _userService: UserService) {
+        private growerService: GrowerService) {
 	}
 
 	ngOnInit() {
@@ -83,7 +82,7 @@ export class ProfileComponent implements OnInit {
 	}
     
     private loadUsers(){
-        this._userService.getUsers()
+        this.growerService.getUsers()
             .subscribe(users => this.users = users);
     }
     

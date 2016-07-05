@@ -1,6 +1,6 @@
-import {Phone} from './phone';
+import { Phone } from './index';
 
-export class User {
+export class Grower {
   grower_id: number;
   first_name: string;
   last_name: string;
@@ -8,7 +8,7 @@ export class User {
   phone: Phone = new Phone(); 
 
   // NOTE: Temporary hack to allow selection from list.
-  //       Do not send, or expect to recieve, to server.
+  //       Do not send, or expect to recieve, to/from server.
   selected: boolean;
 
   encode(): string {
@@ -22,36 +22,36 @@ export class User {
     });
   }
 
-  static decode(userJson: Object): User {
-    var user  = new User();
-    user.grower_id = userJson['id'];
-    user.first_name = userJson['firstName'];
-    user.last_name = userJson['lastName'];
+  static decode(growerJson: Object): Grower {
+    var grower: Grower  = new Grower();
+    grower.grower_id = growerJson['id'];
+    grower.first_name = growerJson['firstName'];
+    grower.last_name = growerJson['lastName'];
 
-    var emailAddressStrings = userJson['emailAddressStrings'];
+    var emailAddressStrings = growerJson['emailAddressStrings'];
     if (emailAddressStrings != null) {
       // NOTE: Temporary hack until front-end supports multiple emails.
       var emailString: string = emailAddressStrings[0];
-      user.email = emailString != undefined 
+      grower.email = emailString != null 
           ? emailString
           : null;
     } else {
-      user.email = null;
+      grower.email = null;
     }
 
-    var phoneNumberStrings = userJson['phoneNumsStrings'];
+    var phoneNumberStrings = growerJson['phoneNumsStrings'];
     if (phoneNumberStrings != null) {
       // NOTE: Temporary hack until front-end supports multiple emails.
       var phoneString: string = phoneNumberStrings[0];
-      if (phoneString != undefined) {
-        user.phone.phone_1 = phoneString.substring(2,5);
-        user.phone.phone_2 = phoneString.substring(5,8);
-        user.phone.phone_3 = phoneString.substring(8,12);
+      if (phoneString != null) {
+        grower.phone.phone_1 = phoneString.substring(2,5);
+        grower.phone.phone_2 = phoneString.substring(5,8);
+        grower.phone.phone_3 = phoneString.substring(8,12);
       } else {
-        user.phone = null;
+        grower.phone = null;
       }
     }  
-    return user;
+    return grower;
   }
 
   private getString(field: string): String {

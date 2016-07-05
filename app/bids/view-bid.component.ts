@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams, Router} from '@angular/router-deprecated';
-
-import {Config} from '../shared/config.service'; 
 import {Observable} from 'rxjs/Observable';
+import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams, Router}
+    from '@angular/router-deprecated';
+
+import { Config, Logger } from '../shared/index';
+import { Grower } from '../growers/shared/index';
 import {BidService} from './bid.service';
 import {Bid} from './bid';
-import { Logger } from '../shared/logger.service';
-import {User} from '../users/user';
 
 @Component({
   templateUrl: 'app/bids/view-bid.component.html',
@@ -48,10 +48,10 @@ export class ViewBidComponent implements OnInit {
 
   private bid: Bid = new Bid();
 
-  private acceptedGrowers: User[];
-  private rejectedGrowers: User[];
-  private callRequestedGrowers: User[];
-  private noResponseGrowers: User[];
+  private acceptedGrowers: Grower[];
+  private rejectedGrowers: Grower[];
+  private callRequestedGrowers: Grower[];
+  private noResponseGrowers: Grower[];
 
   constructor(
       params: RouteParams,

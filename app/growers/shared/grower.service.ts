@@ -1,14 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Headers} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx'; // TODO Remove and Replace with Necassary Functions.
-import {HttpClient} from '../shared/http-client.service';
-import {Logger} from '../shared/logger.service';
-import {Config} from '../shared/config.service';
-import {Observable} from 'rxjs/Observable';
+
+import { Config, HttpClient, Logger } from '../../shared/index';
 
 @Injectable()
-export class UserService {
+export class GrowerService {
   private _growersUrl;
 
   constructor(private _http: HttpClient,

@@ -20,7 +20,7 @@ export class HandlerLoginService {
   }
 
   login(loginInfo: LoginInfo) {
-    var loginInfoObject = { "emailaddress": loginInfo.emailAddress,
+    var loginInfoObject = { "email_address": loginInfo.emailAddress,
                             "password": loginInfo.password };
     return this.http.jsonPost(this.loginUrl, JSON.stringify(loginInfoObject))
       .map(res => res.json())

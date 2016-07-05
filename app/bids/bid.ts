@@ -1,4 +1,4 @@
-import {User} from '../users/user';
+import { Grower } from '../growers/shared/index';
 
 export class Bid {
   bid_id: number;
@@ -73,31 +73,31 @@ export class Bid {
     return bid;
   }
 
-  static decodeBidAcceptGrowers(bidJson: Object): User[] {
+  static decodeBidAcceptGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('acceptedGrowers', bidJson);
   }
 
-  static decodeBidRejectGrowers(bidJson: Object): User[] {
+  static decodeBidRejectGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('rejectedGrowers', bidJson);
   }
 
-  static decodeBidCallRequestedGrowers(bidJson: Object): User[] {
+  static decodeBidCallRequestedGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('callRequestedGrowers', bidJson);
   }
 
-  static decodeBidNoResponseGrowers(bidJson: Object): User[] {
+  static decodeBidNoResponseGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('noResponseGrowers', bidJson);
   }
 
   // TODO Should remove this and just have the bid model hold
-  //      lists of Users.
-  private static decodeBidGrowers(growersKey: string, bidJson: Object): User[] {
-    var growers: User[] = [];
+  //      lists of Growers.
+  private static decodeBidGrowers(growersKey: string, bidJson: Object): Grower[] {
+    var growers: Grower[] = [];
 
     var growersObject = bidJson[growersKey];
     if (growersObject != null) {
       for (var growerIdx in growersObject) {
-        growers.push(User.decode(growersObject[growerIdx])); 
+        growers.push(Grower.decode(growersObject[growerIdx])); 
       }
     } 
     return growers;

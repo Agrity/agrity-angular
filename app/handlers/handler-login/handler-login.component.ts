@@ -15,6 +15,8 @@ import { HandlerLoginService } from './handler-login.service';
 
 export class HandlerLoginComponent {
 
+  private authTokenKey: string = "auth_token";
+
   constructor(private handlerLoginService: HandlerLoginService,
               private config: Config,
               private router: Router,
@@ -26,8 +28,9 @@ export class HandlerLoginComponent {
     this.handlerLoginService.login(this.loginInfo)
       .subscribe(
         valid => {
-          console.log("Valid: " + valid["authtoken"]);
-          this.handlerLoginService.storeHandlerAuthToken(valid["authtoken"]);
+          console.log("Valid: " + valid[this.authTokenKey]);
+          this.handlerLoginService
+              .storeHandlerAuthToken(valid[this.authTokenKey]);
           this.router.navigateByUrl('/');
         },
         error => {

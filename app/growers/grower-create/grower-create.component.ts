@@ -2,32 +2,28 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
-import {Config} from '../shared/config.service';
-import { CustomValidators } from '../shared/custom-validators.service';
+import { Config, CustomValidators, Logger }
+    from '../../shared/index';
 
-import {UserService} from './user.service';
-import {User} from './user';
-import { Logger } from '../shared/logger.service';
-import {Phone} from './phone';
+import { Grower, GrowerService, Phone } from '../shared/index';
 
 @Component({
-  templateUrl: 'app/users/newgrower.component.html',
+  templateUrl: 'app/growers/grower-create/grower-create.component.html',
   styleUrls: ['assets/stylesheets/style.css'],
   directives: [RouterLink, ROUTER_DIRECTIVES],
-  providers: [UserService]
 })
 
-export class NewGrowerComponent implements OnInit {
+export class GrowerCreateComponent implements OnInit {
   newgrowerform: ControlGroup;
   title: string;
-  user = new User();
+  grower = new Grower();
 
   constructor(
     fb: FormBuilder,
-    private _router: Router,
-    private _routeParams: RouteParams,
-    private _userService: UserService,
-    private _config: Config,
+    private router: Router,
+    private routeParams: RouteParams,
+    private growerService: GrowerService,
+    private config: Config,
     private logger: Logger
   ) {
     this.newgrowerform = fb.group({
@@ -42,38 +38,38 @@ export class NewGrowerComponent implements OnInit {
 
   ngOnInit(){
 
-    if (!this._config.loggedIn()) {
+    if (!this.config.loggedIn()) {
       alert("Please Login. If this issue continues try logging out, then logging back in.");
-      this._config.forceLogout();
+      this.config.forceLogout();
       return;   
     }
 
-    var id = this._routeParams.get("id");
+    var id = this.routeParams.get("id");
 
-    this.title = id ? "Edit User" : "New User";
+    this.title = id ? "Edit Grower" : "New Grower";
 
     if (!id)
       return;
 
     // TODO Determine if edit grower here or in seperate component.
-    //this._userService.getUser(+id)
+    //this.userService.getUser(+id)
     //  .subscribe(
-    //    user => this.user = user,
+    //    grower => this.grower = grower,
     //    error => {
     //      this.logger.handleHttpError(error);
-    //      this._config.forceLogout();
+    //      this.config.forceLogout();
     //    });
   }
 
   save(){
     var result;
 
-    result = this._userService.addUser(this.user);
+    result = this.growerService.addUser(this.grower);
     result.subscribe(x => {
       // Ideally, here we'd want:
       // this.newgrowerform.markAsPristine();
-      this.user = User.decode(x);
-      this._router.navigateByUrl('/users');
+      this.grower = Grower.decode(x);
+      this.router.navigateByUrl('/users');
     });
   }
 }

@@ -1,16 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams} from '@angular/router-deprecated';
-
-import {Config} from '../shared/config.service';
 import {Observable} from 'rxjs/Observable';
-import {UserService} from './user.service';
-import {User} from './user';
-import {BidService} from '../bids/bid.service';
-import {Bid} from '../bids/bid';
-import { Logger } from '../shared/logger.service';
+import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams}
+    from '@angular/router-deprecated';
+
+import { Config, Logger } from '../../shared/index';
+import {  Grower, GrowerService } from '../shared/index';
+import {BidService} from '../../bids/bid.service';
+import {Bid} from '../../bids/bid';
 
 @Component({
-  templateUrl: 'app/users/view-user.component.html',
+  templateUrl: 'app/growers/grower-detail.component.html',
   styles: [`
   .picSection img {
 		position:relative;
@@ -62,26 +61,26 @@ import { Logger } from '../shared/logger.service';
 	}
   `], 
   styleUrls: [],
-  providers: [UserService, BidService],
+  providers: [BidService],
   directives: [RouterLink, ROUTER_DIRECTIVES]
 })
 
-export class ViewUserComponent implements OnInit {
+export class GrowerDetailComponent implements OnInit {
   
-  private userId: number;
+  private growerId: number;
 
-  private user: User = new User();
+  private grower: Grower = new Grower();
   private bids: Bid[];  
 
   constructor(
       params: RouteParams,
-      private _userService: UserService,
+      private growerService: GrowerService,
       private _bidService: BidService,
       private logger: Logger,
       private _config: Config,
       private _router: Router) {
 
-    this.userId = +params.get('id');
+    this.growerId = +params.get('id');
   }
 
   ngOnInit(){
@@ -92,11 +91,11 @@ export class ViewUserComponent implements OnInit {
       return;   
     }
 
-    // Load user
-    this._userService.getUser(this.userId)
+    // Load grower
+    this.growerService.getUser(this.growerId)
       .subscribe(
-        user => {
-          this.user = User.decode(user);
+        grower => {
+          this.grower = Grower.decode(grower);
         },
         error => {
           this.logger.handleHttpError(error);
@@ -104,7 +103,7 @@ export class ViewUserComponent implements OnInit {
         });
 
     this.bids = [];
-    this._bidService.getGrowerBids(this.userId)
+    this._bidService.getGrowerBids(this.growerId)
       .subscribe(
         bids => {
           for (var bidIdx in bids) {

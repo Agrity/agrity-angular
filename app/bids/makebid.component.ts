@@ -2,14 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
-import {Config} from '../shared/config.service'
-import {User} from '../users/user'
 import {BidService} from './bid.service';
 import {Bid} from './bid';
-import { Logger } from '../shared/logger.service';
-import {UserService} from '../users/user.service';
-import {SpinnerComponent} from '../shared/spinner.component';
-import {PaginationComponent} from '../shared/pagination.component';
+import { Config, Logger, SpinnerComponent, PaginationComponent }
+    from '../shared/index';
+import { Grower, GrowerService } from '../growers/shared/index';
 
 @Component({
   templateUrl: 'app/bids/makebid.component.html',
@@ -25,7 +22,7 @@ import {PaginationComponent} from '../shared/pagination.component';
     }
     `],
     styleUrls: ['assets/stylesheets/style.css'],
-    providers: [BidService, UserService],
+    providers: [BidService],
     directives: [SpinnerComponent, PaginationComponent, RouterLink, ROUTER_DIRECTIVES]
 })
 
@@ -35,12 +32,12 @@ export class MakeBidComponent implements OnInit {
 
   private bid: Bid = new Bid();
 
-  private growers: User[];
+  private growers: Grower[];
 
   constructor(
     fb: FormBuilder,
     private _bidService: BidService,
-    private _userService: UserService,
+    private growerService: GrowerService,
     private logger: Logger,
     private _config: Config,
     private _router: Router) {
@@ -66,13 +63,13 @@ export class MakeBidComponent implements OnInit {
       return;   
     }
 
-    // Load in Growers
+    // Load in Grower
     this.growers = [];
-    this._userService.getUsers()
+    this.growerService.getUsers()
       .subscribe(
-        users => {
-          for (var userIdx in users) {
-            this.growers.push(User.decode(users[userIdx]));
+        growers => {
+          for (var growerIdx in growers) {
+            this.growers.push(Grower.decode(growers[growerIdx]));
           }
         },
         error => {

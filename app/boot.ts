@@ -7,7 +7,8 @@ import { Config,
          HttpClient,
          Logger } from './shared/index';
 import { NavBarComponent } from './shared/navbar/index';
-import {HandlerLoginService}
+import { GrowerService } from './growers/shared/index';
+import { HandlerLoginService }
     from './handlers/handler-login/handler-login.service';
 import {AppComponent} from './app.component';
 
@@ -18,5 +19,6 @@ bootstrap(AppComponent,
            provide(Config, {useClass: Config}),
            provide(HandlerLoginService, {useClass: HandlerLoginService}),
            provide(Logger, {useClass: Logger}),
-           NavBarComponent
+           NavBarComponent,
+           GrowerService
           ]);
