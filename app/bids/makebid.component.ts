@@ -11,8 +11,6 @@ import {UserService} from '../users/user.service';
 import {SpinnerComponent} from '../shared/spinner.component';
 import {PaginationComponent} from '../shared/pagination.component';
 
-import {CustomValidators} from '../customValidators'; 
-
 @Component({
   templateUrl: 'app/bids/makebid.component.html',
   styles: [`

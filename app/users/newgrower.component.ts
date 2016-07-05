@@ -3,8 +3,7 @@ import {FormBuilder, ControlGroup, Validators} from '@angular/common';
 import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
 import {Config} from '../config/Config';
-import {BasicValidators} from '../shared/basicValidators';
-import {CustomValidators} from '../customValidators';
+import { CustomValidators } from '../shared/custom-validators.service';
 
 import {UserService} from './user.service';
 import {User} from './user';
@@ -34,7 +33,7 @@ export class NewGrowerComponent implements OnInit {
     this.newgrowerform = fb.group({
       first_name: ['', CustomValidators.isName],
       last_name: ['', CustomValidators.isName],
-      email: ['', BasicValidators.email],
+      email: ['', CustomValidators.email],
       phone_1: ['', CustomValidators.phoneThree],
       phone_2: ['', CustomValidators.phoneThree],
       phone_3: ['', CustomValidators.phoneFour]

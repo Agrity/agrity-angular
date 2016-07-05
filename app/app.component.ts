@@ -2,11 +2,11 @@ import {Component} from '@angular/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
 import {NavBarComponent} from './shared/navbar/navbar.component';
-import {HomeComponent} from './home.component';
+import {HomeComponent} from './single-pages/home.component';
 import {NewGrowerComponent} from './users/newgrower.component';
 import {MakeBidComponent} from './bids/makebid.component';
 import {ProfileComponent} from './profile/profile.component';
-import {NotFoundComponent} from './not-found.component';
+import {NotFoundComponent} from './single-pages/not-found.component';
 import {HandlerLoginComponent} from './handler-login/handler-login.component';
 import {ViewBidsComponent} from './bids/view-bids.component';
 import {ViewBidComponent} from './bids/view-bid.component';

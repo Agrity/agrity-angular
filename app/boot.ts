@@ -6,7 +6,7 @@ import {HttpClient} from './shared/http-client.service';
 import {Config} from './config/Config';
 import {HandlerLoginService} from './handler-login/handler-login.service';
 import { Logger } from './shared/logger.service';
-import {NavBarComponent} from './navbar.component';
+import {NavBarComponent} from './shared/navbar/navbar.component';
 
 import {AppComponent} from './app.component';
 

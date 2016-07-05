@@ -5,11 +5,11 @@ import {Config} from '../../config/Config'
 import {Observable} from 'rxjs/Observable';
 import {HandlerService} from '../../handler/handler.service';
 import {Handler} from '../../handler/handler';
-import { Logger } from '../logger.service.ts';
+import { Logger } from '../logger.service';
 
 @Component({
     selector: 'navbar',
-    templateUrl: 'app/navbar.component.html',
+    templateUrl: 'app/shared/navbar/navbar.component.html',
     providers: [HandlerService], 
     directives: [RouterLink, ROUTER_DIRECTIVES]
 })
