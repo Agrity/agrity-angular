@@ -2,25 +2,25 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import {HttpClient} from '../HttpClient';
-import {ErrorHandling} from '../ErrorHandling';
+import {HttpClient} from '../shared/http-client.service';
+import { Logger } from '../shared/logger.service';
 import {Config} from '../config/Config';
 import {Handler} from './handler';
 
 @Injectable()
 export class HandlerService {
-  private _handlersUrl;
+  private handlersUrl;
 
-  constructor(private _http: HttpClient,
-              private _config: Config,
-              private _errorHandling: ErrorHandling) {
-    this._handlersUrl = _config.getServerDomain() + '/handler';
+  constructor(private http: HttpClient,
+              private config: Config,
+              private logger: Logger) {
+    this.handlersUrl = config.getServerDomain() + '/handler';
   }
 
   getCurrentHandler() {
-    return this._http.get(this._handlersUrl)
+    return this.http.get(this.handlersUrl)
       .map(res => res.json())
-      .catch(this._errorHandling.handleHttpError);
+      .catch(this.logger.handleHttpError);
   }
 
 }

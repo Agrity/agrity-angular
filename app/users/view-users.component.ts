@@ -5,7 +5,7 @@ import {Config} from '../config/Config';
 import {Observable} from 'rxjs/Observable';
 import {UserService} from './user.service';
 import {User} from './user';
-import {ErrorHandling} from '../ErrorHandling';
+import { Logger } from '../shared/logger.service';
 import {Phone} from './phone';
 
 
@@ -39,7 +39,7 @@ export class ViewUsersComponent implements OnInit {
   constructor(
     private _router: Router, 
     private _userService: UserService,
-    private _errorHandling: ErrorHandling,
+    private logger: Logger,
     private _config: Config) {
   }
 
@@ -61,7 +61,7 @@ export class ViewUsersComponent implements OnInit {
           }
         },
         error => {
-          this._errorHandling.handleHttpError(error);
+          this.logger.handleHttpError(error);
           this._config.forceLogout();
         });
 

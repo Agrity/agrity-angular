@@ -8,7 +8,7 @@ import {CustomValidators} from '../customValidators';
 
 import {UserService} from './user.service';
 import {User} from './user';
-import {ErrorHandling} from '../ErrorHandling';
+import { Logger } from '../shared/logger.service';
 import {Phone} from './phone';
 
 @Component({
@@ -29,7 +29,7 @@ export class NewGrowerComponent implements OnInit {
     private _routeParams: RouteParams,
     private _userService: UserService,
     private _config: Config,
-    private _errorHandling: ErrorHandling
+    private logger: Logger
   ) {
     this.newgrowerform = fb.group({
       first_name: ['', CustomValidators.isName],
@@ -56,21 +56,15 @@ export class NewGrowerComponent implements OnInit {
     if (!id)
       return;
 
-    this._userService.getUser(+id)
-      .subscribe(
-        user => this.user = user,
-        error => {
-          this._errorHandling.handleHttpError(error);
-          this._config.forceLogout();
-        });
+    // TODO Determine if edit grower here or in seperate component.
+    //this._userService.getUser(+id)
+    //  .subscribe(
+    //    user => this.user = user,
+    //    error => {
+    //      this.logger.handleHttpError(error);
+    //      this._config.forceLogout();
+    //    });
   }
-
-  // routerCanDeactivate(){
-  //   if (this.newgrowerform.dirty)
-  //     return confirm('You have unsaved changes. Are you sure you want to navigate away?');
-
-  //   return true; 
-  // }
 
   save(){
     var result;

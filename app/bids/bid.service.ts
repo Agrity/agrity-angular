@@ -2,56 +2,56 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import {HttpClient} from '../HttpClient';
-import {ErrorHandling} from '../ErrorHandling';
+import { HttpClient } from '../shared/http-client.service';
+import { Logger } from '../shared/logger.service';
 import {Config} from '../config/Config';
 import {Bid} from './bid';
 
 @Injectable()
 export class BidService {
-	private _bidsUrl;
+	private bidsUrl;
 
-	constructor(private _http: HttpClient,
-              private _config: Config,
-              private _errorHandling: ErrorHandling) {
-    this._bidsUrl = _config.getServerDomain() + '/handler/offers';
+	constructor(private http: HttpClient,
+              private config: Config,
+              private logger: Logger) {
+    this.bidsUrl = config.getServerDomain() + '/handler/offers';
 	}
 
   getBids() {
-    return this._http.get(this._bidsUrl)
+    return this.http.get(this.bidsUrl)
       .map(res => res.json())
-      .catch(this._errorHandling.handleHttpError);
+      .catch(this.logger.handleHttpError);
   }
 
   getBid(bidId: number) {
-    return this._http.get(this.getBidUrl(bidId))
+    return this.http.get(this.getBidUrl(bidId))
       .map(res => res.json())
-      .catch(this._errorHandling.handleHttpError);
+      .catch(this.logger.handleHttpError);
   }
 
   getGrowerBids(growerId: number) {
-    return this._http.get(this.getGrowerBidsUrl(growerId))
+    return this.http.get(this.getGrowerBidsUrl(growerId))
       .map(res => res.json())
-      .catch(this._errorHandling.handleHttpError);
+      .catch(this.logger.handleHttpError);
   }
 
   createBid(bid: Bid) {
     if (bid == null) {
-      this._errorHandling.handleError("Attempted to add null Bid.");
+      this.logger.handleError("Attempted to add null Bid.");
       return null;
     }
 
-    return this._http.jsonPost(this._bidsUrl, bid.encode())
+    return this.http.jsonPost(this.bidsUrl, bid.encode())
       .map(res => res.json())
-      .catch(this._errorHandling.handleHttpError);
+      .catch(this.logger.handleHttpError);
   }
 
   private getBidUrl(bidId: number){
-    return this._bidsUrl + "/" + bidId;
+    return this.bidsUrl + "/" + bidId;
   }
 
   private getGrowerBidsUrl(growerId: number) {
-    return this._config.getServerDomain()
+    return this.config.getServerDomain()
         + "/handler/growers/" + growerId + "/offers";
   }
 }

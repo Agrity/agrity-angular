@@ -2,43 +2,43 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 
-import {ErrorHandling} from '../ErrorHandling';
-import {HttpClient} from '../HttpClient'
+import { Logger } from '../shared/logger.service';
+import { HttpClient } from '../shared/http-client.service'
 import {Config} from '../config/Config';
 import {LoginInfo} from './login-info';
 
 @Injectable()
 export class HandlerLoginService {
 
-  private _loginUrl: string;
-  private _logoutUrl: string;
+  private loginUrl: string;
+  private logoutUrl: string;
 
-  constructor(private _http: HttpClient,
-              private _config: Config,
-              private _errorHandling: ErrorHandling) {
+  constructor(private http: HttpClient,
+              private config: Config,
+              private logger: Logger) {
 
-    this._loginUrl = _config.getServerDomain() + '/handler/login';
-    this._logoutUrl = _config.getServerDomain() + '/handler/logout';
+    this.loginUrl = config.getServerDomain() + '/handler/login';
+    this.logoutUrl = config.getServerDomain() + '/handler/logout';
   }
 
   login(loginInfo: LoginInfo) {
-    var loginInfoObject = { "email_address": loginInfo.emailAddress,
+    var loginInfoObject = { "emailaddress": loginInfo.emailAddress,
                             "password": loginInfo.password };
-    return this._http.jsonPost(this._loginUrl, JSON.stringify(loginInfoObject))
+    return this.http.jsonPost(this.loginUrl, JSON.stringify(loginInfoObject))
       .map(res => res.json())
-      .catch(this._errorHandling.handleHttpError);
+      .catch(this.logger.handleHttpError);
   }
 
   logout() {
-    return this._http.post(this._logoutUrl, /* No Data */ "")
-      .catch(this._errorHandling.handleHttpError);
+    return this.http.post(this.logoutUrl, /* No Data */ "")
+      .catch(this.logger.handleHttpError);
   }
     
   storeHandlerAuthToken(token: string) {
-    localStorage.setItem(this._config.getHandlerAuthHeaderKey(), token);
+    localStorage.setItem(this.config.getHandlerAuthHeaderKey(), token);
   }
 
   eraseHandlerAuthToken() {
-    localStorage.setItem(this._config.getHandlerAuthHeaderKey(), "");
+    localStorage.setItem(this.config.getHandlerAuthHeaderKey(), "");
   }
 }

@@ -7,7 +7,7 @@ import {UserService} from './user.service';
 import {User} from './user';
 import {BidService} from '../bids/bid.service';
 import {Bid} from '../bids/bid';
-import {ErrorHandling} from '../ErrorHandling';
+import { Logger } from '../shared/logger.service';
 
 @Component({
   templateUrl: 'app/users/view-user.component.html',
@@ -77,7 +77,7 @@ export class ViewUserComponent implements OnInit {
       params: RouteParams,
       private _userService: UserService,
       private _bidService: BidService,
-      private _errorHandling: ErrorHandling,
+      private logger: Logger,
       private _config: Config,
       private _router: Router) {
 
@@ -99,7 +99,7 @@ export class ViewUserComponent implements OnInit {
           this.user = User.decode(user);
         },
         error => {
-          this._errorHandling.handleHttpError(error);
+          this.logger.handleHttpError(error);
           this._config.forceLogout();
         });
 
@@ -112,7 +112,7 @@ export class ViewUserComponent implements OnInit {
           }
         },
         error => {
-          this._errorHandling.handleHttpError(error);
+          this.logger.handleHttpError(error);
           this._config.forceLogout();
         });
   } 

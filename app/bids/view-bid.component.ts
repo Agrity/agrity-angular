@@ -5,7 +5,7 @@ import {Config} from '../config/Config';
 import {Observable} from 'rxjs/Observable';
 import {BidService} from './bid.service';
 import {Bid} from './bid';
-import {ErrorHandling} from '../ErrorHandling';
+import { Logger } from '../shared/logger.service';
 import {User} from '../users/user';
 
 @Component({
@@ -55,10 +55,10 @@ export class ViewBidComponent implements OnInit {
 
   constructor(
       params: RouteParams,
-      private _bidService: BidService,
-      private _errorHandling: ErrorHandling,
-      private _config: Config,
-      private _router: Router) {
+      private bidService: BidService,
+      private logger : Logger,
+      private config: Config,
+      private router: Router) {
 
     // TODO Verify id is integer.
     this.bidId = +params.get('id');
@@ -66,14 +66,14 @@ export class ViewBidComponent implements OnInit {
 
   ngOnInit(){
 
-    if (!this._config.loggedIn()) {
+    if (!this.config.loggedIn()) {
       alert("Please Login. If this issue continues try logging out, then logging back in.");
-      this._config.forceLogout();
+      this.config.forceLogout();
       return;   
     }
 
     // Load Bid
-    this._bidService.getBid(this.bidId)
+    this.bidService.getBid(this.bidId)
       .subscribe(
         bid => {
           this.bid = Bid.decode(bid);
@@ -86,8 +86,8 @@ export class ViewBidComponent implements OnInit {
           this.noResponseGrowers = Bid.decodeBidNoResponseGrowers(bid);
         },
         error => {
-          this._errorHandling.handleHttpError(error);
-          this._config.forceLogout();
+          this.logger.handleHttpError(error);
+          this.config.forceLogout();
         });
   } 
 

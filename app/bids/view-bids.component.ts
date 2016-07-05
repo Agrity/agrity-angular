@@ -5,7 +5,7 @@ import {Config} from '../config/Config';
 import {Observable} from 'rxjs/Observable';
 import {BidService} from './bid.service';
 import {Bid} from './bid';
-import {ErrorHandling} from '../ErrorHandling';
+import { Logger } from '../shared/logger.service';
 import {Collapse} from './collapse';
 import {ViewBidComponent} from './view-bid.component';
 
@@ -44,7 +44,7 @@ export class ViewBidsComponent implements OnInit {
   constructor(
     private _router: Router, 
     private _bidService: BidService,
-    private _errorHandling: ErrorHandling,
+    private logger: Logger,
     private _config: Config) {
   }
 
@@ -70,7 +70,7 @@ export class ViewBidsComponent implements OnInit {
             .filter(bid => !bid.currentlyOpen);
         },
         error => {
-          this._errorHandling.handleHttpError(error);
+          this.logger.handleHttpError(error);
           this._config.forceLogout();
         });
 

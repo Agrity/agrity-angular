@@ -6,7 +6,7 @@ import {Config} from '../config/Config'
 import {User} from '../users/user'
 import {BidService} from './bid.service';
 import {Bid} from './bid';
-import {ErrorHandling} from '../ErrorHandling';
+import { Logger } from '../shared/logger.service';
 import {UserService} from '../users/user.service';
 import {SpinnerComponent} from '../shared/spinner.component';
 import {PaginationComponent} from '../shared/pagination.component';
@@ -43,7 +43,7 @@ export class MakeBidComponent implements OnInit {
     fb: FormBuilder,
     private _bidService: BidService,
     private _userService: UserService,
-    private _errorHandling: ErrorHandling,
+    private logger: Logger,
     private _config: Config,
     private _router: Router) {
     this.newBidForm = fb.group({
@@ -78,7 +78,7 @@ export class MakeBidComponent implements OnInit {
           }
         },
         error => {
-          this._errorHandling.handleHttpError(error);
+          this.logger.handleHttpError(error);
           this._config.forceLogout();
         });
   }
@@ -115,7 +115,7 @@ export class MakeBidComponent implements OnInit {
           this._router.navigateByUrl('/bids/' + bidModel.bid_id);
         },
         error => {
-          this._errorHandling.handleHttpError(error);
+          this.logger.handleHttpError(error);
           this._config.forceLogout();
         });
   }
