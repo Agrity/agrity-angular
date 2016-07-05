@@ -4,7 +4,7 @@
 	<div class="resizeImage">
 		<img src="assets/img/farmer3.jpg" onError="this.onerror=null;this.src='images/profile-icon.jpg';">
 	</div>
-		<h1>{{ user.first_name }} {{ user.last_name }}</h1>
+		<h1>{{ grower?.first_name }} {{ grower?.last_name }}</h1>
 
 </section>
 
@@ -19,15 +19,15 @@
 					<td><h8><u>Almond Varieties</u></h8></td>
 				</tr>
 				<tr>
-          <td><b><h7>{{ user?.phone?.getAsString() }}</h7></b></td>
-					<td><b><h7>{{ user.email }}</h7></b></td>
+          <td><b><h7>{{ grower?.phone?.getAsString() }}</h7></b></td>
+					<td><b><h7>{{ grower?.email }}</h7></b></td>
 					<td><b><h7>Under Construction</h7></b></td>
 					<td><b><h7>Under Construction</h7></b></td>
 				</tr>
 			</table>
 			
 			<div class="Bio">
-        <h2>Bids from {{user.first_name}}</h2>
+        <h2>Bids from {{grower?.first_name}}</h2>
         <table class="pure-table pure-table-horizontal" style="width:100%">
           <thead>
             <tr>

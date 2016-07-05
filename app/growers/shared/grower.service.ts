@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import 'rxjs/Rx'; // TODO Remove and Replace with Necassary Functions.
+import 'rxjs/add/operator/catch';
 
 import { Config, HttpClient, Logger } from '../../shared/index';
 

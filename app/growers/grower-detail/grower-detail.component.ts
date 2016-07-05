@@ -9,58 +9,8 @@ import {BidService} from '../../bids/bid.service';
 import {Bid} from '../../bids/bid';
 
 @Component({
-  templateUrl: 'app/growers/grower-detail.component.html',
-  styles: [`
-  .picSection img {
-		position:relative;
-		background-color:white;
-		height:180px;
-		width:auto;
-
-		overflow:hidden;
-		border-radius:120px;
-		border-radius:50px;
-		border:4px white solid;
-
-		float:left;
-	}
-
-	.picSection {
-		background-image:url("assets/img/coverpic.jpg");
-		height: 400px;
-		background-repeat:no-repeat;
-		background-size:cover;
-		background-position:center;
-
-		padding-top:280px;
-		padding-left:20px;
-	}
-
-	.picSection h1{
-		color:white;
-		position:relative;
-		left:10px;
-	}
-
-	.Bio {
-		padding-top:60px;
-	}
-
-	h3 {
-		color:black;
-	}
-
-	table {
-		width:100%;
-		table-layout:fixed;
-	}
-
-	td {
-		vertical-align:top;
-		padding:5px;
-	}
-  `], 
-  styleUrls: [],
+  templateUrl: 'app/growers/grower-detail/grower-detail.component.html',
+  styleUrls: ['app/growers/grower-detail/grower-detail.component.scss'],
   providers: [BidService],
   directives: [RouterLink, ROUTER_DIRECTIVES]
 })
@@ -75,19 +25,20 @@ export class GrowerDetailComponent implements OnInit {
   constructor(
       params: RouteParams,
       private growerService: GrowerService,
-      private _bidService: BidService,
+      private bidService: BidService,
       private logger: Logger,
-      private _config: Config,
-      private _router: Router) {
+      private config: Config,
+      private router: Router) {
 
     this.growerId = +params.get('id');
   }
 
   ngOnInit(){
 
-    if (!this._config.loggedIn()) {
-      alert("Please Login. If this issue continues try logging out, then logging back in.");
-      this._config.forceLogout();
+    if (!this.config.loggedIn()) {
+      alert("Please Login."
+          + "If this issue continues try logging out, then logging back in.");
+      this.config.forceLogout();
       return;   
     }
 
@@ -99,11 +50,11 @@ export class GrowerDetailComponent implements OnInit {
         },
         error => {
           this.logger.handleHttpError(error);
-          this._config.forceLogout();
+          this.config.forceLogout();
         });
 
     this.bids = [];
-    this._bidService.getGrowerBids(this.growerId)
+    this.bidService.getGrowerBids(this.growerId)
       .subscribe(
         bids => {
           for (var bidIdx in bids) {
@@ -112,7 +63,7 @@ export class GrowerDetailComponent implements OnInit {
         },
         error => {
           this.logger.handleHttpError(error);
-          this._config.forceLogout();
+          this.config.forceLogout();
         });
   } 
 }

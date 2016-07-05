@@ -9,23 +9,8 @@ import { Grower, GrowerService, Phone } from '../shared/index';
 
 @Component({
   templateUrl: 'app/growers/grower-list/grower-list.component.html',
-  styles: [`
-    body {
-      background-image:url("assets/img/viewbidpic.jpg");
-      background-repeat:no-repeat;
-      background-attachment: fixed;
-      width:100%;
-      height:100%;
-      background-size:cover;
-    }
-
-    footer {
-      padding-top:80px;
-      background-color:white;
-      background-size:100% 100%;
-    }
-  `], 
-  styleUrls: ['assets/stylesheets/style.css'],
+  styleUrls: ['assets/stylesheets/style.css',
+              'app/growers/grower-list/grower-list.component.scss'],
   directives: [RouterLink, ROUTER_DIRECTIVES]
 })
 
@@ -54,6 +39,7 @@ export class GrowerListComponent implements OnInit {
       .subscribe(
         growers => {
           for (var growersIdx in growers) {
+            console.log(growersIdx);
             this.growers.push(Grower.decode(growers[growersIdx]));
           }
         },
