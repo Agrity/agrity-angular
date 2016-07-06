@@ -24,17 +24,26 @@
     "directive-class-suffix": true,
     "import-destructuring-spacing": true,
 
+    "align": [true, "arguments", "parameters", "statements"],
     "class-name": true,
     "comment-format": [true, "check-space"],
+    "eofline": true,
     "indent": [true, "spaces"],
+    "interface-name": [true, "never-prefix"],
+    "new-parens": true,
+    "no-any": true,
+    "no-consecutive-blank-lines": true,
     "no-duplicate-variable": true,
     "no-eval": true,
     "no-internal-module": true,
     "no-trailing-whitespace": true,
     "no-var-keyword": true,
-    "one-line": [true, "check-open-brace", "check-whitespace"],
+    "object-literal-sort-keys": true,
+    "one-line": [true, "check-open-brace", "check-whitespace", "check-catch", "check-finally", "check-else"],
+    "one-variable-per-declaration": [true, "ignore-for-loop"],
     "quotemark": [true, "single"],
-    "semicolon": false,
+    "semicolon": [true, "always"],
+    "switch-default": true,
     "typedef-whitespace": [true, {
       "call-signature": "nospace",
       "index-signature": "nospace",
@@ -42,13 +51,15 @@
       "property-declaration": "nospace",
       "variable-declaration": "nospace"
     }],
-    "variable-name": [true, "ban-keywords"],
+    "variable-name": [true, "ban-keywords", "check-format"],
     "whitespace": [true,
       "check-branch",
       "check-decl",
       "check-operator",
+      "check-module",
       "check-separator",
-      "check-type"
+      "check-type",
+      "check-typecast"
     ],
     "max-line-length": [true, 100]
   }
