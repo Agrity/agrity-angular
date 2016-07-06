@@ -103,6 +103,55 @@ export class Bid {
     return growers;
   }
 
+  public getPaymentShort(){ 
+
+    if (this.startPaymentDate !== null && this.endPaymentDate !== null) {
+      var startMonth = this.startPaymentDate.substr(0, this.startPaymentDate.indexOf(' '));
+      var startYear = this.startPaymentDate.substr(this.startPaymentDate.indexOf(' ')+1);
+      var endMonth = this.endPaymentDate.substr(0, this.endPaymentDate.indexOf(' '));
+      var endYear = this.endPaymentDate.substr(this.endPaymentDate.indexOf(' ')+1);
+
+      var paymentDateString = this.monthToNumber(startMonth) + "/" + startYear + "  -  " + 
+                                  this.monthToNumber(endMonth) + "/" + endYear;
+
+      return paymentDateString; 
+    }
+    return "";
+  }
+
+  private monthToNumber(month: string): String {
+    switch (month) {
+    case "January":
+      return "1";
+    case "February":
+      return "2";
+    case "March":
+      return "3";
+    case "April":
+      return "4";
+    case "May":
+      return "5";
+    case "June":
+      return "6";
+    case "July":
+      return "7";
+    case "August":
+      return "8";
+    case "September":
+      return "9";
+    case "October":
+      return "10";
+    case "November":
+      return "11"; 
+    case "December":
+      return "12";
+    default:
+      return "00";
+  }
+
+  }
+
+
   private getString(field: string): String {
     return field != null
       ? field.toString()

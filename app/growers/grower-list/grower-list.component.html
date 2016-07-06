@@ -3,6 +3,11 @@
 	<h2 style="color:white; padding:0px 0px 0px 20px; text-shadow: 0.5px 0.5px #333333;"><font size="+3"></font>
 		Growers in your Database
 	</h2>
+      <div class="wow fadeInUp" data-wow-delay="0.3s">
+        <button type="button" class="btn btn-info" id="createBid" [routerLink]="['NewGrower']">
+          <b>Create New Grower</b>
+        </button>
+      </div>
 
     <div *ngFor="let grower of growers" class="wow fadeInDown" data-wow-delay="0.3s">
     <button (click)="viewGrower(grower.grower_id)" style="width:90%; height:100px; font-size:2.5em; text-align:left; padding-left:50px; margin-bottom:10px;" type="button" class="btn btn-info">
