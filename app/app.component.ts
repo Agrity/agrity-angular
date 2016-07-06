@@ -1,28 +1,41 @@
 import {Component} from '@angular/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
-import {NavBarComponent} from './shared/navbar/navbar.component';
-import {HomeComponent} from './single-pages/home.component';
-import {MakeBidComponent} from './bids/makebid.component';
-import {ProfileComponent} from './profile/profile.component';
-import {NotFoundComponent} from './single-pages/not-found.component';
-import {HandlerLoginComponent} from './handlers/handler-login/index'
-import {ViewBidsComponent} from './bids/view-bids.component';
-import {ViewBidComponent} from './bids/view-bid.component';
+// TODO Fix Barrel Import
+/* Shared Pages */
+import {NavBarComponent} from './shared/navbar/index';
 
 // TODO Fix Barrel Imports
+/* Single Pages */
+import {HomeComponent} from './single-pages/home.component';
+import {NotFoundComponent} from './single-pages/not-found.component';
+
+/* Handler Pages */
+import {HandlerLoginComponent} from './handlers/handler-login/index'
+
+// TODO Fix Barrel Imports
+/* Grower Pages */
 import { GrowerCreateComponent } from './growers/grower-create/index';
 import { GrowerDetailComponent } from './growers/grower-detail/index';
 import { GrowerListComponent } from './growers/grower-list/index';
+
+// TODO Fix Barrel Imports
+/* Bid Pages */
+import { BidDetailComponent } from './bids/bid-detail/index';
+import { BidListComponent } from './bids/bid-list/index';
+import { BidCreateComponent } from './bids/bid-create/index';
+
+// TODO DELETE
+import {ProfileComponent} from './profile/profile.component';
 
 @RouteConfig([
   { path: '/', name: 'Home', component: HomeComponent },
 
   { path: '/handler-login', name: 'Handler Login', component: HandlerLoginComponent },
 
-  { path: '/bids', name: 'View Bids', component: ViewBidsComponent },
-  { path: '/bids/:id', name: 'View Bid', component: ViewBidComponent },
-  { path: '/bids/new', name: 'Make Bid', component: MakeBidComponent },
+  { path: '/bids', name: 'View Bids', component: BidListComponent },
+  { path: '/bids/:id', name: 'View Bid', component: BidDetailComponent },
+  { path: '/bids/new', name: 'Make Bid', component: BidCreateComponent },
 
   { path: '/users', name: 'ViewUsers', component: GrowerListComponent},
   { path: '/users/:id', name: 'ViewUser', component: GrowerDetailComponent },

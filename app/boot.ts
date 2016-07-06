@@ -3,22 +3,31 @@ import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 import {HTTP_PROVIDERS, RequestOptions} from '@angular/http';
 import {provide} from '@angular/core';
 
-import { Config,
-         HttpClient,
-         Logger } from './shared/index';
+import { AppComponent } from './app.component';
+import { Config, HttpClient, Logger } from './shared/index';
 import { NavBarComponent } from './shared/navbar/index';
 import { GrowerService } from './growers/shared/index';
-import { HandlerLoginService }
-    from './handlers/handler-login/handler-login.service';
-import {AppComponent} from './app.component';
+import { HandlerLoginService } from './handlers/handler-login/index';
+import { HandlerService } from './handlers/shared/index';
+import { BidService } from './bids/shared/index';
 
 bootstrap(AppComponent,
-          [ROUTER_PROVIDERS,
+          [/* Angular Providers */
+           ROUTER_PROVIDERS,
            HTTP_PROVIDERS,
-           provide(HttpClient, {useClass: HttpClient}),
-           provide(Config, {useClass: Config}),
-           provide(HandlerLoginService, {useClass: HandlerLoginService}),
-           provide(Logger, {useClass: Logger}),
+
+           /* Shared Providers */
+           Config,
+           HttpClient,
+           Logger,
            NavBarComponent,
-           GrowerService
+
+           /* Handler Providers */
+           HandlerLoginService,
+
+           /* Grower Providers */
+           GrowerService,
+
+           /* Bid Providers */
+           BidService
           ]);

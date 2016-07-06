@@ -1,41 +1,22 @@
 import {Component, OnInit, coreBootstrap} from '@angular/core';
-import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
-
-import {Config} from '../shared/config.service';
 import {Observable} from 'rxjs/Observable';
-import {BidService} from './bid.service';
-import {Bid} from './bid';
-import { Logger } from '../shared/logger.service';
-import {Collapse} from './collapse';
-import {ViewBidComponent} from './view-bid.component';
+import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig}
+    from '@angular/router-deprecated';
+
+import { Config, Logger } from '../../shared/index';
+import { Bid, BidService } from '../shared/index';
+import { BidDetailComponent } from '../bid-detail/index';
 
 @Component({
-  templateUrl: 'app/bids/view-bids.component.html',
-  styles: [`
-    body {
-      background-image:url("assets/img/viewbidpic.jpg");
-      background-repeat:no-repeat;
-      background-attachment: fixed;
-      width:100%;
-      height:100%;
-      background-size:cover;
-    }
-
-    footer {
-      padding-top:80px;
-      background-color:white;
-      background-size:100% 100%;
-    }
-  `], 
-  styleUrls: ['assets/stylesheets/style.css'],
-  providers: [BidService],
-  directives: [RouterLink, ROUTER_DIRECTIVES, Collapse]
+  templateUrl: 'app/bids/bid-list/bid-list.component.html',
+  styleUrls: ['assets/stylesheets/style.css',
+              'app/bids/bid-list/bid-list.component.scss'],
+  directives: [RouterLink, ROUTER_DIRECTIVES]
 })
 
-export class ViewBidsComponent implements OnInit {
+export class BidListComponent implements OnInit {
 
   private bids: Bid[];
-  public isCollapsed: boolean = false;
 
   private openBids: Bid[];
   private closedBids: Bid[]; 

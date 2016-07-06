@@ -3,10 +3,9 @@ import {Observable} from 'rxjs/Observable';
 import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams}
     from '@angular/router-deprecated';
 
+import { Bid, BidService } from '../../bids/shared/index';
 import { Config, Logger } from '../../shared/index';
-import {  Grower, GrowerService } from '../shared/index';
-import {BidService} from '../../bids/bid.service';
-import {Bid} from '../../bids/bid';
+import { Grower, GrowerService } from '../shared/index';
 
 @Component({
   templateUrl: 'app/growers/grower-detail/grower-detail.component.html',

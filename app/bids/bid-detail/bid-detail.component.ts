@@ -3,46 +3,18 @@ import {Observable} from 'rxjs/Observable';
 import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams, Router}
     from '@angular/router-deprecated';
 
-import { Config, Logger } from '../shared/index';
-import { Grower } from '../growers/shared/index';
-import {BidService} from './bid.service';
-import {Bid} from './bid';
+import { Config, Logger } from '../../shared/index';
+import { Grower } from '../../growers/shared/index';
+import { Bid, BidService } from '../shared/index';
 
 @Component({
-  templateUrl: 'app/bids/view-bid.component.html',
-  styles: [`
-    body {
-      background-image:url("assets/img/viewbidpic.jpg");
-      background-repeat:no-repeat;
-      background-attachment: fixed;
-      width:100%;
-      height:100%;
-      background-size:cover;
-    }
-
-    footer {
-      padding-top:80px;
-      background-color:white;
-      background-size:100% 100%;
-    }
-
-    button {
-      margin-bottom:10px; 
-      width:90%; 
-      height:50px; 
-      font-size:1.5em; 
-      text-align:left; 
-      padding-bottom:10px;
-      height:auto;
-
-    }
-  `], 
-  styleUrls: ['assets/stylesheets/style.css'],
-  providers: [BidService],
+  templateUrl: 'app/bids/bid-detail/bid-detail.component.html',
+  styleUrls: ['assets/stylesheets/style.css',
+              'app/bids/bid-detail/bid-detail.component.scss'],
   directives: [RouterLink, ROUTER_DIRECTIVES]
 })
 
-export class ViewBidComponent implements OnInit {
+export class BidDetailComponent implements OnInit {
 
   private bidId: number;
 
@@ -90,5 +62,4 @@ export class ViewBidComponent implements OnInit {
           this.config.forceLogout();
         });
   } 
-
 }

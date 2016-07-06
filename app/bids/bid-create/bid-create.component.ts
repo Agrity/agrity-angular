@@ -1,32 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, ControlGroup, Validators} from '@angular/common';
-import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
+import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig}
+    from '@angular/router-deprecated';
 
-import {BidService} from './bid.service';
-import {Bid} from './bid';
+import { Bid, BidService } from '../shared/index';
 import { Config, Logger, SpinnerComponent, PaginationComponent }
-    from '../shared/index';
-import { Grower, GrowerService } from '../growers/shared/index';
+    from '../../shared/index';
+import { Grower, GrowerService } from '../../growers/shared/index';
 
 @Component({
-  templateUrl: 'app/bids/makebid.component.html',
-  styles: [`
-    .posts li { cursor: default; }
-    .posts li:hover { background: #ecf0f1; } 
-    .list-group-item.active, 
-    .list-group-item.active:hover, 
-    .list-group-item.active:focus { 
-      background-color: #ecf0f1;
-      border-color: #ecf0f1; 
-      color: #2c3e50;
-    }
-    `],
-    styleUrls: ['assets/stylesheets/style.css'],
-    providers: [BidService],
-    directives: [SpinnerComponent, PaginationComponent, RouterLink, ROUTER_DIRECTIVES]
+  templateUrl: 'app/bids/bid-create/bid-create.component.html',
+  styleUrls: ['assets/stylesheets/style.css',
+              'app/bids/bid-create/bid-create.component.scss'],
+  directives: [SpinnerComponent, PaginationComponent, RouterLink, ROUTER_DIRECTIVES]
 })
 
-export class MakeBidComponent implements OnInit {
+export class BidCreateComponent implements OnInit {
 
   private newBidForm: ControlGroup;
 
@@ -58,7 +47,8 @@ export class MakeBidComponent implements OnInit {
   ngOnInit() {
 
     if (!this._config.loggedIn()) {
-      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      alert("Please Login."
+          + "If this issue continues try logging out, then logging back in.");
       this._config.forceLogout();
       return;   
     }

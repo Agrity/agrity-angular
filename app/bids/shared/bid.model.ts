@@ -1,4 +1,4 @@
-import { Grower } from '../growers/shared/index';
+import { Grower } from '../../growers/shared/index';
 
 export class Bid {
   bid_id: number;
