@@ -6,7 +6,7 @@ import { Handler } from './index';
 
 @Injectable()
 export class HandlerService {
-  private handlersUrl;
+  private handlersUrl: string;
 
   constructor(private http: HttpClient,
               private config: Config,

@@ -6,7 +6,7 @@ import { Bid } from './index';
 
 @Injectable()
 export class BidService {
-	private bidsUrl;
+	private bidsUrl: string;
 
 	constructor(private http: HttpClient,
               private config: Config,

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, Router} from '@angular/router-deprecated';
+import {RouterLink, ROUTER_DIRECTIVES, RouteConfig, Router}
+    from '@angular/router-deprecated';
 
 import { Handler, HandlerService } from '../../handlers/index'
 import { Config, Logger } from '../index'
@@ -39,10 +40,5 @@ export class NavBarComponent implements OnInit {
             this.logger.handleHttpError(error);
             this.config.forceLogout();
           });
-  }
-
-  isCurrentRoute(route){
-      var instruction = this.router.generate(route);
-      return this.router.isRouteActive(instruction);
   }
 }

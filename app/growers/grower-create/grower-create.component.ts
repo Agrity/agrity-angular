@@ -62,12 +62,7 @@ export class GrowerCreateComponent implements OnInit {
   }
 
   save(){
-    var result;
-
-    result = this.growerService.addGrower(this.grower);
-    result.subscribe(x => {
-      // Ideally, here we'd want:
-      // this.newgrowerform.markAsPristine();
+    this.growerService.addGrower(this.grower).subscribe(x => {
       this.grower = Grower.decode(x);
       this.router.navigateByUrl('/users');
     });

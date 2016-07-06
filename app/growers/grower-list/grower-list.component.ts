@@ -50,7 +50,7 @@ export class GrowerListComponent implements OnInit {
 
   } 
 
-  viewGrower(growerId){
+  viewGrower(growerId: number){
     this.router.navigateByUrl('/users/' + growerId);
   }
 }

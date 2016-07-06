@@ -24,11 +24,11 @@ import {OnChanges} from '@angular/core';
 `
 })
 export class PaginationComponent implements OnChanges {
-    @Input() items = [];
+  @Input() items: any[] = [];
 	@Input('page-size') pageSize = 10;
 	@Output('page-changed') pageChanged = new EventEmitter();
 	pages: any[];
-	currentPage; 
+	currentPage: number; 
 
 	ngOnChanges(){
         this.currentPage = 1;
@@ -39,7 +39,7 @@ export class PaginationComponent implements OnChanges {
 			this.pages.push(i);
 	}
 
-	changePage(page){
+	changePage(page: number){
 		this.currentPage = page; 
 		this.pageChanged.emit(page);
 	}

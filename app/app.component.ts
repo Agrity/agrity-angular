@@ -25,9 +25,6 @@ import { BidDetailComponent } from './bids/bid-detail/index';
 import { BidListComponent } from './bids/bid-list/index';
 import { BidCreateComponent } from './bids/bid-create/index';
 
-// TODO DELETE
-import {ProfileComponent} from './profile/profile.component';
-
 @RouteConfig([
   { path: '/', name: 'Home', component: HomeComponent },
 
@@ -40,8 +37,6 @@ import {ProfileComponent} from './profile/profile.component';
   { path: '/users', name: 'ViewUsers', component: GrowerListComponent},
   { path: '/users/:id', name: 'ViewUser', component: GrowerDetailComponent },
   { path: '/users/new', name: 'NewGrower', component: GrowerCreateComponent },
-
-  { path: '/profile', name: 'Profile', component: ProfileComponent },
 
   { path: '/not-found', name: 'NotFound', component: NotFoundComponent },
   { path: '/*other', name: 'Other', redirectTo: ['Home'] }

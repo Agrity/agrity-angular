@@ -5,10 +5,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Config, HttpClient, Logger } from '../../shared/index';
+import { Grower } from './index';
 
 @Injectable()
 export class GrowerService {
-  private growersUrl;
+  private growersUrl: string;
 
   constructor(private http: HttpClient,
               private config: Config,
@@ -33,7 +34,7 @@ export class GrowerService {
       .catch(this.logger.handleHttpError);
   }
     
-  addGrower(grower) {
+  addGrower(grower: Grower) {
     if (grower == null) {
       this.logger.handleError("Attempted to add null Grower.");
       return null;
@@ -55,7 +56,7 @@ export class GrowerService {
     return Observable.throw("Deleting Growers Not Yet Implemented.")
   }
     
-  private getGrowerUrl(growerId) {
+  private getGrowerUrl(growerId: number ) {
     return this.growersUrl + "/" + growerId;
   }
 }

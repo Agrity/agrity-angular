@@ -57,7 +57,7 @@ export class BidListComponent implements OnInit {
 
   } 
 
-  viewBid(bid_id){
+  viewBid(bid_id: number): void {
     this._router.navigateByUrl('/bids/' + bid_id);
   }
 }
