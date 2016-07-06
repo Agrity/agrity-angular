@@ -8,7 +8,7 @@ import { HandlerLoginService } from './handler-login.service';
 
 @Component({
     templateUrl: 'app/handlers/handler-login/handler-login.component.html',
-    styleUrls: ['assets/stylesheets/style.css'],
+    styleUrls: ['app/handlers/handler-login/handler-login.component.scss'],
     providers: [],
     directives: [RouterLink, ROUTER_DIRECTIVES]
 })

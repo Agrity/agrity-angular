@@ -49,7 +49,6 @@ import { BidCreateComponent } from './bids/bid-create/index';
             <router-outlet></router-outlet>
         </div>
     `,
-    styleUrls: ['assets/stylesheets/style.css'],
     directives: [NavBarComponent, ROUTER_DIRECTIVES]
 })
 export class AppComponent { }

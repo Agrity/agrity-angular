@@ -9,7 +9,7 @@ import { Grower, GrowerService, Phone } from '../shared/index';
 
 @Component({
   templateUrl: 'app/growers/grower-create/grower-create.component.html',
-  styleUrls: ['assets/stylesheets/style.css'],
+  styleUrls: ['app/growers/grower-create/grower-create.component.scss'],
   directives: [RouterLink, ROUTER_DIRECTIVES],
 })
 

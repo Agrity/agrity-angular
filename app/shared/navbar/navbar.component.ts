@@ -9,6 +9,7 @@ import { Config, Logger } from '../index'
 @Component({
     selector: 'navbar',
     templateUrl: 'app/shared/navbar/navbar.component.html',
+    styleUrls: ['app/shared/navbar/navbar.component.scss'],
     providers: [HandlerService], 
     directives: [RouterLink, ROUTER_DIRECTIVES]
 })
