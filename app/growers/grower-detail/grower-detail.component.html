@@ -1,0 +1,52 @@
+<!-- Profile Pic and Cover Photo
+====================================================-->
+<section class="picSection">
+	<div class="resizeImage">
+		<img src="assets/img/farmer3.jpg" onError="this.onerror=null;this.src='images/profile-icon.jpg';">
+	</div>
+		<h1>{{ grower?.first_name }} {{ grower?.last_name }}</h1>
+
+</section>
+
+<!-- Profile section
+================================================== -->
+<section id="testimonial" class="parallax-section">
+			<table>
+				<tr>	
+					<td><h8><u>Phone Number</u></h8></td>
+					<td><h8><u>E-Mail</u></h8></td>
+					<td><h8><u>Acreage</u></h8></td>
+					<td><h8><u>Almond Varieties</u></h8></td>
+				</tr>
+				<tr>
+          <td><b><h7>{{ grower?.phone?.getAsString() }}</h7></b></td>
+					<td><b><h7>{{ grower?.email }}</h7></b></td>
+					<td><b><h7>Under Construction</h7></b></td>
+					<td><b><h7>Under Construction</h7></b></td>
+				</tr>
+			</table>
+			
+			<div class="Bio">
+        <h2>Bids from {{grower?.first_name}}</h2>
+        <table class="pure-table pure-table-horizontal" style="width:100%">
+          <thead>
+            <tr>
+                <th>Almond Variety</th>
+                <th>Size</th>
+                <th>Price</th>
+                <th>Pounds</th>
+                <th>Payment Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bid of bids">
+              <td><p1> {{ bid.almondVariety }}</p1></td>
+              <td><p1> {{ bid.almondSize }} </p1></td>
+              <td><p1> {{ bid.pricePerPound }} </p1></td> 
+              <td><p1> {{ bid.almondPounds }} </p1></td>              
+              <td><p1> {{ bid.paymentDate }} </p1></td>
+            </tr>
+          </tbody>
+        </table>
+			</div>
+</section>

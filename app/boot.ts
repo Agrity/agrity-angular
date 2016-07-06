@@ -2,20 +2,32 @@ import {bootstrap}    from '@angular/platform-browser-dynamic';
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 import {HTTP_PROVIDERS, RequestOptions} from '@angular/http';
 import {provide} from '@angular/core';
-import {HttpClient} from './HttpClient';
-import {Config} from './config/Config';
-import {HandlerLoginService} from './handler-login/handler-login.service';
-import {ErrorHandling} from './ErrorHandling';
-import {NavBarComponent} from './navbar.component';
 
-import {AppComponent} from './app.component';
+import { AppComponent } from './app.component';
+import { Config, HttpClient, Logger } from './shared/index';
+import { NavBarComponent } from './shared/navbar/index';
+import { GrowerService } from './growers/shared/index';
+import { HandlerLoginService } from './handlers/handler-login/index';
+import { HandlerService } from './handlers/shared/index';
+import { BidService } from './bids/shared/index';
 
 bootstrap(AppComponent,
-          [ROUTER_PROVIDERS,
+          [/* Angular Providers */
+           ROUTER_PROVIDERS,
            HTTP_PROVIDERS,
-           provide(HttpClient, {useClass: HttpClient}),
-           provide(Config, {useClass: Config}),
-           provide(HandlerLoginService, {useClass: HandlerLoginService}),
-           provide(ErrorHandling, {useClass: ErrorHandling}),
-           NavBarComponent
+
+           /* Shared Providers */
+           Config,
+           HttpClient,
+           Logger,
+           NavBarComponent,
+
+           /* Handler Providers */
+           HandlerLoginService,
+
+           /* Grower Providers */
+           GrowerService,
+
+           /* Bid Providers */
+           BidService
           ]);
