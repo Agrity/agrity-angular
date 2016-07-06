@@ -33,9 +33,8 @@
     "no-trailing-whitespace": true,
     "no-var-keyword": true,
     "one-line": [true, "check-open-brace", "check-whitespace"],
-    "quotemark": [true, "double"],
+    "quotemark": [true, "single"],
     "semicolon": false,
-    "triple-equals": [true, "allow-null-check"],
     "typedef-whitespace": [true, {
       "call-signature": "nospace",
       "index-signature": "nospace",

@@ -4,7 +4,7 @@ import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteC
     from '@angular/router-deprecated';
 
 import { Bid, BidService } from '../shared/index';
-import { Config, Logger, SpinnerComponent, PaginationComponent }
+import { Config, Logger }
     from '../../shared/index';
 import { Grower, GrowerService } from '../../growers/shared/index';
 
@@ -12,7 +12,7 @@ import { Grower, GrowerService } from '../../growers/shared/index';
   templateUrl: 'app/bids/bid-create/bid-create.component.html',
   styleUrls: ['assets/stylesheets/style.css',
               'app/bids/bid-create/bid-create.component.scss'],
-  directives: [SpinnerComponent, PaginationComponent, RouterLink, ROUTER_DIRECTIVES]
+  directives: [RouterLink, ROUTER_DIRECTIVES]
 })
 
 export class BidCreateComponent implements OnInit {
