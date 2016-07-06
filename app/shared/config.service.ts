@@ -16,14 +16,14 @@ export class Config {
 
   // TODO Move to Appropriate Location
   public loggedIn(): boolean {
-    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) == "") {
+    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '') {
       return false;
     }
-    return true; 
+    return true;
   }
 
   public forceLogout() {
-    localStorage.setItem(this.getHandlerAuthHeaderKey(), "");
+    localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
     this._router.navigateByUrl('/handler-login');
   }
 }

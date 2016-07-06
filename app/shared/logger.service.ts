@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 
 export class Logger {
   public handleHttpError(error: any) {
@@ -10,5 +11,10 @@ export class Logger {
 
   public handleError(error: string) {
     // TODO Implement.
+  }
+
+  public info(msg: string) {
+    // TODO determine best logging method.
+    // console.info('info: ' + msg);
   }
 }
