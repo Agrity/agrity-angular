@@ -1,7 +1,7 @@
-import {Component, OnInit, coreBootstrap} from '@angular/core';
-import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig}
+import { Component, OnInit, coreBootstrap } from '@angular/core';
+import { Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig }
     from '@angular/router-deprecated';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 import { Config, Logger } from '../../shared/index';
 import { Grower, GrowerService, Phone } from '../shared/index';

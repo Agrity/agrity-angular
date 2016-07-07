@@ -1,10 +1,10 @@
+import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
 export class Logger {
-  public handleHttpError(error: any) {
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+  public handleHttpError(error: Response) {
+    let errMsg = `${error.status} - ${error.statusText}`;
     console.error(errMsg);
     return Observable.throw(errMsg);
   }

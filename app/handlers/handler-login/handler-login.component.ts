@@ -1,6 +1,7 @@
-import {Component, OnInit, coreBootstrap} from '@angular/core';
-import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
-import {Location} from '@angular/common';
+import { Component, OnInit, coreBootstrap } from '@angular/core';
+import { CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig } 
+    from '@angular/router-deprecated';
+import { Location } from '@angular/common';
 
 import { Config } from '../../shared/index';
 import { LoginInfo } from './login-info';

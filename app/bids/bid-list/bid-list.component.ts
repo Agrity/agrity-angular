@@ -1,6 +1,6 @@
-import {Component, OnInit, coreBootstrap} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig}
+import { Component, OnInit, coreBootstrap } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig }
     from '@angular/router-deprecated';
 
 import { Config, Logger } from '../../shared/index';

@@ -4,7 +4,7 @@ import { Router } from '@angular/router-deprecated';
 @Injectable()
 export class Config {
   constructor(
-    private _router: Router) {
+    private router: Router) {
   }
   public getServerDomain(): string {
     return 'http://localhost:9000';
@@ -24,6 +24,6 @@ export class Config {
 
   public forceLogout() {
     localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
-    this._router.navigateByUrl('/handler-login');
+    this.router.navigateByUrl('/handler-login');
   }
 }

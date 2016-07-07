@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams}
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams }
     from '@angular/router-deprecated';
 
 import { Bid, BidService } from '../../bids/shared/index';

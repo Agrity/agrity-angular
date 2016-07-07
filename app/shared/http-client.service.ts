@@ -5,12 +5,12 @@ import { Config } from '../shared/index';
 @Injectable()
 export class HttpClient {
 
-  constructor(private _http: Http, private _config: Config) {}
+  constructor(private http: Http, private config: Config) {}
 
   public get(url: string) {
     let headers = new Headers();
     this.appendAuthorizationHeader(headers);
-    return this._http.get(url, {
+    return this.http.get(url, {
       headers: headers,
     });
   }
@@ -19,7 +19,7 @@ export class HttpClient {
     let headers = new Headers();
     this.appendAuthorizationHeader(headers);
     this.appendJsonFormatHeader(headers);
-    return this._http.post(url, data, {
+    return this.http.post(url, data, {
       headers: headers,
     });
   }
@@ -27,7 +27,7 @@ export class HttpClient {
   public post(url: string, data: string) {
     let headers = new Headers();
     this.appendAuthorizationHeader(headers);
-    return this._http.post(url, data, {
+    return this.http.post(url, data, {
       headers: headers,
     });
   }
@@ -36,7 +36,7 @@ export class HttpClient {
     let headers = new Headers();
     this.appendAuthorizationHeader(headers);
     this.appendJsonFormatHeader(headers);
-    return this._http.put(url, data, {
+    return this.http.put(url, data, {
       headers: headers,
     });
   }
@@ -44,7 +44,7 @@ export class HttpClient {
   public delete(url: string) {
     let headers = new Headers();
     this.appendAuthorizationHeader(headers);
-    return this._http.delete(url, {
+    return this.http.delete(url, {
       headers: headers,
     });
   }
@@ -54,8 +54,8 @@ export class HttpClient {
     //    'Auth-Token: '
     //    + localStorage.getItem(this._config.getHandlerAuthHeaderKey()));
     headers
-        .append(this._config.getHandlerAuthHeaderKey(),
-                localStorage.getItem(this._config.getHandlerAuthHeaderKey()));
+        .append(this.config.getHandlerAuthHeaderKey(),
+                localStorage.getItem(this.config.getHandlerAuthHeaderKey()));
   }
 
   private appendJsonFormatHeader(headers: Headers) {

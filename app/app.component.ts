@@ -1,17 +1,17 @@
-import {Component} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import { Component } from '@angular/core';
+import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 // TODO Fix Barrel Import
 /* Shared Pages */
-import {NavBarComponent} from './shared/navbar/index';
+import { NavBarComponent } from './shared/navbar/index';
 
 // TODO Fix Barrel Imports
 /* Single Pages */
-import {HomeComponent} from './single-pages/home.component';
-import {NotFoundComponent} from './single-pages/not-found.component';
+import { HomeComponent } from './single-pages/home.component';
+import { NotFoundComponent } from './single-pages/not-found.component';
 
 /* Handler Pages */
-import {HandlerLoginComponent} from './handlers/handler-login/index'
+import { HandlerLoginComponent } from './handlers/handler-login/index'
 
 // TODO Fix Barrel Imports
 /* Grower Pages */

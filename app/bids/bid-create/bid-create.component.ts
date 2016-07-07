@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, ControlGroup, Validators} from '@angular/common';
-import {CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig}
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, ControlGroup, Validators } from '@angular/common';
+import { CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig }
     from '@angular/router-deprecated';
 
 import { Bid, BidService } from '../shared/index';
