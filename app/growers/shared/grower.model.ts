@@ -22,6 +22,8 @@ export class Grower {
     });
   }
 
+  /* Disabling no-string for processing object literal. */
+  /* tslint:disable:no-string-literal */
   static decode(growerJson: Object): Grower {
     let grower: Grower  = new Grower();
     grower.growerId = growerJson['id'];
@@ -53,6 +55,7 @@ export class Grower {
     }
     return grower;
   }
+  /* tslint:enable:no-string-literal */
 
   private getString(field: string): String {
     return field != null

@@ -45,6 +45,8 @@ export class Bid {
     });
   }
 
+  /* Disabling no-string for processing object literal. */
+  /* tslint:disable:no-string-literal */
   static decode(bidJson: Object): Bid {
     let bid  = new Bid();
 
@@ -71,6 +73,7 @@ export class Bid {
 
     return bid;
   }
+  /* tslint:enable:no-string-literal */
 
   static decodeBidAcceptGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('acceptedGrowers', bidJson);
