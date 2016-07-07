@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterLink, ROUTER_DIRECTIVES, RouteParams, Router }
+import { ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
-  templateUrl: 'app/single-pages/home.component.html',
   styleUrls: ['app/single-pages/home.component.scss'],
+  templateUrl: 'app/single-pages/home.component.html',
 
 })
 

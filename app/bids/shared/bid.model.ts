@@ -1,7 +1,7 @@
 import { Grower } from '../../growers/shared/index';
 
 export class Bid {
-  bid_id: number;
+  bidId: number;
   almondVariety: string;
   almondSize: string;
   almondPounds: string;
@@ -46,14 +46,14 @@ export class Bid {
   }
 
   static decode(bidJson: Object): Bid {
-    var bid  = new Bid();
+    let bid  = new Bid();
 
-    bid.bid_id = bidJson['id'];
+    bid.bidId = bidJson['id'];
 
     bid.growerIds = [];
-    var growers = bidJson['noResponseGrowers'];
+    let growers = bidJson['noResponseGrowers'];
     if (growers != null) {
-      for (var growerIdx in growers) {
+      for (let growerIdx in growers) {
         bid.growerIds.push(growers[growerIdx]['id']);
       }
     }
@@ -91,11 +91,11 @@ export class Bid {
   // TODO Should remove this and just have the bid model hold
   //      lists of Growers.
   private static decodeBidGrowers(growersKey: string, bidJson: Object): Grower[] {
-    var growers: Grower[] = [];
+    let growers: Grower[] = [];
 
-    var growersObject = bidJson[growersKey];
+    let growersObject = bidJson[growersKey];
     if (growersObject != null) {
-      for (var growerIdx in growersObject) {
+      for (let growerIdx in growersObject) {
         growers.push(Grower.decode(growersObject[growerIdx]));
       }
     }
@@ -106,9 +106,9 @@ export class Bid {
 
     if (this.startPaymentDate !== null && this.endPaymentDate !== null) {
       let startMonth = this.startPaymentDate.substr(0, this.startPaymentDate.indexOf(' '));
-      let startYear = this.startPaymentDate.substr(this.startPaymentDate.indexOf(' ')+1);
+      let startYear = this.startPaymentDate.substr(this.startPaymentDate.indexOf(' ') + 1);
       let endMonth = this.endPaymentDate.substr(0, this.endPaymentDate.indexOf(' '));
-      let endYear = this.endPaymentDate.substr(this.endPaymentDate.indexOf(' ')+1);
+      let endYear = this.endPaymentDate.substr(this.endPaymentDate.indexOf(' ') + 1);
 
       let paymentDateString = this.monthToNumber(startMonth) + '/' + startYear + '  -  ' +
                                   this.monthToNumber(endMonth) + '/' + endYear;

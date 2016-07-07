@@ -72,7 +72,7 @@ export class BidCreateComponent implements OnInit {
     this.bid.growerIds
         = this.growers
             .filter(grower => grower.selected)
-            .map(grower => grower.grower_id);
+            .map(grower => grower.growerId);
 
     // this.bid.paymentDate = ''; // Not Implemented On Server
     let space = ' ';
