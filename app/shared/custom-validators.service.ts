@@ -3,13 +3,15 @@ import { Control } from '@angular/common';
 export class CustomValidators {
 
     public static email(control: Control) {
-        let regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        let valid: boolean = regEx.test(control.value);
+        let rEx = new RegExp (['^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)',
+                      '|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])',
+                      '|(([a-zA-Z\-0-9]+\\.)+[a-zA-Z]{2,}))$'].join(''));
+        let valid: boolean = rEx.test(control.value);
         return valid ? null : { email: true };
     }
 
     public static isName(control: Control) {
-      let regEx = /^[a-zA-Z ]+$/
+      let regEx = /^[a-zA-Z ]+$/;
       let valid: boolean = regEx.test(control.value) && control.value != null;
       return valid ? null : { name: true };
     }
