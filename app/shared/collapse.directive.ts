@@ -47,11 +47,13 @@ export class CollapseDirective {
 
         this.isExpanded = false;
         this.isCollapsed = true;
-        setTimeout(() => {
-            this.height = '0';
-            this.isCollapse = true;
-            this.isCollapsing = false;
-        }, 4);
+        setTimeout(
+            () => {
+                this.height = '0';
+                this.isCollapse = true;
+                this.isCollapsing = false;
+            },
+            4);
     }
 
     private show() {
@@ -60,11 +62,12 @@ export class CollapseDirective {
 
         this.isExpanded = true;
         this.isCollapsed = false;
-        setTimeout(() => {
-            this.height = 'auto';
-
-            this.isCollapse = true;
-            this.isCollapsing = false;
-        }, 4);
+        setTimeout(
+            () => {
+                this.height = 'auto';
+                this.isCollapse = true;
+                this.isCollapsing = false;
+            },
+            4);
     }
 }
