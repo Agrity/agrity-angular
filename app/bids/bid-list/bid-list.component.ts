@@ -1,17 +1,15 @@
-import { Component, OnInit, coreBootstrap } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig }
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
 import { Config, Logger } from '../../shared/index';
 import { Bid, BidService } from '../shared/index';
-import { BidDetailComponent } from '../bid-detail/index';
 
 @Component({
-  templateUrl: 'app/bids/bid-list/bid-list.component.html',
+  directives: [RouterLink, ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
               'app/bids/bid-list/bid-list.component.scss'],
-  directives: [RouterLink, ROUTER_DIRECTIVES]
+  templateUrl: 'app/bids/bid-list/bid-list.component.html',
 })
 
 export class BidListComponent implements OnInit {
@@ -19,45 +17,44 @@ export class BidListComponent implements OnInit {
   private bids: Bid[];
 
   private openBids: Bid[];
-  private closedBids: Bid[]; 
-
+  private closedBids: Bid[];
 
   constructor(
-    private _router: Router, 
-    private _bidService: BidService,
+    private router: Router,
+    private bidService: BidService,
     private logger: Logger,
-    private _config: Config) {
+    private config: Config) {
   }
 
-  ngOnInit(){
+  public ngOnInit() {
 
-    if (!this._config.loggedIn()) {
-      alert("Please Login. If this issue continues try logging out, then logging back in.");
-      this._config.forceLogout();
-      return;   
+    if (!this.config.loggedIn()) {
+      alert('Please Login. If this issue continues try logging out, then logging back in.');
+      this.config.forceLogout();
+      return;
     }
 
     // Load Bids
     this.bids = [];
-    this._bidService.getBids()
+    this.bidService.getBids()
       .subscribe(
         bids => {
-          for (var bidIdx in bids) {
+          for (let bidIdx in bids) {
             this.bids.push(Bid.decode(bids[bidIdx]));
           }
           this.openBids = this.bids
-            .filter(bid => bid.currentlyOpen); 
+            .filter(bid => bid.currentlyOpen);
           this.closedBids = this.bids
             .filter(bid => !bid.currentlyOpen);
         },
         error => {
           this.logger.handleHttpError(error);
-          this._config.forceLogout();
+          this.config.forceLogout();
         });
 
-  } 
+  }
 
-  viewBid(bid_id: number): void {
-    this._router.navigateByUrl('/bids/' + bid_id);
+  viewBid(bidId: number): void {
+    this.router.navigateByUrl('/bids/' + bidId);
   }
 }
