@@ -28,15 +28,23 @@ gulp.task('compile', ['clean'], function () {
     .pipe(gulp.dest('dist/app'));
 });
 
+// copy node modules to libs folder.
+gulp.task('copy:libs', ['clean'], function() {
+  // TODO Verify only need js files.
+  return gulp.src('./node_modules/**/*.js')
+    .pipe(gulp.dest('dist/lib'))
+});
+
 // copy static assets - i.e. non TypeScript compiled source
 gulp.task('copy:assets', ['clean'], function() {
   return gulp.src(['app/**/*',
                    'assets/**/*',
                    'index.html',
                    'styles.css',
+                   'systemjs.config.js',
                    '!app/**/*.ts'], { base : './' })
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('build', ['compile', 'copy:assets']);
+gulp.task('build', ['compile', 'copy:libs', 'copy:assets']);
 gulp.task('default', ['build']);
