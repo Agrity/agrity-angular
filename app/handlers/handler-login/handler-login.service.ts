@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 import { Config, HttpClient, Logger } from '../../shared/index';
-import {LoginInfo} from './login-info';
+import { LoginInfo } from './login-info';
 
 @Injectable()
 export class HandlerLoginService {
