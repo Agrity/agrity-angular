@@ -15,9 +15,14 @@ import { Grower, GrowerService } from '../shared/index';
 })
 
 export class GrowerCreateComponent implements OnInit {
-  newgrowerform: ControlGroup;
-  title: string;
-  grower = new Grower();
+  /* NOTE: Referenced in .html file. */
+  protected grower = new Grower();
+
+  /* NOTE: Referenced in .html file. */
+  protected newgrowerform: ControlGroup;
+
+  /* NOTE: Referenced in .html file. */
+  protected title: string;
 
   constructor(
     fb: FormBuilder,
@@ -63,7 +68,8 @@ export class GrowerCreateComponent implements OnInit {
     //    });
   }
 
-  save() {
+  /* NOTE: Referenced in .html file. */
+  protected save() {
     this.growerService.addGrower(this.grower).subscribe(x => {
       this.grower = Grower.decode(x);
       this.router.navigateByUrl('/users');

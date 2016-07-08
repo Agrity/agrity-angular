@@ -43,10 +43,10 @@ import { BidCreateComponent } from './bids/bid-create/index';
 ])
 @Component({
     directives: [NavBarComponent, ROUTER_DIRECTIVES],
-    selector: 'my-app',
+    selector: 'sg-my-app',
     styleUrls: ['assets/stylesheets/style.css'],
     template: `
-        <navbar></navbar>
+        <sg-navbar></sg-navbar>
         <div class="container">
             <router-outlet></router-outlet>
         </div>

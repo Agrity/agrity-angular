@@ -1,30 +1,12 @@
 import { Phone } from './index';
 
 export class Grower {
-  growerId: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: Phone = new Phone();
 
-  // NOTE: Temporary hack to allow selection from list.
-  //       Do not send, or expect to recieve, to/from server.
-  selected: boolean;
-
-  encode(): string {
-    // NOTE: Play Framework won't recognize fields that aren't changed to
-    //       String class. Unsure why.
-    return JSON.stringify({
-      'first_name': this.getString(this.firstName),
-      'last_name': this.getString(this.lastName),
-      'email_addresses': [this.getString(this.email)],
-      'phone_numbers': [this.phone.getAsString().toString()],
-    });
-  }
+  /* ===================================== Static Methods ===================================== */
 
   /* Disabling no-string for processing object literal. */
   /* tslint:disable:no-string-literal */
-  static decode(growerJson: Object): Grower {
+  public static decode(growerJson: Object): Grower {
     let grower: Grower  = new Grower();
     grower.growerId = growerJson['id'];
     grower.firstName = growerJson['firstName'];
@@ -56,6 +38,31 @@ export class Grower {
     return grower;
   }
   /* tslint:enable:no-string-literal */
+
+  /* ===================================== Member Fields ====================================== */
+
+  public growerId: number;
+  public firstName: string;
+  public lastName: string;
+  public email: string;
+  public phone: Phone = new Phone();
+
+  // NOTE: Temporary hack to allow selection from list.
+  //       Do not send, or expect to recieve, to/from server.
+  public selected: boolean;
+
+  /* ===================================== Member Methods ===================================== */
+
+  public encode(): string {
+    // NOTE: Play Framework won't recognize fields that aren't changed to
+    //       String class. Unsure why.
+    return JSON.stringify({
+      'first_name': this.getString(this.firstName),
+      'last_name': this.getString(this.lastName),
+      'email_addresses': [this.getString(this.email)],
+      'phone_numbers': [this.phone.getAsString().toString()],
+    });
+  }
 
   private getString(field: string): String {
     return field != null

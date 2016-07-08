@@ -68,7 +68,8 @@ export class BidCreateComponent implements OnInit {
         });
   }
 
-  save() {
+  /* NOTE: Called in .html file. */
+  protected save() {
     this.bid.growerIds
         = this.growers
             .filter(grower => grower.selected)

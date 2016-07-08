@@ -1,53 +1,12 @@
 import { Grower } from '../../growers/shared/index';
 
 export class Bid {
-  bidId: number;
-  almondVariety: string;
-  almondSize: string;
-  almondPounds: string;
-  pricePerPound: string;
-  startPaymentMonth: string;
-  startPaymentYear: string;
-  endPaymentMonth: string;
-  endPaymentYear: string;
-  startPaymentDate: string;
-  endPaymentDate: string;
-  comment: string;
 
-  managementType: string;
-  managementTypeDelay: number;
-
-  growerIds: number[];
-
-  acceptedGrowers: number[];
-  rejectedGrowers: number[];
-  callRequestedGrowers: number[];
-  noResponseGrowers: number[];
-
-  currentlyOpen: boolean;
-
-  encode(): string {
-    // NOTE: Play Framework won't recognize fields that aren't changed to
-    //       String class. Unsure why.
-    return JSON.stringify({
-      'grower_ids': this.growerIds,
-      'almond_variety': this.getString(this.almondVariety),
-      'almond_size': this.getString(this.almondSize),
-      'almond_pounds': this.getString(this.almondPounds),
-      'price_per_pound': this.getString(this.pricePerPound),
-      'management_type': {
-        'type': this.getString(this.managementType),
-        'delay': this.managementTypeDelay,
-      },
-      'start_payment_date': this.getString(this.startPaymentDate),
-      'end_payment_date': this.getString(this.endPaymentDate),
-      'comment': this.getString(this.comment),
-    });
-  }
+  /* ===================================== Static Methods ===================================== */
 
   /* Disabling no-string for processing object literal. */
   /* tslint:disable:no-string-literal */
-  static decode(bidJson: Object): Bid {
+  public static decode(bidJson: Object): Bid {
     let bid  = new Bid();
 
     bid.bidId = bidJson['id'];
@@ -75,19 +34,19 @@ export class Bid {
   }
   /* tslint:enable:no-string-literal */
 
-  static decodeBidAcceptGrowers(bidJson: Object): Grower[] {
+  public static decodeBidAcceptGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('acceptedGrowers', bidJson);
   }
 
-  static decodeBidRejectGrowers(bidJson: Object): Grower[] {
+  public static decodeBidRejectGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('rejectedGrowers', bidJson);
   }
 
-  static decodeBidCallRequestedGrowers(bidJson: Object): Grower[] {
+  public static decodeBidCallRequestedGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('callRequestedGrowers', bidJson);
   }
 
-  static decodeBidNoResponseGrowers(bidJson: Object): Grower[] {
+  public static decodeBidNoResponseGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('noResponseGrowers', bidJson);
   }
 
@@ -103,6 +62,54 @@ export class Bid {
       }
     }
     return growers;
+  }
+
+  /* ===================================== Member Fields ====================================== */
+
+  public bidId: number;
+  public almondVariety: string;
+  public almondSize: string;
+  public almondPounds: string;
+  public pricePerPound: string;
+  public startPaymentMonth: string;
+  public startPaymentYear: string;
+  public endPaymentMonth: string;
+  public endPaymentYear: string;
+  public startPaymentDate: string;
+  public endPaymentDate: string;
+  public comment: string;
+
+  public managementType: string;
+  public managementTypeDelay: number;
+
+  public growerIds: number[];
+
+  public acceptedGrowers: number[];
+  public rejectedGrowers: number[];
+  public callRequestedGrowers: number[];
+  public noResponseGrowers: number[];
+
+  public currentlyOpen: boolean;
+
+  /* ===================================== Member Methods ===================================== */
+
+  public encode(): string {
+    // NOTE: Play Framework won't recognize fields that aren't changed to
+    //       String class. Unsure why.
+    return JSON.stringify({
+      'grower_ids': this.growerIds,
+      'almond_variety': this.getString(this.almondVariety),
+      'almond_size': this.getString(this.almondSize),
+      'almond_pounds': this.getString(this.almondPounds),
+      'price_per_pound': this.getString(this.pricePerPound),
+      'management_type': {
+        'type': this.getString(this.managementType),
+        'delay': this.managementTypeDelay,
+      },
+      'start_payment_date': this.getString(this.startPaymentDate),
+      'end_payment_date': this.getString(this.endPaymentDate),
+      'comment': this.getString(this.comment),
+    });
   }
 
   public getPaymentShort() {

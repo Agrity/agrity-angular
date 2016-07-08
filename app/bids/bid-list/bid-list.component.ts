@@ -54,7 +54,8 @@ export class BidListComponent implements OnInit {
 
   }
 
-  viewBid(bidId: number): void {
+  /* NOTE: Called in .html file. */
+  protected viewBid(bidId: number): void {
     this.router.navigateByUrl('/bids/' + bidId);
   }
 }
