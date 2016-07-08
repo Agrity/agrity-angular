@@ -17,12 +17,20 @@ export class BidService {
   getBids() {
     return this.http.get(this.bidsUrl)
       .map(res => res.json())
+      .map(bidsJson => {
+        let bids: Bid[] = [];
+        for (let bidIndex in bidsJson) {
+          bids.push(Bid.decode(bidsJson[bidIndex]));
+          return bids;
+        }
+      })
       .catch(this.logger.handleHttpError);
   }
 
   getBid(bidId: number) {
     return this.http.get(this.getBidUrl(bidId))
       .map(res => res.json())
+      .map(res => Bid.decode(res))
       .catch(this.logger.handleHttpError);
   }
 

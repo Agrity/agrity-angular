@@ -37,7 +37,7 @@ export class GrowerListComponent implements OnInit {
     this.growers = [];
     this.growerService.getGrowers()
       .subscribe(
-        res => { this.growers = res;
+        growers => { this.growers = growers;
         },
         error => {
           this.logger.handleHttpError(error);

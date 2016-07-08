@@ -48,14 +48,10 @@ export class BidDetailComponent implements OnInit {
     this.bidService.getBid(this.bidId)
       .subscribe(
         bid => {
-          this.bid = Bid.decode(bid);
+          this.bid = bid;
 
           // TODO Temporary Hack. Should change to store growers in bid
           //      item itself.
-          this.acceptedGrowers = Bid.decodeBidAcceptGrowers(bid);
-          this.rejectedGrowers = Bid.decodeBidRejectGrowers(bid);
-          this.callRequestedGrowers = Bid.decodeBidCallRequestedGrowers(bid);
-          this.noResponseGrowers = Bid.decodeBidNoResponseGrowers(bid);
         },
         error => {
           this.logger.handleHttpError(error);

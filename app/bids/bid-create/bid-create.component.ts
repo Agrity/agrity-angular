@@ -53,14 +53,11 @@ export class BidCreateComponent implements OnInit {
       return;   
     }
 
-    // Load in Grower
+    // Load in Growers
     this.growers = [];
     this.growerService.getGrowers()
       .subscribe(
-        growers => {
-          for (var growerIdx in growers) {
-            this.growers.push(Grower.decode(growers[growerIdx]));
-          }
+        growers => { this.growers = growers;
         },
         error => {
           this.logger.handleHttpError(error);
