@@ -29,6 +29,10 @@ export class Bid {
     bid.endPaymentDate = bidJson['endPaymentDateAsString'];
     bid.comment = bidJson['comment'];
     bid.currentlyOpen = bidJson['offerCurrentlyOpen'];
+    bid.acceptedGrowers = this.decodeBidAcceptGrowers(bidJson); 
+    bid.acceptedGrowers = this.decodeBidRejectGrowers(bidJson); 
+    bid.acceptedGrowers = this.decodeBidCallRequestedGrowers(bidJson); 
+    bid.acceptedGrowers = this.decodeBidNoResponseGrowers(bidJson); 
 
     return bid;
   }
@@ -84,10 +88,10 @@ export class Bid {
 
   public growerIds: number[];
 
-  public acceptedGrowers: number[];
-  public rejectedGrowers: number[];
-  public callRequestedGrowers: number[];
-  public noResponseGrowers: number[];
+  public acceptedGrowers: Grower[];
+  public rejectedGrowers: Grower[];
+  public callRequestedGrowers: Grower[];
+  public noResponseGrowers: Grower[];
 
   public currentlyOpen: boolean;
 
