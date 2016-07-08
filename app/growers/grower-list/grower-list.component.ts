@@ -44,7 +44,7 @@ export class GrowerListComponent implements OnInit {
 
   }
 
-  viewGrower(growerId: number) {
+  viewGrower(growerId: number): void {
     this.router.navigateByUrl('/growers/' + growerId);
   }
 }

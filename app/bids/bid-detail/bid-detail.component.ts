@@ -19,11 +19,6 @@ export class BidDetailComponent implements OnInit {
 
   private bid: Bid = new Bid();
 
-  private acceptedGrowers: Grower[];
-  private rejectedGrowers: Grower[];
-  private callRequestedGrowers: Grower[];
-  private noResponseGrowers: Grower[];
-
   constructor(
       params: RouteParams,
       private bidService: BidService,
@@ -56,5 +51,10 @@ export class BidDetailComponent implements OnInit {
           this.logger.handleHttpError(error);
           this.config.forceLogout();
         });
+  }
+
+  /* NOTE: Referenced in .html file. */
+  protected viewGrower(growerId: number): void {
+    this.router.navigateByUrl('/growers/' + growerId);
   }
 }
