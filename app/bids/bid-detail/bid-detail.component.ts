@@ -3,7 +3,6 @@ import { RouterLink, ROUTER_DIRECTIVES, RouteParams, Router }
     from '@angular/router-deprecated';
 
 import { Config, Logger } from '../../shared/index';
-import { Grower } from '../../growers/shared/index';
 import { Bid, BidService } from '../shared/index';
 
 @Component({

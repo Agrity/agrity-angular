@@ -18,7 +18,7 @@ export class HandlerLoginService {
     this.logoutUrl = config.getServerDomain() + '/handler/logout';
   }
 
-  login(loginInfo: LoginInfo) {
+  public login(loginInfo: LoginInfo) {
     let loginInfoObject = { 'email_address': loginInfo.emailAddress,
                             'password': loginInfo.password };
     return this.http.jsonPost(this.loginUrl, JSON.stringify(loginInfoObject))
@@ -26,16 +26,16 @@ export class HandlerLoginService {
       .catch(this.logger.handleHttpError);
   }
 
-  logout() {
+  public logout() {
     return this.http.post(this.logoutUrl, /* No Data */ '')
       .catch(this.logger.handleHttpError);
   }
 
-  storeHandlerAuthToken(token: string) {
+  public storeHandlerAuthToken(token: string) {
     localStorage.setItem(this.config.getHandlerAuthHeaderKey(), token);
   }
 
-  eraseHandlerAuthToken() {
+  public eraseHandlerAuthToken() {
     localStorage.setItem(this.config.getHandlerAuthHeaderKey(), '');
   }
 }

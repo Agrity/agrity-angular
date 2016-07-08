@@ -16,6 +16,9 @@ import { HandlerLoginService } from './handler-login.service';
 
 export class HandlerLoginComponent {
 
+  /* NOTE: Referenced in .html file. */
+  protected loginInfo = new LoginInfo('', '');
+
   private authTokenKey: string = 'auth_token';
 
   constructor(private handlerLoginService: HandlerLoginService,
@@ -23,9 +26,8 @@ export class HandlerLoginComponent {
               private router: Router,
               private location: Location) {};
 
-  loginInfo = new LoginInfo('', '');
-
-  public login() {
+  /* NOTE: Referenced in .html file. */
+  protected login() {
     this.handlerLoginService.login(this.loginInfo)
       .subscribe(
         valid => {
@@ -42,7 +44,8 @@ export class HandlerLoginComponent {
         });
   }
 
-  public logout() {
+  /* NOTE: Referenced in .html file. */
+  protected logout() {
     this.handlerLoginService.logout()
       .subscribe(
         valid => {

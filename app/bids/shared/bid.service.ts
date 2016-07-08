@@ -17,40 +17,40 @@ export class BidService {
     this.bidsUrl = config.getServerDomain() + '/handler/offers';
   }
 
-  getBids(): Observable<Bid[]> {
+  public getBids(): Observable<Bid[]> {
     return this.http.get(this.bidsUrl)
-        .map(res => res.json())
-        .map(bidsJson => {
-          let bids: Bid[] = [];
-          for (let bidIndex in bidsJson) {
-            bids.push(Bid.decode(bidsJson[bidIndex]));
-          }
-          return bids;
-        })
-        .catch(this.logger.handleHttpError);
-  }
-
-  getBid(bidId: number): Observable<Bid> {
-    return this.http.get(this.getBidUrl(bidId))
-      .map(res => res.json())
-      .map(res => Bid.decode(res))
-      .catch(this.logger.handleHttpError);
-  }
-
-  getGrowerBids(growerId: number): Observable<Bid[]> {
-    return this.http.get(this.getGrowerBidsUrl(growerId))
       .map(res => res.json())
       .map(bidsJson => {
         let bids: Bid[] = [];
         for (let bidIndex in bidsJson) {
-          bids.push(Bid.decode(bidsJson[bidIndex])); 
+          bids.push(Bid.decode(bidsJson[bidIndex]));
         }
         return bids;
       })
       .catch(this.logger.handleHttpError);
   }
 
-  createBid(bid: Bid) {
+  public getBid(bidId: number): Observable<Bid> {
+    return this.http.get(this.getBidUrl(bidId))
+      .map(res => res.json())
+      .map(res => Bid.decode(res))
+      .catch(this.logger.handleHttpError);
+  }
+
+  public getGrowerBids(growerId: number): Observable<Bid[]> {
+    return this.http.get(this.getGrowerBidsUrl(growerId))
+      .map(res => res.json())
+      .map(bidsJson => {
+        let bids: Bid[] = [];
+        for (let bidIndex in bidsJson) {
+          bids.push(Bid.decode(bidsJson[bidIndex]));
+        }
+        return bids;
+      })
+      .catch(this.logger.handleHttpError);
+  }
+
+  public createBid(bid: Bid) {
     if (bid == null) {
       this.logger.handleError('Attempted to add null Bid.');
       return null;

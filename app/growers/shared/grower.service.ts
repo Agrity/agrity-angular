@@ -16,7 +16,7 @@ export class GrowerService {
     this.growersUrl = this.config.getServerDomain() + '/handler/growers';
   }
 
-  getGrowers(): Observable<Grower[]> {
+  public getGrowers(): Observable<Grower[]> {
     return this.http.get(this.growersUrl)
       .map(res => res.json())
       .map(growersJson => {
@@ -28,10 +28,10 @@ export class GrowerService {
       })
       .catch(this.logger.handleHttpError);
   }
- 
-  getGrower(growerId: number): Observable<Grower> {
+
+  public getGrower(growerId: number): Observable<Grower> {
     if (growerId == null) {
-      this.logger.handleError("Attempted to get Grower with null id.");
+      this.logger.handleError('Attempted to get Grower with null id.');
       return null;
     }
 
@@ -41,7 +41,7 @@ export class GrowerService {
       .catch(this.logger.handleHttpError);
   }
 
-  addGrower(grower: Grower) {
+  public addGrower(grower: Grower) {
     if (grower == null) {
       this.logger.handleError('Attempted to add null Grower.');
       return null;
@@ -59,7 +59,7 @@ export class GrowerService {
   // }
 
   // TODO Deleteing Not Implemented on Server Side Yet.
-  deleteGrower(growerId: number) {
+  public deleteGrower(growerId: number) {
     return Observable.throw('Deleting Growers Not Yet Implemented.');
   }
 
