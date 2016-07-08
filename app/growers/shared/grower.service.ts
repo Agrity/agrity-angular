@@ -16,20 +16,28 @@ export class GrowerService {
     this.growersUrl = this.config.getServerDomain() + '/handler/growers';
   }
 
-  getGrowers() {
+  getGrowers(): Observable<Grower[]> {
     return this.http.get(this.growersUrl)
       .map(res => res.json())
+      .map(growersJson => {
+        let growers: Grower[] = [];
+        for (let idx in growersJson) {
+          growers.push(Grower.decode(growersJson[idx]));
+        }
+        return growers;
+      })
       .catch(this.logger.handleHttpError);
   }
-
-  getGrower(growerId: number) {
+ 
+  getGrower(growerId: number): Observable<Grower> {
     if (growerId == null) {
-      this.logger.handleError('Attempted to Grower with null id.');
+      this.logger.handleError("Attempted to get Grower with null id.");
       return null;
     }
 
     return this.http.get(this.getGrowerUrl(growerId))
       .map(res => res.json())
+      .map(res => Grower.decode(res))
       .catch(this.logger.handleHttpError);
   }
 
