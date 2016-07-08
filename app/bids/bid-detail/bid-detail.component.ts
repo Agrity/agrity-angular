@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams, Router }
+import { RouterLink, ROUTER_DIRECTIVES, RouteParams, Router }
     from '@angular/router-deprecated';
 
 import { Config, Logger } from '../../shared/index';
@@ -8,10 +7,10 @@ import { Grower } from '../../growers/shared/index';
 import { Bid, BidService } from '../shared/index';
 
 @Component({
-  templateUrl: 'app/bids/bid-detail/bid-detail.component.html',
+  directives: [RouterLink, ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
               'app/bids/bid-detail/bid-detail.component.scss'],
-  directives: [RouterLink, ROUTER_DIRECTIVES]
+  templateUrl: 'app/bids/bid-detail/bid-detail.component.html',
 })
 
 export class BidDetailComponent implements OnInit {
@@ -28,7 +27,7 @@ export class BidDetailComponent implements OnInit {
   constructor(
       params: RouteParams,
       private bidService: BidService,
-      private logger : Logger,
+      private logger: Logger,
       private config: Config,
       private router: Router) {
 
@@ -36,12 +35,12 @@ export class BidDetailComponent implements OnInit {
     this.bidId = +params.get('id');
   }
 
-  ngOnInit(){
+  public ngOnInit() {
 
     if (!this.config.loggedIn()) {
-      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      alert('Please Login. If this issue continues try logging out, then logging back in.');
       this.config.forceLogout();
-      return;   
+      return;
     }
 
     // Load Bid
@@ -61,5 +60,5 @@ export class BidDetailComponent implements OnInit {
           this.logger.handleHttpError(error);
           this.config.forceLogout();
         });
-  } 
+  }
 }

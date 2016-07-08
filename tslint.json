@@ -30,6 +30,7 @@
     "eofline": true,
     "indent": [true, "spaces"],
     "interface-name": [true, "never-prefix"],
+    "forin": false,
     "new-parens": true,
     "no-any": true,
     "no-consecutive-blank-lines": true,

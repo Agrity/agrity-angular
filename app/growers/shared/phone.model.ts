@@ -1,12 +1,12 @@
 export class Phone {
-  phone_1: string;
-  phone_2: string;
-  phone_3: string;
+  phoneOne: string;
+  phoneTwo: string;
+  phoneThree: string;
 
   public getAsString(): String {
-    if (this.phone_1 != null && this.phone_2 != null && this.phone_3 != null) {
-    	return this.phone_1 + this.phone_2 + this.phone_3; 
+    if (this.phoneOne != null && this.phoneTwo != null && this.phoneThree != null) {
+      return this.phoneOne + this.phoneTwo + this.phoneThree;
     }
-    return null; 
+    return null;
   }
 }

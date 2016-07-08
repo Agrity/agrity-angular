@@ -6,13 +6,15 @@ import { Bid } from './index';
 
 @Injectable()
 export class BidService {
-	private bidsUrl: string;
+  private bidsUrl: string;
 
-	constructor(private http: HttpClient,
-              private config: Config,
-              private logger: Logger) {
+  constructor(
+      private http: HttpClient,
+      private config: Config,
+      private logger: Logger
+      ) {
     this.bidsUrl = config.getServerDomain() + '/handler/offers';
-	}
+  }
 
   getBids() {
     return this.http.get(this.bidsUrl)
@@ -34,7 +36,7 @@ export class BidService {
 
   createBid(bid: Bid) {
     if (bid == null) {
-      this.logger.handleError("Attempted to add null Bid.");
+      this.logger.handleError('Attempted to add null Bid.');
       return null;
     }
 
@@ -43,12 +45,12 @@ export class BidService {
       .catch(this.logger.handleHttpError);
   }
 
-  private getBidUrl(bidId: number){
-    return this.bidsUrl + "/" + bidId;
+  private getBidUrl(bidId: number) {
+    return this.bidsUrl + '/' + bidId;
   }
 
   private getGrowerBidsUrl(growerId: number) {
     return this.config.getServerDomain()
-        + "/handler/growers/" + growerId + "/offers";
+        + '/handler/growers/' + growerId + '/offers';
   }
 }

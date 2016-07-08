@@ -1,7 +1,7 @@
 import { Grower } from '../../growers/shared/index';
 
 export class Bid {
-  bid_id: number;
+  bidId: number;
   almondVariety: string;
   almondSize: string;
   almondPounds: string;
@@ -26,7 +26,6 @@ export class Bid {
 
   currentlyOpen: boolean;
 
-
   encode(): string {
     // NOTE: Play Framework won't recognize fields that aren't changed to
     //       String class. Unsure why.
@@ -46,18 +45,20 @@ export class Bid {
     });
   }
 
+  /* Disabling no-string for processing object literal. */
+  /* tslint:disable:no-string-literal */
   static decode(bidJson: Object): Bid {
-    var bid  = new Bid();
-    
-    bid.bid_id = bidJson['id'];
+    let bid  = new Bid();
 
-    bid.growerIds = []; 
-    var growers = bidJson['noResponseGrowers'];
+    bid.bidId = bidJson['id'];
+
+    bid.growerIds = [];
+    let growers = bidJson['noResponseGrowers'];
     if (growers != null) {
-      for (var growerIdx in growers) {
-        bid.growerIds.push(growers[growerIdx]['id']); 
+      for (let growerIdx in growers) {
+        bid.growerIds.push(growers[growerIdx]['id']);
       }
-    } 
+    }
 
     bid.almondVariety = bidJson['almondVariety'];
     bid.almondSize = bidJson['almondSize'];
@@ -72,6 +73,7 @@ export class Bid {
 
     return bid;
   }
+  /* tslint:enable:no-string-literal */
 
   static decodeBidAcceptGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('acceptedGrowers', bidJson);
@@ -92,69 +94,68 @@ export class Bid {
   // TODO Should remove this and just have the bid model hold
   //      lists of Growers.
   private static decodeBidGrowers(growersKey: string, bidJson: Object): Grower[] {
-    var growers: Grower[] = [];
+    let growers: Grower[] = [];
 
-    var growersObject = bidJson[growersKey];
+    let growersObject = bidJson[growersKey];
     if (growersObject != null) {
-      for (var growerIdx in growersObject) {
-        growers.push(Grower.decode(growersObject[growerIdx])); 
+      for (let growerIdx in growersObject) {
+        growers.push(Grower.decode(growersObject[growerIdx]));
       }
-    } 
+    }
     return growers;
   }
 
-  public getPaymentShort(){ 
+  public getPaymentShort() {
 
     if (this.startPaymentDate !== null && this.endPaymentDate !== null) {
-      var startMonth = this.startPaymentDate.substr(0, this.startPaymentDate.indexOf(' '));
-      var startYear = this.startPaymentDate.substr(this.startPaymentDate.indexOf(' ')+1);
-      var endMonth = this.endPaymentDate.substr(0, this.endPaymentDate.indexOf(' '));
-      var endYear = this.endPaymentDate.substr(this.endPaymentDate.indexOf(' ')+1);
+      let startMonth = this.startPaymentDate.substr(0, this.startPaymentDate.indexOf(' '));
+      let startYear = this.startPaymentDate.substr(this.startPaymentDate.indexOf(' ') + 1);
+      let endMonth = this.endPaymentDate.substr(0, this.endPaymentDate.indexOf(' '));
+      let endYear = this.endPaymentDate.substr(this.endPaymentDate.indexOf(' ') + 1);
 
-      var paymentDateString = this.monthToNumber(startMonth) + "/" + startYear + "  -  " + 
-                                  this.monthToNumber(endMonth) + "/" + endYear;
+      let paymentDateString = this.monthToNumber(startMonth) + '/' + startYear + '  -  ' +
+                                  this.monthToNumber(endMonth) + '/' + endYear;
 
-      return paymentDateString; 
+      return paymentDateString;
     }
-    return "";
+    return '';
   }
 
   private monthToNumber(month: string): String {
     switch (month) {
-    case "January":
-      return "1";
-    case "February":
-      return "2";
-    case "March":
-      return "3";
-    case "April":
-      return "4";
-    case "May":
-      return "5";
-    case "June":
-      return "6";
-    case "July":
-      return "7";
-    case "August":
-      return "8";
-    case "September":
-      return "9";
-    case "October":
-      return "10";
-    case "November":
-      return "11"; 
-    case "December":
-      return "12";
+    case 'January':
+      return '1';
+    case 'February':
+      return '2';
+    case 'March':
+      return '3';
+    case 'April':
+      return '4';
+    case 'May':
+      return '5';
+    case 'June':
+      return '6';
+    case 'July':
+      return '7';
+    case 'August':
+      return '8';
+    case 'September':
+      return '9';
+    case 'October':
+      return '10';
+    case 'November':
+      return '11';
+    case 'December':
+      return '12';
     default:
-      return "00";
+      return '00';
   }
 
   }
-
 
   private getString(field: string): String {
     return field != null
       ? field.toString()
-      : "";
+      : '';
   }
 }

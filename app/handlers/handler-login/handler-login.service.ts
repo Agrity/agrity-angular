@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
 
 import { Config, HttpClient, Logger } from '../../shared/index';
 import { LoginInfo } from './login-info';
@@ -20,23 +19,23 @@ export class HandlerLoginService {
   }
 
   login(loginInfo: LoginInfo) {
-    var loginInfoObject = { "email_address": loginInfo.emailAddress,
-                            "password": loginInfo.password };
+    let loginInfoObject = { 'email_address': loginInfo.emailAddress,
+                            'password': loginInfo.password };
     return this.http.jsonPost(this.loginUrl, JSON.stringify(loginInfoObject))
       .map(res => res.json())
       .catch(this.logger.handleHttpError);
   }
 
   logout() {
-    return this.http.post(this.logoutUrl, /* No Data */ "")
+    return this.http.post(this.logoutUrl, /* No Data */ '')
       .catch(this.logger.handleHttpError);
   }
-    
+
   storeHandlerAuthToken(token: string) {
     localStorage.setItem(this.config.getHandlerAuthHeaderKey(), token);
   }
 
   eraseHandlerAuthToken() {
-    localStorage.setItem(this.config.getHandlerAuthHeaderKey(), "");
+    localStorage.setItem(this.config.getHandlerAuthHeaderKey(), '');
   }
 }

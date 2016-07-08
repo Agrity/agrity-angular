@@ -11,7 +11,7 @@ import { HomeComponent } from './single-pages/home.component';
 import { NotFoundComponent } from './single-pages/not-found.component';
 
 /* Handler Pages */
-import { HandlerLoginComponent } from './handlers/handler-login/index'
+import { HandlerLoginComponent } from './handlers/handler-login/index';
 
 // TODO Fix Barrel Imports
 /* Grower Pages */
@@ -26,29 +26,30 @@ import { BidListComponent } from './bids/bid-list/index';
 import { BidCreateComponent } from './bids/bid-create/index';
 
 @RouteConfig([
-  { path: '/', name: 'Home', component: HomeComponent },
+  { component: HomeComponent, name: 'Home', path: '/' },
 
-  { path: '/handler-login', name: 'Handler Login', component: HandlerLoginComponent },
+  { component: HandlerLoginComponent, name: 'Handler Login', path: '/handler-login' },
 
-  { path: '/bids', name: 'View Bids', component: BidListComponent },
-  { path: '/bids/:id', name: 'View Bid', component: BidDetailComponent },
-  { path: '/bids/new', name: 'Make Bid', component: BidCreateComponent },
+  { component: BidListComponent, name: 'View Bids', path: '/bids' },
+  { component: BidDetailComponent, name: 'View Bid', path: '/bids/:id' },
+  { component: BidCreateComponent, name: 'Make Bid', path: '/bids/new' },
 
-  { path: '/users', name: 'ViewUsers', component: GrowerListComponent},
-  { path: '/users/:id', name: 'ViewUser', component: GrowerDetailComponent },
-  { path: '/users/new', name: 'NewGrower', component: GrowerCreateComponent },
+  { component: GrowerListComponent, name: 'ViewUsers', path: '/users' },
+  { component: GrowerDetailComponent, name: 'ViewUser', path: '/users/:id' },
+  { component: GrowerCreateComponent, name: 'NewGrower', path: '/users/new' },
 
-  { path: '/not-found', name: 'NotFound', component: NotFoundComponent },
-  { path: '/*other', name: 'Other', redirectTo: ['Home'] }
+  { component: NotFoundComponent, name: 'NotFound', path: '/not-found' },
+  { name: 'Other', path: '/*other', redirectTo: ['Home'] },
 ])
 @Component({
+    directives: [NavBarComponent, ROUTER_DIRECTIVES],
     selector: 'my-app',
+    styleUrls: ['assets/stylesheets/style.css'],
     template: `
         <navbar></navbar>
         <div class="container">
             <router-outlet></router-outlet>
         </div>
     `,
-    directives: [NavBarComponent, ROUTER_DIRECTIVES]
 })
 export class AppComponent { }

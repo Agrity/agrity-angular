@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { Config, HttpClient, Logger } from '../../shared/index';
-import { Handler } from './index';
 
 @Injectable()
 export class HandlerService {

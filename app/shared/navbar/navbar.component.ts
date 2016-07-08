@@ -1,35 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { RouterLink, ROUTER_DIRECTIVES, RouteConfig, Router }
+import { RouterLink, ROUTER_DIRECTIVES, Router }
     from '@angular/router-deprecated';
 
-import { Handler, HandlerService } from '../../handlers/index'
-import { Config, Logger } from '../index'
+import { Handler, HandlerService } from '../../handlers/index';
+import { Config, Logger } from '../index';
 
 @Component({
+    directives: [RouterLink, ROUTER_DIRECTIVES],
+    providers: [HandlerService],
     selector: 'navbar',
-    templateUrl: 'app/shared/navbar/navbar.component.html',
     styleUrls: ['app/shared/navbar/navbar.component.scss'],
-    providers: [HandlerService], 
-    directives: [RouterLink, ROUTER_DIRECTIVES]
+    templateUrl: 'app/shared/navbar/navbar.component.html',
 })
 
 export class NavBarComponent implements OnInit {
 
-	private handler: Handler = new Handler();  
+  private handler: Handler = new Handler();
 
   constructor(
     private router: Router,
-    private handlerService: HandlerService,  
+    private handlerService: HandlerService,
     private logger: Logger,
     private config: Config) {
   }
 
-  ngOnInit(){
+  public ngOnInit() {
 
     if (!this.config.loggedIn()) {
       this.config.forceLogout();
-      return;   
+      return;
     }
 
     this.handlerService.getCurrentHandler()
@@ -37,9 +36,9 @@ export class NavBarComponent implements OnInit {
             handler => {
               this.handler = Handler.decode(handler);
             },
-          error => {
-            this.logger.handleHttpError(error);
-            this.config.forceLogout();
+            error => {
+              this.logger.handleHttpError(error);
+              this.config.forceLogout();
           });
   }
 }

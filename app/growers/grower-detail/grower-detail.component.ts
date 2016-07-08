@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Router, RouterLink, ROUTER_DIRECTIVES, RouteConfig, RouteParams }
+import { Router, RouterLink, ROUTER_DIRECTIVES, RouteParams }
     from '@angular/router-deprecated';
 
 import { Bid, BidService } from '../../bids/shared/index';
@@ -8,18 +7,18 @@ import { Config, Logger } from '../../shared/index';
 import { Grower, GrowerService } from '../shared/index';
 
 @Component({
-  templateUrl: 'app/growers/grower-detail/grower-detail.component.html',
-  styleUrls: ['app/growers/grower-detail/grower-detail.component.scss'],
+  directives: [RouterLink, ROUTER_DIRECTIVES],
   providers: [BidService],
-  directives: [RouterLink, ROUTER_DIRECTIVES]
+  styleUrls: ['app/growers/grower-detail/grower-detail.component.scss'],
+  templateUrl: 'app/growers/grower-detail/grower-detail.component.html',
 })
 
 export class GrowerDetailComponent implements OnInit {
-  
+
   private growerId: number;
 
   private grower: Grower = new Grower();
-  private bids: Bid[];  
+  private bids: Bid[];
 
   constructor(
       params: RouteParams,
@@ -32,13 +31,13 @@ export class GrowerDetailComponent implements OnInit {
     this.growerId = +params.get('id');
   }
 
-  ngOnInit(){
+  public ngOnInit() {
 
     if (!this.config.loggedIn()) {
-      alert("Please Login."
-          + "If this issue continues try logging out, then logging back in.");
+      alert('Please Login.'
+          + 'If this issue continues try logging out, then logging back in.');
       this.config.forceLogout();
-      return;   
+      return;
     }
 
     // Load grower
@@ -56,7 +55,7 @@ export class GrowerDetailComponent implements OnInit {
     this.bidService.getGrowerBids(this.growerId)
       .subscribe(
         bids => {
-          for (var bidIdx in bids) {
+          for (let bidIdx in bids) {
             this.bids.push(Bid.decode(bids[bidIdx]));
           }
         },
@@ -64,5 +63,5 @@ export class GrowerDetailComponent implements OnInit {
           this.logger.handleHttpError(error);
           this.config.forceLogout();
         });
-  } 
+  }
 }
