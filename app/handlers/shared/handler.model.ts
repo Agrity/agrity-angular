@@ -1,12 +1,10 @@
 export class Handler {
-  handlerId: number;
-  companyName: string;
-  email: string;
 
+  /* ===================================== Static Methods ===================================== */
 
   /* Disabling no-string for processing object literal. */
   /* tslint:disable:no-string-literal */
-  static decode(handlerJson: Object): Handler {
+  public static decode(handlerJson: Object): Handler {
     let handler = new Handler();
 
     handler.handlerId = handlerJson['id'];
@@ -16,6 +14,14 @@ export class Handler {
     return handler;
   }
   /* tslint:enable:no-string-literal */
+
+  /* ===================================== Member Fields ====================================== */
+
+  public handlerId: number;
+  public companyName: string;
+  public email: string;
+
+  /* ===================================== Member Methods ===================================== */
 
   public getString(field: string): String {
     return field != null

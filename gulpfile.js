@@ -46,5 +46,5 @@ gulp.task('copy:assets', ['clean'], function() {
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('build', ['compile', 'copy:libs', 'copy:assets']);
+gulp.task('build', ['tslint', 'compile', 'copy:libs', 'copy:assets']);
 gulp.task('default', ['build']);

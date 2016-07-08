@@ -7,14 +7,14 @@ import { Handler } from './handler.model';
 @Injectable()
 export class HandlerService {
   private handlersUrl: string;
- 
+
   constructor(private http: HttpClient,
               private config: Config,
               private logger: Logger) {
     this.handlersUrl = config.getServerDomain() + '/handler';
   }
 
-  getCurrentHandler() {
+  public getCurrentHandler() {
     return this.http.get(this.handlersUrl)
       .map(res => res.json())
       .map(res => Handler.decode(res))
