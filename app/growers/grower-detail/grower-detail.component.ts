@@ -9,7 +9,7 @@ import { Grower, GrowerService } from '../shared/index';
 @Component({
   directives: [RouterLink, ROUTER_DIRECTIVES],
   providers: [BidService],
-  styleUrls: ['app/growers/grower-detail/grower-detail.component.scss'],
+  styleUrls: ['app/growers/grower-detail/grower-detail.component.css'],
   templateUrl: 'app/growers/grower-detail/grower-detail.component.html',
 })
 

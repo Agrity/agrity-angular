@@ -11,7 +11,7 @@ import { Grower, GrowerService } from '../../growers/shared/index';
 @Component({
   directives: [ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
-              'app/bids/bid-create/bid-create.component.scss'],
+              'app/bids/bid-create/bid-create.component.css'],
   templateUrl: 'app/bids/bid-create/bid-create.component.html',
 })
 
