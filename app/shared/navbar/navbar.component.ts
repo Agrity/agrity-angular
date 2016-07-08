@@ -34,7 +34,7 @@ export class NavBarComponent implements OnInit {
     this.handlerService.getCurrentHandler()
         .subscribe(
             handler => {
-              this.handler = Handler.decode(handler);
+              this.handler = handler;
             },
             error => {
               this.logger.handleHttpError(error);

@@ -19,10 +19,10 @@ export class Bid {
 
   growerIds: number[];
 
-  acceptedGrowers: number[];
-  rejectedGrowers: number[];
-  callRequestedGrowers: number[];
-  noResponseGrowers: number[];
+  acceptedGrowers: Grower[];
+  rejectedGrowers: Grower[];
+  callRequestedGrowers: Grower[];
+  noResponseGrowers: Grower[];
 
   currentlyOpen: boolean;
 
@@ -70,6 +70,10 @@ export class Bid {
     bid.endPaymentDate = bidJson['endPaymentDateAsString'];
     bid.comment = bidJson['comment'];
     bid.currentlyOpen = bidJson['offerCurrentlyOpen'];
+    bid.acceptedGrowers = this.decodeBidAcceptGrowers(bidJson); 
+    bid.acceptedGrowers = this.decodeBidRejectGrowers(bidJson); 
+    bid.acceptedGrowers = this.decodeBidCallRequestedGrowers(bidJson); 
+    bid.acceptedGrowers = this.decodeBidNoResponseGrowers(bidJson); 
 
     return bid;
   }
