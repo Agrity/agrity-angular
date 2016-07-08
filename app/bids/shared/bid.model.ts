@@ -30,9 +30,9 @@ export class Bid {
     bid.comment = bidJson['comment'];
     bid.currentlyOpen = bidJson['offerCurrentlyOpen'];
     bid.acceptedGrowers = this.decodeBidAcceptGrowers(bidJson);
-    bid.acceptedGrowers = this.decodeBidRejectGrowers(bidJson);
-    bid.acceptedGrowers = this.decodeBidCallRequestedGrowers(bidJson);
-    bid.acceptedGrowers = this.decodeBidNoResponseGrowers(bidJson);
+    bid.rejectedGrowers = this.decodeBidRejectGrowers(bidJson);
+    bid.callRequestedGrowers = this.decodeBidCallRequestedGrowers(bidJson);
+    bid.noResponseGrowers = this.decodeBidNoResponseGrowers(bidJson);
 
     return bid;
   }

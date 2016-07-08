@@ -72,7 +72,7 @@ export class GrowerCreateComponent implements OnInit {
   protected save() {
     this.growerService.addGrower(this.grower).subscribe(x => {
       this.grower = Grower.decode(x);
-      this.router.navigateByUrl('/users');
+      this.router.navigateByUrl('/growers');
     });
   }
 }

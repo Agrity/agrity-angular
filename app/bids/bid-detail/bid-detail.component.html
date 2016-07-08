@@ -16,36 +16,36 @@
 				<div class="contact-detail">
 
               <div>
-                <button type="button" (click)="viewUser(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
-                Accepted Growers
-                  <li *ngFor="let grower of bid.acceptedGrowers">
+                <p class="grower-catagory-name">  Accepted Growers </p>
+                <button *ngFor="let grower of bid.acceptedGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
+                  <li>
+                    <p>{{ grower.firstName }} {{ grower.lastName }}</p>
+                  </li>
+                </button>
+              </div>
+
+              <div>
+                <p class="grower-catagory-name">  Call Requested Growers </p>
+                <button *ngFor="let grower of bid.callRequestedGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
+                  <li >
                     <p >{{ grower.firstName }} {{ grower.lastName }}</p>
                   </li>
                 </button>
               </div>
 
               <div>
-                <button type="button" (click)="viewUser(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
-                Call Requested Growers
-                  <li *ngFor="let grower of bid.callRequestedGrowers">
-                    <p >{{ grower.firstName }} {{ grower.lastName }}</p>
-                  </li>
-                </button>
-              </div>
-
-              <div>
-                <button type="button" (click)="viewUser(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
-                Rejected Growers
-                  <li *ngFor="let grower of bid.rejectedGrowers">
+                <p class="grower-catagory-name">  Rejected Growers </p>
+                <button *ngFor="let grower of bid.rejectedGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
+                  <li>
                     <p >{{ grower.firstName }} {{ grower.lastName }}</p>
                   </li>
                 </button>
               </div> 
               
               <div>
-                <button type="button" (click)="viewUser(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
-                No Response Growers
-                  <li *ngFor="let grower of bid.noResponseGrowers">
+                <p class="grower-catagory-name">  No Response Growers </p>
+                <button *ngFor="let grower of bid.noResponseGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
+                  <li>
                     <p >{{ grower.firstName }} {{ grower.lastName }}</p>
                   </li>
                 </button>

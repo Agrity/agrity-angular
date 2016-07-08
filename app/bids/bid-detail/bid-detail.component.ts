@@ -51,4 +51,9 @@ export class BidDetailComponent implements OnInit {
           this.config.forceLogout();
         });
   }
+
+  /* NOTE: Referenced in .html file. */
+  protected viewGrower(growerId: number): void {
+    this.router.navigateByUrl('/growers/' + growerId);
+  }
 }

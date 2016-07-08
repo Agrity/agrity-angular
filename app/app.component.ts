@@ -34,11 +34,11 @@ import { BidCreateComponent } from './bids/bid-create/index';
   { component: BidDetailComponent, name: 'View Bid', path: '/bids/:id' },
   { component: BidCreateComponent, name: 'Make Bid', path: '/bids/new' },
 
-  { component: GrowerListComponent, name: 'ViewUsers', path: '/users' },
-  { component: GrowerDetailComponent, name: 'ViewUser', path: '/users/:id' },
-  { component: GrowerCreateComponent, name: 'NewGrower', path: '/users/new' },
+  { component: GrowerListComponent, name: 'View Growers', path: '/growers' },
+  { component: GrowerDetailComponent, name: 'View Grower', path: '/growers/:id' },
+  { component: GrowerCreateComponent, name: 'New Grower', path: '/growers/new' },
 
-  { component: NotFoundComponent, name: 'NotFound', path: '/not-found' },
+  { component: NotFoundComponent, name: 'Not Found', path: '/not-found' },
   { name: 'Other', path: '/*other', redirectTo: ['Home'] },
 ])
 @Component({

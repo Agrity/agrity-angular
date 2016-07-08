@@ -50,6 +50,7 @@ export class BidListComponent implements OnInit {
           error => {
             this.logger.handleHttpError(error);
             this.config.forceLogout();
+
         });
   }
 
