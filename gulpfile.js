@@ -32,7 +32,7 @@ gulp.task('compile', ['clean'], function () {
 gulp.task('sass', ['clean'], function () {
   return gulp.src('app/**/*.scss')
     .pipe(sourcemaps.init())
-      .pipe(sass.sync().on('error', sass.logError))
+    .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/app'));
 });
