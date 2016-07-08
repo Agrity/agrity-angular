@@ -33,7 +33,7 @@ export class BidService {
   public getBid(bidId: number): Observable<Bid> {
     return this.http.get(this.getBidUrl(bidId))
       .map(res => res.json())
-      .map(res => Bid.decode(res))
+      .map(json => Bid.decode(json))
       .catch(this.logger.handleHttpError);
   }
 

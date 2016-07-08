@@ -32,6 +32,7 @@ export class Bid {
     bid.acceptedGrowers = this.decodeBidAcceptGrowers(bidJson);
     bid.rejectedGrowers = this.decodeBidRejectGrowers(bidJson);
     bid.callRequestedGrowers = this.decodeBidCallRequestedGrowers(bidJson);
+    bid.expirationTime = new Date(bidJson['expirationTimeAsString']);
     bid.noResponseGrowers = this.decodeBidNoResponseGrowers(bidJson);
 
     return bid;
@@ -92,6 +93,8 @@ export class Bid {
   public rejectedGrowers: Grower[];
   public callRequestedGrowers: Grower[];
   public noResponseGrowers: Grower[];
+
+  public expirationTime: Date;
 
   public currentlyOpen: boolean;
 
