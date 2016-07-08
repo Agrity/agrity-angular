@@ -1,4 +1,5 @@
 import { Grower } from '../../growers/shared/index';
+import { BidStatus } from './index';
 
 export class Bid {
 
@@ -28,7 +29,29 @@ export class Bid {
     bid.startPaymentDate = bidJson['startPaymentDateAsString'];
     bid.endPaymentDate = bidJson['endPaymentDateAsString'];
     bid.comment = bidJson['comment'];
+
     bid.currentlyOpen = bidJson['offerCurrentlyOpen'];
+    let bidStatus: string = bidJson['offerStatus']
+
+    switch (bidStatus) 
+    {
+      case 'ACCEPTED':
+        bid.bidStatus = BidStatus.ACCEPTED;
+        console.log("bid set to open");
+        break;
+      case 'REJECTED':
+        bid.bidStatus = BidStatus.REJECTED;
+        break;
+      case 'PARTIAL':
+        bid.bidStatus = BidStatus.PARTIAL;
+        break;
+      case 'ACCEPTED': 
+        bid.bidStatus = BidStatus.ACCEPTED;
+        break;
+      default: console.log('BidStatus Error')
+
+    }
+
     bid.acceptedGrowers = this.decodeBidAcceptGrowers(bidJson);
     bid.rejectedGrowers = this.decodeBidRejectGrowers(bidJson);
     bid.callRequestedGrowers = this.decodeBidCallRequestedGrowers(bidJson);
@@ -97,6 +120,8 @@ export class Bid {
   public expirationTime: Date;
 
   public currentlyOpen: boolean;
+  public bidStatus: BidStatus;
+
 
   /* ===================================== Member Methods ===================================== */
 

@@ -4,7 +4,6 @@ const typescript = require('gulp-typescript');
 const del = require('del');
 const sourcemaps = require('gulp-sourcemaps');
 const tslint = require('gulp-tslint');
-const sass = require('gulp-sass');
 
 const tscConfig = require('./tsconfig.json');
 
@@ -29,18 +28,6 @@ gulp.task('compile', ['clean'], function () {
     .pipe(gulp.dest('dist/app'));
 });
 
-gulp.task('sass', ['clean'], function () {
-  return gulp.src('app/**/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('dist/app'));
-});
-
-gulp.task('sass:watch', function () {
-  gulp.watch('app/**/*.scss', ['sass']);
-});
-
 // copy node modules to libs folder.
 gulp.task('copy:libs', ['clean'], function() {
   // TODO Verify only need js files.
@@ -55,10 +42,10 @@ gulp.task('copy:assets', ['clean'], function() {
                    'index.html',
                    'styles.css',
                    'systemjs.config.js',
-                   '!app/**/*.ts',
-                   '!app/**/*.scss'], { base : './' })
+                   '!app/**/*.ts'], { base : './' })
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('build', ['tslint', 'compile', 'sass', 'copy:libs', 'copy:assets']);
+gulp.task('build', ['tslint', 'compile', 'copy:libs', 'copy:assets']);
+gulp.task('build', ['tslint', 'compile', 'copy:libs', 'copy:assets']);
 gulp.task('default', ['build']);
