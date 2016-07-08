@@ -44,7 +44,7 @@ export class GrowerDetailComponent implements OnInit {
     this.growerService.getGrower(this.growerId)
       .subscribe(
         grower => {
-          this.grower = grower; 
+          this.grower = grower;
         },
         error => {
           this.logger.handleHttpError(error);

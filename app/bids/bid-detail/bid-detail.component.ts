@@ -3,7 +3,6 @@ import { RouterLink, ROUTER_DIRECTIVES, RouteParams, Router }
     from '@angular/router-deprecated';
 
 import { Config, Logger } from '../../shared/index';
-import { Grower } from '../../growers/shared/index';
 import { Bid, BidService } from '../shared/index';
 
 @Component({
@@ -18,11 +17,6 @@ export class BidDetailComponent implements OnInit {
   private bidId: number;
 
   private bid: Bid = new Bid();
-
-  private acceptedGrowers: Grower[];
-  private rejectedGrowers: Grower[];
-  private callRequestedGrowers: Grower[];
-  private noResponseGrowers: Grower[];
 
   constructor(
       params: RouteParams,
