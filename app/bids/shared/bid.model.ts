@@ -1,6 +1,9 @@
 import { Grower } from '../../growers/shared/index';
+import { OfferStatus } from './bidStatus';
 
 export class Bid {
+
+ 
 
   /* ===================================== Static Methods ===================================== */
 
@@ -28,7 +31,12 @@ export class Bid {
     bid.startPaymentDate = bidJson['startPaymentDateAsString'];
     bid.endPaymentDate = bidJson['endPaymentDateAsString'];
     bid.comment = bidJson['comment'];
+
     bid.currentlyOpen = bidJson['offerCurrentlyOpen'];
+    bid.offerStatus = bidJson['offerStatus'];
+    console.log(bidJson['offerStatus']);
+    console.log(bid.offerStatus);
+
     bid.acceptedGrowers = this.decodeBidAcceptGrowers(bidJson);
     bid.rejectedGrowers = this.decodeBidRejectGrowers(bidJson);
     bid.callRequestedGrowers = this.decodeBidCallRequestedGrowers(bidJson);
@@ -94,6 +102,8 @@ export class Bid {
   public noResponseGrowers: Grower[];
 
   public currentlyOpen: boolean;
+  public offerStatus: OfferStatus; 
+
 
   /* ===================================== Member Methods ===================================== */
 

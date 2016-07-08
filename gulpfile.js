@@ -47,4 +47,5 @@ gulp.task('copy:assets', ['clean'], function() {
 });
 
 gulp.task('build', ['tslint', 'compile', 'copy:libs', 'copy:assets']);
+gulp.task('build', ['tslint', 'compile', 'copy:libs', 'copy:assets']);
 gulp.task('default', ['build']);
