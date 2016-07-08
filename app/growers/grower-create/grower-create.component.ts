@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ControlGroup, Validators } from '@angular/common';
-import { CanDeactivate, Router, RouteParams,RouterLink, ROUTER_DIRECTIVES, RouteConfig } 
+import { FormBuilder, ControlGroup } from '@angular/common';
+import { Router, RouteParams, RouterLink, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
 import { Config, CustomValidators, Logger }
     from '../../shared/index';
 
-import { Grower, GrowerService, Phone } from '../shared/index';
+import { Grower, GrowerService } from '../shared/index';
 
 @Component({
-  templateUrl: 'app/growers/grower-create/grower-create.component.html',
-  styleUrls: ['app/growers/grower-create/grower-create.component.scss'],
   directives: [RouterLink, ROUTER_DIRECTIVES],
+  styleUrls: ['app/growers/grower-create/grower-create.component.scss'],
+  templateUrl: 'app/growers/grower-create/grower-create.component.html',
 })
 
 export class GrowerCreateComponent implements OnInit {
@@ -28,32 +28,33 @@ export class GrowerCreateComponent implements OnInit {
     private logger: Logger
   ) {
     this.newgrowerform = fb.group({
+      email: ['', CustomValidators.email],
       first_name: ['', CustomValidators.isName],
       last_name: ['', CustomValidators.isName],
-      email: ['', CustomValidators.email],
       phone_1: ['', CustomValidators.phoneThree],
       phone_2: ['', CustomValidators.phoneThree],
-      phone_3: ['', CustomValidators.phoneFour]
+      phone_3: ['', CustomValidators.phoneFour],
     });
   }
 
-  ngOnInit(){
+  public ngOnInit() {
 
     if (!this.config.loggedIn()) {
-      alert("Please Login. If this issue continues try logging out, then logging back in.");
+      alert('Please Login. If this issue continues try logging out, then logging back in.');
       this.config.forceLogout();
-      return;   
+      return;
     }
 
-    var id = this.routeParams.get("id");
+    let id = this.routeParams.get('id');
 
-    this.title = id ? "Edit Grower" : "New Grower";
+    this.title = id ? 'Edit Grower' : 'New Grower';
 
-    if (!id)
+    if (!id) {
       return;
+    }
 
     // TODO Determine if edit grower here or in seperate component.
-    //this.userService.getUser(+id)
+    // this.userService.getUser(+id)
     //  .subscribe(
     //    grower => this.grower = grower,
     //    error => {
@@ -62,7 +63,7 @@ export class GrowerCreateComponent implements OnInit {
     //    });
   }
 
-  save(){
+  save() {
     this.growerService.addGrower(this.grower).subscribe(x => {
       this.grower = Grower.decode(x);
       this.router.navigateByUrl('/users');

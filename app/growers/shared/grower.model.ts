@@ -1,11 +1,11 @@
 import { Phone } from './index';
 
 export class Grower {
-  grower_id: number;
-  first_name: string;
-  last_name: string;
-  email: string; 
-  phone: Phone = new Phone(); 
+  growerId: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: Phone = new Phone();
 
   // NOTE: Temporary hack to allow selection from list.
   //       Do not send, or expect to recieve, to/from server.
@@ -15,48 +15,51 @@ export class Grower {
     // NOTE: Play Framework won't recognize fields that aren't changed to
     //       String class. Unsure why.
     return JSON.stringify({
-      'first_name': this.getString(this.first_name),
-      'last_name': this.getString(this.last_name),
+      'first_name': this.getString(this.firstName),
+      'last_name': this.getString(this.lastName),
       'email_addresses': [this.getString(this.email)],
-      'phone_numbers': [this.phone.getAsString().toString()]
+      'phone_numbers': [this.phone.getAsString().toString()],
     });
   }
 
+  /* Disabling no-string for processing object literal. */
+  /* tslint:disable:no-string-literal */
   static decode(growerJson: Object): Grower {
-    var grower: Grower  = new Grower();
-    grower.grower_id = growerJson['id'];
-    grower.first_name = growerJson['firstName'];
-    grower.last_name = growerJson['lastName'];
+    let grower: Grower  = new Grower();
+    grower.growerId = growerJson['id'];
+    grower.firstName = growerJson['firstName'];
+    grower.lastName = growerJson['lastName'];
 
-    var emailAddressStrings = growerJson['emailAddressStrings'];
+    let emailAddressStrings = growerJson['emailAddressStrings'];
     if (emailAddressStrings != null) {
       // NOTE: Temporary hack until front-end supports multiple emails.
-      var emailString: string = emailAddressStrings[0];
-      grower.email = emailString != null 
+      let emailString: string = emailAddressStrings[0];
+      grower.email = emailString != null
           ? emailString
           : null;
     } else {
       grower.email = null;
     }
 
-    var phoneNumberStrings = growerJson['phoneNumsStrings'];
+    let phoneNumberStrings = growerJson['phoneNumsStrings'];
     if (phoneNumberStrings != null) {
       // NOTE: Temporary hack until front-end supports multiple emails.
-      var phoneString: string = phoneNumberStrings[0];
+      let phoneString: string = phoneNumberStrings[0];
       if (phoneString != null) {
-        grower.phone.phone_1 = phoneString.substring(2,5);
-        grower.phone.phone_2 = phoneString.substring(5,8);
-        grower.phone.phone_3 = phoneString.substring(8,12);
+        grower.phone.phoneOne = phoneString.substring(2, 5);
+        grower.phone.phoneTwo = phoneString.substring(5, 8);
+        grower.phone.phoneThree = phoneString.substring(8, 12);
       } else {
         grower.phone = null;
       }
-    }  
+    }
     return grower;
   }
+  /* tslint:enable:no-string-literal */
 
   private getString(field: string): String {
     return field != null
       ? field.toString()
-      : "";
+      : '';
   }
 }
