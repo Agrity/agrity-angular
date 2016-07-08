@@ -8,7 +8,7 @@ import { Bid, BidService } from '../shared/index';
 @Component({
   directives: [RouterLink, ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
-              'app/bids/bid-detail/bid-detail.component.scss'],
+              'app/bids/bid-detail/bid-detail.component.css'],
   templateUrl: 'app/bids/bid-detail/bid-detail.component.html',
 })
 

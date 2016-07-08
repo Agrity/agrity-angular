@@ -8,7 +8,7 @@ import { Grower, GrowerService } from '../shared/index';
 @Component({
   directives: [RouterLink, ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
-              'app/growers/grower-list/grower-list.component.scss'],
+              'app/growers/grower-list/grower-list.component.css'],
   templateUrl: 'app/growers/grower-list/grower-list.component.html',
 })
 
