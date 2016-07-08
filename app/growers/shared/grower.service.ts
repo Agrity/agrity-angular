@@ -32,7 +32,7 @@ export class GrowerService {
     
   getGrower(growerId: number): Observable<Grower> {
     if (growerId == null) {
-      this.logger.handleError("Attempted to Grower with null id.");
+      this.logger.handleError("Attempted to get Grower with null id.");
       return null;
     }
 
