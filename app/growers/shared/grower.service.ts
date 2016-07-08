@@ -24,7 +24,6 @@ export class GrowerService {
         for (let idx in growersJson) {
           growers.push(Grower.decode(growersJson[idx]));
         }
-        console.log(growers); 
         return growers;
       })
       .catch(this.logger.handleHttpError);
