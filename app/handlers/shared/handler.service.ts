@@ -17,6 +17,7 @@ export class HandlerService {
   getCurrentHandler() {
     return this.http.get(this.handlersUrl)
       .map(res => res.json())
+      .map(res => Handler.decode(res))
       .catch(this.logger.handleHttpError);
   }
 

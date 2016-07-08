@@ -39,22 +39,20 @@ export class BidListComponent implements OnInit {
 
     // Load Bids
     this.bids = [];
+    this.closedBids = [];
+    this.openBids = [];
     this._bidService.getBids()
-      .subscribe(
-        bids => {
-          for (var bidIdx in bids) {
-            this.bids.push(Bid.decode(bids[bidIdx]));
-          }
-          this.openBids = this.bids
-            .filter(bid => bid.currentlyOpen); 
-          this.closedBids = this.bids
-            .filter(bid => !bid.currentlyOpen);
+        .subscribe(
+          bids => { this.bids = bids; 
+                    this.openBids = this.bids
+                        .filter(bid => bid.currentlyOpen); 
+                    this.closedBids = this.bids
+                        .filter(bid => !bid.currentlyOpen);
         },
         error => {
           this.logger.handleHttpError(error);
           this._config.forceLogout();
         });
-
   } 
 
   viewBid(bid_id: number): void {

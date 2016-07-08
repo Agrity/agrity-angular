@@ -55,10 +55,7 @@ export class GrowerDetailComponent implements OnInit {
     this.bids = [];
     this.bidService.getGrowerBids(this.growerId)
       .subscribe(
-        bids => {
-          for (var bidIdx in bids) {
-            this.bids.push(Bid.decode(bids[bidIdx]));
-          }
+        bids => { this.bids = bids;
         },
         error => {
           this.logger.handleHttpError(error);
