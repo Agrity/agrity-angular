@@ -16,16 +16,16 @@
 				<div class="contact-detail">
 
               <div>
-                Accepted Growers
+                <p class="grower-catagory-name">  Accepted Growers </p>
                 <button *ngFor="let grower of bid.acceptedGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
                   <li>
-                    <p >{{ grower.firstName }} {{ grower.lastName }}</p>
+                    <p>{{ grower.firstName }} {{ grower.lastName }}</p>
                   </li>
                 </button>
               </div>
 
               <div>
-                Call Requested Growers
+                <p class="grower-catagory-name">  Call Requested Growers </p>
                 <button *ngFor="let grower of bid.callRequestedGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
                   <li >
                     <p >{{ grower.firstName }} {{ grower.lastName }}</p>
@@ -34,7 +34,7 @@
               </div>
 
               <div>
-                Rejected Growers
+                <p class="grower-catagory-name">  Rejected Growers </p>
                 <button *ngFor="let grower of bid.rejectedGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
                   <li>
                     <p >{{ grower.firstName }} {{ grower.lastName }}</p>
@@ -43,8 +43,8 @@
               </div> 
               
               <div>
-                No Response Growers
-                <button *ngFor="let grower of bid.noResponseGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse"
+                <p class="grower-catagory-name">  No Response Growers </p>
+                <button *ngFor="let grower of bid.noResponseGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
                   <li>
                     <p >{{ grower.firstName }} {{ grower.lastName }}</p>
                   </li>
