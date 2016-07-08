@@ -15,7 +15,6 @@
       	<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
 				<div class="contact-detail">
               <div *ngFor="let grower of acceptedGrowers">
-<<<<<<< HEAD:app/bids/bid-detail/bid-detail.component.html
               <button type="button" class="btn btn-info">Accepted Growers<li><p>{{ grower.first_name }} {{ grower.last_name }}</p></li></button>
               </div>  
 
@@ -29,21 +28,19 @@
 
               <div *ngFor="let grower of noResponseGrowers">
 							<button type="button" class="btn btn-info">No Response Growers<li><p>{{ grower.first_name }} {{ grower.last_name }}</p></li></button>
-=======
-              <button type="button" (click)="viewUser(grower.grower_id)" class="btn btn-info" data-toggle="sgCollapse">Accepted Growers<li><p>{{ grower.first_name }} {{ grower.last_name }}</p></li></button>
+              <button type="button" (click)="viewUser(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">Accepted Growers<li><p>{{ grower.first_name }} {{ grower.last_name }}</p></li></button>
               </div>  
 
               <div *ngFor="let grower of rejectedGrowers">
-              <button type="button" (click)="viewUser(grower.grower_id)" class="btn btn-info" data-toggle="sgCollapse">Rejected Growers<li><p>{{ grower.first_name }} {{ grower.last_name }}</p></li></button>
+              <button type="button" (click)="viewUser(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">Rejected Growers<li><p>{{ grower.first_name }} {{ grower.last_name }}</p></li></button>
               </div>
                 
               <div *ngFor="let grower of callRequestedGrowers">
-              <button type="button" (click)="viewUser(grower.grower_id)" class="btn btn-info" data-toggle="sgCollapse">Call Requested Growers<li><p>{{ grower.first_name }} {{ grower.last_name }}</p></li></button>
+              <button type="button" (click)="viewUser(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">Call Requested Growers<li><p>{{ grower.first_name }} {{ grower.last_name }}</p></li></button>
               </div>
 
               <div *ngFor="let grower of noResponseGrowers">
-							<button type="button" (click)="viewUser(grower.grower_id)" class="btn btn-info" data-toggle="sgCollapse">No Response Growers<li><p>{{ grower.first_name }} {{ grower.last_name }}</p></li></button>
->>>>>>> master:app/bids/view-bid.component.html
+							<button type="button" (click)="viewUser(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">No Response Growers<li><p>{{ grower.first_name }} {{ grower.last_name }}</p></li></button>
                 </div>
 				</div>
 			</div>
