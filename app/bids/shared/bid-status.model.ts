@@ -1,4 +1,4 @@
-  export enum BidStatus { 
+  export enum BidStatus {
     OPEN,
     ACCEPTED,
     REJECTED,

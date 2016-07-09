@@ -3,7 +3,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
-  styleUrls: ['app/single-pages/home.component.css'],
+  styleUrls: ['app/single-pages/home.component.scss'],
   templateUrl: 'app/single-pages/home.component.html',
 })
 

@@ -3,12 +3,12 @@ import { Router, RouterLink, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
 import { Config, Logger } from '../../shared/index';
-import { Bid, BidService } from '../shared/index';
+import { Bid, BidService, BidStatus } from '../shared/index';
 
 @Component({
   directives: [RouterLink, ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
-              'app/bids/bid-list/bid-list.component.css'],
+              'app/bids/bid-list/bid-list.component.scss'],
   templateUrl: 'app/bids/bid-list/bid-list.component.html',
 })
 
@@ -57,5 +57,24 @@ export class BidListComponent implements OnInit {
   /* NOTE: Called in .html file. */
   protected viewBid(bidId: number): void {
     this.router.navigateByUrl('/bids/' + bidId);
+  }
+
+  protected isAccepted(bid: Bid): boolean {
+    if (bid.bidStatus === BidStatus.ACCEPTED) {
+      return true;
+    }
+    return false;
+  }
+  protected isRejected(bid: Bid): boolean {
+    if (bid.bidStatus === BidStatus.REJECTED) {
+      return true;
+    }
+    return false;
+  }
+  protected isPartial(bid: Bid): boolean {
+    if (bid.bidStatus === BidStatus.PARTIAL) {
+      return true;
+    }
+    return false;
   }
 }
