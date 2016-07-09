@@ -9,7 +9,7 @@ import { Config, Logger } from '../index';
     directives: [RouterLink, ROUTER_DIRECTIVES],
     providers: [HandlerService],
     selector: 'sg-navbar',
-    styleUrls: ['app/shared/navbar/navbar.component.scss'],
+    styleUrls: ['app/shared/navbar/navbar.component.css'],
     templateUrl: 'app/shared/navbar/navbar.component.html',
 })
 
