@@ -31,13 +31,11 @@ export class Bid {
     bid.comment = bidJson['comment'];
 
     bid.currentlyOpen = bidJson['offerCurrentlyOpen'];
-    let bidStatus: string = bidJson['offerStatus']
+    let bidStatus: string = bidJson['offerStatus'];
 
-    switch (bidStatus) 
-    {
+    switch (bidStatus) {
       case 'ACCEPTED':
         bid.bidStatus = BidStatus.ACCEPTED;
-        console.log("bid set to open");
         break;
       case 'REJECTED':
         bid.bidStatus = BidStatus.REJECTED;
@@ -45,11 +43,9 @@ export class Bid {
       case 'PARTIAL':
         bid.bidStatus = BidStatus.PARTIAL;
         break;
-      case 'ACCEPTED': 
-        bid.bidStatus = BidStatus.ACCEPTED;
+      default:
+        bid.bidStatus = null;
         break;
-      default: console.log('BidStatus Error')
-
     }
 
     bid.acceptedGrowers = this.decodeBidAcceptGrowers(bidJson);
@@ -121,7 +117,6 @@ export class Bid {
 
   public currentlyOpen: boolean;
   public bidStatus: BidStatus;
-
 
   /* ===================================== Member Methods ===================================== */
 
