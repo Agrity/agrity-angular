@@ -43,9 +43,6 @@ export class Bid {
       case 'PARTIAL':
         bid.bidStatus = BidStatus.PARTIAL;
         break;
-      case 'ACCEPTED':
-        bid.bidStatus = BidStatus.ACCEPTED;
-        break;
       default:
         bid.bidStatus = null;
         break;
