@@ -8,8 +8,8 @@ import { Grower, GrowerService } from '../shared/index';
 @Component({
   directives: [RouterLink, ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
-              'app/growers/grower-list/grower-list.component.css'],
-  templateUrl: 'app/growers/grower-list/grower-list.component.html',
+              'app/handler/growers/grower-list/grower-list.component.css'],
+  templateUrl: 'app/handler/growers/grower-list/grower-list.component.html',
 })
 
 export class GrowerListComponent implements OnInit {

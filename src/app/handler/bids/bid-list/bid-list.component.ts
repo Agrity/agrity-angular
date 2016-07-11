@@ -8,8 +8,8 @@ import { Bid, BidService, BidStatus } from '../shared/index';
 @Component({
   directives: [RouterLink, ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
-              'app/bids/bid-list/bid-list.component.css'],
-  templateUrl: 'app/bids/bid-list/bid-list.component.html',
+              'app/handler/bids/bid-list/bid-list.component.css'],
+  templateUrl: 'app/handler/bids/bid-list/bid-list.component.html',
 })
 
 export class BidListComponent implements OnInit {
