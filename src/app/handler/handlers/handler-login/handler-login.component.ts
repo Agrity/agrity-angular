@@ -10,8 +10,8 @@ import { HandlerLoginService } from './handler-login.service';
 @Component({
     directives: [RouterLink, ROUTER_DIRECTIVES],
     providers: [],
-    styleUrls: ['app/handlers/handler-login/handler-login.component.css'],
-    templateUrl: 'app/handlers/handler-login/handler-login.component.html',
+    styleUrls: ['app/handler/handlers/handler-login/handler-login.component.css'],
+    templateUrl: 'app/handler/handlers/handler-login/handler-login.component.html',
 })
 
 export class HandlerLoginComponent {

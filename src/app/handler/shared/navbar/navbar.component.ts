@@ -9,8 +9,8 @@ import { Config, Logger } from '../index';
     directives: [RouterLink, ROUTER_DIRECTIVES],
     providers: [HandlerService],
     selector: 'sg-navbar',
-    styleUrls: ['app/shared/navbar/navbar.component.css'],
-    templateUrl: 'app/shared/navbar/navbar.component.html',
+    styleUrls: ['app/handler/shared/navbar/navbar.component.css'],
+    templateUrl: 'app/handler/shared/navbar/navbar.component.html',
 })
 
 export class NavBarComponent implements OnInit {

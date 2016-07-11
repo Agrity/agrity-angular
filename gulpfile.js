@@ -14,7 +14,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('tslint', function() {
-  return gulp.src('app/**/*.ts')
+  return gulp.src('src/**/*.ts')
     .pipe(tslint())
     .pipe(tslint.report('verbose'));
 });
@@ -22,23 +22,23 @@ gulp.task('tslint', function() {
 // TypeScript compile
 gulp.task('compile', ['clean'], function () {
   return gulp
-    .src(['app/**/*.ts', "typings/browser.d.ts"])
+    .src(['src/**/*.ts', "typings/browser.d.ts"])
     .pipe(sourcemaps.init())
         .pipe(typescript(tscConfig.compilerOptions))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('dist/app'));
+    .pipe(gulp.dest('dist/src'));
 });
 
 gulp.task('sass', ['clean'], function () {
-  return gulp.src('app/**/*.scss')
+  return gulp.src('src/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('dist/app'));
+    .pipe(gulp.dest('dist/src'));
 });
 
 gulp.task('sass:watch', function () {
-  gulp.watch('app/**/*.scss', ['sass']);
+  gulp.watch('src/**/*.scss', ['sass']);
 });
 
 // copy node modules to libs folder.
@@ -50,13 +50,13 @@ gulp.task('copy:libs', ['clean'], function() {
 
 // copy static assets - i.e. non TypeScript compiled source
 gulp.task('copy:assets', ['clean'], function() {
-  return gulp.src(['app/**/*',
+  return gulp.src(['src/**/*',
                    'assets/**/*',
                    'index.html',
                    'styles.css',
                    'systemjs.config.js',
-                   '!app/**/*.ts',
-                   '!app/**/*.scss'], { base : './' })
+                   '!src/**/*.ts',
+                   '!src/**/*.scss'], { base : './' })
     .pipe(gulp.dest('dist'))
 });
 

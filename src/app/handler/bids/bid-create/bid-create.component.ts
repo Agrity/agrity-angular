@@ -11,8 +11,8 @@ import { Grower, GrowerService } from '../../growers/shared/index';
 @Component({
   directives: [ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
-              'app/bids/bid-create/bid-create.component.css'],
-  templateUrl: 'app/bids/bid-create/bid-create.component.html',
+              'app/handler/bids/bid-create/bid-create.component.css'],
+  templateUrl: 'app/handler/bids/bid-create/bid-create.component.html',
 })
 
 export class BidCreateComponent implements OnInit {
