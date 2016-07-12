@@ -9,21 +9,21 @@
 			    <div np-app="form" class="col-md-12 col-sm-12">
 					
 					<div class="form-group">
-					<input type="text" [(ngModel)]="grower.firstName" #first_name="ngForm" ngControl="first_name" class="form-control" placeholder="First Name" name="first name" id="firstname">
+					<input type="text" [(ngModel)]="grower.firstName" #first_name="ngForm" ngControl="first_name" class="form-control" placeholder="First Name" name="first name" id="firstname" autocomplete="off">
 					<div *ngIf="first_name.touched && !first_name.valid" class="alert alert-danger">
                         Please Input a Valid First Name.
                     </div>
 					</div>
 					
 					<div class="form-group">
-					<input type="text" [(ngModel)]="grower.lastName" #last_name="ngForm" ngControl="last_name" class="form-control" placeholder="Last Name" name="last name" id="lastname">
+					<input type="text" [(ngModel)]="grower.lastName" #last_name="ngForm" ngControl="last_name" class="form-control" placeholder="Last Name" name="last name" id="lastname" autocomplete="off">
 					<div *ngIf="last_name.touched && !last_name.valid" class="alert alert-danger">
                         Please Input a Valid Last Name.
                     </div>
 					</div>
 					
 					<div class="form-group">
-                    <input type="email" [(ngModel)]="grower.email" #email="ngForm" ngControl="email" class="form-control" placeholder="Email" name="email">
+                    <input type="email" [(ngModel)]="grower.email" #email="ngForm" ngControl="email" class="form-control" placeholder="Email" name="email" autocomplete="off">
                     <div *ngIf="email.touched && !email.valid" class="alert alert-danger">
                         Please Input a Valid Email.
                     </div>
@@ -32,9 +32,9 @@
 
 					<div class="form-group">
 						<p>Phone Number</p>
-					<input style="width:100px;" [(ngModel)]="grower.phone.phoneOne" #phone_1="ngForm" ngControl="phone_1" step="1"  class="form-control1" placeholder="(xxx)" name="phone 1" id="phone1">					
-                	<input style="width:100px;" [(ngModel)]="grower.phone.phoneTwo" #phone_2="ngForm" ngControl="phone_2" class="form-control1" placeholder="xxx-" name="phone 2">
-					<input style="width:100px;" [(ngModel)]="grower.phone.phoneThree" #phone_3="ngForm" ngControl="phone_3" class="form-control1" placeholder="xxxx" name="phone 3" id="phone3">
+					<input style="width:100px;" [(ngModel)]="grower.phone.phoneOne" #phone_1="ngForm" ngControl="phone_1" step="1"  class="form-control1" placeholder="(xxx)" name="phone 1" id="phone1" autocomplete="off">					
+                	<input style="width:100px;" [(ngModel)]="grower.phone.phoneTwo" #phone_2="ngForm" ngControl="phone_2" class="form-control1" placeholder="xxx-" name="phone 2" autocomplete="off">
+					<input style="width:100px;" [(ngModel)]="grower.phone.phoneThree" #phone_3="ngForm" ngControl="phone_3" class="form-control1" placeholder="xxxx" name="phone 3" id="phone3" autocomplete="off">
 					<div *ngIf="(phone_1.touched && !phone_1.valid) || (phone_2.touched && !phone_2.valid) || (phone_3.touched && !phone_3.valid)" class="alert alert-danger">
                         Please Input a Valid Phone Number.
                     </div>

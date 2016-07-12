@@ -60,21 +60,21 @@
                         </div>
 
                         <div id="aol-checkbox" style="width:20%; float:right; color:white; vertical-align:middle;">
-                          <input type="checkbox" [(ngModel)]="aol">
+                          <input type="checkbox" [(ngModel)]="aol" autocomplete="off">
                           AOL
                         </div>
 
                         <div class="form-group">										
-                            <input [(ngModel)]="bid.pricePerPound" #price_per_pound="ngForm" ngControl="pricePerPound" type="number" step="0.01" class="form-control" placeholder="Type Price Per Pound" name="price" id="price">
+                            <input [(ngModel)]="bid.pricePerPound" #price_per_pound="ngForm" ngControl="pricePerPound" type="number" step="0.01" class="form-control" placeholder="Type Price Per Pound" name="price" id="price" autocomplete="off">
                         </div>
 
                         <div class="form-group">										
-                            <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Type the Number of Pounds." name="pounds">
+                            <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Type the Number of Pounds." name="pounds" autocomplete="off">
                         </div>
                          
                         <div class="form-group">										
                             <h10>This is the number of minutes your growers will have to respond to your bid.</h10>
-                            <input [(ngModel)]="bid.managementTypeDelay" #managementTypeDelay="ngForm" ngControl="delay" type="number" step="1" class="form-control" placeholder="Type the Bid Duration. (minutes)" name="delay" id="delay">
+                            <input [(ngModel)]="bid.managementTypeDelay" #managementTypeDelay="ngForm" ngControl="delay" type="number" step="1" class="form-control" placeholder="Type the Bid Duration. (minutes)" name="delay" id="delay" autocomplete="off">
                         </div>
                         
                         <textarea [(ngModel)]="bid.comment" ngControl="comment" name="comment" rows="2" class="form-control" id="comment" placeholder="Comments" message="comment"></textarea>
