@@ -58,6 +58,36 @@ export class Bid {
   }
   /* tslint:enable:no-string-literal */
 
+  public static updateCountDownString(bid: Bid): void {
+    if (!bid.currentlyOpen) {
+       bid.countDownString = 'Offer Closed';
+       return;
+     }
+
+    if (bid.timeToExpire <= 0) {
+       bid.countDownString = 'Time Expired';
+       return;
+    }
+
+    let days: number;
+    let hours: number;
+    let minutes: number;
+    let seconds: number;
+    days = Math.floor(bid.timeToExpire / 86400);
+    bid.timeToExpire -= days * 86400;
+    hours = Math.floor(bid.timeToExpire / 3600) % 24;
+    bid.timeToExpire -= hours * 3600;
+    minutes = Math.floor(bid.timeToExpire / 60) % 60;
+    bid.timeToExpire -= minutes * 60;
+    seconds = bid.timeToExpire % 60;
+    bid.countDownString = [
+            days + 'd',
+            hours + 'h',
+            minutes + 'm',
+            seconds + 's',
+            ].join(' ');
+  }
+
   public static decodeBidAcceptGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('acceptedGrowers', bidJson);
   }
@@ -117,6 +147,11 @@ export class Bid {
 
   public currentlyOpen: boolean;
   public bidStatus: BidStatus;
+
+  // NOTE: Two extra variables to help the countdown clock.
+  //       Do not send, or expect to recieve, to/from server.
+  public timeToExpire: number;
+  public countDownString: string;
 
   /* ===================================== Member Methods ===================================== */
 
@@ -183,7 +218,7 @@ export class Bid {
       return '12';
     default:
       return '00';
-  }
+    }
 
   }
 
