@@ -21,7 +21,7 @@
 	  		<td class="offerButton">Size: {{ bid.almondSize }}</td>
 	  		<td class="offerButton">Pounds: {{ bid.almondPounds }}</td>
 	  		<td class="offerButton">Price: {{ bid.pricePerPound }}</td> 
-	  		<td class="offerButton">{{ bid?.getPaymentShort() }}</td>
+	  		<td class="offerButton">{{ bid?.countDownString }}</td>
 	  	</tr>
 		  <!--<tr>{{ bid.comment }}</tr>-->
 		</table>
@@ -37,7 +37,7 @@
 	  		<td class="offerButton">Size: {{ bid.almondSize }}</td>
 	  		<td class="offerButton">Pounds: {{ bid.almondPounds }}</td>
 	  		<td class="offerButton">Price: {{ bid.pricePerPound }}</td> 
-	  		<td class="offerButton">{{ bid?.getPaymentShort() }}</td>
+	  		<td class="offerButton">{{ bid?.countDownString }}</td>
 	  	  </tr>
 		  <!--<tr>{{ bid.comment }}</tr>-->
 		  </table>
