@@ -129,6 +129,8 @@ input[type=checkbox]:checked + label:before {
     color: #f3f3f3;
     text-align: center;
     line-height: 15px;
+    width: 20px; height: 20px;
+
 }
 
 
@@ -560,6 +562,28 @@ input[type=checkbox]:checked + label:before {
   padding-bottom: 10px;
 }
 
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left:0; top: 2px;
+  width: 15px; height: 15px;
+  background: #d8d8d8;
+  border-radius: 0px;
+}
+
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '✔';
+  position: absolute;
+  top: 2px; left: 4px;
+  font-size: 15px;
+  line-height: 0.8;
+  color: #ffa400;
+  transition: all .2s;
+}
 /* payment date section styles
 /* ========================================== */
 #contact .form-control1 {
