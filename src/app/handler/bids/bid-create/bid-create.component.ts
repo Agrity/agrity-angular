@@ -20,7 +20,7 @@ export class BidCreateComponent implements OnInit {
   private newBidForm: ControlGroup;
 
   private bid: Bid = new Bid();
-
+  private aol: boolean = false;
   private growers: Grower[];
 
   constructor(
@@ -36,11 +36,7 @@ export class BidCreateComponent implements OnInit {
       almondVariety: ['', Validators.required],
       comment: [],
       delay: ['', Validators.required],
-      endPaymentMonth: ['', Validators.required],
-      endPaymentYear: ['', Validators.required],
       pricePerPound: ['', Validators.required],
-      startPaymentMonth: ['', Validators.required],
-      startPaymentYear: ['', Validators.required],
     });
   }
 
@@ -72,13 +68,20 @@ export class BidCreateComponent implements OnInit {
             .filter(grower => grower.selected)
             .map(grower => grower.growerId);
 
-    // this.bid.paymentDate = ''; // Not Implemented On Server
+    this.bid.startPaymentMonth = 'January';
+    this.bid.startPaymentYear = '2018';
+    this.bid.endPaymentMonth = 'February';
+    this.bid.endPaymentYear = '2018';
     let space = ' ';
     let temp1 = this.bid.startPaymentMonth.concat(space);
     this.bid.startPaymentDate = temp1.concat(this.bid.startPaymentYear);
 
     let temp2 = this.bid.endPaymentMonth.concat(space);
     this.bid.endPaymentDate = temp2.concat(this.bid.endPaymentYear);
+
+    if (this.aol) {
+      this.bid.almondSize = this.bid.almondSize.concat(' AOL');
+    }
 
     this.bid.managementType = 'FCFSService';
 
