@@ -21,9 +21,6 @@ export class BidDetailComponent implements OnInit, OnDestroy {
 
   private bid: Bid = new Bid();
 
-  private timeToExpire: number;
-  private countDownString: string = 'Loading...';
-
   private counter: Subscription;
 
   constructor(
@@ -51,7 +48,7 @@ export class BidDetailComponent implements OnInit, OnDestroy {
         bid => {
           this.bid = bid;
           this.bid.expirationTime.setHours( this.bid.expirationTime.getHours() + 7);
-          this.getCountDownString();
+          this.getCountDownString(this.bid);
           // TODO Temporary Hack. Should change to store growers in bid
           //      item itself.
         },
@@ -67,44 +64,16 @@ export class BidDetailComponent implements OnInit, OnDestroy {
     this.counter.unsubscribe();
   }
 
-  protected getCountDownString() {
+  protected getCountDownString(bid: Bid): void {
     this.counter = Observable.interval(1000)
         .map(
           res => {
-            this.timeToExpire = Math.floor((this.bid.expirationTime.getTime()
+            bid.timeToExpire = Math.floor((this.bid.expirationTime.getTime()
                                     - new Date().getTime()) / 1000);
             }).subscribe(
               res => {
-                this.countDownString = this.dhms(this.timeToExpire);
+                Bid.updateCountDownString(this.bid);
               });
-  }
-
-  protected dhms(timeToExpire: number): string {
-     if (!this.bid.currentlyOpen) {
-       return 'Offer Closed';
-     }
-
-     if (timeToExpire <= 0) {
-       return 'Time Expired';
-     }
-
-     let days: number;
-     let hours: number;
-     let minutes: number;
-     let seconds: number;
-     days = Math.floor(timeToExpire / 86400);
-     timeToExpire -= days * 86400;
-     hours = Math.floor(timeToExpire / 3600) % 24;
-     timeToExpire -= hours * 3600;
-     minutes = Math.floor(timeToExpire / 60) % 60;
-     timeToExpire -= minutes * 60;
-     seconds = timeToExpire % 60;
-     return [
-             days + 'd',
-             hours + 'h',
-             minutes + 'm',
-             seconds + 's',
-            ].join(' ');
   }
 
   /* NOTE: Referenced in .html file. */

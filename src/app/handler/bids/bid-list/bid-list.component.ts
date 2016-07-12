@@ -71,34 +71,6 @@ export class BidListComponent implements OnInit, OnDestroy {
     }
   }
 
-  protected dhms(bid: Bid): string {
-    if (!bid.currentlyOpen) {
-       return 'Offer Closed';
-     }
-
-    if (bid.timeToExpire <= 0) {
-       return 'Time Expired';
-    }
-
-    let days: number;
-    let hours: number;
-    let minutes: number;
-    let seconds: number;
-    days = Math.floor(bid.timeToExpire / 86400);
-    bid.timeToExpire -= days * 86400;
-    hours = Math.floor(bid.timeToExpire / 3600) % 24;
-    bid.timeToExpire -= hours * 3600;
-    minutes = Math.floor(bid.timeToExpire / 60) % 60;
-    bid.timeToExpire -= minutes * 60;
-    seconds = bid.timeToExpire % 60;
-    return [
-            days + 'd',
-            hours + 'h',
-            minutes + 'm',
-            seconds + 's',
-            ].join(' ');
-  }
-
   protected getCountDownString(bid: Bid): void {
     let counter = Observable.interval(1000)
         .map(
@@ -107,7 +79,7 @@ export class BidListComponent implements OnInit, OnDestroy {
                                     - new Date().getTime()) / 1000);
             }).subscribe(
               res => {
-                bid.countDownString = this.dhms(bid);
+                Bid.updateCountDownString(bid);
               });
     this.counters.push(counter);
   }
