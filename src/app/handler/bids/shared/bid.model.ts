@@ -118,6 +118,11 @@ export class Bid {
   public currentlyOpen: boolean;
   public bidStatus: BidStatus;
 
+  // NOTE: Two extra variables to help the countdown clock.
+  //       Do not send, or expect to recieve, to/from server.
+  public timeToExpire: number;
+  public countDownString: string;
+
   /* ===================================== Member Methods ===================================== */
 
   public encode(): string {
