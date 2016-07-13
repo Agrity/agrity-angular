@@ -3,38 +3,40 @@ import { FormBuilder, ControlGroup, Validators } from '@angular/common';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
-import { Bid, BidService } from '../shared/index';
+import { Bid, BidService } from '../../../handler/shared/index';
 import { Config, Logger }
-    from '../../shared/index';
-import { Handler, HandlerService } from '../../handlers/shared/index';
+    from '../../../shared/index';
+import { Grower, GrowerService } from '../../../handler/growers/shared/index';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
-              'app/trader/bids/bid-create/bid-create.component.css'],
-  templateUrl: 'app/trader/bids/bid-create/bid-create.component.html',
+              'app/handler/bids/bid-create/bid-create.component.css'],
+  templateUrl: 'app/handler/bids/bid-create/bid-create.component.html',
 })
 
-export class BidCreateComponent implements OnInit {
+export class TraderBidCreateComponent implements OnInit {
 
   private newBidForm: ControlGroup;
 
   private bid: Bid = new Bid();
-  private handlers: Handler[];
+  private aol: boolean = false;
+  private growers: Grower[];
 
   constructor(
     fb: FormBuilder,
     private bidService: BidService,
-    private handlerService: HandlerService,
+    private growerService: GrowerService,
     private logger: Logger,
     private config: Config,
     private router: Router) {
     this.newBidForm = fb.group({
-      almondTons: ['', Validators.required],
+      almondPounds: ['', Validators.required],
+      almondSize: ['', Validators.required],
       almondVariety: ['', Validators.required],
       comment: [],
       delay: ['', Validators.required],
-      pricePerTon: ['', Validators.required],
+      pricePerPound: ['', Validators.required],
     });
   }
 
@@ -47,11 +49,11 @@ export class BidCreateComponent implements OnInit {
       return;
     }
 
-    // Load in Handlers
-    this.handlers = [];
-    this.handlerService.getHandlers()
+    // Load in Growers
+    this.growers = [];
+    this.growerService.getGrowers()
       .subscribe(
-        handlers => { this.handlers = handlers;
+        growers => { this.growers = growers;
         },
         error => {
           this.logger.handleHttpError(error);
@@ -61,12 +63,25 @@ export class BidCreateComponent implements OnInit {
 
   /* NOTE: Called in .html file. */
   protected save() {
-    this.bid.handlerIds
-        = this.handlers
-            .filter(handler => handler.selected)
-            .map(handler => handler.handlerId);
+    this.bid.growerIds
+        = this.growers
+            .filter(grower => grower.selected)
+            .map(grower => grower.growerId);
 
+    this.bid.startPaymentMonth = 'January';
+    this.bid.startPaymentYear = '2018';
+    this.bid.endPaymentMonth = 'February';
+    this.bid.endPaymentYear = '2018';
     let space = ' ';
+    let temp1 = this.bid.startPaymentMonth.concat(space);
+    this.bid.startPaymentDate = temp1.concat(this.bid.startPaymentYear);
+
+    let temp2 = this.bid.endPaymentMonth.concat(space);
+    this.bid.endPaymentDate = temp2.concat(this.bid.endPaymentYear);
+
+    if (this.aol) {
+      this.bid.almondSize = this.bid.almondSize.concat(' AOL');
+    }
 
     this.bid.managementType = 'FCFSService';
 
