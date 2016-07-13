@@ -4,20 +4,21 @@ import { Router, RouterLink, ROUTER_DIRECTIVES }
 
 import { Config, Logger } from '../../../shared/index';
 import { HandlerSeller, HandlerSellerService } from '../shared/index';
-import { ViewBidsDetailsComponent }
-    from './view-hanlders-details/view-handlers-details.component';
-import { ViewBidsSidebarComponent }
+import { ViewHandlersDetailsComponent }
+    from './view-handlers-details/view-handlers-details.component';
+import { ViewHandlersSidebarComponent }
     from './view-handlers-sidebar/view-handlers-sidebar.component';
 
-
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES, ViewHandlersDetailsComponent, ViewHandlersSidebarComponent],
+  directives: [RouterLink, ROUTER_DIRECTIVES,
+               ViewHandlersDetailsComponent,
+               ViewHandlersSidebarComponent],
   styleUrls: ['assets/stylesheets/style.css',
               'app/trader/handler-seller/view-handlers/view-handlers.component.css'],
   templateUrl: 'app/trader/handler-seller/view-handlers/view-handlers.component.html',
 })
 
-export class ViewHandlerSellersComponent implements OnInit {
+export class ViewHandlersComponent implements OnInit {
 
   private handlerSellers: HandlerSeller[];
   private selectedHandler: HandlerSeller;

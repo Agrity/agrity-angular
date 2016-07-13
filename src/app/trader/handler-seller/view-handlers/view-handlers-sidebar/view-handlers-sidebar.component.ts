@@ -4,9 +4,11 @@ import { HandlerSeller } from '../../shared/index';
 @Component({
   selector: 'sg-view-handlers-sidebar',
   styleUrls:
-      ['app/trader/handler-sellers/view-handlers/view-handlers-sidebar/view-handlers-sidebar.component.css'],
+      ['app/trader/handler-sellers/view-handlers' // 2 Line URL
+      + '/view-handlers-sidebar/view-handlers-sidebar.component.css'],
   templateUrl:
-      'app/trader/handler-sellers/view-handlers/view-handlers-sidebar/view-handlers-sidebar.component.html',
+      'app/trader/handler-sellers/view-handlers/' // 2 Line URL
+      + 'view-handlers-sidebar/view-handlers-sidebar.component.html',
 })
 export class ViewHandlersSidebarComponent {
 

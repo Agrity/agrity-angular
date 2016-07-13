@@ -1,0 +1,54 @@
+<div *ngIf="recievedSelectedHandler">
+    
+    <div id="handler-info">
+      <table>
+        <tr>
+          <td>{{ handler?.firstName }}</td>
+          <td>{{ handler?.lastName }}</td>
+          <td>{{ handler?.email }}</td> 
+          <td>{{ handler?.phone.getAsString() }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="handler-bids">
+      
+      <div id="open-bids"> 
+        Open Bids
+        <button *ngFor="let bid of openTraderBids" type="button" (click)="viewBid(bid?.bidId)">
+          <table>
+            <tr>
+              <td>{{ bid?.almondVariety }}</td>
+              <td>{{ bid?.almondPounds }}</td>
+              <td>{{ bid?.pricePerPound }}</td> 
+              <td>{{ bid?.countDownString }}</td>
+              <td>{{ isPartial(bid) }} 
+                  {{ isAccepted(bid) }} 
+                  {{ isRejected(bid) }}
+              </td>
+            </tr>
+          </table>
+        </button>
+      </div>      
+
+      <div id="closed-bids"> 
+        Closed Bids
+        <button *ngFor="let bid of closedTraderBids" type="button" (click)="viewBid(bid?.bidId)">
+          <table>
+            <tr>
+              <td>{{ bid?.almondVariety }}</td>
+              <td>{{ bid?.almondPounds }}</td>
+              <td>{{ bid?.pricePerPound }}</td> 
+              <td>{{ bid?.countDownString }}</td>
+              <td>{{ isPartial(bid) }} 
+                  {{ isAccepted(bid) }} 
+                  {{ isRejected(bid) }}
+              </td>
+            </tr>
+          </table>
+        </button>
+      </div>
+
+    </div>
+
+</div>
