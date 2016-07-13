@@ -1,0 +1,63 @@
+<div *ngIf="recievedSelectedBid">
+    <!--TO Design Man: I explained some things in the sidebar html.
+        probably best to start by go through that one real quick before you
+        start styling-->
+    <div id="bid-info">
+    <!-- Currently white on white, so you can't see it before styling,
+         but this is the information you have to work with. --> 
+        <table>
+          <tr>
+            <td>{{ recievedSelectedBid?.almondVariety }}</td>
+            <td>{{ recievedSelectedBid?.almondPounds }}</td>
+            <td>{{ recievedSelectedBid?.pricePerPound }}</td> 
+            <td>{{ recievedSelectedelectedBid?.countDownString }}</td>
+            <td>{{ isPartial(recievedSelectedBid) }} 
+                {{ isAccepted(recievedSelectedBid) }} 
+                {{ isRejected(recievedSelectedBid) }}
+            </td>
+          </tr>
+        </table>
+    </div>
+
+    <div id="handler-responses">
+      
+      <div id="accepted-handlers"> 
+        Accepted Handlers
+        <button *ngFor="let handler of recievedSelectedBid?.acceptedHandlerSellers" type="button" (click)="viewHandler(handler?.handlerId)">
+          <li>
+            <p >{{ handler?.firstName }} 
+                {{ handler?.lastName }}
+                {{ handler?.email }} 
+                {{ handler?.phone.getAsString()}}
+            </p>
+          </li>
+        </button>
+      </div>      
+
+      <div id="rejected-handlers">
+        Rejected Handlers
+        <button *ngFor="let handler of recievedSelectedBid?.rejectedHandlerSellers" type="button" (click)="viewHandler(handler?.handlerId)">
+          <li>
+            <p >{{ handler?.firstName }} 
+                {{ handler?.lastName }}
+                {{ handler?.email }} 
+                {{ handler?.phone.getAsString()}}
+            </p>
+          </li>
+        </button>
+      </div>
+
+      <div id="no-response-handlers">
+        No Response Handlers
+        <button *ngFor="let handler of recievedSelectedBid?.noResponseHandlerSellers" type="button" (click)="viewHandler(handler?.handlerId)">
+          <li>
+            <p >{{ handler?.firstName }} 
+                {{ handler?.lastName }}
+                {{ handler?.email }} 
+                {{ handler?.phone.getAsString()}}
+            </p>
+          </li>
+        </button>
+      </div>
+
+</div>
