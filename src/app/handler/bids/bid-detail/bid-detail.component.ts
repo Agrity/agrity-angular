@@ -47,7 +47,6 @@ export class BidDetailComponent implements OnInit, OnDestroy {
       .subscribe(
         bid => {
           this.bid = bid;
-          this.bid.expirationTime.setHours( this.bid.expirationTime.getHours() + 7);
           this.getCountDownString(this.bid);
           // TODO Temporary Hack. Should change to store growers in bid
           //      item itself.

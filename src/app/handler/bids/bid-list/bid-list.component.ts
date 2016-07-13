@@ -52,9 +52,6 @@ export class BidListComponent implements OnInit, OnDestroy {
                     this.closedBids = this.bids
                         .filter(bid => !bid.currentlyOpen);
                     for (let bidIndex in this.bids) {
-                      this.bids[bidIndex].expirationTime
-                          .setHours(this.bids[bidIndex]
-                          .expirationTime.getHours() + 7);
                       this.getCountDownString(this.bids[bidIndex]);
                     }
         },
