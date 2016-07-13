@@ -1,0 +1,57 @@
+#home {
+  background: url('assets/img/home-bg.jpg') 100% 0 repeat-y fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+#home .btn-danger {
+  background: #ffa400 !important;
+  margin-right: 20px;
+}
+
+#home .btn-danger:hover {
+  background: #ffc400 !important;
+}
+
+#home .btn {
+  background: #419ED2;
+  border-color: transparent;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 14px 52px;
+  margin-top: 40px;
+  transition: all 0.4s ease-in-out;
+}
+
+#home .btn:hover {
+  background: #000000;
+}
+
+h1,h2,h3,h4,h5 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 65px;
+  line-height: 72px;
+  color: #273251;
+}
+
+h3 {
+  color: #273251;
+  font-size: 16px;
+  letter-spacing: 26px;
+  letter-spacing: 2px;
+}

@@ -1,0 +1,60 @@
+#home {
+  background: url('assets/img/almonds.jpg') 100% 0 repeat-y fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+#home .btn-danger {
+  background: #419ed2 !important;
+  margin-right: 20px;
+}
+
+#home .btn-danger:hover {
+  background: #419ed2 !important;
+}
+
+#home .btn {
+  background: #000000;
+  border-color: transparent;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 14px 52px;
+  margin-top: 40px;
+  transition: all 0.4s ease-in-out;
+}
+
+#home .btn:hover {
+  background: #419ed2;
+}
+
+h1,h2,h3,h4,h5 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 65px;
+  line-height: 72px;
+  color: #ffffff;
+  text-shadow: -0.5px 0 #303030, 0 0.5px #303030, 0.5px 0 #303030, 0 -0.5px #303030;
+}
+
+h3 {
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 26px;
+  letter-spacing: 2px;
+  /*text-shadow: 1px rgba(0,0,0,0.5) #ffffff;*/
+  text-shadow: -0.5px 0 #303030, 0 0.5px #303030, 0.5px 0 #303030, 0 -0.5px #303030;
+}
