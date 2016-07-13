@@ -6,28 +6,29 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
 
 import { Config, Logger } from '../../../shared/index';
-import { Bid, BidService } from '../shared/index';
-import { BidStatus } from '../../../shared/bid-status.model';
+import { TraderBid, TraderBidService } from '../shared/index';
+import { BidStatus } from '../../../shared/index';
 
 @Component({
   directives: [RouterLink, ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
-              'app/handler/bids/bid-list/bid-list.component.css'],
-  templateUrl: 'app/handler/bids/bid-list/bid-list.component.html',
+              'app/trader/trader-bids/view-bids/view-bids.component.css'],
+  templateUrl: 'app/trader/trader-bids/view-bids/view-bids.component.html',
 })
 
-export class BidListComponent implements OnInit, OnDestroy {
+export class ViewBidsComponent implements OnInit, OnDestroy {
 
-  private bids: Bid[];
+  private traderBids: TraderBid[];
 
-  private openBids: Bid[];
-  private closedBids: Bid[];
+  private openTraderBids: TraderBid[];
+  private closedTraderBids: TraderBid[];
 
+  private selectedBid: TraderBid;
   private counters: Subscription[];
 
   constructor(
     private router: Router,
-    private bidService: BidService,
+    private traderBidService: TraderBidService,
     private logger: Logger,
     private config: Config) {
   }
@@ -42,18 +43,21 @@ export class BidListComponent implements OnInit, OnDestroy {
 
     // Load Bids
     this.counters = [];
-    this.bids = [];
-    this.closedBids = [];
-    this.openBids = [];
-    this.bidService.getBids()
+    this.traderBids = [];
+    this.closedTraderBids = [];
+    this.openTraderBids = [];
+    this.traderBidService.getTraderBids()
         .subscribe(
-          bids => { this.bids = bids;
-                    this.openBids = this.bids
-                        .filter(bid => bid.currentlyOpen);
-                    this.closedBids = this.bids
-                        .filter(bid => !bid.currentlyOpen);
-                    for (let bidIndex in this.bids) {
-                      this.getCountDownString(this.bids[bidIndex]);
+          bids => { this.traderBids = bids;
+                    this.openTraderBids = this.traderBids
+                        .filter(traderBid => traderBid.currentlyOpen);
+                    this.closedTraderBids = this.traderBids
+                        .filter(traderBid => !traderBid.currentlyOpen);
+                    for (let bidIndex in this.traderBids) {
+                      this.traderBids[bidIndex].expirationTime
+                          .setHours(this.traderBids[bidIndex]
+                          .expirationTime.getHours());
+                      this.getCountDownString(this.traderBids[bidIndex]);
                     }
         },
           error => {
@@ -69,7 +73,7 @@ export class BidListComponent implements OnInit, OnDestroy {
     }
   }
 
-  protected getCountDownString(bid: Bid): void {
+  protected getCountDownString(bid: TraderBid): void {
     let counter = Observable.interval(1000)
         .map(
           res => {
@@ -77,32 +81,37 @@ export class BidListComponent implements OnInit, OnDestroy {
                                     - new Date().getTime()) / 1000);
             }).subscribe(
               res => {
-                Bid.updateCountDownString(bid);
+                TraderBid.updateCountDownString(bid);
               });
     this.counters.push(counter);
   }
 
   /* NOTE: Called in .html file. */
-  protected viewBid(bidId: number): void {
-    this.router.navigateByUrl('/bids/' + bidId);
+  protected selectBid(bid: TraderBid): void {
+    this.selectedBid = bid;
   }
 
-  protected isAccepted(bid: Bid): boolean {
+  protected isAccepted(bid: TraderBid): boolean {
     if (bid.bidStatus === BidStatus.ACCEPTED) {
       return true;
     }
     return false;
   }
-  protected isRejected(bid: Bid): boolean {
+  protected isRejected(bid: TraderBid): boolean {
     if (bid.bidStatus === BidStatus.REJECTED) {
       return true;
     }
     return false;
   }
-  protected isPartial(bid: Bid): boolean {
+  protected isPartial(bid: TraderBid): boolean {
     if (bid.bidStatus === BidStatus.PARTIAL) {
       return true;
     }
     return false;
+  }
+
+  protected viewHandler(handlerId: number): void {
+    // Will eventually link to handler page. 
+    return;
   }
 }

@@ -1,4 +1,4 @@
-import { Phone } from '../../shared/phone.model';
+import { Phone } from '../../../shared/index';
 
   export class Trader {
 

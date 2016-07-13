@@ -4,50 +4,51 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Config, HttpClient, Logger } from '../../../shared/index';
-import { Grower } from './index';
+
+import { HandlerSeller } from './index';
 
 @Injectable()
-export class GrowerService {
-  private growersUrl: string;
+export class HandlerSellerService {
+  private handlerSellersUrl: string;
 
   constructor(private http: HttpClient,
               private config: Config,
               private logger: Logger) {
-    this.growersUrl = this.config.getServerDomain() + '/handler/growers';
+    this.handlerSellersUrl = null; // this.config.getServerDomain() + '/handler/growers';
   }
 
-  public getGrowers(): Observable<Grower[]> {
-    return this.http.get(this.growersUrl)
+  public getHandlerSellers(): Observable<HandlerSeller[]> {
+    return this.http.get(this.handlerSellersUrl)
       .map(res => res.json())
-      .map(growersJson => {
-        let growers: Grower[] = [];
-        for (let idx in growersJson) {
-          growers.push(Grower.decode(growersJson[idx]));
+      .map(handlerSellersJson => {
+        let handlers: HandlerSeller[] = [];
+        for (let idx in handlerSellersJson) {
+          handlers.push(HandlerSeller.decode(handlerSellersJson[idx]));
         }
-        return growers;
+        return handlers;
       })
       .catch(this.logger.handleHttpError);
   }
 
-  public getGrower(growerId: number): Observable<Grower> {
-    if (growerId == null) {
+  public getHandlerSeller(handlerSellerId: number): Observable<HandlerSeller> {
+    if (handlerSellerId == null) {
       this.logger.handleError('Attempted to get Grower with null id.');
       return null;
     }
 
-    return this.http.get(this.getGrowerUrl(growerId))
+    return this.http.get(this.getHandlerSellerUrl(handlerSellerId))
       .map(res => res.json())
-      .map(res => Grower.decode(res))
+      .map(res => HandlerSeller.decode(res))
       .catch(this.logger.handleHttpError);
   }
 
-  public addGrower(grower: Grower) {
-    if (grower == null) {
+  public addHandlerSeller(handlerSeller: HandlerSeller) {
+    if (handlerSeller == null) {
       this.logger.handleError('Attempted to add null Grower.');
       return null;
     }
 
-    return this.http.jsonPost(this.growersUrl, grower.encode())
+    return this.http.jsonPost(this.handlerSellersUrl, handlerSeller.encode())
       .map(res => res.json())
       .catch(this.logger.handleHttpError);
   }
@@ -59,11 +60,11 @@ export class GrowerService {
   // }
 
   // TODO Deleteing Not Implemented on Server Side Yet.
-  public deleteGrower(growerId: number) {
+  public deleteHandlerSeller(handlerSellerId: number) {
     return Observable.throw('Deleting Growers Not Yet Implemented.');
   }
 
-  private getGrowerUrl(growerId: number ) {
-    return this.growersUrl + '/' + growerId;
+  private getHandlerSellerUrl(handlerSellerId: number ) {
+    return this.handlerSellersUrl + '/' + handlerSellerId;
   }
 }

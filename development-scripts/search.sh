@@ -7,4 +7,4 @@ if [[ -z $FIND_TERM ]]; then
   exit
 fi
 
-grep -r "$FIND_TERM" app
+grep -r "$FIND_TERM" src

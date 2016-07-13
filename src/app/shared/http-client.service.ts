@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Config } from '../shared/index';
+import { Config } from './config.service';
 
 @Injectable()
 export class HttpClient {

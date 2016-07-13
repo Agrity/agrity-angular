@@ -1,5 +1,5 @@
 import { Grower } from '../../growers/shared/index';
-import { BidStatus } from './index';
+import { BidStatus } from '../../../shared/index';
 
 export class Bid {
 

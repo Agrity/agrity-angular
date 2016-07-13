@@ -2,7 +2,7 @@ import { Component, OnInit  } from '@angular/core';
 import { Router, RouterLink, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
-import { Config, Logger } from '../../shared/index';
+import { Config, Logger } from '../../../shared/index';
 import { Grower, GrowerService } from '../shared/index';
 
 @Component({

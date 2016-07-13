@@ -5,7 +5,7 @@ import { Router, ROUTER_DIRECTIVES }
 
 import { Bid, BidService } from '../shared/index';
 import { Config, Logger }
-    from '../../shared/index';
+    from '../../../shared/index';
 import { Grower, GrowerService } from '../../growers/shared/index';
 
 @Component({
