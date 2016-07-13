@@ -1,5 +1,5 @@
-import { HandlerSeller } from './index';
-import { BidStatus } from './index';
+import { HandlerSeller } from '../../handler-seller/shared/index';
+import { BidStatus } from '../../../shared/index';
 
 export class TraderBid {
 

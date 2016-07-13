@@ -1,8 +1,7 @@
 
 import { TraderBid } from './index';
-import { HandlerSeller } from './index';
-import { BidStatus } from './index';
-import { Phone } from './index';
+import { HandlerSeller } from '../../handler-seller/shared/index';
+import { BidStatus, Phone } from '../../../shared/index';
 
 export class TraderBidData {
 
@@ -52,9 +51,8 @@ export class TraderBidData {
   }
 
   private static createMockHandlerSeller(): HandlerSeller {
-    console.log("I'M HERE");
-    var handlerSeller: HandlerSeller = new HandlerSeller();
 
+    let handlerSeller: HandlerSeller = new HandlerSeller();
     handlerSeller.firstName = 'Jon';
     handlerSeller.lastName = 'Smith';
     handlerSeller.email = 'jsmithMock@gmail.com';

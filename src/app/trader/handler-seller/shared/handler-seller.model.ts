@@ -1,9 +1,7 @@
-import { Phone } from './index';
+import { Phone } from '../../../shared/phone.model';
 
 export class HandlerSeller {
-  constructor() {
-  }
-  
+
   public static decode(bidJson: Object): HandlerSeller {
     return new HandlerSeller(); // Does Nothing for now.
   }

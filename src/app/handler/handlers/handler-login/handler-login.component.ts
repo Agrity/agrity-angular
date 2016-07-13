@@ -3,7 +3,7 @@ import { Router, RouterLink, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 import { Location } from '@angular/common';
 
-import { Config } from '../../shared/index';
+import { Config } from '../../../shared/index';
 import { LoginInfo } from './login-info';
 import { HandlerLoginService } from './handler-login.service';
 

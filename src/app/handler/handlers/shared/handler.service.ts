@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import { Config, HttpClient, Logger } from '../../shared/index';
+import { Config, HttpClient, Logger } from '../../../shared/index';
 import { Handler } from './handler.model';
 
 @Injectable()

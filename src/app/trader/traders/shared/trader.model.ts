@@ -1,4 +1,4 @@
-import { Phone } from './index';
+import { Phone } from '../../../shared/index';
 
   export class Trader {
 

@@ -3,7 +3,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs/Observable';
 
-import { Config, HttpClient, Logger } from '../../shared/index';
+import { Config, HttpClient, Logger } from '../../../shared/index';
 import { TraderBid } from './index';
 import { TraderBidData } from './index';
 

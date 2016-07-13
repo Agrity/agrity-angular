@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink, ROUTER_DIRECTIVES, RouteParams, Router }
     from '@angular/router-deprecated';
 
-import { Config, Logger } from '../../shared/index';
+import { Config, Logger } from '../../../shared/index';
 import { Bid, BidService } from '../shared/index';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';

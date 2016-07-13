@@ -5,8 +5,9 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
 
-import { Config, Logger } from '../../shared/index';
-import { TraderBid, TraderBidService, BidStatus } from '../shared/index';
+import { Config, Logger } from '../../../shared/index';
+import { TraderBid, TraderBidService } from '../shared/index';
+import { BidStatus } from '../../../shared/index';
 
 @Component({
   directives: [RouterLink, ROUTER_DIRECTIVES],
