@@ -7,10 +7,14 @@ import 'rxjs/add/observable/interval';
 
 import { Config, Logger } from '../../../shared/index';
 import { TraderBid, TraderBidService } from '../shared/index';
-import { BidStatus } from '../../../shared/index';
+
+import { ViewBidsDetailsComponent }
+    from './view-bids-details/view-bids-details.component';
+import { ViewBidsSidebarComponent }
+    from './view-bids-sidebar/view-bids-sidebar.component';
 
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES],
+  directives: [RouterLink, ROUTER_DIRECTIVES, ViewBidsDetailsComponent, ViewBidsSidebarComponent],
   styleUrls: ['assets/stylesheets/style.css',
               'app/trader/trader-bids/view-bids/view-bids.component.css'],
   templateUrl: 'app/trader/trader-bids/view-bids/view-bids.component.html',
@@ -67,6 +71,10 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
         });
   }
 
+  public onSelect(bid: TraderBid) {
+    this.selectedBid = bid;
+  }
+
   public ngOnDestroy() {
     for (let counterIndex in this.counters) {
       this.counters[counterIndex].unsubscribe();
@@ -84,34 +92,5 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
                 TraderBid.updateCountDownString(bid);
               });
     this.counters.push(counter);
-  }
-
-  /* NOTE: Called in .html file. */
-  protected selectBid(bid: TraderBid): void {
-    this.selectedBid = bid;
-  }
-
-  protected isAccepted(bid: TraderBid): boolean {
-    if (bid.bidStatus === BidStatus.ACCEPTED) {
-      return true;
-    }
-    return false;
-  }
-  protected isRejected(bid: TraderBid): boolean {
-    if (bid.bidStatus === BidStatus.REJECTED) {
-      return true;
-    }
-    return false;
-  }
-  protected isPartial(bid: TraderBid): boolean {
-    if (bid.bidStatus === BidStatus.PARTIAL) {
-      return true;
-    }
-    return false;
-  }
-
-  protected viewHandler(handlerId: number): void {
-    // Will eventually link to handler page. 
-    return;
   }
 }
