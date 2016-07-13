@@ -109,4 +109,9 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
     }
     return false;
   }
+
+  protected viewHandler(handlerId: number): void {
+    // Will eventually link to handler page. 
+    return;
+  }
 }
