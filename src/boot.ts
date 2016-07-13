@@ -1,6 +1,8 @@
 import { bootstrap }    from '@angular/platform-browser-dynamic';
-import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { ROUTER_PROVIDERS }
+    from '@angular/router-deprecated';
 import { HTTP_PROVIDERS } from '@angular/http';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app/app.component';
 import { Config, HttpClient, Logger } from './app/shared/index';
@@ -14,6 +16,8 @@ bootstrap(AppComponent,
           [/* Angular Providers */
            ROUTER_PROVIDERS,
            HTTP_PROVIDERS,
+
+           { provide: LocationStrategy, useClass: HashLocationStrategy },
 
            /* Shared Providers */
            Config,
