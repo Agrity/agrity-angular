@@ -1,104 +1,93 @@
+import { Component, OnInit } from '@angular/core';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router-deprecated';
+import { NgForm } from '@angular/forms';
 
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, ControlGroup, Validators } from '@angular/common';
-// import { Router, ROUTER_DIRECTIVES }
-//     from '@angular/router-deprecated';
+import { Config, Logger }
+    from '../../../shared/index';
 
-// import { Bid, BidService } from '../../../shared/index';
-// import { Config, Logger }
-//     from '../../../shared/index';
-// import { Grower, GrowerService } from '../../../handler/growers/shared/index';
+import { HandlerSeller, HandlerSellerService } from '../../handler-seller/shared/index';
+import { TraderBid, TraderBidService } from '../shared/index';
 
-// @Component({
-//   directives: [ROUTER_DIRECTIVES],
-//   styleUrls: ['assets/stylesheets/style.css',
-//               'app/handler/bids/bid-create/bid-create.component.css'],
-//   templateUrl: 'app/handler/bids/bid-create/bid-create.component.html',
-// })
+@Component({
+  directives: [ROUTER_DIRECTIVES],
+  styleUrls: ['app/trader/trader-bids/bid-create/bid-create.component.css'],
+  templateUrl: 'app/trader/trader-bids/bid-create/bid-create.component.html',
+})
 
-// export class TraderBidCreateComponent implements OnInit {
+export class TraderBidCreateComponent implements OnInit {
 
-//   private newBidForm: ControlGroup;
+  private traderBid: TraderBid = new TraderBid();
+  private traderBids: TraderBid[] = [];
 
-//   private bid: Bid = new Bid();
-//   private aol: boolean = false;
-//   private growers: Grower[];
+  private handlerSellers: HandlerSeller[];
 
-//   constructor(
-//     fb: FormBuilder,
-//     private bidService: BidService,
-//     private growerService: GrowerService,
-//     private logger: Logger,
-//     private config: Config,
-//     private router: Router) {
-//     this.newBidForm = fb.group({
-//       almondPounds: ['', Validators.required],
-//       almondSize: ['', Validators.required],
-//       almondVariety: ['', Validators.required],
-//       comment: [],
-//       delay: ['', Validators.required],
-//       pricePerPound: ['', Validators.required],
-//     });
-//   }
+  private active: boolean = true; 
 
-//   public ngOnInit() {
+  private varieties: string[] = [
+    'NONPAREIL',
+    'CARMEL',
+    'BUTTE',
+    'PADRE',
+    'MISSION',
+    'MONTEREY',
+    'SONORA',
+    'FRITZ',
+    'PRICE',
+    'PEERLESS',
+  ]
+  
+  constructor(
+      private traderBidService: TraderBidService,
+      private handlerSellerService: HandlerSellerService,
+      private config: Config,
+      private logger: Logger,
+      private router: Router
+      ) {}
 
-//     if (!this.config.loggedIn()) {
-//       alert('Please Login.'
-//           + 'If this issue continues try logging out, then logging back in.');
-//       this.config.forceLogout();
-//       return;
-//     }
+  public ngOnInit() {
 
-//     // Load in Growers
-//     this.growers = [];
-//     this.growerService.getGrowers()
-//       .subscribe(
-//         growers => { this.growers = growers;
-//         },
-//         error => {
-//           this.logger.handleHttpError(error);
-//           this.config.forceLogout();
-//         });
-//   }
+    if (!this.config.loggedIn()) {
+      alert('Please Login.'
+          + 'If this issue continues try logging out, then logging back in.');
+      this.config.forceLogout();
+      return;
+    }
 
-//   /* NOTE: Called in .html file. */
+    // Load in handlerSellers
+    this.handlerSellers = [];
+    this.handlerSellerService.getHandlerSellers()
+      .subscribe(
+        handlers => { this.handlerSellers = handlers;
+        },
+        error => {
+          this.logger.handleHttpError(error);
+          this.config.forceLogout();
+        });
+  }
 
-//   protected save() {
-//     this.bid.growerIds
-//         = this.growers
-//             .filter(grower => grower.selected)
-//             .map(grower => grower.growerId);
+  /* NOTE: Called in .html file. */
+  protected addBid() {
+    console.log(this.traderBid);
+    this.traderBids.push(this.traderBid);
+    this.traderBid = new TraderBid();
+    this.active = false;
+    setTimeout(() => this.active = true, 0);
+  }
 
-//     this.bid.startPaymentMonth = 'January';
-//     this.bid.startPaymentYear = '2018';
-//     this.bid.endPaymentMonth = 'February';
-//     this.bid.endPaymentYear = '2018';
-//     let space = ' ';
-//     let temp1 = this.bid.startPaymentMonth.concat(space);
-//     this.bid.startPaymentDate = temp1.concat(this.bid.startPaymentYear);
-
-//     let temp2 = this.bid.endPaymentMonth.concat(space);
-//     this.bid.endPaymentDate = temp2.concat(this.bid.endPaymentYear);
-
-//     if (this.aol) {
-//       this.bid.almondSize = this.bid.almondSize.concat(' AOL');
-//     }
-
-//     this.bid.managementType = 'FCFSService';
-
-//     if (this.bid.managementTypeDelay < 0) {
-//       this.bid.managementTypeDelay *= -1;
-//     }
-
-//     this.bidService.createBid(this.bid)
-//       .subscribe(
-//         bid => {
-//           this.router.navigateByUrl('/bids');
-//         },
-//         error => {
-//           this.logger.handleHttpError(error);
-//           this.config.forceLogout();
-//         });
-//   }
-// }
+  protected sendBids() { 
+    for (let bid of this.traderBids) { 
+      bid.handlerSellerIds = []; 
+      for (let handler of this.handlerSellers) {
+        console.log(handler);
+        if (handler.selected) {
+          console.log("selected");
+          bid.handlerSellerIds.push(handler.handlerId);
+          console.log(bid.handlerSellerIds);
+        }
+      }
+    }
+    // this.traderBidService.createTraderBids(this.traderBids);
+    console.log(this.traderBids);
+  }
+}

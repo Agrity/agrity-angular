@@ -61,15 +61,16 @@ export class TraderBidService {
   }
   */
 
-  public createBid(traderBid: TraderBid) {
-    if (traderBid == null) {
+  public createTraderBids(traderBids: TraderBid[]): void {
+    if (traderBids == null) {
       this.logger.handleError('Attempted to add null TraderBid.');
       return null;
     }
-
-    return this.http.jsonPost(this.traderBidsUrl, traderBid.encode())
-      .map(res => res.json())
-      .catch(this.logger.handleHttpError);
+    for (let traderBid of traderBids) {
+      this.http.jsonPost(this.traderBidsUrl, traderBid.encode())
+        .map(res => res.json())
+        .catch(this.logger.handleHttpError);
+    }
   }
 
   private getTraderBidUrl(traderBidId: number) {

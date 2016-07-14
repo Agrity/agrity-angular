@@ -50,6 +50,7 @@ export class TraderBid {
   public currentlyOpen: boolean;
   public bidStatus: BidStatus;
 
+  public handlerSellerIds: number[];
   public acceptedHandlerSellers: HandlerSeller[];
   public rejectedHandlerSellers: HandlerSeller[];
   public noResponseHandlerSellers: HandlerSeller[];

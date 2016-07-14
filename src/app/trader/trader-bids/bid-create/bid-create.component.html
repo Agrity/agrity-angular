@@ -1,109 +1,82 @@
-<div>
-<section id="contact">
-	<h9 class="center spaceunder">CREATE YOUR BID</h9>
+  <div>
 
-	<div class="container">
+    <h1>Bids So Far</h1> 
 
-			<!-- Form section
-			================================================== -->
-			<div class="col-sm-10 wow fadeInDown center" data-wow-delay="0.6s">
-				<form [ngFormModel]="newBidForm" (ngSubmit)="save()">
+      <div>
+        <div *ngFor="let bid of traderBids">
+        <table>
+           <tr>
+              <td>{{ bid?.almondVariety }}</td>
+              <td>{{ bid?.almondPounds }}</td>
+              <td>{{ bid?.pricePerPound }}</td> 
+              <td>{{ bid?.comment }}</td>
+              <td>{{ bid?.delay }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
 
-					<div>
-						<input type="text" [(ngModel)]="bid.almondVariety" #almond_variety="ngForm" ngControl="almondVariety" class="form-control" placeholder="Choose Almond Variety." name="almond variety" id="almond variety" list="almonds"> 
-						<datalist id="almonds">
-                                <option>NONPAREIL</option>
-                                <option>CARMEL</option>
-                                <option>BUTTE</option>
-                                <option>PADRE</option>
-                                <option>MISSION</option>
-                                <option>MONTEREY</option>
-                                <option>SONORA</option>
-                                <option>FRITZ</option>
-                                <option>PRICE</option>
-                                <option>PEERLESS</option>
-						</datalist>
+    <h1>Bid Form</h1>
+      
+      <form *ngIf="active" (ngSubmit)="addBid()" #traderBidForm="ngForm">
+        
+        <div class="form-group">
+          <label for="variety"> Variety </label>
+          <select class="form-control" required
+              [(ngModel)]="traderBid.almondVariety"
+              ngControl="variety"
+              name="variety">
+            <option *ngFor="let variety of varieties" 
+                [value]="variety"> {{variety}}
+            </option>
+          </select>
+        </div>
 
-						<input [(ngModel)]="bid.pricePerPound" #price_per_pound="ngForm" ngControl="pricePerPound" type="number" step="0.01" class="form-control" placeholder="Type Price" name="price" id="price" autocomplete="off">
+        <div class="form-group">
+          <label for="price"> Price Per Pound </label>
+          <input type="text" class="form-control" required
+              [(ngModel)]="traderBid.pricePerPound"
+              ngControl="pricePerPound"
+              name="price">
+        </div>
 
-                        <input [(ngModel)]="bid.almondPounds" #almond_pounds="ngForm" ngControl="almondPounds" type="number" class="form-control" placeholder="Type the Number of Pounds." name="pounds" autocomplete="off">
+        <div class="form-group">
+          <label for="pounds"> Pounds </label>
+          <input type="number" step="0.01" class="form-control" required
+              [(ngModel)]="traderBid.almondPounds"
+              ngControl="almondPounds"
+              name="pounds">
+        </div>
 
-                    </div>
+        <div class="form-group">
+          <label for="comment"> Comment </label>
+          <input type="text" class="form-control"
+              [(ngModel)]="traderBid.comment"
+              ngControl="comment"
+              name="comment">
+        </div>
 
-                    <div>
-                        <textarea style="width:800px;" [(ngModel)]="bid.comment" ngControl="comment" name="comment" rows="2" class="form-control" id="comment" placeholder="Comments" message="comment"></textarea>
-					</div>
+        <div class="form-group">
+          <label for="delay"> Delay </label>
+          <input type="number" step="1" class="form-control" required
+              [(ngModel)]="traderBid.delay"
+              ngControl="delay"
+              name="delay">
+        </div>
 
-			</div>
+        <button type="submit" [disabled]="!traderBidForm.form.valid"> ADD BID </button>
 
-			<div class="col-md-2 col-sm-2">
-			<button style="border:none; background:none; padding:none;" type="button" class="spaceover"><div class="cssCircle plusSign">
-			  &#43;
-			</div></button>
-			</div>
+      </form>
 
-			  <!--*ngFor="let bid of openBids and *ngFor="let bid of closed Bids -->
-			  <div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
-			  <div *ngFor="let bid of openBids" class="wow fadeInDown" data-wow-delay="0.3s">
-			  <button type="button" class="listbidbutton center">
-			  	<table id="buttonCols" style="width:100%">
-				<tr>
-			  		<td class="offerButton">NonPareil</td>
-			  		<td class="offerButton">Size</td>
-			  		<td class="offerButton">Tons</td>
-			  		<td class="offerButton">Comment</td> 
-			  	</tr>
-				  <!--<tr>{{ bid.comment }}</tr>-->
-				</table>
-			  	</button>
-			 </div>
+    <h1> Select Handlers </h1>
 
-			 </div>
+      <div *ngFor="let handler of handlerSellers">
+        <input type="checkbox" [(ngModel)]="handler.selected">
+        <h7>{{ handler.firstName }} {{ handler.lastName }}</h7>
+      </div>
 
-			 <div class="col-md-12 center">
-			 <input class="form-control" style="margin-top:20px;" placeholder="Type Duration (in hours)" [(ngModel)]="bid.managementTypeDelay" #managementTypeDelay="ngForm" ngControl="delay" type="number" step="1" name="delay" id="delay" autocomplete="off">
-			 </div>
+    <h1> Send Bids </h1>
 
-			<!-- Choose your growers
-			================================================== -->
+      <button (click)="sendBids()"> SEND BIDS </button> 
 
-			<div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.9s">
-				<h9 class="center">CHOOSE HANDLERS</h9><br>
-			</div>
-
-			<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
-
-					<div class="whitebox" *ngFor="let handler of handlers; let i = index">
-						<p>
-    						<input type="checkbox" [(ngModel)]="handler.selected" id="test1">
-    						<label for="test1">{{ handler.firstName }} {{ handler.lastName }}</label>
-  						</p>
- 						<p>
-    						<input type="checkbox" id="test2" />
-    						<label for="test2">MONTE VISTA</label>
-  						</p>
-						<p>
-    						<input type="checkbox" id="test3" />
-    						<label for="test3">TAP</label>
-  						</p>
-						<p>
-    						<input type="checkbox" id="test4" />
-    						<label for="test4">HANDLER A</label>
-  						</p>
-  					</div>
-
-			</div>
-
-			<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
-				<input type="button" class="form-control" value="Select All">
-			</div>
-
-
-				<div class="col-md-12 col-sm-12 center">
-					<input [disabled]="!newBidForm.valid"  name="submit" type="submit" class="form-control" id="submit" value="SEND BID">
-				</div>
-
-			</form>
-	</div>
-</section>
-</div>
+  </div>

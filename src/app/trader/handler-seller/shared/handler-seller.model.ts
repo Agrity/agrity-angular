@@ -13,6 +13,10 @@ export class HandlerSeller {
   public phone: Phone = new Phone();
   public companyName: string;
 
+  // NOTE: Temporary hack to allow selection from list.
+  //       Do not send, or expect to recieve, to/from server.
+  public selected: boolean;
+
   public encode(): string {
     return '';  // Does Nothing for now.
   }

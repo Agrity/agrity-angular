@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ControlGroup, Validators } from '@angular/common';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
@@ -17,28 +16,16 @@ import { Grower, GrowerService } from '../../growers/shared/index';
 
 export class BidCreateComponent implements OnInit {
 
-  private newBidForm: ControlGroup;
-
   private bid: Bid = new Bid();
   private aol: boolean = false;
   private growers: Grower[];
 
   constructor(
-    fb: FormBuilder,
     private bidService: BidService,
     private growerService: GrowerService,
     private logger: Logger,
     private config: Config,
-    private router: Router) {
-    this.newBidForm = fb.group({
-      almondPounds: ['', Validators.required],
-      almondSize: ['', Validators.required],
-      almondVariety: ['', Validators.required],
-      comment: [],
-      delay: ['', Validators.required],
-      pricePerPound: ['', Validators.required],
-    });
-  }
+    private router: Router) {}
 
   public ngOnInit() {
 
