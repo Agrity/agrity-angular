@@ -1,3 +1,10 @@
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
+
 .posts li { cursor: default; }
 .posts li:hover { background: #ecf0f1; } 
 .list-group-item.active, 
