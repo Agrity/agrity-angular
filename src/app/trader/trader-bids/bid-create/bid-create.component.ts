@@ -22,7 +22,7 @@ export class TraderBidCreateComponent implements OnInit {
 
   private handlerSellers: HandlerSeller[];
 
-  private active: boolean = true; 
+  private active: boolean = true;
 
   private varieties: string[] = [
     'NONPAREIL',
@@ -35,8 +35,29 @@ export class TraderBidCreateComponent implements OnInit {
     'FRITZ',
     'PRICE',
     'PEERLESS',
-  ]
-  
+  ];
+
+  private sizes: string[] = [
+    '16/18',
+    '18/20',
+    '20/22',
+    '22/24',
+    '23/25',
+    '25/27',
+    '27/30',
+    '30/32',
+    '32/34',
+    '34/36',
+    '36/38',
+    '38/40',
+    '40/50',
+    '50/60',
+    'Any Size',
+    'Unsized',
+    'Whole & Broken',
+    'Inshell',
+  ];
+
   constructor(
       private traderBidService: TraderBidService,
       private handlerSellerService: HandlerSellerService,
@@ -68,26 +89,21 @@ export class TraderBidCreateComponent implements OnInit {
 
   /* NOTE: Called in .html file. */
   protected addBid() {
-    console.log(this.traderBid);
     this.traderBids.push(this.traderBid);
     this.traderBid = new TraderBid();
     this.active = false;
     setTimeout(() => this.active = true, 0);
   }
 
-  protected sendBids() { 
-    for (let bid of this.traderBids) { 
-      bid.handlerSellerIds = []; 
+  protected sendBids() {
+    for (let bid of this.traderBids) {
+      bid.handlerSellerIds = [];
       for (let handler of this.handlerSellers) {
-        console.log(handler);
         if (handler.selected) {
-          console.log("selected");
           bid.handlerSellerIds.push(handler.handlerId);
-          console.log(bid.handlerSellerIds);
         }
       }
     }
     // this.traderBidService.createTraderBids(this.traderBids);
-    console.log(this.traderBids);
   }
 }

@@ -58,7 +58,7 @@ import { TraderBidCreateComponent }
   { component: GrowerCreateComponent, name: 'New Grower', path: '/growers/new' },
 
   { component: ViewBidsComponent, name: 'View Trader Bids', path: '/trader-bids'},
-  { component: TraderBidCreateComponent, name:'Make Trader Bid', path: '/trader-bids/new'},
+  { component: TraderBidCreateComponent, name: 'Make Trader Bid', path: '/trader-bids/new'},
   { component: ViewHandlersComponent, name: 'View Handler Sellers', path: '/handler-sellers'},
 
   { component: NotFoundComponent, name: 'NotFound', path: '/not-found' },

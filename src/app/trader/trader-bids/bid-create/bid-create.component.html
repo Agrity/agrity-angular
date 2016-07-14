@@ -33,6 +33,18 @@
         </div>
 
         <div class="form-group">
+          <label for="size"> Size </label>
+          <select class="form-control" required
+              [(ngModel)]="traderBid.almondSize"
+              ngControl="size"
+              name="size">
+            <option *ngFor="let size of sizes" 
+                [value]="size"> {{size}}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
           <label for="price"> Price Per Pound </label>
           <input type="text" class="form-control" required
               [(ngModel)]="traderBid.pricePerPound"
