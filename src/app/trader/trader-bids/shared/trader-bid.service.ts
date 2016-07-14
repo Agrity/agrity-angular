@@ -44,7 +44,11 @@ export class TraderBidService {
   }
 
   public getHandlerSellerBids(handlerSellerId: number): Observable<TraderBid[]> {
-    return this.http.get(this.getHandlerSellerBidsUrl(handlerSellerId))
+    return Observable.of(TraderBidData.mockTraderBids);
+  }
+
+    /*
+    this.http.get(this.getHandlerSellerBidsUrl(handlerSellerId))
       .map(res => res.json())
       .map(traderBidsJson => {
         let traderBids: TraderBid[] = [];
@@ -55,6 +59,7 @@ export class TraderBidService {
       })
       .catch(this.logger.handleHttpError);
   }
+  */
 
   public createBid(traderBid: TraderBid) {
     if (traderBid == null) {
@@ -71,9 +76,9 @@ export class TraderBidService {
     return this.traderBidsUrl + '/' + traderBidId;
   }
 
-  private getHandlerSellerBidsUrl(growerId: number) {
-    return this.config.getServerDomain();
-        // TODO: Fix this.
-        // + '/handler/growers/' + growerId + '/offers';
-  }
+  // private getHandlerSellerBidsUrl(growerId: number) {
+  //   return this.config.getServerDomain();
+  //       // TODO: Fix this.
+  //       // + '/handler/growers/' + growerId + '/offers';
+  // }
 }

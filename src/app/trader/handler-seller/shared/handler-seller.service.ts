@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import { Config, HttpClient, Logger } from '../../../shared/index';
 
 import { HandlerSeller } from './index';
+import { HandlerSellerData } from './index';
 
 @Injectable()
 export class HandlerSellerService {
@@ -18,7 +19,11 @@ export class HandlerSellerService {
   }
 
   public getHandlerSellers(): Observable<HandlerSeller[]> {
-    return this.http.get(this.handlerSellersUrl)
+    return Observable.of(HandlerSellerData.mockHandlerSellers);
+  }
+
+    /*
+    this.http.get(this.handlerSellersUrl)
       .map(res => res.json())
       .map(handlerSellersJson => {
         let handlers: HandlerSeller[] = [];
@@ -29,6 +34,7 @@ export class HandlerSellerService {
       })
       .catch(this.logger.handleHttpError);
   }
+  */
 
   public getHandlerSeller(handlerSellerId: number): Observable<HandlerSeller> {
     if (handlerSellerId == null) {

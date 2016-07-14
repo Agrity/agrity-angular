@@ -13,10 +13,10 @@ import 'rxjs/add/observable/interval';
 @Component({
   selector: 'sg-view-handlers-details',
   styleUrls:
-      ['app/trader/handler-sellers/view-handlers/' // 2 Line URL
+      ['app/trader/handler-seller/view-handlers/' // 2 Line URL
        + 'view-handlers-details/view-handlers-details.component.css'],
   templateUrl:
-      'app/trader/handler-sellers/view-handlers/' // 2 Line URL
+      'app/trader/handler-seller/view-handlers/' // 2 Line URL
       + 'view-handlers-details/view-handlers-details.component.html',
 })
 export class ViewHandlersDetailsComponent implements OnDestroy {
@@ -25,7 +25,7 @@ export class ViewHandlersDetailsComponent implements OnDestroy {
   private traderBids: TraderBid[];
   private openTraderBids: TraderBid[];
   private closedTraderBids: TraderBid[];
-  private counters: Subscription[];
+  private counters: Subscription[] = [];
 
   constructor(
       private traderBidService: TraderBidService,
@@ -43,23 +43,25 @@ export class ViewHandlersDetailsComponent implements OnDestroy {
   @Input()
   set selectedHandler(selectedHandler: HandlerSeller) {
     this.recievedSelectedHandler = selectedHandler;
-    this.traderBids = [];
-    this.traderBidService.getHandlerSellerBids(this.recievedSelectedHandler.handlerId)
-      .subscribe(
-        bids => {
-          this.traderBids = bids;
-          this.openTraderBids = this.traderBids
-              .filter(bid => bid.currentlyOpen);
-          this.closedTraderBids = this.traderBids
-              .filter(bid => !bid.currentlyOpen);
-          for (let bidIndex in this.traderBids) {
-            this.getCountDownString(this.traderBids[bidIndex]);
-          }
-        },
-        error => {
-          this.logger.handleHttpError(error);
-          this.config.forceLogout();
-        });
+    if (this.recievedSelectedHandler) {
+      this.traderBids = [];
+      this.traderBidService.getHandlerSellerBids(this.recievedSelectedHandler.handlerId)
+        .subscribe(
+          bids => {
+            this.traderBids = bids;
+            this.openTraderBids = this.traderBids
+                .filter(bid => bid.currentlyOpen);
+            this.closedTraderBids = this.traderBids
+                .filter(bid => !bid.currentlyOpen);
+            for (let bidIndex in this.traderBids) {
+              this.getCountDownString(this.traderBids[bidIndex]);
+            }
+          },
+          error => {
+            this.logger.handleHttpError(error);
+            this.config.forceLogout();
+          });
+    }
   }
 
   protected getCountDownString(bid: TraderBid): void {
