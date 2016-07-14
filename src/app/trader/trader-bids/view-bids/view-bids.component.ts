@@ -9,9 +9,9 @@ import { Config, Logger } from '../../../shared/index';
 import { TraderBid, TraderBidService } from '../shared/index';
 
 import { ViewBidsDetailsComponent }
-    from './view-bids-details/view-bids-details.component';
+    from './view-bids-details/index';
 import { ViewBidsSidebarComponent }
-    from './view-bids-sidebar/view-bids-sidebar.component';
+    from './view-bids-sidebar/index';
 
 @Component({
   directives: [RouterLink, ROUTER_DIRECTIVES, ViewBidsDetailsComponent, ViewBidsSidebarComponent],

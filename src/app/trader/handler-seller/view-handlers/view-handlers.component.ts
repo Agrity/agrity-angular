@@ -5,9 +5,9 @@ import { Router, RouterLink, ROUTER_DIRECTIVES }
 import { Config, Logger } from '../../../shared/index';
 import { HandlerSeller, HandlerSellerService } from '../shared/index';
 import { ViewHandlersDetailsComponent }
-    from './view-handlers-details/view-handlers-details.component';
+    from './view-handlers-details/index';
 import { ViewHandlersSidebarComponent }
-    from './view-handlers-sidebar/view-handlers-sidebar.component';
+    from './view-handlers-sidebar/index';
 
 @Component({
   directives: [RouterLink, ROUTER_DIRECTIVES,
