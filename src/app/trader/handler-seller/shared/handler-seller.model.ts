@@ -11,6 +11,7 @@ export class HandlerSeller {
   public lastName: string;
   public email: string;
   public phone: Phone = new Phone();
+  public companyName: string;
 
   public encode(): string {
     return '';  // Does Nothing for now.

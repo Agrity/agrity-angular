@@ -1,0 +1,26 @@
+  <div id="create-handler">
+    
+    <!-- Currently we don't have a make traderBid button, so this doesn't
+         link to anything. --> 
+    <button type="button" id="create-bid-button">
+      Create New Handler
+    </button>
+
+  </div>
+
+  <div id="handler-list">
+    <h1> Handlers </h1>
+    <div *ngFor="let handler of recievedHandlerSellers">
+      <button (click)="selectHandler(handler)" type="button">
+        <table>
+         <tr>
+            <td>{{ handler?.firstName }}</td>
+            <td>{{ handler?.lastName }}</td>
+            <td>{{ handler?.email }}</td> 
+            <td>{{ handler?.phone.getAsString() }}</td>
+            <td>{{ handler?.companyName}}
+          </tr>
+        </table>
+      </button>
+    </div>
+  </div>

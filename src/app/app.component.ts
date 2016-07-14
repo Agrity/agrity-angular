@@ -29,9 +29,12 @@ import { BidDetailComponent } from './handler/bids/bid-detail/index';
 import { BidListComponent } from './handler/bids/bid-list/index';
 import { BidCreateComponent } from './handler/bids/bid-create/index';
 
-import { TraderBidCreateComponent } from './trader/trader-bids/bid-create/index';
+// import { TraderBidCreateComponent } from './trader/trader-bids/bid-create/index';
 
-import { ViewBidsComponent } from './trader/trader-bids/view-bids/view-bids.component';
+import { ViewBidsComponent }
+    from './trader/trader-bids/view-bids/view-bids.component';
+import { ViewHandlersComponent }
+    from './trader/handler-seller/view-handlers/view-handlers.component';
 
 @RouteConfig([
   { component: HomeComponent, name: 'Home', path: '/' },
@@ -46,15 +49,16 @@ import { ViewBidsComponent } from './trader/trader-bids/view-bids/view-bids.comp
   { component: BidDetailComponent, name: 'View Bid', path: '/bids/:id' },
   { component: BidCreateComponent, name: 'Make Bid', path: '/bids/new' },
 
-  { component: TraderBidCreateComponent, name: 'Trader Make Bid', path: '/trader-bids/new' },
+  // { component: TraderBidCreateComponent, name: 'Trader Make Bid', path: '/trader-bids/new' },
 
   { component: GrowerListComponent, name: 'View Growers', path: '/growers' },
   { component: GrowerDetailComponent, name: 'View Grower', path: '/growers/:id' },
   { component: GrowerCreateComponent, name: 'New Grower', path: '/growers/new' },
 
-  { component: ViewBidsComponent, name: 'View Trader Bids', path: '/traderbids'},
+  { component: ViewBidsComponent, name: 'View Trader Bids', path: '/trader-bids'},
+  { component: ViewHandlersComponent, name: 'View Handler Sellers', path: '/handler-sellers'},
 
-  { component: NotFoundComponent, name: 'Not Found', path: '/not-found' },
+  { component: NotFoundComponent, name: 'NotFound', path: '/not-found' },
   { name: 'Other', path: '/*other', redirectTo: ['Home'] },
 ])
 @Component({
