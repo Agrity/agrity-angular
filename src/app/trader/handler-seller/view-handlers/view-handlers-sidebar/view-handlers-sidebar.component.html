@@ -14,13 +14,11 @@
       <button (click)="selectHandler(handler)" type="button">
         <table>
          <tr>
-            <!--TO Design Man: These are all the properties
-                so you can pick which you want to display
-                in the sidebar.-->
             <td>{{ handler?.firstName }}</td>
             <td>{{ handler?.lastName }}</td>
             <td>{{ handler?.email }}</td> 
             <td>{{ handler?.phone.getAsString() }}</td>
+            <td>{{ handler?.companyName}}
           </tr>
         </table>
       </button>

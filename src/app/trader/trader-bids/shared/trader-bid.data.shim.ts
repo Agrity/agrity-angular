@@ -61,6 +61,7 @@ export class TraderBidData {
     handlerSeller.phone.phoneTwo = '111';
     handlerSeller.phone.phoneThree = '1111';
     handlerSeller.handlerId = 0;
+    handlerSeller.companyName = 'company';
 
     return handlerSeller;
   }

@@ -27,6 +27,7 @@ export class HandlerSellerData {
     handlerSeller.phone.phoneOne = '559';
     handlerSeller.phone.phoneTwo = '111';
     handlerSeller.phone.phoneThree = '1111';
+    handlerSeller.companyName = 'company';
 
     return handlerSeller;
   }
