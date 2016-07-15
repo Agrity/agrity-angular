@@ -1,0 +1,82 @@
+.details {
+    float:right;
+    width:70%
+}
+
+.spacetop {
+    padding-top:50px;
+}
+
+h1 {
+    font-size: 20px;
+    color: #565656;
+    text-shadow: none;
+}
+
+p {
+	font-size: 16px;
+	letter-spacing: 0.9px;
+	line-height: 32px;
+    color: #000000;
+}
+
+.details {
+    background-color:#efefef;
+    width:75%;
+    height:100%;
+    padding-bottom:30px;
+}
+
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.listbidbutton {
+	width: 80%;
+	height: 80px;
+	font-size: 1em;
+    color:#000000;
+	text-align: left;
+	background-color: #ffffff;
+	border-radius: 6px;
+	border: 1px solid #419ed2;
+}
+
+.accepted {
+    background-color:rgba(61,184,55,0.30);
+    width: 30%;
+    height: auto;
+    border-radius: 5px;
+    padding:10px;
+}
+
+
+.rejected {
+    background-color:rgba(184,79,55,0.30);
+    width: 30%;
+    height: auto;
+    border-radius: 3px;
+    padding:10px;
+
+}
+
+.pending {
+    background-color:rgba(55,134,184,0.30);
+    width: 30%;
+    height: auto;
+    border-radius: 3px;
+    padding:10px;
+}
+
+li {
+    padding-left:10px;
+}
+
+.comment-back {
+    background-color: #ffffff;
+    border: 1px solid #979797;
+    width: 80%;
+    height: auto;
+}
+

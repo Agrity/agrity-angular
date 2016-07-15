@@ -11,47 +11,56 @@
   <!-- To Design Man: I copied your table and list formats from the previous 
                       bid components. 
                       Feel free to change anything as you see fit. -->
+  <div class="sidebar-color col-md-3">
+        <h1 class="spacetop center"> OPEN BIDS </h1>
+
+			<button style="border:none; background:none; padding:none;" type="button">
+        <div class="cssCircle plusSign">
+			  &#43;
+			</div>
+      </button>
+
   <div id="open-bids">
-    <h1> Open Bids </h1>
     <div *ngFor="let bid of recievedOpenTraderBids">
-      <button (click)="selectBid(bid)" type="button">
+      <!--<button (click)="selectBid(bid)" type="button">-->
         <table>
-         <tr>
+        <tbody>
+         <tr (click)="selectBid(bid)">
             <!--TO Design Man: These are all the properties
                 so you can pick which you want to display
                 in the sidebar.-->
-            <td>{{ bid?.almondVariety }}</td>
-            <td>{{ bid?.almondPounds }}</td>
-            <td>{{ bid?.pricePerPound }}</td> 
+            <td><p1>{{ bid?.almondVariety }}</p1></td>
+            <td><p1>${{ bid?.pricePerPound }}</p1></td> 
             <!--countDownString is a countdown string that 
                 will display time remaining until bid expires.
                 It updates every second.
                 If no time remains it returns "Offer Closed" -->
-            <td>{{ bid?.countDownString }}</td>
+            <td><p1>{{ bid?.countDownString }}</p1></td>
           </tr>
+        </tbody>
         </table>
-      </button>
+      <!--</button>-->
     </div>
   </div>
 
   <div id="closed-bids">
-    <h1> Closed Bids </h1>
+    <h2 class="center"> CLOSED BIDS </h2>
     <div *ngFor="let bid of recievedClosedTraderBids">
-      <button (click)="selectBid(bid)" type="button">
-        <table>
-         <tr>
-            <td>{{ bid?.almondVariety }}</td>
-            <td>{{ bid?.almondPounds }}</td>
-            <td>{{ bid?.pricePerPound }}</td> 
-            <td>{{ bid?.countDownString }}</td>
+      <!--<button (click)="selectBid(bid)" type="button">-->
+        <table style="border-top:1px solid #1f1f1f">
+         <tr (click)="selectBid(bid)">
+            <td><p2>{{ bid?.almondVariety }}</p2></td>
+            <td><p2>{{ bid?.pricePerPound }}</p2></td> 
+            <td><p2>{{ bid?.countDownString }}</p2></td>
             <!--TO Design Man: Here are three methods that can be called with a closed bid.
                 we used them for styling the other bidslist page. You may find them usefull. 
                 isPartial(bid) will return true if the bid was partially accepted before closing.
                 isAccepted(bid) will return true if the bid was accepted in full.
                 isRejected(bid) will return true if the bid was neither partially or fully accepted before closing. -->
-            <td>{{ isPartial(bid) }} {{ isAccepted(bid) }} {{ isRejected(bid) }}</td>
+            <!--<td><p1>{{ isPartial(bid) }} {{ isAccepted(bid) }} {{ isRejected(bid) }}</p1></td>-->
           </tr>
         </table>
-      </button>
+      <!--</button>-->
     </div>
+  </div>
   </div>
