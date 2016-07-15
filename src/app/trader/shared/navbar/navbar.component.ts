@@ -3,7 +3,7 @@ import { RouterLink, ROUTER_DIRECTIVES, Router }
     from '@angular/router-deprecated';
 
 import { Trader, TraderService } from '../../traders/shared/index';
-import { Config, Logger } from '../../../shared/index';
+import { Config, Logger, UserType } from '../../../shared/index';
 
 @Component({
     directives: [RouterLink, ROUTER_DIRECTIVES],
@@ -26,7 +26,7 @@ export class TraderNavBarComponent implements OnInit {
 
   public ngOnInit() {
 
-    if (!this.config.loggedIn()) {
+    if (this.config.loggedIn() === UserType.NONE) {
       this.config.forceLogout();
       return;
     }

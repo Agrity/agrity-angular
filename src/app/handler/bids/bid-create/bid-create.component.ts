@@ -3,7 +3,7 @@ import { Router, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
 import { Bid, BidService } from '../shared/index';
-import { Config, Logger }
+import { Config, Logger, UserType }
     from '../../../shared/index';
 import { Grower, GrowerService } from '../../growers/shared/index';
 
@@ -63,7 +63,7 @@ export class BidCreateComponent implements OnInit {
 
   public ngOnInit() {
 
-    if (!this.config.loggedIn()) {
+    if (this.config.loggedIn() === UserType.NONE) {
       alert('Please Login.'
           + 'If this issue continues try logging out, then logging back in.');
       this.config.forceLogout();

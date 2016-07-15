@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink, ROUTER_DIRECTIVES, RouteParams, Router }
     from '@angular/router-deprecated';
 
-import { Config, Logger } from '../../../shared/index';
+import { Config, Logger, UserType } from '../../../shared/index';
 import { Bid, BidService } from '../shared/index';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -36,7 +36,7 @@ export class BidDetailComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
 
-    if (!this.config.loggedIn()) {
+    if (this.config.loggedIn() === UserType.NONE) {
       alert('Please Login. If this issue continues try logging out, then logging back in.');
       this.config.forceLogout();
       return;

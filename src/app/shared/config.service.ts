@@ -30,7 +30,7 @@ export class Config {
     if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '') {
       return UserType.TRADER;
     }
-    
+
     return UserType.HANDLER;
   }
 
@@ -39,7 +39,7 @@ export class Config {
     this.router.navigateByUrl('/handler-login');
   }
 
-  public forceLogoutTrader() {
+  public forceTraderLogout() {
     localStorage.setItem(this.getTraderAuthHeaderKey(), '');
     this.router.navigateByUrl('/trader-login');
   }

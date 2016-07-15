@@ -53,7 +53,7 @@ export class TraderLoginComponent {
           alert('Successfully Logged Out: Please Refresh the Page.');
         },
         error => {
-          this.config.forceLogout();
+          this.config.forceTraderLogout();
         });
   }
 }
