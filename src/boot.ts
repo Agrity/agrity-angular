@@ -3,6 +3,7 @@ import { ROUTER_PROVIDERS }
     from '@angular/router-deprecated';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 import { AppComponent } from './app/app.component';
 import { Config, HttpClient, Logger } from './app/shared/index';
@@ -40,4 +41,8 @@ bootstrap(AppComponent,
 
            /* Handler Seller Providers */
            HandlerSellerService,
+
+           /* Forms */
+           disableDeprecatedForms(),
+           provideForms(),
           ]);

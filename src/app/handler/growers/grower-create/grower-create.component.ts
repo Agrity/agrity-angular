@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ControlGroup } from '@angular/common';
+import { NgForm } from '@angular/forms';
 import { Router, RouteParams, RouterLink, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
@@ -22,28 +22,15 @@ export class GrowerCreateComponent implements OnInit {
   protected grower = new Grower();
 
   /* NOTE: Referenced in .html file. */
-  protected newgrowerform: ControlGroup;
-
-  /* NOTE: Referenced in .html file. */
   protected title: string;
 
   constructor(
-    fb: FormBuilder,
     private router: Router,
     private routeParams: RouteParams,
     private growerService: GrowerService,
     private config: Config,
     private logger: Logger
-  ) {
-    this.newgrowerform = fb.group({
-      email: ['', CustomValidators.email],
-      first_name: ['', CustomValidators.isName],
-      last_name: ['', CustomValidators.isName],
-      phone_1: ['', CustomValidators.phoneThree],
-      phone_2: ['', CustomValidators.phoneThree],
-      phone_3: ['', CustomValidators.phoneFour],
-    });
-  }
+  ) {}
 
   public ngOnInit() {
 

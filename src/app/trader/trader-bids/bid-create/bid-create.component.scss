@@ -1,6 +1,18 @@
+
+/*These will apply to input boxes.----- */
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
+
+
+
+
 /* Typography
 ------------------------------------- */
-
+/*
 h9 {
 	color: #444444;
 	font-size: 22px;
@@ -13,10 +25,11 @@ p {
 	letter-spacing: 0.9px;
 	line-height: 32px;
 }
-
+*/
 /* All Section styles
 ------------------------------------- */
-#contact {
+
+/*#contact {
 	padding-top: 120px;
 	padding-bottom: 120px;
 	background: rgba(117,117,117,0.15) 0 repeat-y fixed;
@@ -114,6 +127,7 @@ p {
 
 /* add bid symbol
 /* ========================================== */
+/*
 .cssCircle {
 	-webkit-border-radius: 999px;
 	-moz-border-radius: 999px;
@@ -161,6 +175,7 @@ p {
 
 /* check box
 /* ========================================== */
+/*
 [type="checkbox"] {
 	&:not(:checked) {
 		position: absolute;
@@ -289,3 +304,4 @@ label {
 .needspace {
 	margin-right: 50px;
 }
+*/

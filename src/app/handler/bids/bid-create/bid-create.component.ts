@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ControlGroup, Validators } from '@angular/common';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
+import { NgForm } from '@angular/forms';
 
 import { Bid, BidService } from '../shared/index';
 import { Config, Logger }
@@ -17,28 +17,50 @@ import { Grower, GrowerService } from '../../growers/shared/index';
 
 export class BidCreateComponent implements OnInit {
 
-  private newBidForm: ControlGroup;
-
   private bid: Bid = new Bid();
   private aol: boolean = false;
   private growers: Grower[];
 
+  private varieties: string[] = [
+    'NONPAREIL',
+    'CARMEL',
+    'BUTTE',
+    'PADRE',
+    'MISSION',
+    'MONTEREY',
+    'SONORA',
+    'FRITZ',
+    'PRICE',
+    'PEERLESS',
+  ];
+
+  private sizes: string[] = [
+    '16/18',
+    '18/20',
+    '20/22',
+    '22/24',
+    '23/25',
+    '25/27',
+    '27/30',
+    '30/32',
+    '32/34',
+    '34/36',
+    '36/38',
+    '38/40',
+    '40/50',
+    '50/60',
+    'Any Size',
+    'Unsized',
+    'Whole & Broken',
+    'Inshell',
+  ];
+
   constructor(
-    fb: FormBuilder,
     private bidService: BidService,
     private growerService: GrowerService,
     private logger: Logger,
     private config: Config,
-    private router: Router) {
-    this.newBidForm = fb.group({
-      almondPounds: ['', Validators.required],
-      almondSize: ['', Validators.required],
-      almondVariety: ['', Validators.required],
-      comment: [],
-      delay: ['', Validators.required],
-      pricePerPound: ['', Validators.required],
-    });
-  }
+    private router: Router) {}
 
   public ngOnInit() {
 

@@ -20,6 +20,7 @@ export class HandlerSellerData {
   private static createMockHandlerSeller(): HandlerSeller {
 
     let handlerSeller: HandlerSeller = new HandlerSeller();
+    handlerSeller.handlerId = 0;
     handlerSeller.firstName = 'Jon';
     handlerSeller.lastName = 'Smith';
     handlerSeller.email = 'jsmithMock@gmail.com';
