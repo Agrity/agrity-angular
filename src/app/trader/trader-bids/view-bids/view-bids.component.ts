@@ -41,7 +41,7 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
 
     if (this.config.loggedIn() === UserType.NONE) {
       alert('Please Login. If this issue continues try logging out, then logging back in.');
-      this.config.forceLogout();
+      this.config.forceTraderLogout();
       return;
     }
 
@@ -66,7 +66,7 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
         },
           error => {
             this.logger.handleHttpError(error);
-            this.config.forceLogout();
+            this.config.forceTraderLogout();
 
         });
   }

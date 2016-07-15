@@ -29,7 +29,7 @@ export class HandlerSellerCreateComponent implements OnInit {
     if (this.config.loggedIn() === UserType.NONE) {
       alert('Please Login.'
           + 'If this issue continues try logging out, then logging back in.');
-      this.config.forceLogout();
+      this.config.forceTraderLogout();
       return;
     }
   }

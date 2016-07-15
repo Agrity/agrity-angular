@@ -27,7 +27,7 @@ export class TraderNavBarComponent implements OnInit {
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.NONE) {
-      this.config.forceLogout();
+      this.config.forceTraderLogout();
       return;
     }
 
@@ -38,7 +38,7 @@ export class TraderNavBarComponent implements OnInit {
             },
             error => {
               this.logger.handleHttpError(error);
-              this.config.forceLogout();
+              this.config.forceTraderLogout();
           });
   }
 }
