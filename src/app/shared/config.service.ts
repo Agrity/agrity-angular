@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
+import { UserType } from './index';
 
 @Injectable()
 export class Config {
+
   constructor(
     private router: Router) {
   }
@@ -15,19 +17,30 @@ export class Config {
   }
 
   public getTraderAuthHeaderKey(): string {
-    return ''; 
+    return 'X-TRADER-TOKEN';
   }
 
   // TODO Move to Appropriate Location
-  public loggedIn(): boolean {
-    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '') {
-      return false;
+  public loggedIn(): UserType {
+    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' &&
+        localStorage.getItem(this.getTraderAuthHeaderKey()) === '') {
+      return UserType.NONE;
     }
-    return true;
+
+    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '') {
+      return UserType.TRADER;
+    }
+    
+    return UserType.HANDLER;
   }
 
   public forceLogout() {
     localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
     this.router.navigateByUrl('/handler-login');
+  }
+
+  public forceLogoutTrader() {
+    localStorage.setItem(this.getTraderAuthHeaderKey(), '');
+    this.router.navigateByUrl('/trader-login');
   }
 }
