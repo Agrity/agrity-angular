@@ -48,15 +48,15 @@ export class HandlerSellerService {
       .catch(this.logger.handleHttpError);
   }
 
-  public addHandlerSeller(handlerSeller: HandlerSeller) {
+  public addHandlerSeller(handlerSeller: HandlerSeller): HandlerSeller {
     if (handlerSeller == null) {
       this.logger.handleError('Attempted to add null Grower.');
       return null;
     }
-
-    return this.http.jsonPost(this.handlerSellersUrl, handlerSeller.encode())
-      .map(res => res.json())
-      .catch(this.logger.handleHttpError);
+    return null; // does nothing for now.
+    // return this.http.jsonPost(this.handlerSellersUrl, handlerSeller.encode())
+    //   .map(res => res.json())
+    //   .catch(this.logger.handleHttpError);
   }
 
   // TODO Updating Not Implemented on Server Side Yet.

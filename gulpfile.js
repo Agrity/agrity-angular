@@ -111,7 +111,7 @@ gulp.task('serve', ['build'], function() {
 
 });
 
-gulp.task('build', ['clean', 'tslint', 'compile', 'sass', 'copy:html',
+gulp.task('build', ['clean', 'compile', 'sass', 'copy:html',
                     'copy:assets', 'copy:libs', 'copy:other']);
 
 gulp.task('watch', ['compile:watch', 'sass:watch',

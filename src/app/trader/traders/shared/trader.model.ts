@@ -16,3 +16,8 @@ import { Phone } from '../../../shared/index';
   /* ===================================== Member Methods ===================================== */
 
 }
+
+/*
+decode
+encode
+*/
