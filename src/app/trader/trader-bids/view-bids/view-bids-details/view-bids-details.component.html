@@ -1,15 +1,18 @@
+<div class="details">
+
 <div *ngIf="recievedSelectedBid">
     <!--TO Design Man: I explained some things in the sidebar html.
         probably best to start by go through that one real quick before you
         start styling-->
+    
     <div id="bid-info">
     <!-- Currently white on white, so you can't see it before styling,
          but this is the information you have to work with. --> 
-        <table>
+        <!--<table>
           <tr>
             <td>{{ recievedSelectedBid?.almondVariety }}</td>
-            <td>{{ recievedSelectedBid?.almondPounds }}</td>
             <td>{{ recievedSelectedBid?.pricePerPound }}</td> 
+            <td>{{ recievedSelectedBid?.almondPounds }}</td>
             <td>{{ recievedSelectedelectedBid?.countDownString }}</td>
             <td>{{ isPartial(recievedSelectedBid) }} 
                 {{ isAccepted(recievedSelectedBid) }} 
@@ -17,50 +20,81 @@
             </td>
           </tr>
         </table>
-    </div>
+    </div>-->
 
-    <div id="handler-responses">
+    <h1 class="center spacetop"> BID DETAILS </h1>
+
+    		<div class="wow fadeInDown center" data-wow-delay="0.6s">
+			  <div class="wow fadeInDown center" data-wow-delay="0.3s">
+			  <button type="button" class="listbidbutton center">
+			  	<table id="buttonCols" style="width:100%">
+				<tr>
+			  		<td class="offerButton"><p>{{ recievedSelectedBid?.almondVariety }}</p></td>
+			  		<td class="offerButton"><p>${{ recievedSelectedBid?.pricePerPound }}</p></td>
+			  		<td class="offerButton"><p>{{ recievedSelectedBid?.almondPounds }}</p></td>
+			  		<td class="offerButton"><p>{{ recievedSelectedBid?.countDownString }}</p></td> 
+			  	</tr>
+				  <!--<tr>{{ bid.comment }}</tr>-->
+				</table>
+			  	</button>
+			 </div>			 
+       </div>
+
+       <!--<div class="comment-back"-->
+        <p>This is a comment. This is a comment. This is a comment. This is a comment. This is a comment.</p>
+       <!--</div>-->
+       
+
+    <div class="center" id="handler-responses">
       
-      <div id="accepted-handlers"> 
-        Accepted Handlers
-        <button *ngFor="let handler of recievedSelectedBid?.acceptedHandlerSellers" type="button" (click)="viewHandler(handler?.handlerId)">
-          <li>
-            <p >{{ handler?.firstName }} 
+      <div class="col-md-4 accepted" id="accepted-handlers"> 
+        <h1 style="color:#2E9566" class="center">ACCEPTED</h1>
+          <li 
+            *ngFor="let handler of recievedSelectedBid?.acceptedHandlerSellers" 
+            type="button" 
+            (click)="viewHandler(handler?.handlerId)">
+            <p>
+                <!--{{ handler?.firstName }} 
                 {{ handler?.lastName }}
-                {{ handler?.email }} 
+                {{ handler?.email }} -->
                 {{ handler?.companyName }}
-                {{ handler?.phone.getAsString()}}
+                <!--{{ handler?.phone.getAsString()}}-->
             </p>
           </li>
-        </button>
       </div>      
 
-      <div id="rejected-handlers">
-        Rejected Handlers
-        <button *ngFor="let handler of recievedSelectedBid?.rejectedHandlerSellers" type="button" (click)="viewHandler(handler?.handlerId)">
-          <li>
-            <p >{{ handler?.firstName }} 
+      <div class="col-md-4 rejected" id="rejected-handlers">
+        <h1 style="color:#9F1B17" class="center">REJECTED</h1>
+          <li *ngFor="let handler of recievedSelectedBid?.rejectedHandlerSellers" 
+                type="button" 
+                (click)="viewHandler(handler?.handlerId)">
+            <p>
+                <!--{{ handler?.firstName }} 
                 {{ handler?.lastName }}
-                {{ handler?.email }} 
+                {{ handler?.email }} -->
                 {{ handler?.companyName }}
-                {{ handler?.phone.getAsString()}}
+                <!--{{ handler?.phone.getAsString()}}-->
             </p>
           </li>
-        </button>
       </div>
 
-      <div id="no-response-handlers">
-        No Response Handlers
-        <button *ngFor="let handler of recievedSelectedBid?.noResponseHandlerSellers" type="button" (click)="viewHandler(handler?.handlerId)">
-          <li>
-            <p >{{ handler?.firstName }} 
+      <div class="col-md-4 pending" id="no-response-handlers">
+        <h1 style="color:#419ed2" class="center">PENDING</h1>
+          <li           
+            *ngFor="let handler of recievedSelectedBid?.noResponseHandlerSellers" 
+            type="button" 
+            (click)="viewHandler(handler?.handlerId)">
+            <p >
+                <!--{{ handler?.firstName }} 
                 {{ handler?.lastName }}
-                {{ handler?.email }} 
+                {{ handler?.email }} -->
                 {{ handler?.companyName }}
-                {{ handler?.phone.getAsString()}}
+                <!--{{ handler?.phone.getAsString()}}-->
             </p>
           </li>
-        </button>
       </div>
 
+</div>
+</div>
+</div>
 </div>

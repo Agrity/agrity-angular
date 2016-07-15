@@ -50,7 +50,7 @@ import { HandlerSellerCreateComponent }
 
   { component: HandlerLoginComponent, name: 'Handler Login', path: '/handler-login' },
 
-  { component: TraderLoginComponent, name: 'Trader Login', path:'/trader-login' },
+  { component: TraderLoginComponent, name: 'Trader Login', path: '/trader-login' },
 
   { component: BidListComponent, name: 'View Bids', path: '/bids' },
   { component: BidDetailComponent, name: 'View Bid', path: '/bids/:id' },
