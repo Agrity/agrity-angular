@@ -7,7 +7,7 @@ import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 import { AppComponent } from './app/app.component';
 import { Config, HttpClient, Logger } from './app/shared/index';
-import { NavBarComponent } from './app/handler/shared/navbar/index';
+import { NavBarService } from './app/shared/main-navbar/index';
 import { GrowerService } from './app/handler/growers/shared/index';
 import { HandlerLoginService } from './app/handler/handlers/handler-login/index';
 import { BidService } from './app/handler/bids/shared/index';
@@ -25,7 +25,7 @@ bootstrap(AppComponent,
            Config,
            HttpClient,
            Logger,
-           NavBarComponent,
+           NavBarService,
 
            /* Handler Providers */
            HandlerLoginService,

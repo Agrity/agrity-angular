@@ -3,7 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 // TODO Fix Barrel Import
 /* Shared Pages */
-import { NavBarComponent } from './handler/shared/navbar/index';
+import { MainNavBarComponent } from './shared/main-navbar/index';
 
 // TODO Fix Barrel Imports
 /* Single Pages */
@@ -72,11 +72,11 @@ import { HandlerSellerCreateComponent }
   { name: 'Other', path: '/*other', redirectTo: ['Home'] },
 ])
 @Component({
-    directives: [NavBarComponent, ROUTER_DIRECTIVES],
+    directives: [MainNavBarComponent, ROUTER_DIRECTIVES],
     selector: 'sg-my-app',
     styleUrls: ['assets/stylesheets/style.css'],
     template: `
-        <sg-navbar></sg-navbar>
+        <sg-main-navbar></sg-main-navbar>
         <div class="container">
             <router-outlet></router-outlet>
         </div>
