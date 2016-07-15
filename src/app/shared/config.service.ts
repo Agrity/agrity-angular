@@ -15,7 +15,7 @@ export class Config {
   }
 
   public getTraderAuthHeaderKey(): string {
-    return ''; 
+    return '';
   }
 
   // TODO Move to Appropriate Location
