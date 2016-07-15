@@ -8,19 +8,27 @@
 
   </div>
 
-  <div id="handler-list">
-    <h1> Handlers </h1>
-    <div *ngFor="let handler of recievedHandlerSellers">
-      <button (click)="selectHandler(handler)" type="button">
-        <table>
-         <tr>
-            <td>{{ handler?.firstName }}</td>
-            <td>{{ handler?.lastName }}</td>
-            <td>{{ handler?.email }}</td> 
-            <td>{{ handler?.phone.getAsString() }}</td>
-            <td>{{ handler?.companyName}}
-          </tr>
-        </table>
+  <div class="sidebar-color col-md-3">
+      <h1 class="spacetop center"> HANDLERS </h1>
+
+      <button style="border:none; background:none; padding:none;" type="button">
+        <div class="cssCircle plusSign">
+			  &#43;
+			</div>
       </button>
+
+  <div id="handler-list">
+    <div *ngFor="let handler of recievedHandlerSellers">
+        <table>
+        <tbody>
+         <tr (click)="selectHandler(handler)">
+            <!--<td><p1>{{ handler?.firstName }}</td>
+            <td><p1>{{ handler?.lastName }}</td>
+            <td><p1>{{ handler?.email }}</td> 
+            <td><p1>{{ handler?.phone.getAsString() }}</td>-->
+            <td><p1>{{ handler?.companyName}}</p1></td>
+          </tr>
+        </tbody>
+        </table>
     </div>
   </div>
