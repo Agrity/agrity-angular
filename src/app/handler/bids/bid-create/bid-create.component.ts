@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
-import { NgForm } from '@angular/forms';
 
 import { Bid, BidService } from '../shared/index';
 import { Config, Logger }
