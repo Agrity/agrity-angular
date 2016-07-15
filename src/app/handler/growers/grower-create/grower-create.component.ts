@@ -6,9 +6,6 @@ import { Router, RouteParams, RouterLink, ROUTER_DIRECTIVES }
 import { Config, Logger }
     from '../../../shared/index';
 
-import { CustomValidators }
-    from '../../shared/index';
-
 import { Grower, GrowerService } from '../shared/index';
 
 @Component({
