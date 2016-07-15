@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router, RouteParams, RouterLink, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
 import { Config, Logger }
     from '../../../shared/index';
-
-import { CustomValidators }
-    from '../../shared/index';
 
 import { Grower, GrowerService } from '../shared/index';
 

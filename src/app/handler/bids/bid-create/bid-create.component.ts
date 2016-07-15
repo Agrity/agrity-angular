@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
-import { NgForm } from '@angular/forms';
 
 import { Bid, BidService } from '../shared/index';
 import { Config, Logger }
@@ -17,11 +16,7 @@ import { Grower, GrowerService } from '../../growers/shared/index';
 
 export class BidCreateComponent implements OnInit {
 
-  private bid: Bid = new Bid();
-  private aol: boolean = false;
-  private growers: Grower[];
-
-  private varieties: string[] = [
+  protected varieties: string[] = [
     'NONPAREIL',
     'CARMEL',
     'BUTTE',
@@ -34,7 +29,7 @@ export class BidCreateComponent implements OnInit {
     'PEERLESS',
   ];
 
-  private sizes: string[] = [
+  protected sizes: string[] = [
     '16/18',
     '18/20',
     '20/22',
@@ -54,6 +49,10 @@ export class BidCreateComponent implements OnInit {
     'Whole & Broken',
     'Inshell',
   ];
+
+  private bid: Bid = new Bid();
+  private aol: boolean = false;
+  private growers: Grower[];
 
   constructor(
     private bidService: BidService,

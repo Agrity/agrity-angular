@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
-import { NgForm } from '@angular/forms';
 
 import { Config, Logger }
     from '../../../shared/index';
@@ -17,14 +16,9 @@ import { TraderBid, TraderBidService } from '../shared/index';
 
 export class TraderBidCreateComponent implements OnInit {
 
-  private traderBid: TraderBid = new TraderBid();
-  private traderBids: TraderBid[] = [];
+  protected active: boolean = true;
 
-  private handlerSellers: HandlerSeller[];
-
-  private active: boolean = true;
-
-  private varieties: string[] = [
+  protected varieties: string[] = [
     'NONPAREIL',
     'CARMEL',
     'BUTTE',
@@ -37,7 +31,7 @@ export class TraderBidCreateComponent implements OnInit {
     'PEERLESS',
   ];
 
-  private sizes: string[] = [
+  protected sizes: string[] = [
     '16/18',
     '18/20',
     '20/22',
@@ -57,6 +51,11 @@ export class TraderBidCreateComponent implements OnInit {
     'Whole & Broken',
     'Inshell',
   ];
+
+  private traderBid: TraderBid = new TraderBid();
+  private traderBids: TraderBid[] = [];
+
+  private handlerSellers: HandlerSeller[];
 
   constructor(
       private traderBidService: TraderBidService,
