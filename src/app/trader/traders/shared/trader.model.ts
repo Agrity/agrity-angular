@@ -15,9 +15,13 @@ import { Phone } from '../../../shared/index';
 
   /* ===================================== Member Methods ===================================== */
 
-}
+  public static decode(traderJson: Object): Trader {
+    let trader = new Trader();
 
-/*
-decode
-encode
-*/
+    trader.id = traderJson['id'];
+    trader.companyName = traderJson['companyName'];
+    trader.email = traderJson['emailAddress'];
+
+    return trader;
+  }
+}
