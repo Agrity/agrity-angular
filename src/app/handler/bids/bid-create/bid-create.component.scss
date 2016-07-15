@@ -1,7 +1,7 @@
-.ng-valid[required] {
+#contact .ng-valid[required] {
   border-left: 5px solid #42A948; /* green */
 }
-.ng-invalid {
+#contact .ng-invalid {
   border-left: 5px solid #a94442; /* red */
 }
 
@@ -19,4 +19,16 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+
+#contact .form-control {
+	background:white;
+	color:black;
+	border-radius: 5px;
+}
+
+#contact .contact-detail {
+	background:white;
+	color:black;
+	border-radius: 5px;
 }
