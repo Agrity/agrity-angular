@@ -4,6 +4,16 @@ import { Phone } from '../../../shared/index';
 
   /* ===================================== Static Methods ===================================== */
 
+  public static decode(traderJson: Object): Trader {
+    let trader = new Trader();
+
+    // trader.id = traderJson['id'];
+    // trader.companyName = traderJson['companyName'];
+    // trader.email = traderJson['emailAddress'];
+
+    return trader;
+  }
+
   /* ===================================== Member Fields ====================================== */
 
   public id: number;

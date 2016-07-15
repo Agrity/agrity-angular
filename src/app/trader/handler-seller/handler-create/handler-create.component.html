@@ -1,0 +1,54 @@
+<h1>Handler Form</h1>
+      
+      <form (ngSubmit)="save()" #handlerSellerForm="ngForm">
+
+        <div class="form-group">
+          <label for="first name"> First Name </label>
+          <input type="text" class="form-control" required
+              [(ngModel)]="handlerSeller.firstName"
+              ngControl="firstName"
+              name="first name">
+        </div>
+
+        <div class="form-group">
+          <label for="last name"> Last Name </label>
+          <input type="text" class="form-control" required
+              [(ngModel)]="handlerSeller.lastName"
+              ngControl="lastName"
+              name="last name">
+        </div>
+
+        <div class="form-group">
+          <label for="email"> Email </label>
+          <input type="email" class="form-control" required
+              [(ngModel)]="handlerSeller.email"
+              ngControl="email"
+              name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        </div>
+
+        <div class="form-group">
+          
+          <div>
+            <label> Phone Number </label>
+          </div>
+          
+          <input type="number" class="form-control" required
+              [(ngModel)]="handlerSeller.phone.phoneOne" 
+              ngControl="phoneOne" 
+              name="phone one" pattern="[0-9]{3}">
+
+          <input type="number" class="form-control" required
+              [(ngModel)]="handlerSeller.phone.phoneTwo" 
+              ngControl="phoneTwo" 
+              name="phone two" pattern="[0-9]{3}">
+
+          <input type="number" class="form-control" required
+              [(ngModel)]="handlerSeller.phone.phoneThree" 
+              ngControl="phoneThree" 
+              name="phone three" pattern="[0-9]{3}">
+
+        </div>
+
+        <button type="submit" [disabled]="!handlerSellerForm.form.valid"> ADD HANDLER </button>
+
+      </form>

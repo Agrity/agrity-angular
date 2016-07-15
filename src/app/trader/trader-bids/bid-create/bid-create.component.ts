@@ -56,6 +56,8 @@ export class TraderBidCreateComponent implements OnInit {
   private traderBids: TraderBid[] = [];
 
   private handlerSellers: HandlerSeller[];
+  private delay: number;
+  private aol: boolean = false;
 
   constructor(
       private traderBidService: TraderBidService,
@@ -88,14 +90,31 @@ export class TraderBidCreateComponent implements OnInit {
 
   /* NOTE: Called in .html file. */
   protected addBid() {
+    if (this.aol) {
+      this.traderBid.almondSize.concat(' AOL');
+      this.aol = false;
+    }
     this.traderBids.push(this.traderBid);
     this.traderBid = new TraderBid();
     this.active = false;
     setTimeout(() => this.active = true, 0);
   }
 
+  protected removeBid(index: number) {
+    this.traderBids.splice(index, 1);
+  }
+
+  protected selectAllHandlerSellers() {
+    for (let handler of this.handlerSellers) {
+      if (!handler.selected) {
+        handler.selected = true;
+      }
+    }
+  }
+
   protected sendBids() {
     for (let bid of this.traderBids) {
+      bid.delay = this.delay;
       bid.handlerSellerIds = [];
       for (let handler of this.handlerSellers) {
         if (handler.selected) {

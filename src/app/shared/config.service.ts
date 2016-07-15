@@ -14,6 +14,10 @@ export class Config {
     return 'X-HANDLER-TOKEN';
   }
 
+  public getTraderAuthHeaderKey(): string {
+    return '';
+  }
+
   // TODO Move to Appropriate Location
   public loggedIn(): boolean {
     if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '') {

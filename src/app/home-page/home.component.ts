@@ -7,5 +7,5 @@ import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
   templateUrl: 'app/home-page/home.component.html',
 })
 
-export class HomeComponent  {
+export class HomeComponent {
 }

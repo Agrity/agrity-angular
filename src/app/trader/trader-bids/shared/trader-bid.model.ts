@@ -44,6 +44,7 @@ export class TraderBid {
   public bidId: number;
   public almondVariety: string;
   public almondPounds: string;
+  public almondSize: string;
   public pricePerPound: string;
   public comment: string;
   public delay: number;

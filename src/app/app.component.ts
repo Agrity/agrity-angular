@@ -16,6 +16,7 @@ import { NotFoundComponent } from './handler/single-pages/not-found.component';
 
 /* Handler Pages */
 import { HandlerLoginComponent } from './handler/handlers/handler-login/index';
+import { TraderLoginComponent } from './trader/traders/trader-login/index';
 
 // TODO Fix Barrel Imports
 /* Grower Pages */
@@ -37,6 +38,8 @@ import { ViewHandlersComponent }
     from './trader/handler-seller/view-handlers/view-handlers.component';
 import { TraderBidCreateComponent }
     from './trader/trader-bids/bid-create/bid-create.component';
+import { HandlerSellerCreateComponent }
+    from './trader/handler-seller/handler-create/handler-create.component';
 
 @RouteConfig([
   { component: HomeComponent, name: 'Home', path: '/' },
@@ -46,6 +49,8 @@ import { TraderBidCreateComponent }
   { component: TraderHomeComponent, name: 'Trader Home', path: '/trader-home' },
 
   { component: HandlerLoginComponent, name: 'Handler Login', path: '/handler-login' },
+
+  { component: TraderLoginComponent, name: 'Trader Login', path: '/trader-login' },
 
   { component: BidListComponent, name: 'View Bids', path: '/bids' },
   { component: BidDetailComponent, name: 'View Bid', path: '/bids/:id' },
@@ -60,6 +65,8 @@ import { TraderBidCreateComponent }
   { component: ViewBidsComponent, name: 'View Trader Bids', path: '/trader-bids'},
   { component: TraderBidCreateComponent, name: 'Make Trader Bid', path: '/trader-bids/new'},
   { component: ViewHandlersComponent, name: 'View Handler Sellers', path: '/handler-sellers'},
+  { component: HandlerSellerCreateComponent, name: 'New Handler Seller',
+        path: '/handler-sellers/new'},
 
   { component: NotFoundComponent, name: 'NotFound', path: '/not-found' },
   { name: 'Other', path: '/*other', redirectTo: ['Home'] },

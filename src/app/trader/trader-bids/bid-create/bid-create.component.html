@@ -4,10 +4,12 @@
 
       <div>
         <div *ngFor="let bid of traderBids">
+        <button id="remove-bid" (click)="removeBid(index)"> Remove Bid </button>
         <table>
            <tr>
               <td>{{ bid?.almondVariety }}</td>
               <td>{{ bid?.almondPounds }}</td>
+              <td>{{ bid?.almondSize }} </td>
               <td>{{ bid?.pricePerPound }}</td> 
               <td>{{ bid?.comment }}</td>
               <td>{{ bid?.delay }}</td>
@@ -68,14 +70,6 @@
               name="comment">
         </div>
 
-        <div class="form-group">
-          <label for="delay"> Delay: In Hours </label>
-          <input type="number" step="1" class="form-control" required
-              [(ngModel)]="traderBid.delay"
-              ngControl="delay"
-              name="delay">
-        </div>
-
         <button type="submit" [disabled]="!traderBidForm.form.valid"> ADD BID </button>
 
       </form>
@@ -87,8 +81,20 @@
         <h7>{{ handler.firstName }} {{ handler.lastName }}</h7>
       </div>
 
+      <button (click)="selectAllHandlerSellers()"> Select All </button>
+
+    <h1> Set Delay For All Bids </h1>
+
+        <div class="form-group">
+          <label for="delay"> Delay: In Hours </label>
+          <input type="number" step="1" class="form-control" required
+              [(ngModel)]="delay"
+              ngControl="delay"
+              name="delay">
+        </div>
+
     <h1> Send Bids </h1>
 
-      <button (click)="sendBids()"> SEND BIDS </button> 
+      <button [disabled]="!delay" (click)="sendBids()"> SEND BIDS </button> 
 
   </div>

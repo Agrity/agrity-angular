@@ -1,0 +1,30 @@
+<!-- Login Section
+================================================== -->
+<section class="parallax-section" id="login">
+<div class="container" style="padding:150px 0px 100px 350px;">
+  <div class="row">
+        <center><h6 style="padding:0 435px 10px 0;">Sign In</h6></center>
+    <center><div class="col-md-6 col-sm-6">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Email Address" required
+          [(ngModel)]="loginInfo.emailAddress">
+    </div>
+
+      <!--TODO: Remove : {{ loginInfo.emailAddress }}-->
+
+    <div class="form-group">
+      <input type="password" class="form-control" placeholder="Password" required
+          [(ngModel)]="loginInfo.password" autocomplete="off">
+    </div>
+<br>
+    <div class="form-group">
+      <input style="margin: 0 auto; width: 50%; padding-left: 13px;" name="submit" type="submit" class="form-control" id="submit" value="Login" (click)="login()" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <input style="margin: 0 auto; width: 50%; padding-left: 13px; background-color:#a70000;" name="submit" type="submit" class="form-control" id="submit" value="Logout" (click)="logout()">
+    </div>
+      </div></center>
+
+  </div>
+</div>
+</section>
