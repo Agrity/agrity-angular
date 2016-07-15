@@ -13,6 +13,7 @@ import { HandlerLoginService } from './app/handler/handlers/handler-login/index'
 import { BidService } from './app/handler/bids/shared/index';
 import { TraderBidService } from './app/trader/trader-bids/shared/index';
 import { HandlerSellerService } from './app/trader/handler-seller/shared/index';
+import { TraderLoginService } from './app/trader/traders/trader-login/index';
 
 bootstrap(AppComponent,
           [/* Angular Providers */
@@ -41,6 +42,9 @@ bootstrap(AppComponent,
 
            /* Handler Seller Providers */
            HandlerSellerService,
+           
+           /* Trader Providers */
+           TraderLoginService,
 
            /* Forms */
            disableDeprecatedForms(),

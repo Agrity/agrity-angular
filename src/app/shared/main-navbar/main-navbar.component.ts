@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Config, Logger, UserType } from '../index';
 import { NavBarComponent } from '../../handler/shared/navbar/index';
 import { TraderNavBarComponent } from '../../trader/shared/navbar/index';
@@ -17,7 +17,7 @@ import { NavBarService } from './main-navbar.service';
     templateUrl: 'app/shared/main-navbar/main-navbar.component.html',
 })
 
-export class MainNavBarComponent {
+export class MainNavBarComponent implements OnInit {
 
   private traderLoggedIn: boolean = false;
   private handlerLoggedIn: boolean = false;
@@ -25,10 +25,20 @@ export class MainNavBarComponent {
   constructor(
     private logger: Logger,
     private config: Config,
-    private navBarService: NavBarService) {
+    private navBarService: NavBarService) {}
 
-      this.navBarService.traderLoggedIn
-          .subscribe(
+  public ngOnInit() {
+
+    if (this.config.loggedIn() === UserType.HANDLER) {
+      this.handlerLoggedIn = true;
+    }
+
+    if (this.config.loggedIn() === UserType.TRADER) {
+      this.traderLoggedIn = true;
+    }
+
+    this.navBarService.traderLoggedIn
+        .subscribe(
             res => {
               this.traderLoggedIn = res;
             },
@@ -38,8 +48,8 @@ export class MainNavBarComponent {
             }
           );
 
-      this.navBarService.handlerLoggedIn
-          .subscribe(
+    this.navBarService.handlerLoggedIn
+        .subscribe(
             res => {
               this.handlerLoggedIn = true;
             },
