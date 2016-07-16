@@ -102,7 +102,7 @@ button {
 	}
 }
 .plusSign {
-	line-height: 1.1em;
+	line-height: 1.2em;
     font-size:30px;
 	border-style: none;
 	&:hover {
@@ -124,3 +124,6 @@ button {
 	padding-top: 20px;
 }
 
+.lineup {
+    display:inline;
+}

@@ -16,6 +16,7 @@ export class Config {
 
   // TODO Move to Appropriate Location
   public loggedIn(): boolean {
+
     if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '') {
       return false;
     }

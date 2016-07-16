@@ -1,21 +1,29 @@
-  <div id="create-handler">
+  
+  <div id="create-bid">
     
     <!-- Currently we don't have a make traderBid button, so this doesn't
          link to anything. --> 
     <button type="button" id="create-bid-button">
-      Create New Handler
+      Create New Bid
     </button>
 
   </div>
-
+  
   <div class="sidebar-color col-md-3">
-      <h1 class="spacetop center"> HANDLERS </h1>
+      
+    <div class="lineup">
 
-      <button style="border:none; background:none; padding:none;" type="button">
-        <div class="cssCircle plusSign">
-			  &#43;
-			</div>
-      </button>
+      <h1 class="spacetop center"> HANDLERS 
+        
+        <button style="border:none; background:none; padding:none;" type="button">
+          <div class="cssCircle plusSign">
+			      &#43;
+			    </div>
+        </button>
+
+      </h1>
+
+    </div>
 
   <div id="handler-list">
     <div *ngFor="let handler of recievedHandlerSellers">
@@ -26,9 +34,10 @@
             <td><p1>{{ handler?.lastName }}</td>
             <td><p1>{{ handler?.email }}</td> 
             <td><p1>{{ handler?.phone.getAsString() }}</td>-->
-            <td><p1>{{ handler?.companyName}}</p1></td>
+            <td><p1 class="center">{{ handler?.companyName}}</p1></td>
           </tr>
         </tbody>
         </table>
     </div>
+  </div>
   </div>
