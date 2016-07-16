@@ -42,7 +42,7 @@ bootstrap(AppComponent,
 
            /* Handler Seller Providers */
            HandlerSellerService,
-           
+
            /* Trader Providers */
            TraderLoginService,
 
