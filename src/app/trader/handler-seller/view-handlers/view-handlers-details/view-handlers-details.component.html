@@ -1,13 +1,25 @@
+<div class="details">
+
 <div *ngIf="recievedSelectedHandler">
     
     <div id="handler-info">
+
+      <company class="spacetop"> 
+        {{ recievedSelectedHandler?.companyName }}
+      </company>
+
       <table>
         <tr>
-          <td>{{ recievedSelectedHandler?.firstName }}</td>
-          <td>{{ recievedSelectedHandler?.lastName }}</td>
-          <td>{{ recievedSelectedHandler?.email }}</td> 
-          <td>{{ recievedSelectedHandler?.companyName }}</td> 
-          <td>{{ recievedSelectedHandler?.phone?.getAsString() }}</td>
+          <td><p>
+            {{ recievedSelectedHandler?.firstName }}
+            {{ recievedSelectedHandler?.lastName }}
+          </p></td>
+          <td><p>|</p></td>
+          <td><p>
+            {{ recievedSelectedHandler?.phone?.getAsString() }}</p></td>
+          <td><p>|</p></td>
+          <td><p>
+            {{ recievedSelectedHandler?.email }}</p></td> 
         </tr>
       </table>
     </div>
@@ -15,41 +27,50 @@
     <div id="handler-bids">
       
       <div id="open-bids"> 
-        Open Bids
-        <button *ngFor="let bid of openTraderBids" type="button" (click)="viewBid(bid?.bidId)">
-          <table>
+        <bidstitle>OPEN BIDS</bidstitle>
+        <div class="wow fadeInDown" data-wow-delay="0.6s">
+        <button *ngFor="let bid of openTraderBids" 
+                type="button" 
+                (click)="viewBid(bid?.bidId)"
+                class="openbidbutton center">
+          <table id="buttonCols" style="width:100%;">
             <tr>
-              <td>{{ bid?.almondVariety }}</td>
-              <td>{{ bid?.almondPounds }}</td>
-              <td>{{ bid?.pricePerPound }}</td> 
-              <td>{{ bid?.countDownString }}</td>
-              <td>{{ isPartial(bid) }} 
-                  {{ isAccepted(bid) }} 
-                  {{ isRejected(bid) }}
-              </td>
+              <td class="offerButton"><p>
+                {{ bid?.almondVariety }}</p></td>
+              <td class="offerButton"><p>
+                ${{ bid?.pricePerPound }}</p></td> 
+              <td class="offerButton"><p>
+                {{ bid?.almondPounds }}</p></td>
+              <td class="offerButton"><p>
+                {{ bid?.countDownString }}</p></td>
             </tr>
+            <!--<tr> <p>{{ bid.comment }} </p></tr>-->
           </table>
         </button>
-      </div>      
+        </div>
+      </div>
 
       <div id="closed-bids"> 
-        Closed Bids
-        <button *ngFor="let bid of closedTraderBids" type="button" (click)="viewBid(bid?.bidId)">
-          <table>
+        <bidstitle>CLOSED BIDS</bidstitle>
+        <button 
+          *ngFor="let bid of closedTraderBids" 
+          type="button" 
+          (click)="viewBid(bid?.bidId)"
+          class="closedbidbutton center">
+          <table id="buttonCols" style="width:100%;">
             <tr>
-              <td>{{ bid?.almondVariety }}</td>
-              <td>{{ bid?.almondPounds }}</td>
-              <td>{{ bid?.pricePerPound }}</td> 
-              <td>{{ bid?.countDownString }}</td>
-              <td>{{ isPartial(bid) }} 
-                  {{ isAccepted(bid) }} 
-                  {{ isRejected(bid) }}
-              </td>
+              <td class="offerButton"><p>
+                {{ bid?.almondVariety }}</p></td>
+              <td class="offerButton"><p>
+                ${{ bid?.pricePerPound }}</p></td> 
+              <td class="offerButton"><p>
+                {{ bid?.almondPounds }}</p></td>
+              <td class="offerButton"><p>
+                {{ bid?.countDownString }}</p></td>
             </tr>
           </table>
         </button>
       </div>
-
     </div>
 
 </div>
