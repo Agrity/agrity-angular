@@ -2,7 +2,7 @@
 
 <div *ngIf="recievedSelectedHandler">
     
-    <div id="handler-info">
+    <!--<div id="handler-info">-->
 
       <company class="spacetop"> 
         {{ recievedSelectedHandler?.companyName }}
@@ -22,11 +22,12 @@
             {{ recievedSelectedHandler?.email }}</p></td> 
         </tr>
       </table>
-    </div>
 
+    <!--</div>-->
+<!--
     <div id="handler-bids">
       
-      <div id="open-bids"> 
+      <div id="open-bids"> -->
         <bidstitle>OPEN BIDS</bidstitle>
         <div class="wow fadeInDown" data-wow-delay="0.6s">
         <button *ngFor="let bid of openTraderBids" 
@@ -47,11 +48,11 @@
             <!--<tr> <p>{{ bid.comment }} </p></tr>-->
           </table>
         </button>
-        </div>
-      </div>
+        <!--</div>
+      </div>-->
 
-      <div id="closed-bids"> 
-        <bidstitle>CLOSED BIDS</bidstitle>
+      <!--<div id="closed-bids"> -->
+        <bidstitle class="spacetop">CLOSED BIDS</bidstitle>
         <button 
           *ngFor="let bid of closedTraderBids" 
           type="button" 
@@ -70,7 +71,7 @@
             </tr>
           </table>
         </button>
-      </div>
+      <!--</div>-->
     </div>
 
 </div>
