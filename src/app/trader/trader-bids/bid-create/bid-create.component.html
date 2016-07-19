@@ -10,12 +10,11 @@
         
         <div class="form-group">
           <div class="select-style">
-          <select class="form-control" required
+          <select required class="form-control"
               [(ngModel)]="traderBid.almondVariety"
               ngControl="variety"
-              name="variety"
-              placeholder="Choose Almond Variety">
-            <option value="" disabled selected>Choose Almond Variety</option>
+              name="variety">
+            <option value="" disabled>Choose Almond Variety</option>
             <option *ngFor="let variety of varieties" 
                 [value]="variety"> {{variety}}
             </option>
@@ -23,11 +22,12 @@
           </div>
 
           <div class="select-style">
-          <select class="form-control" required
+          <select required class="form-control" required
               [(ngModel)]="traderBid.almondSize"
               ngControl="size"
               name="size"
-              placeholder="Choose Size">
+              aria-placeholder="Size">
+            <option value="" disabled>Select Size</option>
             <option *ngFor="let size of sizes" 
                 [value]="size"> {{size}}
             </option>
@@ -38,58 +38,66 @@
               [(ngModel)]="traderBid.pricePerPound"
               ngControl="pricePerPound"
               name="price"
-              placeholder="Price">
+              placeholder="Type Price per Ton">
 
           <input type="number" step="0.01" class="form-control" required
               [(ngModel)]="traderBid.almondPounds"
               ngControl="almondPounds"
               name="pounds"
-              placeholder="Tons">
+              placeholder="Type Amount in Tons">
         </div>
 
         <div class="form-group">
-          <input type="text" class="form-control"
+          <input type="text" class="form-control" required
               [(ngModel)]="traderBid.comment"
               ngControl="comment"
               name="comment"
-              placeholder="Comments"
+              placeholder="Type any Comments"
               style="width:870px;">
         </div>
 
     </div>
 
-			<div class="col-sm-2">
-
-			<button [disabled]="!traderBidForm.form.valid" 
-          style="border:none; background:none; padding:none;" 
-          type="button" 
-          class="spaceover">
-        <div class="cssCircle plusSign">
+		<div class="col-sm-2">
+            <button [disabled]="!traderBidForm.form.valid" 
+                    style="border:none; background:none; padding:none;" 
+                    type="button" 
+                    class="spaceover"
+                    (click)="addBid()">
+             <div class="cssCircle plusSign">
 			  &#43;
-			</div></button>
+			    </div></button>
+            </div>
 
-			</div>
+    </form>
 
-      </form>
-
-<div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
-			  <div *ngFor="let bid of traderBids" class="wow fadeInDown" data-wow-delay="0.3s">
-			  <button type="button" class="listbidbutton center" (click)="removeBid(index)">
-			  	<table id="buttonCols" style="width:100%">
+<div class="col-md-12 centerbuttons">
+			  <div *ngFor="let bid of traderBids" 
+                    class="wow fadeInDown spaceunder" 
+                    data-wow-delay="0.3s">
+			  <button 
+                type="button" class="listbidbutton center" 
+                (click)="removeBid(index)">
+			  	<table id="buttonCols">
 				<tr>
-			  		<td class="offerButton">{{ bid?.almondVariety }}</td>
-			  		<td class="offerButton">{{ bid?.almondPounds }}</td>
-			  		<td class="offerButton">{{ bid?.almondSize }}</td>
-			  		<td class="offerButton">{{ bid?.pricePerPound }}</td> 
-            <td class="offerButton">{{ bid?.comment }}</td>
+			  		<td class="offerButton">
+                          <p>{{ bid?.almondVariety }}</p></td>
+			  		<td class="offerButton">
+                          <p>{{ bid?.almondPounds }}</p></td>
+			  		<td class="offerButton">
+                          <p>{{ bid?.almondSize }}</p></td>
+			  		<td class="offerButton">
+                          <p>${{ bid?.pricePerPound }}</p></td> 
+                    <td class="offerButton">
+                        <p>{{ bid?.comment }}</p></td>
 			  	</tr>
-				  </table>
+				</table>
 			  </button>
 			 </div>
 </div>
 
 <div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
-        <div class="form-group">
+        <div class="form-group spaceover">
           <input type="number" step="1" class="form-control" required
               [(ngModel)]="delay"
               ngControl="delay"
@@ -109,20 +117,20 @@
 
 			<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
 
-					<div class="whitebox">
-						<p *ngFor="let handler of handlerSellers">
-    						<input type="checkbox" [(ngModel)]="handler.selected" id="handler.selected">
-    						<label for="handler.selected">{{ handler.firstName }} {{ handler.lastName }}</label>
+				<div class="whitebox">
+					<p *ngFor="let handler of handlerSellers">
+    					<input type="checkbox" [(ngModel)]="handler.selected" id="handler.selected">
+    					<label for="handler.selected">{{ handler.firstName }} {{ handler.lastName }}</label>
   					</p>
-  					</div>
+  				</div>
 			</div>
 
-			<div class="col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
-				<input 
-          (click)="selectAllHandlerSellers()" 
-          type="button" class="form-control" 
-          value="Select All">
-			</div>
+            <div class="col-md-6 col-sm-6 moveselect">
+                <input 
+                    (click)="selectAllHandlerSellers()" 
+                    type="button" class="form-control" 
+                    value="Select All">
+            </div>
 
       <div class="col-md-12 col-sm-12 center">
 					<input 
@@ -133,18 +141,15 @@
             value="SEND BID">
 				</div>
 
+
+
     </div>
 </section>
 </div>
 
-
-
-    <!--<h1> Select Handlers </h1>
-
-      <div *ngFor="let handler of handlerSellers">
-        <input type="checkbox" [(ngModel)]="handler.selected">
-        <h7>{{ handler.firstName }} {{ handler.lastName }}</h7>
-      </div>
-
-      <button (click)="selectAllHandlerSellers()"> Select All </button>
-
+<select>
+    <option value="" selected>select your beverage</option>
+    <option value="tea">Tea</option>
+    <option value="coffee">Coffee</option>
+    <option value="soda">Soda</option>
+</select>
