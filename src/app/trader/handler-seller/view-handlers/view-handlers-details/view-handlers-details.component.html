@@ -4,34 +4,38 @@
     
     <!--<div id="handler-info">-->
 
-      <company class="spacetop"> 
+      <div class="col-md-7">
+      <company class="spacetop makespace"> 
         {{ recievedSelectedHandler?.companyName }}
       </company>
+      </div>
 
+      <div class="col-md-12">
       <table>
         <tr>
           <td><p>
             {{ recievedSelectedHandler?.firstName }}
             {{ recievedSelectedHandler?.lastName }}
           </p></td>
-          <td><p>|</p></td>
+          <td><p>&#9724;</p></td>
           <td><p>
             {{ recievedSelectedHandler?.phone?.getAsString() }}</p></td>
-          <td><p>|</p></td>
+          <td><p>&#9724;</p></td>
           <td><p>
             {{ recievedSelectedHandler?.email }}</p></td> 
         </tr>
       </table>
+      </div>
 
-    <!--</div>-->
-<!--
-    <div id="handler-bids">
-      
-      <div id="open-bids"> -->
+
+        <div class="col-md-8">
         <bidstitle>OPEN BIDS</bidstitle>
-        <div class="wow fadeInDown" data-wow-delay="0.6s">
-        <button *ngFor="let bid of openTraderBids" 
-                type="button" 
+        </div>
+
+       <div class="col-md-12">
+        <div *ngFor="let bid of openTraderBids"
+        class="wow fadeInDown makespace" data-wow-delay="0.6s">
+        <button type="button" 
                 (click)="viewBid(bid?.bidId)"
                 class="openbidbutton center">
           <table id="buttonCols" style="width:100%;">
@@ -48,16 +52,20 @@
             <!--<tr> <p>{{ bid.comment }} </p></tr>-->
           </table>
         </button>
-        <!--</div>
-      </div>-->
+        </div>
+       </div>
 
-      <!--<div id="closed-bids"> -->
-        <bidstitle class="spacetop">CLOSED BIDS</bidstitle>
-        <button 
-          *ngFor="let bid of closedTraderBids" 
-          type="button" 
-          (click)="viewBid(bid?.bidId)"
-          class="closedbidbutton center">
+
+        <div class="col-md-8 closedspace">
+        <bidstitle>CLOSED BIDS</bidstitle>
+        </div>
+
+       <div class="col-md-12">
+        <div *ngFor="let bid of closedTraderBids" 
+        class="wow fadeInDown makespace" data-wow-delay="0.6s">
+        <button type="button" 
+                (click)="viewBid(bid?.bidId)"
+                class="closedbidbutton center">
           <table id="buttonCols" style="width:100%;">
             <tr>
               <td class="offerButton"><p>
@@ -69,9 +77,11 @@
               <td class="offerButton"><p>
                 {{ bid?.countDownString }}</p></td>
             </tr>
+            <!--<tr> <p>{{ bid.comment }} </p></tr>-->
           </table>
         </button>
-      <!--</div>-->
-    </div>
+        </div>
+       </div>
 
+</div>
 </div>
