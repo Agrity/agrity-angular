@@ -6,19 +6,19 @@
 }
 
 .posts li { cursor: default; }
-.posts li:hover { background: #ecf0f1; } 
-.list-group-item.active, 
-.list-group-item.active:hover, 
-.list-group-item.active:focus { 
+.posts li:hover { background: #ecf0f1; }
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
   background-color: #ecf0f1;
-  border-color: #ecf0f1; 
+  border-color: #ecf0f1;
   color: #2c3e50;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 #contact .form-control {
