@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
 
-import { Config, Logger } from '../../../shared/index';
+import { Config, Logger, UserType } from '../../../shared/index';
 import { TraderBid, TraderBidService } from '../shared/index';
 
 import { ViewBidsDetailsComponent }
@@ -39,9 +39,9 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
 
-    if (!this.config.loggedIn()) {
+    if (this.config.loggedIn() === UserType.NONE) {
       alert('Please Login. If this issue continues try logging out, then logging back in.');
-      this.config.forceLogout();
+      this.config.forceTraderLogout();
       return;
     }
 
@@ -66,7 +66,7 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
         },
           error => {
             this.logger.handleHttpError(error);
-            this.config.forceLogout();
+            this.config.forceTraderLogout();
 
         });
   }

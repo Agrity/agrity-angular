@@ -2,7 +2,7 @@ import { Component, OnInit  } from '@angular/core';
 import { Router, RouterLink, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
-import { Config, Logger } from '../../../shared/index';
+import { Config, Logger, UserType } from '../../../shared/index';
 import { HandlerSeller, HandlerSellerService } from '../shared/index';
 import { ViewHandlersDetailsComponent }
     from './view-handlers-details/index';
@@ -32,9 +32,9 @@ export class ViewHandlersComponent implements OnInit {
 
   public ngOnInit() {
 
-    if (!this.config.loggedIn()) {
+    if (this.config.loggedIn() === UserType.NONE) {
       alert('Please Login. If this issue continues try logging out, then logging back in.');
-      this.config.forceLogout();
+      this.config.forceTraderLogout();
       return;
     }
 
@@ -46,7 +46,7 @@ export class ViewHandlersComponent implements OnInit {
         },
         error => {
           this.logger.handleHttpError(error);
-          this.config.forceLogout();
+          this.config.forceTraderLogout();
         });
 
   }

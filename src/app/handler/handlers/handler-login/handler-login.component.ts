@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { Config } from '../../../shared/index';
 import { LoginInfo } from './login-info';
 import { HandlerLoginService } from './handler-login.service';
+import { NavBarService } from '../../../shared/main-navbar/index';
 
 @Component({
     directives: [RouterLink, ROUTER_DIRECTIVES],
@@ -24,7 +25,9 @@ export class HandlerLoginComponent {
   constructor(private handlerLoginService: HandlerLoginService,
               private config: Config,
               private router: Router,
-              private location: Location) {};
+              private location: Location,
+              private navBarService: NavBarService
+              ) {};
 
   /* NOTE: Referenced in .html file. */
   protected login() {
@@ -33,6 +36,7 @@ export class HandlerLoginComponent {
         valid => {
           this.handlerLoginService
               .storeHandlerAuthToken(valid[this.authTokenKey]);
+          this.navBarService.onHandlerLoggedIn(true);
           this.router.navigateByUrl('/');
         },
         error => {
@@ -50,7 +54,7 @@ export class HandlerLoginComponent {
       .subscribe(
         valid => {
           this.handlerLoginService.eraseHandlerAuthToken();
-          alert('Successfully Logged Out: Please Refresh the Page.');
+          this.navBarService.onHandlerLoggedIn(false);
         },
         error => {
           this.config.forceLogout();

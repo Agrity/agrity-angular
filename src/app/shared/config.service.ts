@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
+import { UserType } from './index';
 
 @Injectable()
 export class Config {
+
   constructor(
     private router: Router) {
   }
@@ -15,20 +17,54 @@ export class Config {
   }
 
   public getTraderAuthHeaderKey(): string {
-    return '';
+    return 'X-TRADER-TOKEN';
   }
 
   // TODO Move to Appropriate Location
-  public loggedIn(): boolean {
+  public loggedIn(): UserType {
 
-    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '') {
-      return false;
+    if (
+        !(localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) &&
+
+        !(localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
+         localStorage.getItem(this.getTraderAuthHeaderKey()) === null)
+    ) {
+
+      throw new Error('TRADER AND HANDLER LOGGED IN!');
     }
-    return true;
+
+    if (
+        (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) &&
+
+        (localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getTraderAuthHeaderKey()) === null)
+    ) {
+
+      return UserType.NONE;
+    }
+
+    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) {
+
+      return UserType.TRADER;
+    }
+
+    if (localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getTraderAuthHeaderKey()) === null) {
+
+      return UserType.HANDLER;
+    }
   }
 
   public forceLogout() {
     localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
     this.router.navigateByUrl('/handler-login');
+  }
+
+  public forceTraderLogout() {
+    localStorage.setItem(this.getTraderAuthHeaderKey(), '');
+    this.router.navigateByUrl('/trader-login');
   }
 }

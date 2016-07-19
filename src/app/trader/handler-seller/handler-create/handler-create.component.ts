@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 
-import { Config, Logger }
+import { Config, Logger, UserType }
     from '../../../shared/index';
 
 import { HandlerSeller, HandlerSellerService } from '../../handler-seller/shared/index';
@@ -26,10 +26,10 @@ export class HandlerSellerCreateComponent implements OnInit {
 
   public ngOnInit() {
 
-    if (!this.config.loggedIn()) {
+    if (this.config.loggedIn() === UserType.NONE) {
       alert('Please Login.'
           + 'If this issue continues try logging out, then logging back in.');
-      this.config.forceLogout();
+      this.config.forceTraderLogout();
       return;
     }
   }

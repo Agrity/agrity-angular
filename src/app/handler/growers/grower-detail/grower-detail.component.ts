@@ -3,7 +3,7 @@ import { Router, RouterLink, ROUTER_DIRECTIVES, RouteParams }
     from '@angular/router-deprecated';
 
 import { Bid, BidService } from '../../bids/shared/index';
-import { Config, Logger } from '../../../shared/index';
+import { Config, Logger, UserType } from '../../../shared/index';
 import { Grower, GrowerService } from '../shared/index';
 
 @Component({
@@ -33,7 +33,7 @@ export class GrowerDetailComponent implements OnInit {
 
   public ngOnInit() {
 
-    if (!this.config.loggedIn()) {
+    if (this.config.loggedIn() === UserType.NONE) {
       alert('Please Login.'
           + 'If this issue continues try logging out, then logging back in.');
       this.config.forceLogout();
