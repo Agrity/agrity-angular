@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+
+import { Logger, Config, UserType } from './shared/index';
 
 // TODO Fix Barrel Import
 /* Shared Pages */
 import { MainNavBarComponent } from './shared/main-navbar/index';
+import { NavBarService } from './shared/main-navbar/index';
 
 // TODO Fix Barrel Imports
 /* Single Pages */
@@ -73,13 +76,64 @@ import { HandlerSellerCreateComponent }
 ])
 @Component({
     directives: [MainNavBarComponent, ROUTER_DIRECTIVES],
+    providers: [NavBarService],
     selector: 'sg-my-app',
     styleUrls: ['assets/stylesheets/style.css'],
     template: `
-        <sg-main-navbar></sg-main-navbar>
+        <sg-main-navbar
+            [traderLoggedIn]=traderLoggedIn
+            [handlerLoggedIn]=handlerLoggedIn
+        >
+        </sg-main-navbar>
         <div class="container">
             <router-outlet></router-outlet>
         </div>
     `,
 })
-export class AppComponent { }
+
+export class AppComponent implements OnInit {
+
+  private traderLoggedIn: boolean;
+  private handlerLoggedIn: boolean;
+
+  constructor(
+    private logger: Logger,
+    private config: Config,
+    private navBarService: NavBarService) {}
+
+  public ngOnInit() {
+
+    if (this.config.loggedIn() === UserType.HANDLER) {
+      this.handlerLoggedIn = true;
+    }
+
+    if (this.config.loggedIn() === UserType.TRADER) {
+      this.traderLoggedIn = true;
+    }
+
+    /* Disabling no-any for subscribing to event emitter. */
+    /* tslint:disable:no-any */
+    this.navBarService.traderLoggedIn
+        .subscribe(
+            (res: any) => {
+              this.traderLoggedIn = res;
+            },
+            (error: any) => {
+              this.logger.handleHttpError(error);
+              this.config.forceTraderLogout();
+            }
+          );
+
+    this.navBarService.handlerLoggedIn
+        .subscribe(
+            (res: any) => {
+              this.handlerLoggedIn = res;
+            },
+            (error: any) => {
+              this.logger.handleHttpError(error);
+              this.config.forceTraderLogout();
+            }
+          );
+    /* tslint:enable:no-any */
+  }
+}

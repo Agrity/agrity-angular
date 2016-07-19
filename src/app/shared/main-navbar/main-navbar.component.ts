@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Config, Logger, UserType } from '../index';
+import { Component, Input } from '@angular/core';
 import { NavBarComponent } from '../../handler/shared/navbar/index';
 import { TraderNavBarComponent } from '../../trader/shared/navbar/index';
 
@@ -17,46 +16,18 @@ import { NavBarService } from './main-navbar.service';
     templateUrl: 'app/shared/main-navbar/main-navbar.component.html',
 })
 
-export class MainNavBarComponent implements OnInit {
+export class MainNavBarComponent {
 
-  private traderLoggedIn: boolean = false;
-  private handlerLoggedIn: boolean = false;
+  private recievedTraderBool: boolean = false;
+  private recievedHandlerBool: boolean = false;
 
-  constructor(
-    private logger: Logger,
-    private config: Config,
-    private navBarService: NavBarService) {}
+  @Input()
+  set traderLoggedIn(traderLoggedIn: boolean) {
+    this.recievedTraderBool = traderLoggedIn;
+  }
 
-  public ngOnInit() {
-
-    if (this.config.loggedIn() === UserType.HANDLER) {
-      this.handlerLoggedIn = true;
-    }
-
-    if (this.config.loggedIn() === UserType.TRADER) {
-      this.traderLoggedIn = true;
-    }
-
-    this.navBarService.traderLoggedIn
-        .subscribe(
-            res => {
-              this.traderLoggedIn = res;
-            },
-            error => {
-              this.logger.handleHttpError(error);
-              this.config.forceTraderLogout();
-            }
-          );
-
-    this.navBarService.handlerLoggedIn
-        .subscribe(
-            res => {
-              this.handlerLoggedIn = true;
-            },
-            error => {
-              this.logger.handleHttpError(error);
-              this.config.forceTraderLogout();
-            }
-          );
+  @Input()
+  set handlerLoggedIn(handlerLoggedIn: boolean) {
+    this.recievedHandlerBool = handlerLoggedIn;
   }
 }

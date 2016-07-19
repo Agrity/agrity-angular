@@ -11,11 +11,11 @@ export class NavBarService {
       this.traderLoggedIn = new EventEmitter();
     }
 
-    public onTraderLoggedIn(bool: boolean) {
+    public onTraderLoggedIn(bool: boolean): void {
       this.traderLoggedIn.emit(bool);
     }
 
-    public onHandlerLoggedIn(bool: boolean) {
+    public onHandlerLoggedIn(bool: boolean): void {
       this.handlerLoggedIn.emit(bool);
     }
 }

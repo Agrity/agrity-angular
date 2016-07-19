@@ -55,7 +55,6 @@ export class HandlerLoginComponent {
         valid => {
           this.handlerLoginService.eraseHandlerAuthToken();
           this.navBarService.onHandlerLoggedIn(false);
-          alert('Successfully Logged Out: Please Refresh the Page.');
         },
         error => {
           this.config.forceLogout();

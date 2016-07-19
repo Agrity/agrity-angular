@@ -22,16 +22,40 @@ export class Config {
 
   // TODO Move to Appropriate Location
   public loggedIn(): UserType {
-    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' &&
-        localStorage.getItem(this.getTraderAuthHeaderKey()) === '') {
+
+    if (
+        !(localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) &&
+
+        !(localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
+         localStorage.getItem(this.getTraderAuthHeaderKey()) === null)
+    ) {
+
+      throw new Error('TRADER AND HANDLER LOGGED IN!');
+    }
+
+    if (
+        (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) &&
+
+        (localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getTraderAuthHeaderKey()) === null)
+    ) {
+
       return UserType.NONE;
     }
 
-    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '') {
+    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) {
+
       return UserType.TRADER;
     }
 
-    return UserType.HANDLER;
+    if (localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getTraderAuthHeaderKey()) === null) {
+
+      return UserType.HANDLER;
+    }
   }
 
   public forceLogout() {
