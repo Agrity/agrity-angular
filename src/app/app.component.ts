@@ -7,7 +7,7 @@ import { NavBarComponent } from './handler/shared/navbar/index';
 
 // TODO Fix Barrel Imports
 /* Single Pages */
-import { HomeComponent } from './home-page/home.component';
+// import { HomeComponent } from './home-page/home.component';
 
 import { HandlerHomeComponent } from './handler/single-pages/handler-home.component';
 import { TraderHomeComponent } from './trader/single-pages/trader-home.component';
@@ -42,7 +42,7 @@ import { HandlerSellerCreateComponent }
     from './trader/handler-seller/handler-create/handler-create.component';
 
 @RouteConfig([
-  { component: HomeComponent, name: 'Home', path: '/' },
+  { component: HandlerHomeComponent, name: 'Home', path: '/' },
 
   { component: HandlerHomeComponent, name: 'Handler Home', path: '/handler-home' },
 
