@@ -1,5 +1,7 @@
 import { Grower } from '../../growers/shared/index';
 import { BidStatus } from '../../../shared/index';
+import { BidResponse } from './index';
+import { ResponseStatus } from './index';
 
 export class Bid {
 
@@ -43,6 +45,9 @@ export class Bid {
       case 'PARTIAL':
         bid.bidStatus = BidStatus.PARTIAL;
         break;
+      case 'OPEN':
+        bid.bidStatus = BidStatus.OPEN;
+        break;
       default:
         bid.bidStatus = null;
         break;
@@ -53,6 +58,8 @@ export class Bid {
     bid.callRequestedGrowers = this.decodeBidCallRequestedGrowers(bidJson);
     bid.expirationTime = new Date(bidJson['expirationTimeAsString']);
     bid.noResponseGrowers = this.decodeBidNoResponseGrowers(bidJson);
+
+    bid.bidResponses = this.decodeBidResponses(bidJson['offerResponses']);
 
     return bid;
   }
@@ -104,6 +111,45 @@ export class Bid {
     return this.decodeBidGrowers('noResponseGrowers', bidJson);
   }
 
+  public static decodeBidResponses(bidResponsesJson: Object): BidResponse[] {
+    let bidResponses: BidResponse[] = [];
+    for (let bidResponseIndex in bidResponsesJson) {
+      bidResponses.push(Bid.decodeBidResponse(bidResponsesJson[bidResponseIndex]));
+    }
+
+    return bidResponses;
+  }
+
+  /* Disabling no-string for processing object literal. */
+  /* tslint:disable:no-string-literal */
+  public static decodeBidResponse(bidJson: Object): BidResponse {
+    let bidResponse: BidResponse = new BidResponse();
+    bidResponse.growerId = bidJson['id'];
+    bidResponse.poundsAccepted = bidJson['poundsAccepted'];
+    let responseStatus: string = bidJson['responseStatus'];
+
+    switch (responseStatus) {
+      case 'ACCEPTED':
+        bidResponse.responseStatus = ResponseStatus.ACCEPTED;
+        break;
+      case 'NO_RESPONSE':
+        bidResponse.responseStatus = ResponseStatus.NO_RESPONSE;
+        break;
+      case 'REJECTED':
+        bidResponse.responseStatus = ResponseStatus.REJECTED;
+        break;
+      case 'PARTIAL':
+        bidResponse.responseStatus = ResponseStatus.PARTIAL;
+        break;
+      default:
+        bidResponse.responseStatus = null;
+        break;
+    }
+
+    return bidResponse;
+  }
+  /* tslint:enable:no-string-literal */
+
   // TODO Should remove this and just have the bid model hold
   //      lists of Growers.
   private static decodeBidGrowers(growersKey: string, bidJson: Object): Grower[] {
@@ -148,6 +194,8 @@ export class Bid {
   public currentlyOpen: boolean;
   public bidStatus: BidStatus;
 
+  public bidResponses: BidResponse[];
+
   // NOTE: Two extra variables to help the countdown clock.
   //       Do not send, or expect to recieve, to/from server.
   public timeToExpire: number;
@@ -188,6 +236,16 @@ export class Bid {
       return paymentDateString;
     }
     return '';
+  }
+
+  public getBidResponse(bid: Bid, growerId: number): BidResponse {
+    for (let bidResponseIndex in bid.bidResponses) {
+      let bidResponse: BidResponse = bid.bidResponses[bidResponseIndex];
+      if (bidResponse.growerId === growerId) {
+        return bidResponse;
+      }
+    }
+    return null;
   }
 
   private monthToNumber(month: string): String {

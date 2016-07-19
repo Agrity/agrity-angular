@@ -1,0 +1,135 @@
+.details {
+    float:right;
+    width:70%
+}
+
+h1 {
+    font-size: 20px;
+    color: #565656;
+    text-shadow: none;
+}
+
+company {
+    color: #565656;
+    font: 50px Gotham Book, sans-serif;
+    padding: 0px 0px 20px 0px;
+}
+
+bidstitle {
+    font: 20px Gotham Book, sans-serif;
+    color: #565656;
+    text-shadow: none;
+    padding:20px;
+}
+
+#handler-bids {
+    padding-left:100px;
+}
+
+p {
+	font-size: 16px;
+	letter-spacing: 0.9px;
+	line-height: 32px;
+    color: #000000;
+}
+
+.details {
+    background-color:#efefef;
+    width:75%;
+    height:auto;
+    padding-bottom:30px;
+    vertical-align:center;
+    padding-top:70px;
+}
+
+
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.makespace {
+    padding:7px 0px 10px 10px;
+}
+
+.spacetop {
+    padding-top:100px;
+}
+
+.closedspace {
+    padding-top:30px;
+}
+
+table {
+    border-spacing: 20px;
+    border-collapse: separate;
+}
+
+
+.openbidbutton {
+	width: 800px;
+	height: 90px;
+	font-size: 1em;
+    color:#000000;
+	text-align: left;
+	background-color: #ffffff;
+	border-radius: 6px;
+	border: 1px solid #419ed2;
+}
+
+.closedbidbutton {
+	width: 90%;
+	height: 70px;
+	font-size: 1em;
+    color:#000000;
+	text-align: left;
+	background-color: #dadada;
+	border-radius: 6px;
+	border: 1px solid #419ed2;
+}
+
+.accepted {
+    background-color:rgba(61,184,55,0.30);
+    width: 30%;
+    height: auto;
+    border-radius: 5px;
+    padding:10px;
+}
+
+
+.rejected {
+    background-color:rgba(184,79,55,0.30);
+    width: 30%;
+    height: auto;
+    border-radius: 3px;
+    padding:10px;
+
+}
+
+.pending {
+    background-color:rgba(55,134,184,0.30);
+    width: 30%;
+    height: auto;
+    border-radius: 3px;
+    padding:10px;
+}
+
+li {
+    padding-left:10px;
+}
+
+.comment-back {
+    background-color: #ffffff;
+    border: 1px solid #979797;
+    width: 80%;
+    height: auto;
+}
+
+title {
+    color: #565656;
+    font: 20px Gotham Bold, sans-serif;
+    padding-left:20px;
+}
+
+

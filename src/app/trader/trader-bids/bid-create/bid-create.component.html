@@ -1,80 +1,145 @@
-  <div>
+<div>
+<section id="contact">
+    <title class="center spaceunder">CREATE YOUR BID</title>
 
-    <h1>Bids So Far</h1> 
+    <div class="container">
 
-      <div>
-        <div *ngFor="let bid of traderBids">
-        <button id="remove-bid" (click)="removeBid(index)"> Remove Bid </button>
-        <table>
-           <tr>
-              <td>{{ bid?.almondVariety }}</td>
-              <td>{{ bid?.almondPounds }}</td>
-              <td>{{ bid?.almondSize }} </td>
-              <td>{{ bid?.pricePerPound }}</td> 
-              <td>{{ bid?.comment }}</td>
-              <td>{{ bid?.delay }}</td>
-            </tr>
-          </table>
-        </div>
-      </div>
+    <form *ngIf="active" (ngSubmit)="addBid()" #traderBidForm="ngForm">
 
-    <h1>Bid Form</h1>
-      
-      <form *ngIf="active" (ngSubmit)="addBid()" #traderBidForm="ngForm">
+    <div class="col-sm-10 wow fadeInDown" data-wow-delay="0.6s">
         
         <div class="form-group">
-          <label for="variety"> Variety </label>
+          <div class="select-style">
           <select class="form-control" required
               [(ngModel)]="traderBid.almondVariety"
               ngControl="variety"
-              name="variety">
+              name="variety"
+              placeholder="Choose Almond Variety">
+            <option value="" disabled selected>Choose Almond Variety</option>
             <option *ngFor="let variety of varieties" 
                 [value]="variety"> {{variety}}
             </option>
           </select>
-        </div>
+          </div>
 
-        <div class="form-group">
-          <label for="size"> Size </label>
+          <div class="select-style">
           <select class="form-control" required
               [(ngModel)]="traderBid.almondSize"
               ngControl="size"
-              name="size">
+              name="size"
+              placeholder="Choose Size">
             <option *ngFor="let size of sizes" 
                 [value]="size"> {{size}}
             </option>
           </select>
-        </div>
+          </div>
 
-        <div class="form-group">
-          <label for="price"> Price Per Pound </label>
           <input type="text" class="form-control" required
               [(ngModel)]="traderBid.pricePerPound"
               ngControl="pricePerPound"
-              name="price">
-        </div>
+              name="price"
+              placeholder="Price">
 
-        <div class="form-group">
-          <label for="pounds"> Pounds </label>
           <input type="number" step="0.01" class="form-control" required
               [(ngModel)]="traderBid.almondPounds"
               ngControl="almondPounds"
-              name="pounds">
+              name="pounds"
+              placeholder="Tons">
         </div>
 
         <div class="form-group">
-          <label for="comment"> Comment </label>
           <input type="text" class="form-control"
               [(ngModel)]="traderBid.comment"
               ngControl="comment"
-              name="comment">
+              name="comment"
+              placeholder="Comments"
+              style="width:870px;">
         </div>
 
-        <button type="submit" [disabled]="!traderBidForm.form.valid"> ADD BID </button>
+    </div>
+
+			<div class="col-sm-2">
+
+			<button [disabled]="!traderBidForm.form.valid" 
+          style="border:none; background:none; padding:none;" 
+          type="button" 
+          class="spaceover">
+        <div class="cssCircle plusSign">
+			  &#43;
+			</div></button>
+
+			</div>
 
       </form>
 
-    <h1> Select Handlers </h1>
+<div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
+			  <div *ngFor="let bid of traderBids" class="wow fadeInDown" data-wow-delay="0.3s">
+			  <button type="button" class="listbidbutton center" (click)="removeBid(index)">
+			  	<table id="buttonCols" style="width:100%">
+				<tr>
+			  		<td class="offerButton">{{ bid?.almondVariety }}</td>
+			  		<td class="offerButton">{{ bid?.almondPounds }}</td>
+			  		<td class="offerButton">{{ bid?.almondSize }}</td>
+			  		<td class="offerButton">{{ bid?.pricePerPound }}</td> 
+            <td class="offerButton">{{ bid?.comment }}</td>
+			  	</tr>
+				  </table>
+			  </button>
+			 </div>
+</div>
+
+<div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
+        <div class="form-group">
+          <input type="number" step="1" class="form-control" required
+              [(ngModel)]="delay"
+              ngControl="delay"
+              name="delay"
+              placeholder="Type Duration (in hours)">
+        </div>
+</div>
+
+
+
+<!-- Choose your growers
+			================================================== -->
+
+			<div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.9s">
+				<title class="center">CHOOSE HANDLERS</title><br>
+			</div>
+
+			<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
+
+					<div class="whitebox">
+						<p *ngFor="let handler of handlerSellers">
+    						<input type="checkbox" [(ngModel)]="handler.selected" id="handler.selected">
+    						<label for="handler.selected">{{ handler.firstName }} {{ handler.lastName }}</label>
+  					</p>
+  					</div>
+			</div>
+
+			<div class="col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
+				<input 
+          (click)="selectAllHandlerSellers()" 
+          type="button" class="form-control" 
+          value="Select All">
+			</div>
+
+      <div class="col-md-12 col-sm-12 center">
+					<input 
+            [disabled]="!delay" 
+            (click)="sendBids()" 
+            name="submit" type="submit" 
+            class="form-control" id="submit" 
+            value="SEND BID">
+				</div>
+
+    </div>
+</section>
+</div>
+
+
+
+    <!--<h1> Select Handlers </h1>
 
       <div *ngFor="let handler of handlerSellers">
         <input type="checkbox" [(ngModel)]="handler.selected">
@@ -83,18 +148,3 @@
 
       <button (click)="selectAllHandlerSellers()"> Select All </button>
 
-    <h1> Set Delay For All Bids </h1>
-
-        <div class="form-group">
-          <label for="delay"> Delay: In Hours </label>
-          <input type="number" step="1" class="form-control" required
-              [(ngModel)]="delay"
-              ngControl="delay"
-              name="delay">
-        </div>
-
-    <h1> Send Bids </h1>
-
-      <button [disabled]="!delay" (click)="sendBids()"> SEND BIDS </button> 
-
-  </div>

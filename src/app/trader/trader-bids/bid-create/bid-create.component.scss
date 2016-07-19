@@ -7,13 +7,10 @@
   border-left: 5px solid #a94442; /* red */
 }
 
-
-
-
 /* Typography
 ------------------------------------- */
-/*
-h9 {
+
+title {
 	color: #444444;
 	font-size: 22px;
 	letter-spacing: 28px;
@@ -24,18 +21,55 @@ p {
 	font-size: 16px;
 	letter-spacing: 0.9px;
 	line-height: 32px;
+	color: #444444;
+	font: 16px Gotham Book, sans-serif;
 }
-*/
+
+form {
+	padding-left:40px;
+}
+
 /* All Section styles
 ------------------------------------- */
 
-/*#contact {
+#contact {
 	padding-top: 120px;
 	padding-bottom: 120px;
 	background: rgba(117,117,117,0.15) 0 repeat-y fixed;
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-position: center;
+	
+	.select-style {
+		border: 1px solid #959595;
+		margin-bottom: 22px;
+		padding:5px;
+		margin-right:10px;
+		float:left;
+		width: 200px;
+		border-radius: 0px;
+		overflow: hidden;
+		height: 40px;
+		background:rgba(243,243,243,1);
+	}
+
+	select:invalid {
+		color: #959595;
+	}
+
+	.select-style select {
+		padding: 5px 8px;
+		width: 130%;
+		border: none;
+		box-shadow: none;
+		background: transparent;
+		background-image: none;
+		-webkit-appearance: none;
+	}
+
+	.select-style select:focus {
+		outline: none;
+	}
 	.form-control {
 		background: rgba(243,243,243,1);
 		border-color: #959595;
@@ -47,7 +81,7 @@ p {
 		margin-right: 10px;
 		height: auto;
 		float: left;
-		width: 260px;
+		width: 220px;
 	}
 	input[type="button"] {
 		background: #ffffff;
@@ -74,10 +108,10 @@ p {
 		padding-left: 10px;
 		border: none;
 		border-radius: 4px;
-		font-size: 20px;
+		font-size: 16px;
 		font-weight: bold;
 		letter-spacing: 1px;
-		height: 100px;
+		height: 80px;
 		margin-top: 20px;
 		&:hover {
 			background: #000000;
@@ -127,13 +161,14 @@ p {
 
 /* add bid symbol
 /* ========================================== */
-/*
+
 .cssCircle {
 	-webkit-border-radius: 999px;
 	-moz-border-radius: 999px;
 	border-radius: 999px;
 	width: 70px;
 	height: 70px;
+	float:left;
 	padding: 0px;
 	background: #29c32b;
 	color: #ffffff;
@@ -144,7 +179,7 @@ p {
 	-o-transition: background 0.2s linear;
 	transition: background 0.2s linear;
 	transition: color 0.2s linear;
-	font: 60px Gotham Book, sans-serif;
+	font: 65px Gotham Book, sans-serif;
 	&:hover {
 		background: #A0A0A0;
 		cursor: pointer;
@@ -152,7 +187,7 @@ p {
 	}
 }
 .plusSign {
-	line-height: 1.3em;
+	line-height: 1.25em;
 	border-style: none;
 	&:hover {
 		color: white;
@@ -175,7 +210,7 @@ p {
 
 /* check box
 /* ========================================== */
-/*
+
 [type="checkbox"] {
 	&:not(:checked) {
 		position: absolute;
@@ -304,4 +339,7 @@ label {
 .needspace {
 	margin-right: 50px;
 }
-*/
+
+.pushup {
+	padding-bottom:30px;
+}

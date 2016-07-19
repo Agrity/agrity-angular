@@ -7,6 +7,10 @@
     padding-top:50px;
 }
 
+.commentbox {
+    padding: 10px 0px 10px 0px;
+}
+
 h1 {
     font-size: 20px;
     color: #565656;
@@ -47,8 +51,9 @@ p {
     background-color:rgba(61,184,55,0.30);
     width: 30%;
     height: auto;
-    border-radius: 5px;
-    padding:10px;
+    border-radius: 8px;
+    padding:5px;
+    margin:5px;
 }
 
 
@@ -56,17 +61,18 @@ p {
     background-color:rgba(184,79,55,0.30);
     width: 30%;
     height: auto;
-    border-radius: 3px;
-    padding:10px;
-
+    border-radius: 8px;
+    padding:5px;
+    margin:5px;
 }
 
 .pending {
     background-color:rgba(55,134,184,0.30);
     width: 30%;
     height: auto;
-    border-radius: 3px;
-    padding:10px;
+    border-radius: 8px;
+    padding:5px;
+    margin:5px;
 }
 
 li {
@@ -78,5 +84,12 @@ li {
     border: 1px solid #979797;
     width: 80%;
     height: auto;
+}
+
+.comment-button {
+    background-color: #ffffff;
+    border: 1px solid #979797;
+    height:auto;
+    width: 70%;
 }
 

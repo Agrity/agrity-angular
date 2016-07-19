@@ -1,54 +1,72 @@
-<h1>Handler Form</h1>
+<div>
+
+  <section class="parallax-section" id="contact">
+	<div class="container center">	
       
       <form (ngSubmit)="save()" #handlerSellerForm="ngForm">
+        <title class="wow fadeInDown center">NEW HANDLER</title>
 
-        <div class="form-group">
-          <label for="first name"> First Name </label>
-          <input type="text" class="form-control" required
+        <div np-app="form" class="col-md-12 col-sm-12">
+
+        <div class="form-group center">
+          <input type="text" class="form-control center" required
               [(ngModel)]="handlerSeller.firstName"
               ngControl="firstName"
-              name="first name">
+              name="first name"
+              placeholder="First Name">
         </div>
 
-        <div class="form-group">
-          <label for="last name"> Last Name </label>
+        <div class="form-group center">
           <input type="text" class="form-control" required
               [(ngModel)]="handlerSeller.lastName"
               ngControl="lastName"
-              name="last name">
+              name="last name"
+              placeholder="Last Name">
         </div>
 
-        <div class="form-group">
-          <label for="email"> Email </label>
+        <div class="form-group center">
           <input type="email" class="form-control" required
               [(ngModel)]="handlerSeller.email"
               ngControl="email"
-              name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+              name="email" 
+              placeholder="Email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
         </div>
 
-        <div class="form-group">
-          
-          <div>
-            <label> Phone Number </label>
-          </div>
+        <p class="center">Phone Number</p>
+
+        <div class="form-group center">
           
           <input type="number" class="form-control" required
               [(ngModel)]="handlerSeller.phone.phoneOne" 
               ngControl="phoneOne" 
-              name="phone one" pattern="[0-9]{3}">
+              name="phone one" pattern="[0-9]{3}"
+              placeholder="(xxx)">
 
           <input type="number" class="form-control" required
               [(ngModel)]="handlerSeller.phone.phoneTwo" 
               ngControl="phoneTwo" 
-              name="phone two" pattern="[0-9]{3}">
+              name="phone two" pattern="[0-9]{3}"
+              placeholder="(xxx)">
 
           <input type="number" class="form-control" required
               [(ngModel)]="handlerSeller.phone.phoneThree" 
               ngControl="phoneThree" 
-              name="phone three" pattern="[0-9]{3}">
+              name="phone three" pattern="[0-9]{4}"
+              placeholder="(xxxx)">
 
         </div>
 
-        <button type="submit" [disabled]="!handlerSellerForm.form.valid"> ADD HANDLER </button>
+        <div class="center">
+        <button type="submit" 
+                [disabled]="!handlerSellerForm.form.valid"> 
+                ADD HANDLER 
+                </button>
+        </div>
+
+        </div>
 
       </form>
+</div>
+</section>
+	</div>

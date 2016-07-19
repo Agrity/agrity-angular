@@ -21,6 +21,7 @@ h1 {
     color: #ffffff;
     letter-spacing: 1px;
     font: 20px Gotham Bold, sans-serif;
+	padding-left:10px;
 
 }
 
@@ -37,7 +38,7 @@ h2 {
 }
 
 p1 {
-    font-size: 12px;
+    font-size: 15px;
     color: white;
 }
 
@@ -60,6 +61,7 @@ p2 {
 
 button {
         color: #419ed2;
+		width: 90%;
 		position: center;
 		padding-left: 10px;
 		border-color: #000000;
@@ -120,3 +122,6 @@ button {
 	padding-top: 20px;
 }
 
+.lineup {
+    display:inline;
+}
