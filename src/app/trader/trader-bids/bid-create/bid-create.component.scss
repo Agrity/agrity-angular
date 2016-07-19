@@ -7,6 +7,13 @@
   border-left: 5px solid #a94442; /* red */
 }
 
+#contact .ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+#contact .ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
+
 /* Typography
 ------------------------------------- */
 
@@ -39,41 +46,13 @@ form {
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-position: center;
-	
-	.select-style {
-		border: 1px solid #959595;
-		margin-bottom: 22px;
-		padding:5px;
-		margin-right:10px;
-		float:left;
-		width: 200px;
-		border-radius: 0px;
-		overflow: hidden;
-		height: 40px;
-		background:rgba(243,243,243,1);
-	}
 
-	select:invalid {
-		color: #959595;
-	}
-
-	.select-style select {
-		padding: 5px 8px;
-		width: 130%;
-		border: none;
-		box-shadow: none;
-		background: transparent;
-		background-image: none;
-		-webkit-appearance: none;
-	}
-
-	.select-style select:focus {
-		outline: none;
-	}
 	.form-control {
 		background: rgba(243,243,243,1);
-		border-color: #959595;
-		color: #959595;
+		border-top-color: #959595;
+		border-bottom-color: #959595;
+		border-right-color: #959595;
+		color: #444444;
 		border-radius: 0px;
 		margin-bottom: 22px;
 		transition: all 0.4s ease-in-out;
@@ -87,11 +66,8 @@ form {
 		background: #ffffff;
 		color: #419ed2;
 		position: center;
-		padding-left: 10px;
-		border: none;
 		border-radius: 4px;
 		border-color: #419ed2;
-		border-style: none;
 		border-width: 1px;
 		font-weight: bold;
 		letter-spacing: 1px;
@@ -145,6 +121,14 @@ form {
 	align-items: center;
 	justify-content: center;
 }
+
+.centerbuttons {
+	display: table-row;
+	align-items: center;
+	justify-content: center;
+	padding-left:100px;
+}
+
 .spaceunder {
 	padding-bottom: 20px;
 }
@@ -193,19 +177,32 @@ form {
 		color: white;
 	}
 }
+
+/* button formatting
+/* ========================================== */
+
 .listbidbutton {
-	width: 900px;
+	width: 90%;
 	height: 90px;
 	font-size: 1em;
-	text-align: left;
+	text-align: center;
 	padding-left: 50px;
 	background-color: #ffffff;
 	border-radius: 6px;
 	border: 1px solid #419ed2;
-	float: left;
 }
 .spaceover {
 	padding-top: 20px;
+}
+
+.moveselect {
+	margin-top:-60px;
+}
+
+table {
+    border-spacing: 20px;
+    border-collapse: separate;
+	width: 100%;
 }
 
 /* check box
@@ -336,10 +333,25 @@ label {
 		}
 	}
 }
-.needspace {
-	margin-right: 50px;
+
+.select-style {
+		border: 0.1px solid #959595;
+		margin-bottom: 22px;
+		margin-right:10px;
+		float:left;
+		width: 200px;
+		border-radius: 0px;
+		overflow: hidden;
+		height: 41px;
+		background:rgba(243,243,243,1);
 }
 
-.pushup {
-	padding-bottom:30px;
+.select-style select {
+		padding: 5px 8px;
+		width: 130%;
+		-webkit-appearance: none;
+}
+
+select option[disabled]:first-child {
+	color: #959595;
 }

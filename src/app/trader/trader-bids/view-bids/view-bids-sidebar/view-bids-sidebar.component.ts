@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TraderBid } from '../../shared/index';
 import { BidStatus } from '../../../../shared/index';
+import { Router, RouterLink, ROUTER_DIRECTIVES } 
+  from '@angular/router-deprecated';
 
 @Component({
+  directives: [RouterLink, ROUTER_DIRECTIVES],
   selector: 'sg-view-bids-sidebar',
   styleUrls:
       ['app/trader/trader-bids/view-bids/view-bids-sidebar/view-bids-sidebar.component.css'],
