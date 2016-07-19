@@ -20,7 +20,8 @@
                 <p class="grower-catagory-name">  Accepted Growers </p>
                 <button *ngFor="let grower of bid?.acceptedGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
                   <li>
-                    <p>{{ grower.firstName }} {{ grower.lastName }}</p>
+                    <p> {{ grower.firstName }} {{ grower.lastName }}</p>
+                    <p> Pounds Accepted: {{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted}} </p>
                   </li>
                 </button>
               </div>
@@ -41,8 +42,8 @@
                     <p >{{ grower.firstName }} {{ grower.lastName }}</p>
                   </li>
                 </button>
-              </div> 
-              
+              </div>
+
               <div>
                 <p class="grower-catagory-name">  No Response Growers </p>
                 <button *ngFor="let grower of bid?.noResponseGrowers" type="button" (click)="viewGrower(grower.growerId)" class="btn btn-info" data-toggle="sgCollapse">
@@ -50,7 +51,7 @@
                     <p >{{ grower.firstName }} {{ grower.lastName }}</p>
                   </li>
                 </button>
-              </div>       
+              </div>
 
 				</div>
 			  </div>
