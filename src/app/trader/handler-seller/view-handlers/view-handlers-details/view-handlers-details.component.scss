@@ -3,10 +3,6 @@
     width:70%
 }
 
-.spacetop {
-    padding-top:50px;
-}
-
 h1 {
     font-size: 20px;
     color: #565656;
@@ -15,7 +11,7 @@ h1 {
 
 company {
     color: #565656;
-    font: 50px Gotham Bold, sans-serif;
+    font: 50px Gotham Book, sans-serif;
     padding: 0px 0px 20px 0px;
 }
 
@@ -53,8 +49,26 @@ p {
 	justify-content: center;
 }
 
+.makespace {
+    padding:7px 0px 10px 10px;
+}
+
+.spacetop {
+    padding-top:100px;
+}
+
+.closedspace {
+    padding-top:30px;
+}
+
+table {
+    border-spacing: 20px;
+    border-collapse: separate;
+}
+
+
 .openbidbutton {
-	width: 90%;
+	width: 800px;
 	height: 90px;
 	font-size: 1em;
     color:#000000;

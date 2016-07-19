@@ -72,9 +72,6 @@
 
       </form>
 
-              <!--<td>{{ bid?.delay }}</td>-->
-
-
 <div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
 			  <div *ngFor="let bid of traderBids" class="wow fadeInDown" data-wow-delay="0.3s">
 			  <button type="button" class="listbidbutton center" (click)="removeBid(index)">
@@ -136,8 +133,6 @@
             value="SEND BID">
 				</div>
 
-
-
     </div>
 </section>
 </div>
@@ -153,17 +148,3 @@
 
       <button (click)="selectAllHandlerSellers()"> Select All </button>
 
-    <h1> Set Delay For All Bids </h1>
-
-        <div class="form-group">
-          <label for="delay"> Delay: In Hours </label>
-          <input type="number" step="1" class="form-control" required
-              [(ngModel)]="delay"
-              ngControl="delay"
-              name="delay">
-        </div>
-
-    <h1> Send Bids </h1>
-
-      <button [disabled]="!delay" (click)="sendBids()"> SEND BIDS </button> 
--->
