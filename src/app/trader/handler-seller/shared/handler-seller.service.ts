@@ -6,7 +6,6 @@ import 'rxjs/add/operator/catch';
 import { Config, HttpClient, Logger } from '../../../shared/index';
 
 import { HandlerSeller } from './index';
-import { HandlerSellerData } from './index';
 
 @Injectable()
 export class HandlerSellerService {
@@ -15,15 +14,11 @@ export class HandlerSellerService {
   constructor(private http: HttpClient,
               private config: Config,
               private logger: Logger) {
-    this.handlerSellersUrl = null; // this.config.getServerDomain() + '/handler/growers';
+    this.handlerSellersUrl = this.config.getServerDomain() + '/trader/handlerSellers';
   }
 
   public getHandlerSellers(): Observable<HandlerSeller[]> {
-    return Observable.of(HandlerSellerData.mockHandlerSellers);
-  }
-
-    /*
-    this.http.get(this.handlerSellersUrl)
+    return this.http.get(this.handlerSellersUrl)
       .map(res => res.json())
       .map(handlerSellersJson => {
         let handlers: HandlerSeller[] = [];
@@ -34,7 +29,6 @@ export class HandlerSellerService {
       })
       .catch(this.logger.handleHttpError);
   }
-  */
 
   public getHandlerSeller(handlerSellerId: number): Observable<HandlerSeller> {
     if (handlerSellerId == null) {
@@ -48,15 +42,14 @@ export class HandlerSellerService {
       .catch(this.logger.handleHttpError);
   }
 
-  public addHandlerSeller(handlerSeller: HandlerSeller): HandlerSeller {
+  public addHandlerSeller(handlerSeller: HandlerSeller) {
     if (handlerSeller == null) {
       this.logger.handleError('Attempted to add null Grower.');
       return null;
     }
-    return null; // does nothing for now.
-    // return this.http.jsonPost(this.handlerSellersUrl, handlerSeller.encode())
-    //   .map(res => res.json())
-    //   .catch(this.logger.handleHttpError);
+    return this.http.jsonPost(this.handlerSellersUrl, handlerSeller.encode())
+        .map(res => res.json())
+        .catch(this.logger.handleHttpError);
   }
 
   // TODO Updating Not Implemented on Server Side Yet.

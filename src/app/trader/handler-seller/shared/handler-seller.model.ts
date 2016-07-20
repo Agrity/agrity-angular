@@ -2,9 +2,19 @@ import { Phone } from '../../../shared/phone.model';
 
 export class HandlerSeller {
 
-  public static decode(bidJson: Object): HandlerSeller {
-    return new HandlerSeller(); // Does Nothing for now.
+  /* Disabling no-string for processing object literal. */
+  /* tslint:disable:no-string-literal */
+  public static decode(handlerSellerJson: Object): HandlerSeller {
+
+    let handlerSeller: HandlerSeller  = new HandlerSeller();
+    handlerSeller.handlerId = handlerSellerJson['id'];
+    handlerSeller.firstName = handlerSellerJson['firstName'];
+    handlerSeller.lastName = handlerSellerJson['lastName'];
+    handlerSeller.email = handlerSellerJson['emailAddressString'];
+    handlerSeller.phone = handlerSellerJson['phone'];
+    return handlerSeller;
   }
+  /* tslint:enable:no-string-literal */
 
   public handlerId: number;
   public firstName: string;
@@ -18,6 +28,19 @@ export class HandlerSeller {
   public selected: boolean;
 
   public encode(): string {
-    return '';  // Does Nothing for now.
+    // NOTE: Play Framework won't recognize fields that aren't changed to
+    //       String class. Unsure why.
+    return JSON.stringify({
+      'first_name': this.getString(this.firstName),
+      'last_name': this.getString(this.lastName),
+      'email_address': this.getString(this.email),
+      'phone_number': this.phone.getAsString().toString(),
+    });
+  }
+
+  private getString(field: string): String {
+    return field != null
+      ? field.toString()
+      : '';
   }
 }

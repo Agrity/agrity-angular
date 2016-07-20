@@ -14,7 +14,7 @@ export class BidService {
       private config: Config,
       private logger: Logger
       ) {
-    this.bidsUrl = config.getServerDomain() + '/handler/offers';
+    this.bidsUrl = config.getServerDomain() + '/handler/handlerBids';
   }
 
   public getBids(): Observable<Bid[]> {

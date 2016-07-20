@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Config } from './config.service';
+import { UserType } from './index';
 
 @Injectable()
 export class HttpClient {
@@ -53,9 +54,20 @@ export class HttpClient {
     // this.logger.info(
     //    'Auth-Token: '
     //    + localStorage.getItem(this._config.getHandlerAuthHeaderKey()));
-    headers
+    switch (this.config.loggedIn()) {
+      case UserType.HANDLER:
+        headers
         .append(this.config.getHandlerAuthHeaderKey(),
                 localStorage.getItem(this.config.getHandlerAuthHeaderKey()));
+        break;
+      case UserType.TRADER:
+        headers
+        .append(this.config.getTraderAuthHeaderKey(),
+                localStorage.getItem(this.config.getTraderAuthHeaderKey()));
+        break;
+      default:
+        break;
+    }
   }
 
   private appendJsonFormatHeader(headers: Headers) {
