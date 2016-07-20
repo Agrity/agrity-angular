@@ -7,7 +7,6 @@ table {
 td {
   vertical-align:top;
   padding:5px;
-  background-color: #5b5b5b;
   border-right:none;
   border-left:none;
 }
@@ -15,6 +14,10 @@ td {
 tr {
     padding: 3px 0px 3px 0px;
     cursor: pointer;
+  	background-color: #5b5b5b;
+	&:hover {
+		background: #419ed2;
+	}
 }
 
 h1 {
@@ -22,6 +25,13 @@ h1 {
     letter-spacing: 1px;
     font: 20px Gotham Bold, sans-serif;
 
+}
+
+.hover {
+	width: auto;
+	&:hover {
+		background: #419ed2;
+	}
 }
 
 h2 {
@@ -102,7 +112,7 @@ button {
 	}
 }
 .plusSign {
-	line-height: 1.2em;
+	line-height: 0.9em;
     font-size:30px;
 	border-style: none;
 	&:hover {

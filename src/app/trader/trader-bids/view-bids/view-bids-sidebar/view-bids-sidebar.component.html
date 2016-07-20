@@ -28,6 +28,7 @@
     <div *ngFor="let bid of recievedOpenTraderBids">
       <!--<button (click)="selectBid(bid)" type="button">-->
         <table>
+          <div class="hover">
         <tbody>
          <tr (click)="selectBid(bid)">
             <!--TO Design Man: These are all the properties
@@ -42,6 +43,7 @@
             <td><p1>{{ bid?.countDownString }}</p1></td>
           </tr>
         </tbody>
+          </div>
         </table>
       <!--</button>-->
     </div>
@@ -52,9 +54,10 @@
     <div *ngFor="let bid of recievedClosedTraderBids">
       <!--<button (click)="selectBid(bid)" type="button">-->
         <table style="border-top:1px solid #1f1f1f">
+        <div class="hover">
          <tr (click)="selectBid(bid)">
             <td><p2>{{ bid?.almondVariety }}</p2></td>
-            <td><p2>{{ bid?.pricePerPound }}</p2></td> 
+            <td><p2>${{ bid?.pricePerPound }}</p2></td> 
             <td><p2>{{ bid?.countDownString }}</p2></td>
             <!--TO Design Man: Here are three methods that can be called with a closed bid.
                 we used them for styling the other bidslist page. You may find them usefull. 
@@ -63,6 +66,7 @@
                 isRejected(bid) will return true if the bid was neither partially or fully accepted before closing. -->
             <!--<td><p1>{{ isPartial(bid) }} {{ isAccepted(bid) }} {{ isRejected(bid) }}</p1></td>-->
           </tr>
+        </div>
         </table>
       <!--</button>-->
     </div>
