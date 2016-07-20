@@ -23,41 +23,39 @@ export class Config {
   // TODO Move to Appropriate Location
   public loggedIn(): UserType {
 
-    return UserType.TRADER;
+    if (
+        !(localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) &&
 
-    // if (
-    //     !(localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
-    //     localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) &&
+        !(localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
+         localStorage.getItem(this.getTraderAuthHeaderKey()) === null)
+    ) {
 
-    //     !(localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
-    //      localStorage.getItem(this.getTraderAuthHeaderKey()) === null)
-    // ) {
+      throw new Error('TRADER AND HANDLER LOGGED IN!');
+    }
 
-    //   throw new Error('TRADER AND HANDLER LOGGED IN!');
-    // }
+    if (
+        (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) &&
 
-    // if (
-    //     (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
-    //     localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) &&
+        (localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getTraderAuthHeaderKey()) === null)
+    ) {
 
-    //     (localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
-    //     localStorage.getItem(this.getTraderAuthHeaderKey()) === null)
-    // ) {
+      return UserType.NONE;
+    }
 
-    //   return UserType.NONE;
-    // }
+    if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) {
 
-    // if (localStorage.getItem(this.getHandlerAuthHeaderKey()) === '' ||
-    //     localStorage.getItem(this.getHandlerAuthHeaderKey()) === null) {
+      return UserType.TRADER;
+    }
 
-    //   return UserType.TRADER;
-    // }
+    if (localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
+        localStorage.getItem(this.getTraderAuthHeaderKey()) === null) {
 
-    // if (localStorage.getItem(this.getTraderAuthHeaderKey()) === '' ||
-    //     localStorage.getItem(this.getTraderAuthHeaderKey()) === null) {
-
-    //   return UserType.HANDLER;
-    // }
+      return UserType.HANDLER;
+    }
   }
 
   public forceLogout() {
