@@ -37,7 +37,7 @@ export class TraderLoginComponent {
           this.traderLoginService
               .storeTraderAuthToken(valid[this.authTokenKey]);
           this.navBarService.onTraderLoggedIn(true);
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/trader-home');
         },
         error => {
           if (error.indexOf('401') >= 0) {

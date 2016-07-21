@@ -4,3 +4,5 @@ export * from './http-client.service';
 export * from './logger.service';
 export * from './phone.model';
 export * from './user-type.model';
+export * from './response-status.model';
+export * from './bid-response.model'

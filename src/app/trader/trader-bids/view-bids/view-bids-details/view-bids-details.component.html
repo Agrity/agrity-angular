@@ -4,18 +4,18 @@
     <!--TO Design Man: I explained some things in the sidebar html.
         probably best to start by go through that one real quick before you
         start styling-->
-    
+
     <div id="bid-info">
     <!-- Currently white on white, so you can't see it before styling,
-         but this is the information you have to work with. --> 
+         but this is the information you have to work with. -->
         <!--<table>
           <tr>
             <td>{{ recievedSelectedBid?.almondVariety }}</td>
-            <td>{{ recievedSelectedBid?.pricePerPound }}</td> 
+            <td>{{ recievedSelectedBid?.pricePerPound }}</td>
             <td>{{ recievedSelectedBid?.almondPounds }}</td>
             <td>{{ recievedSelectedelectedBid?.countDownString }}</td>
-            <td>{{ isPartial(recievedSelectedBid) }} 
-                {{ isAccepted(recievedSelectedBid) }} 
+            <td>{{ isPartial(recievedSelectedBid) }}
+                {{ isAccepted(recievedSelectedBid) }}
                 {{ isRejected(recievedSelectedBid) }}
             </td>
           </tr>
@@ -31,11 +31,11 @@
 			  		<td class="offerButton"><p>
               {{ recievedSelectedBid?.almondVariety }}</p></td>
 			  		<td class="offerButton"><p>
-              ${{ recievedSelectedBid?.pricePerPound }}</p></td>
+              {{ recievedSelectedBid?.pricePerPound }}</p></td>
 			  		<td class="offerButton"><p>
               {{ recievedSelectedBid?.almondPounds }}</p></td>
 			  		<td class="offerButton"><p>
-              {{ recievedSelectedBid?.countDownString }}</p></td> 
+              {{ recievedSelectedBid?.countDownString }}</p></td>
 			  	</tr>
 				  <!--<tr>{{ bid.comment }}</tr>-->
 				</table>
@@ -50,8 +50,8 @@
              <td style="padding: 15px 20px 15px 20px;"><img src="assets/img/comment-icon.png"/></td>
              <td>
                 <comment>
-                  NPIS to be delivered and immediately shipped. 
-                  Must be between 68 and 72% C/O, with less than 
+                  NPIS to be delivered and immediately shipped.
+                  Must be between 68 and 72% C/O, with less than
                   - 5% moisture, 3% F.M., 2% Insect Damage.
                   <!--{{ bid.comment }}-->
                 </comment>
@@ -62,33 +62,33 @@
 
         </div>
        <!--</div>-->
-       
+
 
     <div class="center" id="handler-responses">
-      
-      <div class="col-md-4 accepted" id="accepted-handlers"> 
+
+      <div class="col-md-4 accepted" id="accepted-handlers">
         <h1 style="color:#2E9566" class="center">ACCEPTED</h1>
-          <li 
-            *ngFor="let handler of recievedSelectedBid?.acceptedHandlerSellers" 
-            type="button" 
+          <li
+            *ngFor="let handler of recievedSelectedBid?.acceptedHandlerSellers"
+            type="button"
             (click)="viewHandler(handler?.handlerId)">
             <p>
-                <!--{{ handler?.firstName }} 
+                <!--{{ handler?.firstName }}
                 {{ handler?.lastName }}
                 {{ handler?.email }} -->
                 {{ handler?.companyName }}
                 <!--{{ handler?.phone.getAsString()}}-->
             </p>
           </li>
-      </div>      
+      </div>
 
       <div class="col-md-4 rejected" id="rejected-handlers">
         <h1 style="color:#9F1B17" class="center">REJECTED</h1>
-          <li *ngFor="let handler of recievedSelectedBid?.rejectedHandlerSellers" 
-                type="button" 
+          <li *ngFor="let handler of recievedSelectedBid?.rejectedHandlerSellers"
+                type="button"
                 (click)="viewHandler(handler?.handlerId)">
             <p>
-                <!--{{ handler?.firstName }} 
+                <!--{{ handler?.firstName }}
                 {{ handler?.lastName }}
                 {{ handler?.email }} -->
                 {{ handler?.companyName }}
@@ -99,12 +99,12 @@
 
       <div class="col-md-4 pending" id="no-response-handlers">
         <h1 style="color:#419ed2" class="center">PENDING</h1>
-          <li           
-            *ngFor="let handler of recievedSelectedBid?.noResponseHandlerSellers" 
-            type="button" 
+          <li
+            *ngFor="let handler of recievedSelectedBid?.noResponseHandlerSellers"
+            type="button"
             (click)="viewHandler(handler?.handlerId)">
             <p >
-                <!--{{ handler?.firstName }} 
+                <!--{{ handler?.firstName }}
                 {{ handler?.lastName }}
                 {{ handler?.email }} -->
                 {{ handler?.companyName }}

@@ -60,11 +60,13 @@ export class Config {
 
   public forceLogout() {
     localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
+    localStorage.setItem(this.getTraderAuthHeaderKey(), '');
     this.router.navigateByUrl('/handler-login');
   }
 
   public forceTraderLogout() {
     localStorage.setItem(this.getTraderAuthHeaderKey(), '');
+    localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
     this.router.navigateByUrl('/trader-login');
   }
 }

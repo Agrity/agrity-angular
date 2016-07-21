@@ -12,6 +12,8 @@ import { NavBarService } from './shared/main-navbar/index';
 /* Single Pages */
 // import { HomeComponent } from './home-page/home.component';
 
+import { HomeComponent } from './home-page/home.component';
+
 import { HandlerHomeComponent } from './handler/single-pages/handler-home.component';
 import { TraderHomeComponent } from './trader/single-pages/trader-home.component';
 
@@ -45,7 +47,7 @@ import { HandlerSellerCreateComponent }
     from './trader/handler-seller/handler-create/handler-create.component';
 
 @RouteConfig([
-  { component: HandlerHomeComponent, name: 'Home', path: '/' },
+  { component: HomeComponent, name: 'Home', path: '/' },
 
   { component: HandlerHomeComponent, name: 'Handler Home', path: '/handler-home' },
 

@@ -37,7 +37,7 @@ export class HandlerLoginComponent {
           this.handlerLoginService
               .storeHandlerAuthToken(valid[this.authTokenKey]);
           this.navBarService.onHandlerLoggedIn(true);
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/handler-home');
         },
         error => {
           if (error.indexOf('401') >= 0) {

@@ -4,15 +4,18 @@ import { Phone } from '../../../shared/index';
 
   /* ===================================== Static Methods ===================================== */
 
+  /* Disabling no-string for processing object literal. */
+  /* tslint:disable:no-string-literal */
   public static decode(traderJson: Object): Trader {
     let trader = new Trader();
 
-    // trader.id = traderJson['id'];
-    // trader.companyName = traderJson['companyName'];
-    // trader.email = traderJson['emailAddress'];
+    trader.id = traderJson['id'];
+    trader.companyName = traderJson['companyName'];
+    trader.email = traderJson['emailAddressString'];
 
     return trader;
   }
+  /* tslint:enable:no-string-literal */
 
   /* ===================================== Member Fields ====================================== */
 
@@ -24,5 +27,11 @@ import { Phone } from '../../../shared/index';
   public phone: Phone;
 
   /* ===================================== Member Methods ===================================== */
+
+  public getString(field: string): String {
+    return field != null
+      ? field.toString()
+      : '';
+  }
 
 }

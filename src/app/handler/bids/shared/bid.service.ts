@@ -14,7 +14,7 @@ export class BidService {
       private config: Config,
       private logger: Logger
       ) {
-    this.bidsUrl = config.getServerDomain() + '/handler/offers';
+    this.bidsUrl = config.getServerDomain() + '/handler/handlerBids';
   }
 
   public getBids(): Observable<Bid[]> {
@@ -67,6 +67,6 @@ export class BidService {
 
   private getGrowerBidsUrl(growerId: number) {
     return this.config.getServerDomain()
-        + '/handler/growers/' + growerId + '/offers';
+        + '/handler/growers/' + growerId + '/handlerBids';
   }
 }

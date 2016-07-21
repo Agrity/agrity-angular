@@ -36,9 +36,15 @@ export class HandlerSellerCreateComponent implements OnInit {
 
   /* NOTE: Called in .html file. */
   protected save() {
-  this.handlerSellerService.addHandlerSeller(this.handlerSeller); // .subscribe(x => {
-      // this.handlerSeller = HandlerSeller.decode(x);
-      // this.router.navigateByUrl('/growers');
-      // });
+  this.handlerSellerService.addHandlerSeller(this.handlerSeller)
+      .subscribe(
+      x => {
+        this.handlerSeller = HandlerSeller.decode(x);
+        this.router.navigateByUrl('/handlerSellers');
+      },
+      error => {
+        this.logger.handleHttpError(error);
+        this.config.forceTraderLogout();
+      });
   }
 }

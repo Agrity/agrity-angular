@@ -5,50 +5,23 @@ import { Observable } from 'rxjs/Observable';
 
 import { Config, HttpClient, Logger } from '../../../shared/index';
 import { TraderBid } from './index';
-import { TraderBidData } from './index';
 
 @Injectable()
 export class TraderBidService {
   private traderBidsUrl: string;
+  private traderBatchUrl: string;
 
   constructor(
       private http: HttpClient,
       private config: Config,
       private logger: Logger
       ) {
-    this.traderBidsUrl = null; // config.getServerDomain() + '/handler/offers';
+    this.traderBidsUrl = this.config.getServerDomain() + '/trader/traderBids';
+    this.traderBatchUrl = this.config.getServerDomain() + '/trader/batch';
   }
 
   public getTraderBids(): Observable<TraderBid[]> {
-    return Observable.of(TraderBidData.mockTraderBids);
-
-    /*
-    this.http.get(this.traderBidsUrl)
-      .map(res => res.json())
-      .map(bidsJson => {
-        let traderBids: TraderBid[] = [];
-        for (let bidIndex in traderBidsJson) {
-          traderBids.push(TraderBid.decode(traderBidsJson[bidIndex]));
-        }
-        return traderBids;
-      })
-      .catch(this.logger.handleHttpError);
-    */
-  }
-
-  public getTraderBid(traderBidId: number): Observable<TraderBid> {
-    return this.http.get(this.getTraderBidUrl(traderBidId))
-      .map(res => res.json())
-      .map(json => TraderBid.decode(json))
-      .catch(this.logger.handleHttpError);
-  }
-
-  public getHandlerSellerBids(handlerSellerId: number): Observable<TraderBid[]> {
-    return Observable.of(TraderBidData.mockTraderBids);
-  }
-
-    /*
-    this.http.get(this.getHandlerSellerBidsUrl(handlerSellerId))
+    return this.http.get(this.traderBidsUrl)
       .map(res => res.json())
       .map(traderBidsJson => {
         let traderBids: TraderBid[] = [];
@@ -59,27 +32,48 @@ export class TraderBidService {
       })
       .catch(this.logger.handleHttpError);
   }
-  */
 
-  public createTraderBids(traderBids: TraderBid[]): void {
+  public getTraderBid(traderBidId: number): Observable<TraderBid> {
+    return this.http.get(this.getTraderBidUrl(traderBidId))
+      .map(res => res.json())
+      .map(json => TraderBid.decode(json))
+      .catch(this.logger.handleHttpError);
+  }
+
+  public getHandlerSellerBids(handlerSellerId: number): Observable<TraderBid[]> {
+    return this.http.get(this.getHandlerSellerBidsUrl(handlerSellerId))
+      .map(res => res.json())
+      .map(traderBidsJson => {
+        let traderBids: TraderBid[] = [];
+        for (let bidIndex in traderBidsJson) {
+          traderBids.push(TraderBid.decode(traderBidsJson[bidIndex]));
+        }
+        return traderBids;
+      })
+      .catch(this.logger.handleHttpError);
+  }
+
+  public createTraderBids(traderBids: TraderBid[]): Observable<TraderBid[]> {
     if (traderBids == null) {
       this.logger.handleError('Attempted to add null TraderBid.');
       return null;
     }
+
+    let traderJson: Object[] = [];
+
     for (let traderBid of traderBids) {
-      this.http.jsonPost(this.traderBidsUrl, traderBid.encode())
+      traderJson.push(traderBid.encode());
+    }
+    return this.http.jsonPost(this.traderBatchUrl, traderJson.toString())
         .map(res => res.json())
         .catch(this.logger.handleHttpError);
-    }
   }
 
   private getTraderBidUrl(traderBidId: number) {
     return this.traderBidsUrl + '/' + traderBidId;
   }
 
-  // private getHandlerSellerBidsUrl(growerId: number) {
-  //   return this.config.getServerDomain();
-  //       // TODO: Fix this.
-  //       // + '/handler/growers/' + growerId + '/offers';
-  // }
+  private getHandlerSellerBidsUrl(handlerId: number) {
+    return this.config.getServerDomain() + '/trader/handlerSellers/' + handlerId + '/traderBids';
+  }
 }

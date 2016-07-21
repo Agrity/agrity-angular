@@ -9,8 +9,8 @@ import { Config, Logger, UserType } from '../../../shared/index';
     directives: [RouterLink, ROUTER_DIRECTIVES],
     providers: [TraderService],
     selector: 'sg-trader-navbar',
-    styleUrls: ['app/handler/shared/navbar/navbar.component.css'],
-    templateUrl: 'app/handler/shared/navbar/navbar.component.html',
+    styleUrls: ['app/trader/shared/navbar/navbar.component.css'],
+    templateUrl: 'app/trader/shared/navbar/navbar.component.html',
 })
 
 export class TraderNavBarComponent implements OnInit {
