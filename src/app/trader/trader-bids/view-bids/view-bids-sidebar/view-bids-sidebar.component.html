@@ -1,15 +1,15 @@
   <div id="create-bid">
-    
+
     <!-- Currently we don't have a make traderBid button, so this doesn't
-         link to anything. --> 
+         link to anything. -->
     <button type="button" id="create-bid-button">
       Create New Bid
     </button>
 
   </div>
 
-  <!-- To Design Man: I copied your table and list formats from the previous 
-                      bid components. 
+  <!-- To Design Man: I copied your table and list formats from the previous
+                      bid components.
                       Feel free to change anything as you see fit. -->
   <div class="sidebar-color col-md-3">
 
@@ -34,8 +34,8 @@
                 so you can pick which you want to display
                 in the sidebar.-->
             <td><p1>{{ bid?.almondVariety }}</p1></td>
-            <td><p1>${{ bid?.pricePerPound }}</p1></td> 
-            <!--countDownString is a countdown string that 
+            <td><p1>{{ bid?.pricePerPound }}</p1></td>
+            <!--countDownString is a countdown string that
                 will display time remaining until bid expires.
                 It updates every second.
                 If no time remains it returns "Offer Closed" -->
@@ -54,10 +54,10 @@
         <table style="border-top:1px solid #1f1f1f">
          <tr (click)="selectBid(bid)">
             <td><p2>{{ bid?.almondVariety }}</p2></td>
-            <td><p2>{{ bid?.pricePerPound }}</p2></td> 
+            <td><p2>{{ bid?.pricePerPound }}</p2></td>
             <td><p2>{{ bid?.countDownString }}</p2></td>
             <!--TO Design Man: Here are three methods that can be called with a closed bid.
-                we used them for styling the other bidslist page. You may find them usefull. 
+                we used them for styling the other bidslist page. You may find them usefull.
                 isPartial(bid) will return true if the bid was partially accepted before closing.
                 isAccepted(bid) will return true if the bid was accepted in full.
                 isRejected(bid) will return true if the bid was neither partially or fully accepted before closing. -->

@@ -9,6 +9,7 @@ import { TraderBid } from './index';
 @Injectable()
 export class TraderBidService {
   private traderBidsUrl: string;
+  private traderBatchUrl: string;
 
   constructor(
       private http: HttpClient,
@@ -16,6 +17,7 @@ export class TraderBidService {
       private logger: Logger
       ) {
     this.traderBidsUrl = this.config.getServerDomain() + '/trader/traderBids';
+    this.traderBatchUrl = this.config.getServerDomain() + '/trader/batch';
   }
 
   public getTraderBids(): Observable<TraderBid[]> {
@@ -56,11 +58,15 @@ export class TraderBidService {
       this.logger.handleError('Attempted to add null TraderBid.');
       return null;
     }
+
+    let traderJson: Object[] = [];
+
     for (let traderBid of traderBids) {
-      this.http.jsonPost(this.traderBidsUrl, traderBid.encode())
+      traderJson.push(traderBid.encode());
+    }
+    this.http.jsonPost(this.traderBatchUrl, traderJson.toString())
         .map(res => res.json())
         .catch(this.logger.handleHttpError);
-    }
   }
 
   private getTraderBidUrl(traderBidId: number) {
@@ -68,6 +74,6 @@ export class TraderBidService {
   }
 
   private getHandlerSellerBidsUrl(handlerId: number) {
-    return this.config.getServerDomain() + '/trader/handlerSellers/' + handlerId + '/offers';
+    return this.config.getServerDomain() + '/trader/handlerSellers/' + handlerId + '/traderBids';
   }
 }

@@ -60,7 +60,9 @@ export class BidDetailComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.counter.unsubscribe();
+    if (this.counter !== null) {
+      this.counter.unsubscribe();
+    }
   }
 
   protected getCountDownString(bid: Bid): void {

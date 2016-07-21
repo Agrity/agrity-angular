@@ -126,7 +126,7 @@ export class Bid {
   public static decodeBidResponse(bidJson: Object): BidResponse {
     let bidResponse: BidResponse = new BidResponse();
     let growerJson = bidJson['grower'];
-    bidResponse.Id = growerJson['id'];
+    bidResponse.id = growerJson['id'];
     bidResponse.poundsAccepted = bidJson['poundsAccepted'];
     let responseStatus: string = bidJson['responseStatus'];
 
@@ -243,7 +243,7 @@ export class Bid {
   public getBidResponse(bid: Bid, growerId: number): BidResponse {
     for (let bidResponseIndex in bid.bidResponses) {
       let bidResponse: BidResponse = bid.bidResponses[bidResponseIndex];
-      if (bidResponse.Id === growerId) {
+      if (bidResponse.id === growerId) {
         return bidResponse;
       }
     }

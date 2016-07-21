@@ -32,7 +32,7 @@ export class HandlerSellerService {
 
   public getHandlerSeller(handlerSellerId: number): Observable<HandlerSeller> {
     if (handlerSellerId == null) {
-      this.logger.handleError('Attempted to get Grower with null id.');
+      this.logger.handleError('Attempted to get Handler with null id.');
       return null;
     }
 
@@ -44,7 +44,7 @@ export class HandlerSellerService {
 
   public addHandlerSeller(handlerSeller: HandlerSeller) {
     if (handlerSeller == null) {
-      this.logger.handleError('Attempted to add null Grower.');
+      this.logger.handleError('Attempted to add null Handler.');
       return null;
     }
     return this.http.jsonPost(this.handlerSellersUrl, handlerSeller.encode())

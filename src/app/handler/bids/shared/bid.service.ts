@@ -67,6 +67,6 @@ export class BidService {
 
   private getGrowerBidsUrl(growerId: number) {
     return this.config.getServerDomain()
-        + '/handler/growers/' + growerId + '/offers';
+        + '/handler/growers/' + growerId + '/handlerBids';
   }
 }

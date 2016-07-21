@@ -19,7 +19,7 @@ export class HandlerHomeComponent implements OnInit  {
   public ngOnInit() {
     if (this.config.loggedIn() === UserType.NONE) {
       alert('Please Login. If this issue continues try logging out, then logging back in.');
-      this.config.forceTraderLogout();
+      this.config.forceLogout();
       return;
     }
 

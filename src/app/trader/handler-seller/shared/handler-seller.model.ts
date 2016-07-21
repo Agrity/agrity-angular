@@ -12,7 +12,8 @@ export class HandlerSeller {
     handlerSeller.lastName = handlerSellerJson['lastName'];
     handlerSeller.email = handlerSellerJson['emailAddressString'];
     handlerSeller.phone = handlerSellerJson['phone'];
-    handlerSeller.companyName = handlerSellerJson['companyName'];
+    // handlerSeller.companyName = handlerSellerJson['companyName'];
+    handlerSeller.companyName = 'Test_Company';
     return handlerSeller;
   }
   /* tslint:enable:no-string-literal */
