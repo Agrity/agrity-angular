@@ -1,7 +1,5 @@
 import { Grower } from '../../growers/shared/index';
-import { BidStatus } from '../../../shared/index';
-import { BidResponse } from './index';
-import { ResponseStatus } from './index';
+import { BidStatus, ResponseStatus, BidResponse } from '../../../shared/index';
 
 export class Bid {
 
@@ -32,21 +30,24 @@ export class Bid {
     bid.endPaymentDate = bidJson['endPaymentDateAsString'];
     bid.comment = bidJson['comment'];
 
-    bid.currentlyOpen = bidJson['offerCurrentlyOpen'];
     let bidStatus: string = bidJson['offerStatus'];
 
     switch (bidStatus) {
       case 'ACCEPTED':
         bid.bidStatus = BidStatus.ACCEPTED;
+        bid.currentlyOpen = true;
         break;
       case 'REJECTED':
         bid.bidStatus = BidStatus.REJECTED;
+        bid.currentlyOpen = false;
         break;
       case 'PARTIAL':
         bid.bidStatus = BidStatus.PARTIAL;
+        bid.currentlyOpen = false;
         break;
       case 'OPEN':
         bid.bidStatus = BidStatus.OPEN;
+        bid.currentlyOpen = false;
         break;
       default:
         bid.bidStatus = null;
@@ -124,7 +125,8 @@ export class Bid {
   /* tslint:disable:no-string-literal */
   public static decodeBidResponse(bidJson: Object): BidResponse {
     let bidResponse: BidResponse = new BidResponse();
-    bidResponse.growerId = bidJson['id'];
+    let growerJson = bidJson['grower'];
+    bidResponse.Id = growerJson['id'];
     bidResponse.poundsAccepted = bidJson['poundsAccepted'];
     let responseStatus: string = bidJson['responseStatus'];
 
@@ -241,7 +243,7 @@ export class Bid {
   public getBidResponse(bid: Bid, growerId: number): BidResponse {
     for (let bidResponseIndex in bid.bidResponses) {
       let bidResponse: BidResponse = bid.bidResponses[bidResponseIndex];
-      if (bidResponse.growerId === growerId) {
+      if (bidResponse.Id === growerId) {
         return bidResponse;
       }
     }

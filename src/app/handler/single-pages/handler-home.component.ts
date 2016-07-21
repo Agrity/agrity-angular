@@ -23,9 +23,9 @@ export class HandlerHomeComponent implements OnInit  {
       return;
     }
 
-    if (this.config.loggedIn() === UserType.HANDLER) {
-      alert('Handlers cannot access the trader side of agrity. Please login as a trader.');
-      this.config.forceTraderLogout();
+    if (this.config.loggedIn() === UserType.TRADER) {
+      alert('Traders cannot access the handler side of agrity. Please login as a handler.');
+      this.config.forceLogout();
     }
   }
 }

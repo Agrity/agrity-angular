@@ -12,6 +12,7 @@ export class HandlerSeller {
     handlerSeller.lastName = handlerSellerJson['lastName'];
     handlerSeller.email = handlerSellerJson['emailAddressString'];
     handlerSeller.phone = handlerSellerJson['phone'];
+    handlerSeller.companyName = handlerSellerJson['companyName'];
     return handlerSeller;
   }
   /* tslint:enable:no-string-literal */
@@ -35,6 +36,7 @@ export class HandlerSeller {
       'last_name': this.getString(this.lastName),
       'email_address': this.getString(this.email),
       'phone_number': this.phone.getAsString().toString(),
+      'company_name': this.getString(this.companyName),
     });
   }
 

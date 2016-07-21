@@ -1,5 +1,5 @@
 import { HandlerSeller } from '../../handler-seller/shared/index';
-import { BidStatus } from '../../../shared/index';
+import { BidStatus, BidResponse, ResponseStatus } from '../../../shared/index';
 
 export class TraderBid {
 
@@ -56,27 +56,29 @@ export class TraderBid {
     traderBid.pricePerPound = traderBidJson['pricePerPound'];
     traderBid.comment = traderBidJson['comment'];
 
-    // traderBid.currentlyOpen = traderBidJson['offerCurrentlyOpen'];
+    let bidStatus: string = traderBidJson['bidStatus'];
 
-    // let bidStatus: string = bidJson['offerStatus'];
-
-    // switch (bidStatus) {
-    //   case 'ACCEPTED':
-    //     bid.bidStatus = BidStatus.ACCEPTED;
-    //     break;
-    //   case 'REJECTED':
-    //     bid.bidStatus = BidStatus.REJECTED;
-    //     break;
-    //   case 'PARTIAL':
-    //     bid.bidStatus = BidStatus.PARTIAL;
-    //     break;
-    //   case 'OPEN':
-    //     bid.bidStatus = BidStatus.OPEN;
-    //     break;
-    //   default:
-    //     bid.bidStatus = null;
-    //     break;
-    // }
+    switch (bidStatus) {
+      case 'ACCEPTED':
+        traderBid.bidStatus = BidStatus.ACCEPTED;
+        traderBid.currentlyOpen = false;
+        break;
+      case 'REJECTED':
+        traderBid.bidStatus = BidStatus.REJECTED;
+        traderBid.currentlyOpen = false;
+        break;
+      case 'PARTIAL':
+        traderBid.bidStatus = BidStatus.PARTIAL;
+        traderBid.currentlyOpen = false;
+        break;
+      case 'OPEN':
+        traderBid.bidStatus = BidStatus.OPEN;
+        traderBid.currentlyOpen = true;
+        break;
+      default:
+        traderBid.bidStatus = null;
+        break;
+    }
 
     traderBid.acceptedHandlerSellers =
         this.decodeTraderBidAcceptHandlerSellers(traderBidJson);
@@ -87,7 +89,7 @@ export class TraderBid {
 
     traderBid.expirationTime = new Date(traderBidJson['expirationTimeAsString']);
 
-    // traderBid.bidResponses = this.decodeBidResponses(bidJson['offerResponses']);
+    traderBid.bidResponses = this.decodeBidResponses(traderBidJson['bidResponses']);
 
     return traderBid;
   }
@@ -105,44 +107,45 @@ export class TraderBid {
     return this.decodeTraderBidHandlerSellers('noResponseHandlerSellers', traderBidJson);
   }
 
-  // public static decodeBidResponses(bidResponsesJson: Object): BidResponse[] {
-  //   let bidResponses: BidResponse[] = [];
-  //   for (let bidResponseIndex in bidResponsesJson) {
-  //     bidResponses.push(Bid.decodeBidResponse(bidResponsesJson[bidResponseIndex]));
-  //   }
+  public static decodeBidResponses(bidResponsesJson: Object): BidResponse[] {
+    let bidResponses: BidResponse[] = [];
+    for (let bidResponseIndex in bidResponsesJson) {
+      bidResponses.push(TraderBid.decodeBidResponse(bidResponsesJson[bidResponseIndex]));
+    }
 
-  //   return bidResponses;
-  // }
+    return bidResponses;
+  }
 
-  // /* Disabling no-string for processing object literal. */
-  // /* tslint:disable:no-string-literal */
-  // public static decodeBidResponse(bidJson: Object): BidResponse {
-  //   let bidResponse: BidResponse = new BidResponse();
-  //   bidResponse.growerId = bidJson['id'];
-  //   bidResponse.poundsAccepted = bidJson['poundsAccepted'];
-  //   let responseStatus: string = bidJson['responseStatus'];
+  /* Disabling no-string for processing object literal. */
+  /* tslint:disable:no-string-literal */
+  public static decodeBidResponse(bidJson: Object): BidResponse {
+    let bidResponse: BidResponse = new BidResponse();
+    let handlerSellerJson = bidJson['handlerSeller'];
+    bidResponse.Id = handlerSellerJson['id'];
+    bidResponse.poundsAccepted = bidJson['poundsAccepted'];
+    let responseStatus: string = bidJson['responseStatus'];
 
-  //   switch (responseStatus) {
-  //     case 'ACCEPTED':
-  //       bidResponse.responseStatus = ResponseStatus.ACCEPTED;
-  //       break;
-  //     case 'NO_RESPONSE':
-  //       bidResponse.responseStatus = ResponseStatus.NO_RESPONSE;
-  //       break;
-  //     case 'REJECTED':
-  //       bidResponse.responseStatus = ResponseStatus.REJECTED;
-  //       break;
-  //     case 'PARTIAL':
-  //       bidResponse.responseStatus = ResponseStatus.PARTIAL;
-  //       break;
-  //     default:
-  //       bidResponse.responseStatus = null;
-  //       break;
-  //   }
+    switch (responseStatus) {
+      case 'ACCEPTED':
+        bidResponse.responseStatus = ResponseStatus.ACCEPTED;
+        break;
+      case 'NO_RESPONSE':
+        bidResponse.responseStatus = ResponseStatus.NO_RESPONSE;
+        break;
+      case 'REJECTED':
+        bidResponse.responseStatus = ResponseStatus.REJECTED;
+        break;
+      case 'PARTIAL':
+        bidResponse.responseStatus = ResponseStatus.PARTIAL;
+        break;
+      default:
+        bidResponse.responseStatus = null;
+        break;
+    }
 
-  //   return bidResponse;
-  // }
-  // /* tslint:enable:no-string-literal */
+    return bidResponse;
+  }
+  /* tslint:enable:no-string-literal */
 
   // TODO Should remove this and just have the bid model hold
   //      lists of Growers.
@@ -172,6 +175,7 @@ export class TraderBid {
   public delay: number;
   public currentlyOpen: boolean;
   public bidStatus: BidStatus;
+  public bidResponses: BidResponse[];
 
   public handlerSellerIds: number[];
   public acceptedHandlerSellers: HandlerSeller[];
@@ -198,15 +202,15 @@ export class TraderBid {
     });
   }
 
-  // public getBidResponse(bid: Bid, growerId: number): BidResponse {
-  //   for (let bidResponseIndex in bid.bidResponses) {
-  //     let bidResponse: BidResponse = bid.bidResponses[bidResponseIndex];
-  //     if (bidResponse.growerId === growerId) {
-  //       return bidResponse;
-  //     }
-  //   }
-  //   return null;
-  // }
+  public getBidResponse(bid: TraderBid, handlerId: number): BidResponse {
+    for (let bidResponseIndex in bid.bidResponses) {
+      let bidResponse: BidResponse = bid.bidResponses[bidResponseIndex];
+      if (bidResponse.Id === handlerId) {
+        return bidResponse;
+      }
+    }
+    return null;
+  }
 
   private getString(field: string): String {
     return field != null

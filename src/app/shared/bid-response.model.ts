@@ -1,7 +1,7 @@
 import { ResponseStatus } from './index';
 
 export class BidResponse {
-  public growerId: number;
+  public Id: number;
   public responseStatus: ResponseStatus;
   public poundsAccepted: number;
 }
