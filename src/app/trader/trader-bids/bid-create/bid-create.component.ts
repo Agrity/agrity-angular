@@ -122,6 +122,14 @@ export class TraderBidCreateComponent implements OnInit {
         }
       }
     }
-    // this.traderBidService.createTraderBids(this.traderBids);
+    this.traderBidService.createTraderBids(this.traderBids)
+        .subscribe(
+        bid => {
+          this.router.navigateByUrl('/traderBids');
+        },
+        error => {
+          this.logger.handleHttpError(error);
+          this.config.forceTraderLogout();
+        });
   }
 }

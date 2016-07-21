@@ -53,7 +53,7 @@ export class TraderBidService {
       .catch(this.logger.handleHttpError);
   }
 
-  public createTraderBids(traderBids: TraderBid[]): void {
+  public createTraderBids(traderBids: TraderBid[]): Observable<TraderBid[]> {
     if (traderBids == null) {
       this.logger.handleError('Attempted to add null TraderBid.');
       return null;
@@ -64,7 +64,7 @@ export class TraderBidService {
     for (let traderBid of traderBids) {
       traderJson.push(traderBid.encode());
     }
-    this.http.jsonPost(this.traderBatchUrl, traderJson.toString())
+    return this.http.jsonPost(this.traderBatchUrl, traderJson.toString())
         .map(res => res.json())
         .catch(this.logger.handleHttpError);
   }
