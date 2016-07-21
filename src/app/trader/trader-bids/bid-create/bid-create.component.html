@@ -9,30 +9,30 @@
     <div class="col-sm-10 wow fadeInDown" data-wow-delay="0.6s">
         
         <div class="form-group">
-          <div class="select-style">
-          <select required class="form-control"
-              [(ngModel)]="traderBid.almondVariety"
-              ngControl="variety"
-              name="variety">
-            <option value="" disabled>Choose Almond Variety</option>
-            <option *ngFor="let variety of varieties" 
-                [value]="variety"> {{variety}}
-            </option>
-          </select>
-          </div>
 
-          <div class="select-style">
-          <select required class="form-control" required
-              [(ngModel)]="traderBid.almondSize"
-              ngControl="size"
-              name="size"
-              aria-placeholder="Size">
-            <option value="" disabled>Select Size</option>
-            <option *ngFor="let size of sizes" 
-                [value]="size"> {{size}}
-            </option>
-          </select>
-          </div>
+          <input type="text" class="form-control" required
+            [(ngModel)]="traderBid.almondVariety"
+            ngControl="variety"
+            name="variety"
+            placeholder="Select Almond Variety"
+            list="almonds">
+			<datalist id="almonds">
+                <option *ngFor="let variety of varieties"
+                    [value]="variety"> {{ variety }}
+                </option>
+			</datalist>
+        
+          <input type="text" class="form-control" required
+            [(ngModel)]="traderBid.almondSize"
+            ngControl="size"
+            name="size"
+            placeholder="Select Size"
+            list="size">
+			<datalist id="size">
+                <option *ngFor="let size of sizes"
+                    [value]="size"> {{ size }}
+                </option>
+			</datalist>
 
           <input type="text" class="form-control" required
               [(ngModel)]="traderBid.pricePerPound"
@@ -72,24 +72,25 @@
     </form>
 
 <div class="col-md-12 centerbuttons">
-			  <div *ngFor="let bid of traderBids" 
+
+			  <div *ngFor="let bid of traderBids"
                     class="wow fadeInDown spaceunder" 
                     data-wow-delay="0.3s">
 			  <button 
-                type="button" class="listbidbutton center" 
+                type="button" class="listbidbutton" 
                 (click)="removeBid(index)">
 			  	<table id="buttonCols">
 				<tr>
 			  		<td class="offerButton">
                           <p>{{ bid?.almondVariety }}</p></td>
 			  		<td class="offerButton">
-                          <p>{{ bid?.almondPounds }}</p></td>
-			  		<td class="offerButton">
                           <p>{{ bid?.almondSize }}</p></td>
 			  		<td class="offerButton">
                           <p>${{ bid?.pricePerPound }}</p></td> 
-                    <td class="offerButton">
-                        <p>{{ bid?.comment }}</p></td>
+			  		<td class="offerButton">
+                          <p>{{ bid?.almondPounds }}</p></td>
+			  		<td class="offerButton">
+                          <p>{{ bid?.comment }}</p></td>
 			  	</tr>
 				</table>
 			  </button>
@@ -140,16 +141,6 @@
             class="form-control" id="submit" 
             value="SEND BID">
 				</div>
-
-
-
     </div>
 </section>
 </div>
-
-<select>
-    <option value="" selected>select your beverage</option>
-    <option value="tea">Tea</option>
-    <option value="coffee">Coffee</option>
-    <option value="soda">Soda</option>
-</select>
