@@ -38,13 +38,13 @@
               [(ngModel)]="traderBid.pricePerPound"
               ngControl="pricePerPound"
               name="price"
-              placeholder="Type Price per Ton">
+              placeholder="Type Price per Pound">
 
           <input type="number" step="1" min="0" class="form-control" required
               [(ngModel)]="traderBid.almondPounds"
               ngControl="almondPounds"
               name="pounds"
-              placeholder="Type Amount in Metric Tons">
+              placeholder="Amount in Metric Tons">
         </div>
 
         <div class="form-group">
@@ -117,11 +117,10 @@
 			</div>
 
 			<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
-
 				<div class="whitebox">
 					<p *ngFor="let handler of handlerSellers">
-    					<input type="checkbox" [(ngModel)]="handler.selected" id="handler.selected">
-    					<label for="handler.selected">{{ handler.firstName }} {{ handler.lastName }}</label>
+    					<input type="checkbox" [(ngModel)]="handler.selected">
+    					<label>{{ handler.firstName }} {{ handler.lastName }}</label>
   					</p>
   				</div>
 			</div>
