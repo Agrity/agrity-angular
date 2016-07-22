@@ -1,6 +1,6 @@
 <div>
 <section id="contact">
-    <title class="center spaceunder">CREATE YOUR BID</title>
+    <title class="center spaceunder">CREATE YOUR BID SHEET</title>
 
     <div class="container">
 
@@ -40,11 +40,11 @@
               name="price"
               placeholder="Type Price per Ton">
 
-          <input type="number" step="0.01" class="form-control" required
+          <input type="number" step="1" min="0" class="form-control" required
               [(ngModel)]="traderBid.almondPounds"
               ngControl="almondPounds"
               name="pounds"
-              placeholder="Type Amount in Tons">
+              placeholder="Type Amount in Metric Tons">
         </div>
 
         <div class="form-group">
@@ -52,7 +52,7 @@
               [(ngModel)]="traderBid.comment"
               ngControl="comment"
               name="comment"
-              placeholder="Type any Comments"
+              placeholder="Type any Comments (example: quality level, payment terms, shipping instructions, etc.)"
               style="width:870px;">
         </div>
 
@@ -88,7 +88,7 @@
 			  		<td class="offerButton">
                           <p>${{ bid?.pricePerPound }}</p></td> 
 			  		<td class="offerButton">
-                          <p>{{ bid?.almondPounds }}</p></td>
+                          <p>{{ bid?.almondPounds }} MT</p></td>
 			  		<td class="offerButton">
                           <p>{{ bid?.comment }}</p></td>
 			  	</tr>
@@ -99,7 +99,7 @@
 
 <div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
         <div class="form-group spaceover">
-          <input type="number" step="1" class="form-control" required
+          <input type="number" step="1" min="1" class="form-control" required
               [(ngModel)]="delay"
               ngControl="delay"
               name="delay"
