@@ -15,7 +15,7 @@
       <ul class="nav navbar-nav navbar-right main-navigation">
         <li><a [routerLink]="['Trader Home']" class="smoothScroll">HOME</a></li>
         <li><a [routerLink]="['View Trader Bids']" class="smoothScroll">BIDS</a></li>
-        <li><a [routerLink]="['View Handler Sellers']" class="smoothScroll">HANDLERS</a><li>
+        <li><a [routerLink]="['View Handler Sellers']" class="smoothScroll">HANDLERS</a></li>
         <li><a *ngIf="trader !== null" [routerLink]="['Trader Login']" class="smoothScroll"> {{ trader.companyName }}</a>
         </li>
 
