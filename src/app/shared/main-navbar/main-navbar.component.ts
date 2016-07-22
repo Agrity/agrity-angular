@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NavBarComponent } from '../../handler/shared/navbar/index';
 import { TraderNavBarComponent } from '../../trader/shared/navbar/index';
+import { RouterLink, ROUTER_DIRECTIVES, Router }
+    from '@angular/router-deprecated';
 
 // DO NOT IMPORT THIS FROM INDEX! CAUSES A HELLISH BUG!
 import { NavBarService } from './main-navbar.service';
@@ -9,6 +11,8 @@ import { NavBarService } from './main-navbar.service';
     directives: [
         TraderNavBarComponent,
         NavBarComponent,
+        RouterLink,
+        ROUTER_DIRECTIVES,
         ],
     providers: [ NavBarService ],
     selector: 'sg-main-navbar',
@@ -20,6 +24,10 @@ export class MainNavBarComponent {
 
   private recievedTraderBool: boolean = false;
   private recievedHandlerBool: boolean = false;
+
+  constructor(
+      private router: Router
+      ) {}
 
   @Input()
   set traderLoggedIn(traderLoggedIn: boolean) {

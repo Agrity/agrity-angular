@@ -1,2 +1,18 @@
 <sg-navbar *ngIf="recievedHandlerBool"> </sg-navbar>
 <sg-trader-navbar *ngIf="recievedTraderBool"> </sg-trader-navbar>
+
+<div *ngIf="!recievedHandlerBool && !recievedTraderBool">
+  <section class="navbar navbar-default navbar-fixed-top sticky-navigation" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="sgCollapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" [routerLink]="['Home']">Agrity</a>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+</div>
