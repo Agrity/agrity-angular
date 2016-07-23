@@ -64,7 +64,8 @@ export class TraderBidService {
     for (let traderBid of traderBids) {
       traderJson.push(traderBid.encode());
     }
-    return this.http.jsonPost(this.traderBatchUrl, traderJson.toString())
+
+    return this.http.jsonPost(this.traderBatchUrl, '[' + traderJson.toString() + ']')
         .map(res => res.json())
         .catch(this.logger.handleHttpError);
   }
