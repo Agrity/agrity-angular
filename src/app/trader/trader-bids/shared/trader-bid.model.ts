@@ -51,7 +51,7 @@ export class TraderBid {
     }
 
     traderBid.almondVariety = traderBidJson['almondVariety'];
-    // traderBid.almondSize = traderBidJson['almondSize'];
+    traderBid.almondSize = traderBidJson['almondSize'];
     traderBid.almondPounds = traderBidJson['almondPounds'];
     traderBid.pricePerPound = traderBidJson['pricePerPound'];
     traderBid.comment = traderBidJson['comment'];
@@ -195,10 +195,16 @@ export class TraderBid {
     return JSON.stringify({
       'handlerSeller_ids': this.handlerSellerIds,
       'almond_variety': this.getString(this.almondVariety),
-      // 'almond_size': this.getString(this.almondSize),
+      'almond_size': this.getString(this.almondSize),
       'almond_pounds': this.getString(this.almondPounds),
       'price_per_pound': this.getString(this.pricePerPound),
       'comment': this.getString(this.comment),
+
+      // NOTE: Management Type currently always set to first come first serve.
+      'management_type': {
+        'type': 'FCFSService',
+        'delay': this.delay,
+      }
     });
   }
 
