@@ -113,6 +113,10 @@ export class TraderBidCreateComponent implements OnInit {
   }
 
   protected sendBids() {
+    if (this.traderBids === []) {
+      return;
+    }
+
     for (let bid of this.traderBids) {
       bid.delay = this.delay;
       bid.handlerSellerIds = [];
