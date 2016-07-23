@@ -4,12 +4,10 @@ import 'rxjs/add/observable/throw';
 
 export class Logger {
 
-  private ERROR_KEY: string = 'error';
-
   public handleHttpError(error: Response) {
-    //let errMsg = `${error.status} - ${error.statusText}`;
+    // let errMsg = `${error.status} - ${error.statusText}`;
     console.error('Error: ' + error);
-    return Observable.throw(errMsg);
+    return Observable.throw(error);
   }
 
   public handleError(error: string) {

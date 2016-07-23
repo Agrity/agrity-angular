@@ -125,7 +125,7 @@ export class TraderBidCreateComponent implements OnInit {
     this.traderBidService.createTraderBids(this.traderBids)
         .subscribe(
         bid => {
-          this.router.navigateByUrl('/traderBids');
+          this.router.navigateByUrl('/trader-bids');
         },
         error => {
           this.logger.handleHttpError(error);

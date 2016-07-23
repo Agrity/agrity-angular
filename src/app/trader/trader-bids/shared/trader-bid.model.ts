@@ -204,7 +204,7 @@ export class TraderBid {
       'management_type': {
         'type': 'FCFSService',
         'delay': this.delay,
-      }
+      },
     });
   }
 

@@ -2,12 +2,17 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { UserType } from './index';
 
+// DO NOT IMPORT THIS FROM INDEX! CAUSES A HELLISH BUG!
+import { NavBarService } from './main-navbar/main-navbar.service';
+
 @Injectable()
 export class Config {
 
   constructor(
-    private router: Router) {
-  }
+    private router: Router,
+    private navBarService: NavBarService
+    ) {}
+
   public getServerDomain(): string {
     return 'http://localhost:9000';
   }
@@ -61,12 +66,16 @@ export class Config {
   public forceLogout() {
     localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
     localStorage.setItem(this.getTraderAuthHeaderKey(), '');
+    this.navBarService.onTraderLoggedIn(false);
+    this.navBarService.onHandlerLoggedIn(false);
     this.router.navigateByUrl('/handler-login');
   }
 
   public forceTraderLogout() {
     localStorage.setItem(this.getTraderAuthHeaderKey(), '');
     localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
+    this.navBarService.onTraderLoggedIn(false);
+    this.navBarService.onHandlerLoggedIn(false);
     this.router.navigateByUrl('/trader-login');
   }
 }

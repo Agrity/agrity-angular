@@ -40,7 +40,7 @@ export class HandlerSellerCreateComponent implements OnInit {
       .subscribe(
       x => {
         this.handlerSeller = HandlerSeller.decode(x);
-        this.router.navigateByUrl('/handlerSellers');
+        this.router.navigateByUrl('/handler-sellers');
       },
       error => {
         this.logger.handleHttpError(error);
