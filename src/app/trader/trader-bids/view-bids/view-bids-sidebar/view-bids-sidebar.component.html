@@ -28,8 +28,8 @@
     <div *ngFor="let bid of recievedOpenTraderBids">
       <!--<button (click)="selectBid(bid)" type="button">-->
         <table>
-          <div class="hover">
         <tbody>
+        <div class="hover">
          <tr (click)="selectBid(bid)">
             <!--TO Design Man: These are all the properties
                 so you can pick which you want to display
@@ -42,8 +42,8 @@
                 If no time remains it returns "Offer Closed" -->
             <td><p1>{{ bid?.countDownString }}</p1></td>
           </tr>
-        </tbody>
           </div>
+        </tbody>
         </table>
       <!--</button>-->
     </div>
@@ -54,7 +54,6 @@
     <div *ngFor="let bid of recievedClosedTraderBids">
       <!--<button (click)="selectBid(bid)" type="button">-->
         <table style="border-top:1px solid #1f1f1f">
-        <div class="hover">
          <tr (click)="selectBid(bid)">
             <td><p2>{{ bid?.almondVariety }}</p2></td>
 
@@ -68,7 +67,6 @@
                 isRejected(bid) will return true if the bid was neither partially or fully accepted before closing. -->
             <!--<td><p1>{{ isPartial(bid) }} {{ isAccepted(bid) }} {{ isRejected(bid) }}</p1></td>-->
           </tr>
-        </div>
         </table>
       <!--</button>-->
     </div>

@@ -28,7 +28,6 @@
   <div id="handler-list">
     <div *ngFor="let handler of recievedHandlerSellers">
         <table>
-        <div class="hover center">
         <tbody>
          <tr (click)="selectHandler(handler)">
             <!--<td><p1>{{ handler?.firstName }}</td>
@@ -38,7 +37,6 @@
             <td><p1 class="center">{{ handler?.companyName}}</p1></td>
           </tr>
         </tbody>
-        </div>
         </table>
     </div>
   </div>
