@@ -7,10 +7,8 @@ export class Logger {
   private ERROR_KEY: string = 'error';
 
   public handleHttpError(error: Response) {
-    let errMsg = `${error.status} - ${error.statusText}`;
-    //console.error('NEW ERROR: ' + error.json()[this.ERROR_KEY]);
-    console.debug('WHOLE ERROR: ' + error);
-    console.error(errMsg);
+    //let errMsg = `${error.status} - ${error.statusText}`;
+    console.error('Error: ' + error);
     return Observable.throw(errMsg);
   }
 
