@@ -11,29 +11,14 @@ export class Grower {
     grower.growerId = growerJson['id'];
     grower.firstName = growerJson['firstName'];
     grower.lastName = growerJson['lastName'];
-
-    let emailAddressStrings = growerJson['emailAddressStrings'];
-    if (emailAddressStrings != null) {
-      // NOTE: Temporary hack until front-end supports multiple emails.
-      let emailString: string = emailAddressStrings[0];
-      grower.email = emailString != null
-          ? emailString
-          : null;
+    grower.email = growerJson['emailAddressString'];
+    let phoneNumberString = growerJson['phoneNumberString'];
+    if (phoneNumberString != null) {
+      grower.phone.phoneOne = phoneNumberString.substring(2, 5);
+      grower.phone.phoneTwo = phoneNumberString.substring(5, 8);
+      grower.phone.phoneThree = phoneNumberString.substring(8, 12);
     } else {
-      grower.email = null;
-    }
-
-    let phoneNumberStrings = growerJson['phoneNumsStrings'];
-    if (phoneNumberStrings != null) {
-      // NOTE: Temporary hack until front-end supports multiple emails.
-      let phoneString: string = phoneNumberStrings[0];
-      if (phoneString != null) {
-        grower.phone.phoneOne = phoneString.substring(2, 5);
-        grower.phone.phoneTwo = phoneString.substring(5, 8);
-        grower.phone.phoneThree = phoneString.substring(8, 12);
-      } else {
-        grower.phone = null;
-      }
+      grower.phone = null;
     }
     return grower;
   }
