@@ -1,11 +1,11 @@
 <div class="details">
 
 <div *ngIf="recievedSelectedHandler">
-    
+
     <!--<div id="handler-info">-->
 
       <div class="col-md-7">
-      <company class="spacetop makespace"> 
+      <company class="spacetop makespace">
         {{ recievedSelectedHandler?.companyName }}
       </company>
       </div>
@@ -22,7 +22,7 @@
             {{ recievedSelectedHandler?.phone?.getAsString() }}</p></td>
           <td><p>&#9724;</p></td>
           <td><p>
-            {{ recievedSelectedHandler?.email }}</p></td> 
+            {{ recievedSelectedHandler?.email }}</p></td>
         </tr>
       </table>
       </div>
@@ -35,7 +35,7 @@
        <div class="col-md-12">
         <div *ngFor="let bid of openTraderBids"
         class="wow fadeInDown makespace" data-wow-delay="0.6s">
-        <button type="button" 
+        <button type="button"
                 (click)="viewBid(bid?.bidId)"
                 class="openbidbutton center">
           <table id="buttonCols" style="width:100%;">
@@ -43,7 +43,7 @@
               <td class="offerButton"><p>
                 {{ bid?.almondVariety }}</p></td>
               <td class="offerButton"><p>
-                ${{ bid?.pricePerPound }}</p></td> 
+                {{ bid?.pricePerPound }}</p></td>
               <td class="offerButton"><p>
                 {{ bid?.almondPounds }}</p></td>
               <td class="offerButton"><p>
@@ -61,9 +61,9 @@
         </div>
 
        <div class="col-md-12">
-        <div *ngFor="let bid of closedTraderBids" 
+        <div *ngFor="let bid of closedTraderBids"
         class="wow fadeInDown makespace" data-wow-delay="0.6s">
-        <button type="button" 
+        <button type="button"
                 (click)="viewBid(bid?.bidId)"
                 class="closedbidbutton center">
           <table id="buttonCols" style="width:100%;">
@@ -71,7 +71,7 @@
               <td class="offerButton"><p>
                 {{ bid?.almondVariety }}</p></td>
               <td class="offerButton"><p>
-                ${{ bid?.pricePerPound }}</p></td> 
+                {{ bid?.pricePerPound }}</p></td>
               <td class="offerButton"><p>
                 {{ bid?.almondPounds }}</p></td>
               <td class="offerButton"><p>

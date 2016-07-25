@@ -59,8 +59,8 @@ export class Grower {
     return JSON.stringify({
       'first_name': this.getString(this.firstName),
       'last_name': this.getString(this.lastName),
-      'email_addresses': [this.getString(this.email)],
-      'phone_numbers': [this.phone.getAsString().toString()],
+      'email_address': this.getString(this.email),
+      'phone_number': this.phone.getAsString().toString(),
     });
   }
 

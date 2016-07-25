@@ -1,6 +1,6 @@
 <div>
 <section id="contact">
-    <title class="center spaceunder">CREATE YOUR BID</title>
+    <title class="center spaceunder">CREATE YOUR BID SHEET</title>
 
     <div class="container">
 
@@ -38,13 +38,13 @@
               [(ngModel)]="traderBid.pricePerPound"
               ngControl="pricePerPound"
               name="price"
-              placeholder="Type Price per Ton">
+              placeholder="Type Price per Pound">
 
-          <input type="number" step="0.01" class="form-control" required
+          <input type="number" step="1" min="0" class="form-control" required
               [(ngModel)]="traderBid.almondPounds"
               ngControl="almondPounds"
               name="pounds"
-              placeholder="Type Amount in Tons">
+              placeholder="Amount in Metric Tons">
         </div>
 
         <div class="form-group">
@@ -52,7 +52,7 @@
               [(ngModel)]="traderBid.comment"
               ngControl="comment"
               name="comment"
-              placeholder="Type any Comments"
+              placeholder="Type any Comments (example: quality level, payment terms, shipping instructions, etc.)"
               style="width:870px;">
         </div>
 
@@ -88,7 +88,7 @@
 			  		<td class="offerButton">
                           <p>${{ bid?.pricePerPound }}</p></td> 
 			  		<td class="offerButton">
-                          <p>{{ bid?.almondPounds }}</p></td>
+                          <p>{{ bid?.almondPounds }} MT</p></td>
 			  		<td class="offerButton">
                           <p>{{ bid?.comment }}</p></td>
 			  	</tr>
@@ -99,7 +99,7 @@
 
 <div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
         <div class="form-group spaceover">
-          <input type="number" step="1" class="form-control" required
+          <input type="number" step="1" min="1" class="form-control" required
               [(ngModel)]="delay"
               ngControl="delay"
               name="delay"
@@ -117,11 +117,10 @@
 			</div>
 
 			<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
-
 				<div class="whitebox">
 					<p *ngFor="let handler of handlerSellers">
-    					<input type="checkbox" [(ngModel)]="handler.selected" id="handler.selected">
-    					<label for="handler.selected">{{ handler.firstName }} {{ handler.lastName }}</label>
+    					<input type="checkbox" [(ngModel)]="handler.selected">
+    					<label>{{ handler.firstName }} {{ handler.lastName }}</label>
   					</p>
   				</div>
 			</div>

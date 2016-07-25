@@ -113,6 +113,10 @@ export class TraderBidCreateComponent implements OnInit {
   }
 
   protected sendBids() {
+    if (this.traderBids === []) {
+      return;
+    }
+
     for (let bid of this.traderBids) {
       bid.delay = this.delay;
       bid.handlerSellerIds = [];
@@ -122,6 +126,14 @@ export class TraderBidCreateComponent implements OnInit {
         }
       }
     }
-    // this.traderBidService.createTraderBids(this.traderBids);
+    this.traderBidService.createTraderBids(this.traderBids)
+        .subscribe(
+        bid => {
+          this.router.navigateByUrl('/trader-bids');
+        },
+        error => {
+          this.logger.handleHttpError(error);
+          this.config.forceTraderLogout();
+        });
   }
 }

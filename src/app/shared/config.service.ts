@@ -3,6 +3,9 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router-deprecated';
 import { UserType, Logger } from './index';
 
+// DO NOT IMPORT THIS FROM INDEX! CAUSES A HELLISH BUG!
+import { NavBarService } from './main-navbar/main-navbar.service';
+
 @Injectable()
 export class Config implements OnInit {
 
@@ -16,7 +19,8 @@ export class Config implements OnInit {
 
   constructor(
     private http: Http,
-    private router: Router) {
+    private router: Router,
+    private navBarService: NavBarService) {
   }
 
   public ngOnInit() {
@@ -102,11 +106,17 @@ export class Config implements OnInit {
 
   public forceLogout() {
     localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
+    localStorage.setItem(this.getTraderAuthHeaderKey(), '');
+    this.navBarService.onTraderLoggedIn(false);
+    this.navBarService.onHandlerLoggedIn(false);
     this.router.navigateByUrl('/handler-login');
   }
 
   public forceTraderLogout() {
     localStorage.setItem(this.getTraderAuthHeaderKey(), '');
+    localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
+    this.navBarService.onTraderLoggedIn(false);
+    this.navBarService.onHandlerLoggedIn(false);
     this.router.navigateByUrl('/trader-login');
   }
 }
