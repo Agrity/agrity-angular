@@ -4,13 +4,18 @@
     'app':                        'app', // 'dist',
     'rxjs':                       'lib/rxjs',
     'angular2-in-memory-web-api': 'lib/angular2-in-memory-web-api',
-    '@angular':                   'lib/@angular'
+    '@angular':                   'lib/@angular',
+    'angular2-modal':             'lib/angular2-modal'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app':                        { main: '../boot.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { defaultExtension: 'js' },
+    'angular2-modal':             { defaultExtension: 'js'},
+  };
+  var paths = {
+    'angular2-modal':             'lib/angular2-modal'
   };
   var packageNames = [
     '@angular/common',
@@ -31,7 +36,8 @@
   });
   var config = {
     map: map,
-    packages: packages
+    packages: packages,
+    paths: paths
   }
 
   // filterSystemConfig - index.html's chance to modify config before we register it.
