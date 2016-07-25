@@ -30,7 +30,7 @@ export class Bid {
     bid.endPaymentDate = bidJson['endPaymentDateAsString'];
     bid.comment = bidJson['comment'];
 
-    let bidStatus: string = bidJson['offerStatus'];
+    let bidStatus: string = bidJson['bidStatus'];
 
     switch (bidStatus) {
       case 'ACCEPTED':
@@ -60,7 +60,7 @@ export class Bid {
     bid.expirationTime = new Date(bidJson['expirationTimeAsString']);
     bid.noResponseGrowers = this.decodeBidNoResponseGrowers(bidJson);
 
-    bid.bidResponses = this.decodeBidResponses(bidJson['offerResponses']);
+    bid.bidResponses = this.decodeBidResponses(bidJson['bidResponses']);
 
     return bid;
   }
@@ -68,7 +68,7 @@ export class Bid {
 
   public static updateCountDownString(bid: Bid): void {
     if (!bid.currentlyOpen) {
-       bid.countDownString = 'Offer Closed';
+       bid.countDownString = 'Bid Closed';
        return;
      }
 
