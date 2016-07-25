@@ -83,6 +83,19 @@ gulp.task('assets:watch', function () {
   gulp.watch('src/assets/**/*', ['copy:assets-noclean']);
 });
 
+var copyConfigFunc = function() {
+  return gulp.src('./config/**/*', { cwd : 'src/' })
+    .pipe(gulp.dest('dist/config'))
+};
+
+gulp.task('copy:config', ['clean'], copyConfigFunc);
+gulp.task('copy:config-noclean', copyConfigFunc);
+
+
+gulp.task('config:watch', function () {
+  gulp.watch('src/config/**/*', ['copy:config-noclean']);
+});
+
 // copy node modules to libs folder.
 var copyLibsFunc = function() {
   // TODO Only copy production modules
@@ -108,13 +121,14 @@ gulp.task('serve', ['build'], function() {
   gulp.watch('src/**/*.scss', ['sass-noclean']);
   gulp.watch('src/**/*.html', ['copy:html-noclean']).on('change', browserSync.reload);
   gulp.watch('src/assets/**/*', ['copy:assets-noclean']).on('change', browserSync.reload);
+  gulp.watch('src/config/**/*', ['copy:config-noclean']).on('change', browserSync.reload);
 
 });
 
-gulp.task('build', ['clean', 'tslint', 'compile', 'sass', 'copy:html',
-                    'copy:assets', 'copy:libs', 'copy:other']);
+gulp.task('build', ['clean', /*'tslint',*/ 'compile', 'sass', 'copy:html',
+                    'copy:assets', 'copy:config', 'copy:libs', 'copy:other']);
 
 gulp.task('watch', ['compile:watch', 'sass:watch',
-                    'html:watch', 'assets:watch']);
+                    'html:watch', 'assets:watch', 'config:watch']);
 
 gulp.task('default', ['build']);

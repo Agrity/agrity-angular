@@ -1,15 +1,57 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 import { Router } from '@angular/router-deprecated';
-import { UserType } from './index';
+import { UserType, Logger } from './index';
 
 @Injectable()
-export class Config {
+export class Config implements OnInit {
+
+  private CONFIG_FOLDER: string = 'config/';
+  private GLOBAL_CONFIG_FILE: string = 'global.json';
+
+  private LOCAL_CONFIG_KEY: string = 'env';
+
+  private globalConfig: Object;
+  private localConfig: Object;
 
   constructor(
+    private http: Http,
     private router: Router) {
   }
+
+  public ngOnInit() {
+    // Okay to Not Use HTTP Client Here. Fetching from local server.
+    this.http.get(this.CONFIG_FOLDER + this.GLOBAL_CONFIG_FILE)
+        .map(res => res.json())
+        .subscribe((globalConfig: Object) => {
+
+          this.globalConfig = globalConfig;
+          console.log(this.globalConfig);
+
+          //// Get Local Environment Configs
+          //this.http.get(this.CONFIG_FOLDER + globalConfig[this.LOCAL_CONFIG_KEY] + '.json')
+          //    .map(res => res.json())
+          //    // TODO Thow error invalid Environment!
+          //    .subscribe( (localConfig) => {
+          //      this.localConfig = localConfig;
+          //      console.log(this.localConfig);
+          //    });
+        }, (error) => {
+          console.error(error);
+        });
+  }
+
+  public getConfig(key: string): string {
+    //let localVal = this.localConfig[key];
+    //if (localVal !== undefined && localVal !== null) {
+    //  return localVal;
+    //}
+
+    return this.globalConfig[key];
+  }
+
   public getServerDomain(): string {
-    return 'http://localhost:9000';
+    return this.getConfig('endpoint');
   }
 
   public getHandlerAuthHeaderKey(): string {

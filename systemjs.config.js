@@ -2,6 +2,7 @@
   // map tells the System loader where to look for things
   var map = {
     'app':                        'app', // 'dist',
+    'config':                     'config',
     'rxjs':                       'lib/rxjs',
     'angular2-in-memory-web-api': 'lib/angular2-in-memory-web-api',
     '@angular':                   'lib/@angular'

@@ -23,9 +23,9 @@ bootstrap(AppComponent,
            { provide: LocationStrategy, useClass: HashLocationStrategy },
 
            /* Shared Providers */
+           Logger,
            Config,
            HttpClient,
-           Logger,
            NavBarService,
 
            /* Handler Providers */
