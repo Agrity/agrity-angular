@@ -1,20 +1,22 @@
+import { EventEmitter, Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
-import { EventEmitter } from '@angular/core';
-
+@Injectable()
 export class Logger {
 
   public errorEmitter: EventEmitter<string>;
 
   constructor() {
-    this.errorEmitter = new EventEmitter();
+    this.errorEmitter = new EventEmitter<string>();
   }
 
   public handleHttpError(error: Response) {
-    this.errorEmitter.emit('Error: ' + error);
-    console.error('Error: ' + error);
+    if (this.errorEmitter) {
+      this.errorEmitter.emit('Error: ' + error);
+    }
+    console.error('ERROR: ' + error);
     return Observable.throw(error);
   }
 

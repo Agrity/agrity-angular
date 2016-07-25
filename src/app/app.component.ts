@@ -80,7 +80,7 @@ import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
 ])
 @Component({
     directives: [MainNavBarComponent, ROUTER_DIRECTIVES],
-    providers: [NavBarService],
+    providers: [NavBarService, Logger],
     selector: 'sg-my-app',
     styleUrls: ['assets/stylesheets/style.css'],
     template: `
@@ -150,8 +150,7 @@ export class AppComponent implements OnInit {
               this.openAlert(res);
             },
             (error: any) => {
-              this.logger.handleHttpError(error);
-              this.config.forceTraderLogout();
+              alert('An Error has occured.');
             }
           );
     /* tslint:enable:no-any */
@@ -161,7 +160,8 @@ export class AppComponent implements OnInit {
     return this.modal.alert()
         .size('lg')
         .showClose(true)
-        .title(errorMsg)
+        .title('An Error has Occured')
+        .message(errorMsg)
         .open();
     }
 }

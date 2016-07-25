@@ -134,7 +134,6 @@ export class TraderBidCreateComponent implements OnInit {
         },
         error => {
           this.logger.handleHttpError(error);
-          this.config.forceTraderLogout();
         });
   }
 }
