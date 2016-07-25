@@ -5,6 +5,8 @@ import { Router, ROUTER_DIRECTIVES }
 import { Bid, BidService } from '../shared/index';
 import { Config, Logger, UserType }
     from '../../../shared/index';
+import { NavBarService }
+    from '../../../shared/main-navBar/index';
 import { Grower, GrowerService } from '../../growers/shared/index';
 
 @Component({
@@ -59,15 +61,21 @@ export class BidCreateComponent implements OnInit {
     private growerService: GrowerService,
     private logger: Logger,
     private config: Config,
-    private router: Router) {}
+    private router: Router,
+    private navBarService: NavBarService) {}
 
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login.'
-          + 'If this issue continues try logging out, then logging back in.');
-      this.config.forceLogout();
+      alert('Please Login.');
+      this.router.navigateByUrl('/');
       return;
+    }
+
+    if (this.config.loggedIn() === UserType.TRADER) {
+      alert('Please log back in as a handler to access the handler side of Agrity!');
+      this.navBarService.onTraderLoggedIn(false);
+      this.config.forceLogout();
     }
 
     // Load in Growers
@@ -78,7 +86,6 @@ export class BidCreateComponent implements OnInit {
         },
         error => {
           this.logger.handleHttpError(error);
-          this.config.forceLogout();
         });
   }
 
@@ -117,7 +124,6 @@ export class BidCreateComponent implements OnInit {
         },
         error => {
           this.logger.handleHttpError(error);
-          this.config.forceLogout();
         });
   }
 }

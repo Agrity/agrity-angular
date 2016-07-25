@@ -3,6 +3,7 @@ import { RouterLink, ROUTER_DIRECTIVES, RouteParams, Router }
     from '@angular/router-deprecated';
 
 import { Config, Logger, UserType } from '../../../shared/index';
+import { NavBarService } from '../../../shared/main-navbar/index';
 import { Bid, BidService } from '../shared/index';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -28,7 +29,8 @@ export class BidDetailComponent implements OnInit, OnDestroy {
       private bidService: BidService,
       private logger: Logger,
       private config: Config,
-      private router: Router) {
+      private router: Router,
+      private navBarService: NavBarService) {
 
     // TODO Verify id is integer.
     this.bidId = +params.get('id');
@@ -37,9 +39,15 @@ export class BidDetailComponent implements OnInit, OnDestroy {
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login. If this issue continues try logging out, then logging back in.');
-      this.config.forceLogout();
+      alert('Please Login.');
+      this.router.navigateByUrl('/');
       return;
+    }
+
+    if (this.config.loggedIn() === UserType.TRADER) {
+      alert('Please log back in as a handler to access the handler side of Agrity!');
+      this.navBarService.onTraderLoggedIn(false);
+      this.config.forceLogout();
     }
 
     // Load Bid
@@ -53,7 +61,6 @@ export class BidDetailComponent implements OnInit, OnDestroy {
         },
         error => {
           this.logger.handleHttpError(error);
-          this.config.forceLogout();
         });
 
     // Get countDownString

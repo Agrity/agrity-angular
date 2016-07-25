@@ -26,11 +26,6 @@ export class NavBarComponent implements OnInit {
 
   public ngOnInit() {
 
-    if (this.config.loggedIn() === UserType.NONE) {
-      this.config.forceLogout();
-      return;
-    }
-
     this.handlerService.getCurrentHandler()
         .subscribe(
             handler => {

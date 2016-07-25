@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
 
 import { Logger, Config, UserType } from '../../shared/index';
+import { NavBarService } from '../../shared/main-navbar/index';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
@@ -13,18 +14,21 @@ export class HandlerHomeComponent implements OnInit  {
 
   constructor(
      private logger: Logger,
-     private config: Config
+     private config: Config,
+     private navBarService: NavBarService,
+     private router: Router
   ) {}
 
   public ngOnInit() {
     if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login. If this issue continues try logging out, then logging back in.');
-      this.config.forceLogout();
+      alert('Please Login.');
+      this.router.navigateByUrl('/');
       return;
     }
 
     if (this.config.loggedIn() === UserType.TRADER) {
-      alert('Traders cannot access the handler side of agrity. Please login as a handler.');
+      alert('Please log back in as a handler to access the handler side of Agrity!');
+      this.navBarService.onTraderLoggedIn(false);
       this.config.forceLogout();
     }
   }

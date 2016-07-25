@@ -36,7 +36,9 @@ export class Config {
          localStorage.getItem(this.getTraderAuthHeaderKey()) === null)
     ) {
 
-      throw new Error('TRADER AND HANDLER LOGGED IN!');
+      console.error('TRADER AND HANDLER LOGGED IN! FORCING LOGOUT');
+      this.forceLogout();
+      return UserType.NONE;
     }
 
     if (
@@ -66,16 +68,11 @@ export class Config {
   public forceLogout() {
     localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
     localStorage.setItem(this.getTraderAuthHeaderKey(), '');
-    this.navBarService.onTraderLoggedIn(false);
-    this.navBarService.onHandlerLoggedIn(false);
-    this.router.navigateByUrl('/handler-login');
+    this.router.navigateByUrl('/');
   }
 
-  public forceTraderLogout() {
-    localStorage.setItem(this.getTraderAuthHeaderKey(), '');
+  public clearTokens() {
     localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
-    this.navBarService.onTraderLoggedIn(false);
-    this.navBarService.onHandlerLoggedIn(false);
-    this.router.navigateByUrl('/trader-login');
+    localStorage.setItem(this.getTraderAuthHeaderKey(), '');
   }
 }

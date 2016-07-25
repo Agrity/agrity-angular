@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
 
 import { Config, Logger, UserType } from '../../../shared/index';
+import { NavBarService } from '../../../shared/main-navbar/index';
 import { Bid, BidService } from '../shared/index';
 import { BidStatus } from '../../../shared/bid-status.model';
 
@@ -29,15 +30,22 @@ export class BidListComponent implements OnInit, OnDestroy {
     private router: Router,
     private bidService: BidService,
     private logger: Logger,
-    private config: Config) {
+    private config: Config
+    private navBarService: NavBarService) {
   }
 
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login. If this issue continues try logging out, then logging back in.');
-      this.config.forceLogout();
+      alert('Please Login.');
+      this.router.navigateByUrl('/');
       return;
+    }
+
+    if (this.config.loggedIn() === UserType.TRADER) {
+      alert('Please log back in as a handler to access the handler side of Agrity!');
+      this.navBarService.onTraderLoggedIn(false);
+      this.config.forceLogout();
     }
 
     // Load Bids
@@ -58,7 +66,6 @@ export class BidListComponent implements OnInit, OnDestroy {
         },
           error => {
             this.logger.handleHttpError(error);
-            this.config.forceLogout();
 
         });
   }

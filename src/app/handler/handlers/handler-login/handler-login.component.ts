@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 import { Location } from '@angular/common';
 
-import { Config } from '../../../shared/index';
+import { Config, UserType } from '../../../shared/index';
 import { LoginInfo } from './login-info';
 import { HandlerLoginService } from './handler-login.service';
 import { NavBarService } from '../../../shared/main-navbar/index';
@@ -15,7 +15,7 @@ import { NavBarService } from '../../../shared/main-navbar/index';
     templateUrl: 'app/handler/handlers/handler-login/handler-login.component.html',
 })
 
-export class HandlerLoginComponent {
+export class HandlerLoginComponent implements OnInit {
 
   /* NOTE: Referenced in .html file. */
   protected loginInfo = new LoginInfo('', '');
@@ -28,6 +28,14 @@ export class HandlerLoginComponent {
               private location: Location,
               private navBarService: NavBarService
               ) {};
+
+
+  ngOnInit() {
+    if (this.config.loggedIn() === UserType.TRADER) {
+      this.navBarService.onTraderLoggedIn(false);
+      this.config.clearTokens();
+    }
+  }
 
   /* NOTE: Referenced in .html file. */
   protected login() {
@@ -55,6 +63,7 @@ export class HandlerLoginComponent {
         valid => {
           this.handlerLoginService.eraseHandlerAuthToken();
           this.navBarService.onHandlerLoggedIn(false);
+          this.router.navigateByUrl('/');
         },
         error => {
           this.config.forceLogout();

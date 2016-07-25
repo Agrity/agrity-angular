@@ -129,7 +129,6 @@ export class AppComponent implements OnInit {
             },
             (error: any) => {
               this.logger.handleHttpError(error);
-              this.config.forceTraderLogout();
             }
           );
 
@@ -140,7 +139,6 @@ export class AppComponent implements OnInit {
             },
             (error: any) => {
               this.logger.handleHttpError(error);
-              this.config.forceTraderLogout();
             }
           );
 

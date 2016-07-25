@@ -4,6 +4,7 @@ import { Router, RouteParams, RouterLink, ROUTER_DIRECTIVES }
 
 import { Config, Logger, UserType }
     from '../../../shared/index';
+import { NavBarService } from '../../../shared/main-navbar/index';
 
 import { Grower, GrowerService } from '../shared/index';
 
@@ -25,17 +26,23 @@ export class GrowerCreateComponent implements OnInit {
     private routeParams: RouteParams,
     private growerService: GrowerService,
     private config: Config,
-    private logger: Logger
+    private logger: Logger,
+    private navBarService: NavBarService
   ) {}
 
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login. If this issue continues try logging out, then logging back in.');
-      this.config.forceLogout();
+      alert('Please Login.');
+      this.router.navigateByUrl('/');
       return;
     }
 
+    if (this.config.loggedIn() === UserType.TRADER) {
+      alert('Please log back in as a handler to access the handler side of Agrity!');
+      this.navBarService.onTraderLoggedIn(false);
+      this.config.forceLogout();
+    }
     let id = this.routeParams.get('id');
 
     this.title = id ? 'Edit Grower' : 'New Grower';
