@@ -7,7 +7,7 @@ export class TraderBid {
 
     public static updateCountDownString(bid: TraderBid): void {
     if (!bid.currentlyOpen) {
-       bid.countDownString = 'Offer Closed';
+       bid.countDownString = 'Bid Closed';
        return;
      }
 
