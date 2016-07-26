@@ -125,6 +125,10 @@ export class TraderBidCreateComponent implements OnInit {
       return;
     }
 
+    if (this.handlerSellers.length === 0) {
+      alert('Please select which handlers you would like to send this bid to.');
+    }
+
     for (let bid of this.traderBids) {
       bid.delay = this.delay;
       bid.handlerSellerIds = [];
@@ -134,6 +138,7 @@ export class TraderBidCreateComponent implements OnInit {
         }
       }
     }
+
     this.traderBidService.createTraderBids(this.traderBids)
         .subscribe(
         bid => {
