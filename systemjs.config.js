@@ -1,12 +1,14 @@
 (function(global) {
   // map tells the System loader where to look for things
   var map = {
-    'app':                        'app', // 'dist',
-    'rxjs':                       'lib/rxjs',
-    'angular2-in-memory-web-api': 'lib/angular2-in-memory-web-api',
-    '@angular':                   'lib/@angular',
-    'angular2-modal':             'lib/angular2-modal',
-    'angular2-modal/platform-browser': 'lib/angular2-modal/platform-browser',
+    'app':                              'app', // 'dist',
+    'config':                           'config',
+    'rxjs':                             'lib/rxjs',
+    'angular2-in-memory-web-api':       'lib/angular2-in-memory-web-api',
+    '@angular':                         'lib/@angular',
+    'json':                             'lib/systemjs-plugin-json/json.js',
+    'angular2-modal':                   'lib/angular2-modal',
+    'angular2-modal/platform-browser':  'lib/angular2-modal/platform-browser',
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {

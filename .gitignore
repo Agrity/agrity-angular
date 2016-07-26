@@ -5,6 +5,5 @@ app/**/*.js.map
 dist/
 npm-debug.log
 
-# Zipped App For Deployment
+# Zipped Application
 app.tgz
-

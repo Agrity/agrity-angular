@@ -1,0 +1,22 @@
+{
+  "env": "dev",
+
+  "handler-key": "X-HANDLER-TOKEN",
+  "trader-key": "X-TRADER-TOKEN",
+
+
+  "dev": {
+    "endpoint": "http://localhost:9000",
+    "debug": true
+  },
+
+  "test": {
+    "endpoint": "http://server.test.agrity.net",
+    "debug": true
+  },
+
+  "prod": {
+    "endpoint": "http://server.test.agrity.net",
+    "debug": false
+  },
+}
