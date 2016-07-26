@@ -1,8 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { TraderBid } from '../../shared/index';
 import { BidStatus } from '../../../../shared/index';
+import { Router, RouterLink, ROUTER_DIRECTIVES }
+    from '@angular/router-deprecated';
 
 @Component({
+  directives: [RouterLink, ROUTER_DIRECTIVES],
   selector: 'sg-view-bids-details',
   styleUrls:
       ['app/trader/trader-bids/view-bids/view-bids-details/view-bids-details.component.css'],
@@ -11,6 +14,11 @@ import { BidStatus } from '../../../../shared/index';
 })
 export class ViewBidsDetailsComponent {
   private recievedSelectedBid: TraderBid;
+
+  constructor(
+      private router: Router
+      ) {
+  }
 
   @Input()
   set selectedBid(selectedBid: TraderBid) {
@@ -42,7 +50,7 @@ export class ViewBidsDetailsComponent {
   }
 
   protected viewHandler(handlerId: number): void {
-    // Will eventually link to handler page. 
+    this.router.navigateByUrl('/handler-sellers');
     return;
   }
 }

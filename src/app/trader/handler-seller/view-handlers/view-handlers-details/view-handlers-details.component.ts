@@ -2,6 +2,9 @@ import { Component, Input, OnDestroy } from '@angular/core';
 
 import { Config, Logger } from '../../../../shared/index';
 
+import { Router, RouterLink, ROUTER_DIRECTIVES }
+    from '@angular/router-deprecated';
+
 import { HandlerSeller } from '../../shared/index';
 import { TraderBidService, TraderBid } from '../../../trader-bids/shared/index';
 import { BidStatus } from '../../../../shared/index';
@@ -11,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
 
 @Component({
+  directives: [RouterLink, ROUTER_DIRECTIVES],
   selector: 'sg-view-handlers-details',
   styleUrls:
       ['app/trader/handler-seller/view-handlers/' // 2 Line URL
@@ -30,7 +34,8 @@ export class ViewHandlersDetailsComponent implements OnDestroy {
   constructor(
       private traderBidService: TraderBidService,
       private logger: Logger,
-      private config: Config
+      private config: Config,
+      private router: Router
       ) {
   }
 
@@ -78,7 +83,7 @@ export class ViewHandlersDetailsComponent implements OnDestroy {
 
       /* NOTE: Called in .html file. */
   protected viewBid(bidId: number): void {
-    // Does Nothing for Now;
+    this.router.navigateByUrl('/trader-bids');
     return;
   }
 
