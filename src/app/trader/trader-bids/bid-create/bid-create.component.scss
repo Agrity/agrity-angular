@@ -60,6 +60,7 @@ td {
 		border-bottom-color: #959595;
 		border-right-color: #959595;
 		color: #444444;
+		background-color: #f3f3f3;
 		border-radius: 0px;
 		transition: all 0.4s ease-in-out;
 		padding: 10px;
@@ -68,6 +69,19 @@ td {
 		float: left;
 		width: 210px;
 	}
+
+		.comment-form-control {
+			border: 0.1px solid #959595;
+			color: #444444;
+			background-color: #f3f3f3;
+			border-radius: 0px;
+			transition: all 0.4s ease-in-out;
+			padding: 10px;
+			margin-right: 10px;
+			height: auto;
+			float: left;
+			width: 210px;
+		}
 
 	input[type="button"] {
 		background: #ffffff;
@@ -102,6 +116,11 @@ td {
 	}
 
 }
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
 .form-control {
 	&::-moz-placeholder {
 		color: #959595;
@@ -114,6 +133,20 @@ td {
 		color: #959595;
 	}
 }
+
+.comment-form-control {
+	&::-moz-placeholder {
+		color: #959595;
+		opacity: 1;
+	}
+	&:-ms-input-placeholder {
+		color: #959595;
+	}
+	&::-webkit-input-placeholder {
+		color: #959595;
+	}
+}
+
 .center {
 	display: flex;
 	align-items: center;
