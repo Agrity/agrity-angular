@@ -50,7 +50,7 @@ export class HandlerLoginComponent implements OnInit {
           this.router.navigateByUrl('/handler-home');
         },
         error => {
-          if (error.indexOf('401') >= 0) {
+          if (error.status === 401) {
             alert('Invalid Username or Password.');
           } else {
             alert('Server Error: Unable to Log In.');
