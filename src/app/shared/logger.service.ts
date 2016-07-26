@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Injectable } from '@angular/core';
-=======
 import { EventEmitter, Injectable } from '@angular/core';
->>>>>>> master
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Config } from './index';
