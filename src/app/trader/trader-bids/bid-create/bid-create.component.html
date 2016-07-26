@@ -7,32 +7,30 @@
     <form *ngIf="active" (ngSubmit)="addBid()" #traderBidForm="ngForm">
 
     <div class="col-sm-10 wow fadeInDown" data-wow-delay="0.6s">
-        
+
         <div class="form-group">
 
-          <input type="text" class="form-control" required
+          <select type="text" class="form-control" required
             [(ngModel)]="traderBid.almondVariety"
             ngControl="variety"
             name="variety"
             placeholder="Select Almond Variety"
             list="almonds">
-			<datalist id="almonds">
                 <option *ngFor="let variety of varieties"
                     [value]="variety"> {{ variety }}
                 </option>
-			</datalist>
-        
-          <input type="text" class="form-control" required
+          </select>
+
+          <select type="text" class="form-control" required
             [(ngModel)]="traderBid.almondSize"
             ngControl="size"
             name="size"
             placeholder="Select Size"
             list="size">
-			<datalist id="size">
                 <option *ngFor="let size of sizes"
                     [value]="size"> {{ size }}
                 </option>
-			</datalist>
+          </select>
 
           <input type="text" class="form-control" required
               [(ngModel)]="traderBid.pricePerPound"
@@ -59,9 +57,9 @@
     </div>
 
 		<div class="col-sm-2">
-            <button [disabled]="!traderBidForm.form.valid" 
-                    style="border:none; background:none; padding:none;" 
-                    type="button" 
+            <button [disabled]="!traderBidForm.form.valid"
+                    style="border:none; background:none; padding:none;"
+                    type="button"
                     class="spaceover"
                     (click)="addBid()">
              <div class="cssCircle plusSign">
@@ -74,10 +72,10 @@
 <div class="col-md-12 centerbuttons">
 
 			  <div *ngFor="let bid of traderBids"
-                    class="wow fadeInDown spaceunder" 
+                    class="wow fadeInDown spaceunder"
                     data-wow-delay="0.3s">
-			  <button 
-                type="button" class="listbidbutton" 
+			  <button
+                type="button" class="listbidbutton"
                 (click)="removeBid(index)">
 			  	<table id="buttonCols">
 				<tr>
@@ -86,7 +84,7 @@
 			  		<td class="offerButton">
                           <p>{{ bid?.almondSize }}</p></td>
 			  		<td class="offerButton">
-                          <p>${{ bid?.pricePerPound }}</p></td> 
+                          <p>${{ bid?.pricePerPound }}</p></td>
 			  		<td class="offerButton">
                           <p>{{ bid?.almondPounds }} MT</p></td>
 			  		<td class="offerButton">
@@ -126,18 +124,18 @@
 			</div>
 
             <div class="col-md-6 col-sm-6 moveselect">
-                <input 
-                    (click)="selectAllHandlerSellers()" 
-                    type="button" class="form-control" 
+                <input
+                    (click)="selectAllHandlerSellers()"
+                    type="button" class="form-control"
                     value="Select All">
             </div>
 
       <div class="col-md-12 col-sm-12 center">
-					<input 
-            [disabled]="!delay" 
-            (click)="sendBids()" 
-            name="submit" type="submit" 
-            class="form-control" id="submit" 
+					<input
+            [disabled]="!delay"
+            (click)="sendBids()"
+            name="submit" type="submit"
+            class="form-control" id="submit"
             value="SEND BID">
 				</div>
     </div>

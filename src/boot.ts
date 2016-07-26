@@ -15,6 +15,8 @@ import { TraderBidService } from './app/trader/trader-bids/shared/index';
 import { HandlerSellerService } from './app/trader/handler-seller/shared/index';
 import { TraderLoginService } from './app/trader/traders/trader-login/index';
 
+import { MODAL_BROWSER_PROVIDERS } from 'angular2-modal/platform-browser';
+
 bootstrap(AppComponent,
           [/* Angular Providers */
            ROUTER_PROVIDERS,
@@ -49,4 +51,7 @@ bootstrap(AppComponent,
            /* Forms */
            disableDeprecatedForms(),
            provideForms(),
+
+          /* Modal Providers */
+          ...MODAL_BROWSER_PROVIDERS,
           ]);

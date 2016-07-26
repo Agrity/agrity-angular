@@ -6,7 +6,12 @@
     'rxjs':                       'lib/rxjs',
     'angular2-in-memory-web-api': 'lib/angular2-in-memory-web-api',
     '@angular':                   'lib/@angular',
+<<<<<<< HEAD
     'json':                       'lib/systemjs-plugin-json/json.js',
+=======
+    'angular2-modal':             'lib/angular2-modal',
+    'angular2-modal/platform-browser': 'lib/angular2-modal/platform-browser',
+>>>>>>> master
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -26,6 +31,11 @@
     '@angular/router-deprecated',
     '@angular/testing',
     '@angular/upgrade',
+
+    'angular2-modal',
+    'angular2-modal/platform-browser',
+    'angular2-modal/plugins/bootstrap',
+    'angular2-modal/plugins/vex',
   ];
   // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }
   packageNames.forEach(function(pkgName) {
@@ -33,7 +43,8 @@
   });
   var config = {
     map: map,
-    packages: packages
+    packages: packages,
+    defaultJSExtensions: true,
   }
 
   // filterSystemConfig - index.html's chance to modify config before we register it.

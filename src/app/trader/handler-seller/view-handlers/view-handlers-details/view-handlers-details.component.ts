@@ -59,7 +59,6 @@ export class ViewHandlersDetailsComponent implements OnDestroy {
           },
           error => {
             this.logger.handleHttpError(error);
-            this.config.forceTraderLogout();
           });
     }
   }

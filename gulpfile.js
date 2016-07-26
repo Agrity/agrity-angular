@@ -99,7 +99,9 @@ gulp.task('config:watch', function () {
 // copy node modules to libs folder.
 var copyLibsFunc = function() {
   // TODO Only copy production modules
-  return gulp.src(['./node_modules/**/*.js', './node_modules/**/*.js.map'])
+  return gulp.src(['./node_modules/**/*.js',
+                   './node_modules/**/*.js.map',
+                   './node_modules/**/*.d.ts'])
     .pipe(gulp.dest('dist/lib'))
 };
 

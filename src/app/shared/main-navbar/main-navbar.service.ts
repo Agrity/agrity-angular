@@ -7,8 +7,8 @@ export class NavBarService {
     public traderLoggedIn: EventEmitter<boolean>;
 
     constructor() {
-      this.handlerLoggedIn = new EventEmitter();
-      this.traderLoggedIn = new EventEmitter();
+      this.handlerLoggedIn = new EventEmitter<boolean>();
+      this.traderLoggedIn = new EventEmitter<boolean>();
     }
 
     public onTraderLoggedIn(bool: boolean): void {

@@ -45,22 +45,22 @@
 
         <div class="form-group center">
 
-          <input type="number" class="form-control" required
+          <input type="text" class="form-control" required
               [(ngModel)]="handlerSeller.phone.phoneOne"
               ngControl="phoneOne"
-              name="phone one" pattern="[0-9]{3}"
+              name="phone one" pattern="\d{3}"
               placeholder="(xxx)">
 
-          <input type="number" class="form-control" required
+          <input type="text" class="form-control" required
               [(ngModel)]="handlerSeller.phone.phoneTwo"
               ngControl="phoneTwo"
-              name="phone two" pattern="[0-9]{3}"
+              name="phone two" pattern="\d{3}"
               placeholder="(xxx)">
 
-          <input type="number" class="form-control" required
+          <input type="text" class="form-control" required
               [(ngModel)]="handlerSeller.phone.phoneThree"
               ngControl="phoneThree"
-              name="phone three" pattern="[0-9]{4}"
+              name="phone three" pattern="\d{4}"
               placeholder="(xxxx)">
 
         </div>
