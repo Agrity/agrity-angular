@@ -30,7 +30,7 @@ export class BidListComponent implements OnInit, OnDestroy {
     private router: Router,
     private bidService: BidService,
     private logger: Logger,
-    private config: Config
+    private config: Config,
     private navBarService: NavBarService) {
   }
 

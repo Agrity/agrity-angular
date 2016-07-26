@@ -21,7 +21,7 @@ export class GrowerListComponent implements OnInit {
     private router: Router,
     private growerService: GrowerService,
     private logger: Logger,
-    private config: Config
+    private config: Config,
     private navBarService: NavBarService) {
   }
 

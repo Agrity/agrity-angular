@@ -29,8 +29,7 @@ export class HandlerLoginComponent implements OnInit {
               private navBarService: NavBarService
               ) {};
 
-
-  ngOnInit() {
+  public ngOnInit() {
     if (this.config.loggedIn() === UserType.TRADER) {
       this.navBarService.onTraderLoggedIn(false);
       this.config.clearTokens();
@@ -63,9 +62,12 @@ export class HandlerLoginComponent implements OnInit {
         valid => {
           this.handlerLoginService.eraseHandlerAuthToken();
           this.navBarService.onHandlerLoggedIn(false);
+          alert('Successfully Logged Out');
           this.router.navigateByUrl('/');
         },
         error => {
+          this.navBarService.onHandlerLoggedIn(false);
+          alert('Successfully Logged Out');
           this.config.forceLogout();
         });
   }

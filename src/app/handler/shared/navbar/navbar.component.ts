@@ -3,7 +3,7 @@ import { RouterLink, ROUTER_DIRECTIVES, Router }
     from '@angular/router-deprecated';
 
 import { Handler, HandlerService } from '../../handlers/index';
-import { Config, Logger, UserType } from '../../../shared/index';
+import { Config, Logger } from '../../../shared/index';
 
 @Component({
     directives: [RouterLink, ROUTER_DIRECTIVES],
