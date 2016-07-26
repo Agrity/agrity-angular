@@ -6,7 +6,7 @@ import { Bid, BidService } from '../shared/index';
 import { Config, Logger, UserType }
     from '../../../shared/index';
 import { NavBarService }
-    from '../../../shared/main-navBar/index';
+    from '../../../shared/main-navbar/index';
 import { Grower, GrowerService } from '../../growers/shared/index';
 
 @Component({
