@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router-deprecated';
 import { UserType, Logger } from './index';
@@ -33,11 +33,31 @@ export class Config {
         throw new Error('Config Environment ( ' + localEnv + ' ) could not be found.');
       }
 
-      /* Uncomment to list current configuration keys. */
-      //console.debug('Config: ');
-      //for (var key in configJSON) {
-      //  console.debug(key + ': ' + configJSON[key]);
-      //}
+
+      if (this.isDebug()) {
+
+        console.debug('');
+
+        // Using raw console.log because of circular dependency.
+        // Log current global configurations in non-prod environments
+        console.debug('Global Config:');
+        for (var key in configJSON) {
+          console.debug(key + ': ' + configJSON[key]);
+        }
+
+
+        console.debug('');
+
+        // Log current local configurations in non-prod environments
+        console.debug('Local Config ( ' + localEnv + ' ):');
+        for (var key in configJSON[localEnv]) {
+          console.debug(key + ': ' + configJSON[localEnv][key]);
+        }
+
+        // Whitespace seperation.
+        console.debug('');
+      }
+
   }
 
   private getConfig(key: string): any {
@@ -61,11 +81,21 @@ export class Config {
   }
 
   public getHandlerAuthHeaderKey(): string {
-    return 'X-HANDLER-TOKEN';
+    let HANDLER_TOKEN_KEY = 'handler-key';
+
+    let handlerToken: string = this.getConfig(HANDLER_TOKEN_KEY);
+    this.verifyPresent(HANDLER_TOKEN_KEY, handlerToken);
+
+    return handlerToken;
   }
 
   public getTraderAuthHeaderKey(): string {
-    return 'X-TRADER-TOKEN';
+    let TRADER_TOKEN_KEY = 'trader-key';
+
+    let traderToken: string = this.getConfig(TRADER_TOKEN_KEY);
+    this.verifyPresent(TRADER_TOKEN_KEY, traderToken);
+
+    return traderToken;
   }
 
   public isDebug(): boolean {
