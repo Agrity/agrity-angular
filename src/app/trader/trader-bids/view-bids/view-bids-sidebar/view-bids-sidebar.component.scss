@@ -5,7 +5,6 @@ table {
 }
 
 td {
-  vertical-align:top;
   padding:5px;
   border-right:none;
   border-left:none;
@@ -64,8 +63,8 @@ p2 {
 
 .sidebar-color {
     background-color:#5b5b5b;
-    height:100%;
-    padding:none;
+    height:auto;
+    padding-bottom:1000px;
 }
 
 .closedbid-color {

@@ -56,11 +56,11 @@ td {
 	background-position: center;
 
 	.form-control {
-		background: rgba(243,243,243,1);
 		border-top-color: #959595;
 		border-bottom-color: #959595;
 		border-right-color: #959595;
 		color: #444444;
+		background-color: #f3f3f3;
 		border-radius: 0px;
 		transition: all 0.4s ease-in-out;
 		padding: 10px;
@@ -69,6 +69,20 @@ td {
 		float: left;
 		width: 210px;
 	}
+
+		.comment-form-control {
+			border: 0.1px solid #959595;
+			color: #444444;
+			background-color: #f3f3f3;
+			border-radius: 0px;
+			transition: all 0.4s ease-in-out;
+			padding: 10px;
+			margin-right: 10px;
+			height: auto;
+			float: left;
+			width: 210px;
+		}
+
 	input[type="button"] {
 		background: #ffffff;
 		color: #419ed2;
@@ -102,6 +116,11 @@ td {
 	}
 
 }
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
 .form-control {
 	&::-moz-placeholder {
 		color: #959595;
@@ -114,6 +133,20 @@ td {
 		color: #959595;
 	}
 }
+
+.comment-form-control {
+	&::-moz-placeholder {
+		color: #959595;
+		opacity: 1;
+	}
+	&:-ms-input-placeholder {
+		color: #959595;
+	}
+	&::-webkit-input-placeholder {
+		color: #959595;
+	}
+}
+
 .center {
 	display: flex;
 	align-items: center;
@@ -128,7 +161,7 @@ td {
 }
 
 .spaceunder {
-	padding-bottom: 20px;
+	padding: 30px 0px 0px 0px;
 }
 .whitebox {
 	width: 300px;
@@ -176,15 +209,47 @@ td {
 	}
 }
 
+/* delete bid symbol
+/* ========================================== */
+
+.deleteCircle {
+	-webkit-border-radius: 999px;
+	-moz-border-radius: 999px;
+	border-radius: 999px;
+	width: 40px;
+	height: 40px;
+	background: #ac1313;
+	color: #ffffff;
+	text-align: center;
+	-webkit-transition: background 0.2s linear;
+	-moz-transition: background 0.2s linear;
+	-ms-transition: background 0.2s linear;
+	-o-transition: background 0.2s linear;
+	transition: background 0.2s linear;
+	transition: color 0.2s linear;
+	font: 20px Gotham Book, sans-serif;
+	&:hover {
+		background: #8f1212;
+		cursor: pointer;
+	}
+}
+.deleteSign {
+	line-height: 2em;
+	border-style: none;
+	&:hover {
+		color: white;
+	}
+}
+
 /* button formatting
 /* ========================================== */
 
 .listbidbutton {
-	width: 90%;
+	width: 85%;
 	height: 90px;
 	font-size: 0.5em;
-	text-align: center;
 	padding-left: 50px;
+	text-align: center;
 	background-color: #ffffff;
 	border-radius: 6px;
 	border: 1px solid #419ed2;
