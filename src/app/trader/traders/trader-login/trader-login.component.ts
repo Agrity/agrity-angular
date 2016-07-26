@@ -31,8 +31,8 @@ export class TraderLoginComponent implements OnInit {
 
   public ngOnInit() {
     if (this.config.loggedIn() === UserType.HANDLER) {
-      this.navBarService.onHandlerLoggedIn(false);
       this.config.clearTokens();
+      this.navBarService.onHandlerLoggedIn(false);
     }
   }
 

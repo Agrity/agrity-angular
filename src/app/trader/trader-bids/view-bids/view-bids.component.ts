@@ -48,9 +48,10 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
     }
 
     if (this.config.loggedIn() === UserType.HANDLER) {
-      alert('Please log back in as a trader to access the trader side of Agrity!');
       this.navBarService.onHandlerLoggedIn(false);
+      alert('Please log back in as a trader to access the trader side of Agrity!');
       this.config.forceLogout();
+      return;
     }
 
     // Load Bids
