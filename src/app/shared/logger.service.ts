@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Config } from './index';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
@@ -8,9 +9,9 @@ export class Logger {
 
   public errorEmitter: EventEmitter<string>;
 
-  constructor() {
+  constructor(private config: Config) {
     this.errorEmitter = new EventEmitter<string>();
-  }
+  };
 
   public handleHttpError(error: Response) {
     if (this.errorEmitter) {
@@ -29,4 +30,11 @@ export class Logger {
     // console.info('info: ' + msg);
   }
 
+  public debug(msg: string) {
+    if (this.config.isDebug()) {
+      /* tslint:disable:no-console */
+      console.debug(msg);
+      /* tslint:enable:no-console */
+    }
+  }
 }
