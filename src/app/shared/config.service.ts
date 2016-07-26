@@ -1,7 +1,7 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router-deprecated';
-import { UserType, Logger } from './index';
+import { UserType } from './index';
 
 // DO NOT IMPORT THIS FROM INDEX! CAUSES A HELLISH BUG!
 import { NavBarService } from './main-navbar/main-navbar.service';
@@ -33,42 +33,30 @@ export class Config {
         throw new Error('Config Environment ( ' + localEnv + ' ) could not be found.');
       }
 
-
+      // Using raw console.log because of circular dependency.
+      /* tslint:disable:no-console */
       if (this.isDebug()) {
 
         console.debug('');
 
-        // Using raw console.log because of circular dependency.
         // Log current global configurations in non-prod environments
         console.debug('Global Config:');
-        for (var key in configJSON) {
+        for (let key in configJSON) {
           console.debug(key + ': ' + configJSON[key]);
         }
-
 
         console.debug('');
 
         // Log current local configurations in non-prod environments
         console.debug('Local Config ( ' + localEnv + ' ):');
-        for (var key in configJSON[localEnv]) {
+        for (let key in configJSON[localEnv]) {
           console.debug(key + ': ' + configJSON[localEnv][key]);
         }
 
         // Whitespace seperation.
         console.debug('');
       }
-
-  }
-
-  private getConfig(key: string): any {
-    let localConfig: Object = configJSON[this.getEnvironmentKey()];
-
-    let localVal = localConfig[key];
-    if(localVal !== undefined && localVal !== null) {
-      return localVal;
-    }
-
-    return configJSON[key];
+      /* tslint:enable:no-console */
   }
 
   public getServerDomain(): string {
@@ -143,20 +131,6 @@ export class Config {
     }
   }
 
-  private getEnvironmentKey(): string {
-    return configJSON[this.LOCAL_CONFIG_KEY];
-  }
-
-  private isDefined(value: any) {
-    return value !== null && value !== undefined;
-  }
-
-  private verifyPresent(key: string, value: any) {
-    if (!this.isDefined(value)) {
-      throw new Error('Expected Config Value ( ' + key + ' ) not found.');
-    }
-  }
-
   public forceLogout() {
     localStorage.setItem(this.getHandlerAuthHeaderKey(), '');
     localStorage.setItem(this.getTraderAuthHeaderKey(), '');
@@ -172,4 +146,36 @@ export class Config {
     this.navBarService.onHandlerLoggedIn(false);
     this.router.navigateByUrl('/trader-login');
   }
+
+  /* tslint:disable:no-any */
+  private getConfig(key: string): any {
+    let localConfig: Object = configJSON[this.getEnvironmentKey()];
+
+    let localVal = localConfig[key];
+    if (localVal !== undefined && localVal !== null) {
+      return localVal;
+    }
+
+    return configJSON[key];
+  }
+  /* tslint:enable:no-any */
+
+  private getEnvironmentKey(): string {
+    return configJSON[this.LOCAL_CONFIG_KEY];
+  }
+
+  /* tslint:disable:no-any */
+  private isDefined(value: any) {
+    return value !== null && value !== undefined;
+  }
+  /* tslint:enable:no-any */
+
+  /* tslint:disable:no-any */
+  private verifyPresent(key: string, value: any) {
+    if (!this.isDefined(value)) {
+      throw new Error('Expected Config Value ( ' + key + ' ) not found.');
+    }
+  }
+  /* tslint:enable:no-any */
+
 }

@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Config } from './index';
@@ -26,7 +26,9 @@ export class Logger {
 
   public debug(msg: string) {
     if (this.config.isDebug()) {
+      /* tslint:disable:no-console */
       console.debug(msg);
+      /* tslint:enable:no-console */
     }
   }
 }
