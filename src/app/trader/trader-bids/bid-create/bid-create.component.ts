@@ -113,7 +113,8 @@ export class TraderBidCreateComponent implements OnInit {
   }
 
   protected sendBids() {
-    if (this.traderBids === []) {
+    if (this.traderBids.length === 0) {
+      alert('No Bids Created! Don\'t forget to click the green + after entering info for a bid.');
       return;
     }
 

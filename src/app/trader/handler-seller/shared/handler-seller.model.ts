@@ -11,7 +11,14 @@ export class HandlerSeller {
     handlerSeller.firstName = handlerSellerJson['firstName'];
     handlerSeller.lastName = handlerSellerJson['lastName'];
     handlerSeller.email = handlerSellerJson['emailAddressString'];
-    handlerSeller.phone = handlerSellerJson['phone'];
+    let phoneNumberString = handlerSellerJson['phoneNumberString'];
+    if (phoneNumberString != null) {
+      handlerSeller.phone.phoneOne = phoneNumberString.substring(2, 5);
+      handlerSeller.phone.phoneTwo = phoneNumberString.substring(5, 8);
+      handlerSeller.phone.phoneThree = phoneNumberString.substring(8, 12);
+    } else {
+      handlerSeller.phone = null;
+    }
     handlerSeller.companyName = handlerSellerJson['companyName'];
     return handlerSeller;
   }
