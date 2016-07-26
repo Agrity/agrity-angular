@@ -10,29 +10,27 @@
         
         <div class="form-group">
 
-          <input type="text" class="form-control" required
+          <select type="text" class="form-control" required
             [(ngModel)]="traderBid.almondVariety"
             ngControl="variety"
             name="variety"
             placeholder="Select Almond Variety"
             list="almonds">
-			<datalist id="almonds">
                 <option *ngFor="let variety of varieties"
                     [value]="variety"> {{ variety }}
                 </option>
-			</datalist>
+			</select>
         
-          <input type="text" class="form-control" required
+          <select type="text" class="form-control" required
             [(ngModel)]="traderBid.almondSize"
             ngControl="size"
             name="size"
             placeholder="Select Size"
             list="size">
-			<datalist id="size">
                 <option *ngFor="let size of sizes"
                     [value]="size"> {{ size }}
                 </option>
-			</datalist>
+			</select>
 
           <input type="text" class="form-control" required
               [(ngModel)]="traderBid.pricePerPound"
