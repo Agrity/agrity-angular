@@ -48,8 +48,9 @@
         </div>
 
         <div class="form-group">
-          <input type="text" class="form-control" required
+          <input type="text" class="form-control"
               [(ngModel)]="traderBid.comment"
+              style="border-color: #959595;"
               ngControl="comment"
               name="comment"
               placeholder="Type any Comments (example: quality level, payment terms, shipping instructions, etc.)"
@@ -77,8 +78,7 @@
                     class="wow fadeInDown spaceunder" 
                     data-wow-delay="0.3s">
 			  <button 
-                type="button" class="listbidbutton" 
-                (click)="removeBid(index)">
+                type="button" class="listbidbutton">
 			  	<table id="buttonCols">
 				<tr>
 			  		<td class="offerButton">
@@ -94,6 +94,15 @@
 			  	</tr>
 				</table>
 			  </button>
+
+            <button 
+                    style="border:none; background:none; padding:none;" 
+                    type="button" 
+                    (click)="removeBid(index)">
+             <div class="deleteCircle deleteSign">
+			  &#x2715;
+			</div></button>
+
 			 </div>
 </div>
 
