@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router-deprecated';
 import { UserType, Logger } from './index';
@@ -6,56 +6,58 @@ import { UserType, Logger } from './index';
 // DO NOT IMPORT THIS FROM INDEX! CAUSES A HELLISH BUG!
 import { NavBarService } from './main-navbar/main-navbar.service';
 
-@Injectable()
-export class Config implements OnInit {
+// Loads Raw JSON to variable
+import configJSON from '../../config/config.json!json';
 
-  private CONFIG_FOLDER: string = 'config/';
-  private GLOBAL_CONFIG_FILE: string = 'global.json';
+@Injectable()
+export class Config {
 
   private LOCAL_CONFIG_KEY: string = 'env';
-
-  private globalConfig: Object;
-  private localConfig: Object;
 
   constructor(
     private http: Http,
     private router: Router,
     private navBarService: NavBarService) {
+
+      if (!this.isDefined(configJSON)) {
+        throw new Error('Config JSON could not be found.');
+      }
+
+      if (!this.isDefined(configJSON[this.LOCAL_CONFIG_KEY])) {
+        throw new Error('Config Key ( ' + this.LOCAL_CONFIG_KEY + ' ) could not be found');
+      }
+
+      let localEnv: string = this.getEnvironmentKey();
+
+      if (!this.isDefined(configJSON[localEnv])) {
+        throw new Error('Config Environment ( ' + localEnv + ' ) could not be found.');
+      }
+
+      /* Uncomment to list current configuration keys. */
+      //console.debug('Config: ');
+      //for (var key in configJSON) {
+      //  console.debug(key + ': ' + configJSON[key]);
+      //}
   }
 
-  public ngOnInit() {
-    // Okay to Not Use HTTP Client Here. Fetching from local server.
-    this.http.get(this.CONFIG_FOLDER + this.GLOBAL_CONFIG_FILE)
-        .map(res => res.json())
-        .subscribe((globalConfig: Object) => {
+  private getConfig(key: string): any {
+    let localConfig: Object = configJSON[this.getEnvironmentKey()];
 
-          this.globalConfig = globalConfig;
-          console.log(this.globalConfig);
+    let localVal = localConfig[key];
+    if(localVal !== undefined && localVal !== null) {
+      return localVal;
+    }
 
-          //// Get Local Environment Configs
-          //this.http.get(this.CONFIG_FOLDER + globalConfig[this.LOCAL_CONFIG_KEY] + '.json')
-          //    .map(res => res.json())
-          //    // TODO Thow error invalid Environment!
-          //    .subscribe( (localConfig) => {
-          //      this.localConfig = localConfig;
-          //      console.log(this.localConfig);
-          //    });
-        }, (error) => {
-          console.error(error);
-        });
-  }
-
-  public getConfig(key: string): string {
-    //let localVal = this.localConfig[key];
-    //if (localVal !== undefined && localVal !== null) {
-    //  return localVal;
-    //}
-
-    return this.globalConfig[key];
+    return configJSON[key];
   }
 
   public getServerDomain(): string {
-    return this.getConfig('endpoint');
+    let SERVER_DOMAIN_KEY = 'endpoint';
+
+    let endpoint: string = this.getConfig(SERVER_DOMAIN_KEY);
+    this.verifyPresent(SERVER_DOMAIN_KEY, endpoint);
+
+    return endpoint;
   }
 
   public getHandlerAuthHeaderKey(): string {
@@ -64,6 +66,13 @@ export class Config implements OnInit {
 
   public getTraderAuthHeaderKey(): string {
     return 'X-TRADER-TOKEN';
+  }
+
+  public isDebug(): boolean {
+    let debugBool: boolean = this.getConfig('debug');
+    return debugBool !== undefined || debugBool !== null
+      ? debugBool
+      : false;
   }
 
   // TODO Move to Appropriate Location
@@ -101,6 +110,20 @@ export class Config implements OnInit {
         localStorage.getItem(this.getTraderAuthHeaderKey()) === null) {
 
       return UserType.HANDLER;
+    }
+  }
+
+  private getEnvironmentKey(): string {
+    return configJSON[this.LOCAL_CONFIG_KEY];
+  }
+
+  private isDefined(value: any) {
+    return value !== null && value !== undefined;
+  }
+
+  private verifyPresent(key: string, value: any) {
+    if (!this.isDefined(value)) {
+      throw new Error('Expected Config Value ( ' + key + ' ) not found.');
     }
   }
 

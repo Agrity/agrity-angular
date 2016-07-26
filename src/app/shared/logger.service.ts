@@ -1,8 +1,13 @@
+import { Injectable, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Config } from './index';
 import 'rxjs/add/observable/throw';
 
+@Injectable()
 export class Logger {
+
+  constructor(private config: Config) {};
 
   public handleHttpError(error: Response) {
     // let errMsg = `${error.status} - ${error.statusText}`;
@@ -17,5 +22,11 @@ export class Logger {
   public info(msg: string) {
     // TODO determine best logging method.
     // console.info('info: ' + msg);
+  }
+
+  public debug(msg: string) {
+    if (this.config.isDebug()) {
+      console.debug(msg);
+    }
   }
 }

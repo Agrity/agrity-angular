@@ -5,7 +5,8 @@
     'config':                     'config',
     'rxjs':                       'lib/rxjs',
     'angular2-in-memory-web-api': 'lib/angular2-in-memory-web-api',
-    '@angular':                   'lib/@angular'
+    '@angular':                   'lib/@angular',
+    'json':                       'lib/systemjs-plugin-json/json.js',
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
