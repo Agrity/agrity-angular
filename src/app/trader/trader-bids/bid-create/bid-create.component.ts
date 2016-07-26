@@ -78,9 +78,9 @@ export class TraderBidCreateComponent implements OnInit {
     }
 
     if (this.config.loggedIn() === UserType.HANDLER) {
-      alert('Please log back in as a trader to access the trader side of Agrity!');
-      this.navBarService.onHandlerLoggedIn(false);
-      this.config.forceLogout();
+      alert('Please log out as a handler to access the trader side of Agrity!');
+      this.router.navigateByUrl('/handler-home');
+      return;
     }
 
     // Load in handlerSellers

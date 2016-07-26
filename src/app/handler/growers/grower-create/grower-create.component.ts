@@ -39,10 +39,11 @@ export class GrowerCreateComponent implements OnInit {
     }
 
     if (this.config.loggedIn() === UserType.TRADER) {
-      alert('Please log back in as a handler to access the handler side of Agrity!');
-      this.navBarService.onTraderLoggedIn(false);
-      this.config.forceLogout();
+      alert('Please log out as a trader to access the handler side of Agrity!');
+      this.router.navigateByUrl('/trader-home');
+      return;
     }
+
     let id = this.routeParams.get('id');
 
     this.title = id ? 'Edit Grower' : 'New Grower';

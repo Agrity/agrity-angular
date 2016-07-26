@@ -30,10 +30,13 @@ export class TraderLoginComponent implements OnInit {
               private navBarService: NavBarService) {};
 
   public ngOnInit() {
+
     if (this.config.loggedIn() === UserType.HANDLER) {
-      this.config.clearTokens();
-      this.navBarService.onHandlerLoggedIn(false);
+      alert('Please log out as a handler to access the trader side of Agrity!');
+      this.router.navigateByUrl('/handler-home');
+      return;
     }
+
   }
 
   /* NOTE: Referenced in .html file. */
