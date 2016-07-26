@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, ROUTER_DIRECTIVES }
     from '@angular/router-deprecated';
 import { Location } from '@angular/common';
 
-import { Config } from '../../../shared/index';
+import { Config, UserType } from '../../../shared/index';
 import { LoginInfo } from './login-info';
 import { TraderLoginService } from './trader-login.service';
 
@@ -16,7 +16,7 @@ import { NavBarService } from '../../../shared/main-navbar/index';
     templateUrl: 'app/trader/traders/trader-login/trader-login.component.html',
 })
 
-export class TraderLoginComponent {
+export class TraderLoginComponent implements OnInit {
 
   /* NOTE: Referenced in .html file. */
   protected loginInfo = new LoginInfo('', '');
@@ -28,6 +28,16 @@ export class TraderLoginComponent {
               private router: Router,
               private location: Location,
               private navBarService: NavBarService) {};
+
+  public ngOnInit() {
+
+    if (this.config.loggedIn() === UserType.HANDLER) {
+      alert('Please log out as a handler to access the trader side of Agrity!');
+      this.router.navigateByUrl('/handler-home');
+      return;
+    }
+
+  }
 
   /* NOTE: Referenced in .html file. */
   protected login() {
@@ -55,10 +65,13 @@ export class TraderLoginComponent {
         valid => {
           this.traderLoginService.eraseTraderAuthToken();
           this.navBarService.onTraderLoggedIn(false);
-          alert('Successfully Logged Out: Please Refresh the Page.');
+          alert('Successfully Logged Out');
+          this.router.navigateByUrl('/');
         },
         error => {
-          this.config.forceTraderLogout();
+          this.navBarService.onTraderLoggedIn(false);
+          alert('Successfully Logged Out');
+          this.config.forceLogout();
         });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
 import { Logger, Config, UserType } from './shared/index';
@@ -46,6 +46,8 @@ import { TraderBidCreateComponent }
 import { HandlerSellerCreateComponent }
     from './trader/handler-seller/handler-create/handler-create.component';
 
+import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
+
 @RouteConfig([
   { component: HomeComponent, name: 'Home', path: '/' },
 
@@ -78,7 +80,7 @@ import { HandlerSellerCreateComponent }
 ])
 @Component({
     directives: [MainNavBarComponent, ROUTER_DIRECTIVES],
-    providers: [NavBarService],
+    providers: [NavBarService, Logger],
     selector: 'sg-my-app',
     styleUrls: ['assets/stylesheets/style.css'],
     template: `
@@ -91,6 +93,7 @@ import { HandlerSellerCreateComponent }
             <router-outlet></router-outlet>
         </div>
     `,
+    viewProviders: [ ...BS_MODAL_PROVIDERS ],
 })
 
 export class AppComponent implements OnInit {
@@ -101,7 +104,11 @@ export class AppComponent implements OnInit {
   constructor(
     private logger: Logger,
     private config: Config,
-    private navBarService: NavBarService) {}
+    private navBarService: NavBarService,
+    public modal: Modal,
+    public viewContainer: ViewContainerRef) {
+      modal.defaultViewContainer = viewContainer;
+    }
 
   public ngOnInit() {
 
@@ -122,7 +129,6 @@ export class AppComponent implements OnInit {
             },
             (error: any) => {
               this.logger.handleHttpError(error);
-              this.config.forceTraderLogout();
             }
           );
 
@@ -133,9 +139,27 @@ export class AppComponent implements OnInit {
             },
             (error: any) => {
               this.logger.handleHttpError(error);
-              this.config.forceTraderLogout();
+            }
+          );
+
+    this.logger.errorEmitter
+        .subscribe(
+            (res: any) => {
+              this.openAlert(res);
+            },
+            (error: any) => {
+              alert('An Error has occured.');
             }
           );
     /* tslint:enable:no-any */
   }
+
+  private openAlert(errorMsg: string) {
+    return this.modal.alert()
+        .size('lg')
+        .showClose(true)
+        .title('An Error has Occured')
+        .message(errorMsg)
+        .open();
+    }
 }

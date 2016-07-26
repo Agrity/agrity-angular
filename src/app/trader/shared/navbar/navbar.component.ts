@@ -3,7 +3,8 @@ import { RouterLink, ROUTER_DIRECTIVES, Router }
     from '@angular/router-deprecated';
 
 import { Trader, TraderService } from '../../traders/shared/index';
-import { Config, Logger, UserType } from '../../../shared/index';
+import { Config, Logger } from '../../../shared/index';
+import { NavBarService } from '../../../shared/main-navbar/index';
 
 @Component({
     directives: [RouterLink, ROUTER_DIRECTIVES],
@@ -21,15 +22,11 @@ export class TraderNavBarComponent implements OnInit {
     private router: Router,
     private traderService: TraderService,
     private logger: Logger,
-    private config: Config) {
+    private config: Config,
+    private navBarService: NavBarService) {
   }
 
   public ngOnInit() {
-
-    if (this.config.loggedIn() === UserType.NONE) {
-      this.config.forceTraderLogout();
-      return;
-    }
 
     this.traderService.getCurrentTrader()
         .subscribe(
@@ -38,7 +35,6 @@ export class TraderNavBarComponent implements OnInit {
             },
             error => {
               this.logger.handleHttpError(error);
-              this.config.forceTraderLogout();
           });
   }
 }

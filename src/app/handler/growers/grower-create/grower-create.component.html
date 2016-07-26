@@ -2,37 +2,37 @@
 <!-- New Grower section
 ================================================== -->
 <section class="parallax-section" ng-app="" id="contact">
-	<div class="container">				
+	<div class="container">
  		<center><form #newgrowerform="ngForm" (ngSubmit)="save()" style="width:50%; margin: 0 auto;">
 			<h6 class="wow fadeInDown">NEW GROWER</h6>
 
 			    <div np-app="form" class="col-md-12 col-sm-12">
-					
+
 					<div class="form-group">
 					<label style="color:white" for="first name"> First Name </label>
 					<input type="text" [(ngModel)]="grower.firstName" ngControl="first_name" class="form-control" name="first name" id="firstname" autocomplete="off" required>
 					</div>
-					
+
 					<div class="form-group">
 					<label style="color:white" for="last name"> Last Name </label>
 					<input type="text" [(ngModel)]="grower.lastName" ngControl="last_name" class="form-control" name="last name" id="lastname" autocomplete="off" required>
 					</div>
-					
+
 					<div class="form-group">
 					<label style="color:white" for="email"> Email </label>
                     <input type="email" [(ngModel)]="grower.email" ngControl="email" class="form-control" name="email" autocomplete="off" required type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 					</div>
-					
+
 
 					<div class="form-group">
 					<div>
 					<label style="color:white"> Phone Number </label>
 					</div>
-					<input style="width:100px;" [(ngModel)]="grower.phone.phoneOne" ngControl="phone_1" type="number" class="form-control1" placeholder="(xxx)" name="phone 1" id="phone1" autocomplete="off" pattern="[0-9]{3}" required>
-                	<input style="width:100px;" [(ngModel)]="grower.phone.phoneTwo" ngControl="phone_2" type="number" class="form-control1" placeholder="xxx-" name="phone 2" id="phone2" autocomplete="off" pattern="[0-9]{3}" required>
-					<input style="width:100px;" [(ngModel)]="grower.phone.phoneThree" ngControl="phone_3" type="number" class="form-control1" placeholder="xxxx" name="phone 3" id="phone3" autocomplete="off" pattern="[0-9]{4}" required>
+					<input style="width:100px;" [(ngModel)]="grower.phone.phoneOne" ngControl="phone_1" type="text" class="form-control1" placeholder="(xxx)" name="phone 1" id="phone1" autocomplete="off" pattern="\d{3}" required>
+                	<input style="width:100px;" [(ngModel)]="grower.phone.phoneTwo" ngControl="phone_2" type="text" class="form-control1" placeholder="xxx-" name="phone 2" id="phone2" autocomplete="off" pattern="\d{3}" required>
+					<input style="width:100px;" [(ngModel)]="grower.phone.phoneThree" ngControl="phone_3" type="text" class="form-control1" placeholder="xxxx" name="phone 3" id="phone3" autocomplete="off" pattern="\d{4}" required>
 					</div>
-		
+
 				</div>
 
 		<div>
