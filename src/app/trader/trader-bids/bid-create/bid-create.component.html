@@ -80,10 +80,12 @@
     </form>
 
 <div class="col-md-12 centerbuttons">
-    <instruction *ngIf="traderBids.length > 0" class="center">
-          Only bids below in bids sheet will be sent.
-    </instruction>
 
+<div class="center message">
+    <reminder *ngIf="traderBids.length > 0">
+          Only bids below in bids sheet will be sent.
+    </reminder>
+</div>
 			  <div *ngFor="let bid of traderBids"
                     class="wow fadeInDown spaceunder"
                     data-wow-delay="0.3s">

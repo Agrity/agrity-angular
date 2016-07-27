@@ -45,6 +45,13 @@ instruction {
 	padding: 10px 0px 20px 0px;
 }
 
+reminder {
+	font: 11px Gotham Book, sans-serif;
+	letter-spacing: 2px;
+	padding-top:15px;
+	color: #444444;
+}
+
 form {
 	padding-left:40px;
 }
@@ -183,8 +190,12 @@ textarea:focus, input:focus{
 	padding-left:100px;
 }
 
+.message {
+	padding: 20px 75px 0px 0px;
+}
+
 .spaceunder {
-	padding: 30px 0px 0px 0px;
+	padding: 10px 0px 0px 0px;
 }
 .whitebox {
 	width: 300px;
