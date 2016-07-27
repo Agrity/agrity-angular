@@ -11,8 +11,6 @@
     <form *ngIf="active" (ngSubmit)="addBid()" #traderBidForm="ngForm">
 
     <div class="col-sm-10 wow fadeInDown" data-wow-delay="0.6s">
-        <placeholder>Select Almond Variety</placeholder>
-        <placeholder style="padding-left:105px;">Select Size</placeholder>
 
         <div class="form-group">
 
@@ -23,7 +21,7 @@
             placeholder="Select Almond Variety"
             list="almonds"
             [(ngModel)]="almonds">
-                <option selected="selected" disabled>Select Almond Variety</option>
+                <option [value]="variety" disabled selected hidden> Select Almond Variety </option>
                 <option *ngFor="let variety of varieties"
                     [value]="variety"> {{ variety }}
                 </option>
@@ -35,7 +33,7 @@
             name="size"
             placeholder="Select Size"
             list="size">
-                <option selected="selected" disabled>Select Size</option>
+                <option [value]="variety" disabled selected hidden> Select Size </option>
                 <option *ngFor="let size of sizes"
                     [value]="size"> {{ size }}
                 </option>
