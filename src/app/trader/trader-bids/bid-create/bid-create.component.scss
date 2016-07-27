@@ -25,6 +25,11 @@ title {
 	float: center;
 }
 
+placeholder {
+	font: 10px Gotham Book, sans-serif;
+	color:#444444;
+}
+
 p {
 	font-size: 16px;
 	letter-spacing: 0.9px;
@@ -90,6 +95,7 @@ td {
 			width: 210px;
 		}
 
+
 	input[type="button"] {
 		background: #ffffff;
 		color: #419ed2;
@@ -120,6 +126,16 @@ td {
 		&:hover {
 			background: #000000;
 		}
+	}
+
+	select[type="text"] {
+		padding:10px;
+		height:42px;
+		width:210px;
+		-webkit-appearance: none;
+		-webkit-border-radius: 0px;
+		color: #444444;
+
 	}
 
 }
