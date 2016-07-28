@@ -46,8 +46,12 @@ export class GrowerListComponent implements OnInit {
         growers => { this.growers = growers;
         },
         error => {
-          this.logger.handleHttpError(error);
-        });
+              if (error.status === 401) {
+                alert('An authorization error has occured. Please log out and try again.');
+                this.router.navigateByUrl('/handler-login');
+              } else {
+                this.logger.handleHttpError(error);
+            }        });
 
   }
 

@@ -32,8 +32,12 @@ export class NavBarComponent implements OnInit {
               this.handler = handler;
             },
             error => {
-              this.logger.handleHttpError(error);
-              this.config.forceLogout();
+              if (error.status === 401) {
+                alert('An authorization error has occured. Please log out and try again.');
+                this.router.navigateByUrl('/handler-login');
+              } else {
+                this.logger.handleHttpError(error);
+            }
           });
   }
 }
