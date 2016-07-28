@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+    from '@angular/router';
 
 import { Config, Logger, UserType }
     from '../../../shared/index';

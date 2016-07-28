@@ -2,8 +2,8 @@ import { Component, Input, OnDestroy } from '@angular/core';
 
 import { Config, Logger } from '../../../../shared/index';
 
-import { Router, RouterLink, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router';
 
 import { HandlerSeller } from '../../shared/index';
 import { TraderBidService, TraderBid } from '../../../trader-bids/shared/index';
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
 
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES],
   selector: 'sg-view-handlers-details',
   styleUrls:
       ['app/trader/handler-seller/view-handlers/' // 2 Line URL

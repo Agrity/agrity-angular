@@ -1,6 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
-import { Router, RouterLink, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router';
 
 import { Config, Logger, UserType } from '../../../shared/index';
 import { NavBarService } from '../../../shared/main-navbar/index';
@@ -11,7 +11,7 @@ import { ViewHandlersSidebarComponent }
     from './view-handlers-sidebar/index';
 
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES,
+  directives: [ROUTER_DIRECTIVES,
                ViewHandlersDetailsComponent,
                ViewHandlersSidebarComponent],
   styleUrls: ['assets/stylesheets/style.css',

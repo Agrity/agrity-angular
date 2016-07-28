@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Config, UserType } from '../../../shared/index';
@@ -10,7 +10,7 @@ import { TraderLoginService } from './trader-login.service';
 import { NavBarService } from '../../../shared/main-navbar/index';
 
 @Component({
-    directives: [RouterLink, ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES],
     providers: [],
     styleUrls: ['app/trader/traders/trader-login/trader-login.component.css'],
     templateUrl: 'app/trader/traders/trader-login/trader-login.component.html',

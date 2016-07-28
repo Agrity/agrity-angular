@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HandlerSeller } from '../../shared/index';
-import { RouterLink, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { RouterLink, ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
   directives: [ROUTER_DIRECTIVES, RouterLink],

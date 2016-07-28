@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, RouterLink, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
@@ -15,7 +15,7 @@ import { ViewBidsSidebarComponent }
     from './view-bids-sidebar/index';
 
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES, ViewBidsDetailsComponent, ViewBidsSidebarComponent],
+  directives: [ROUTER_DIRECTIVES, ViewBidsDetailsComponent, ViewBidsSidebarComponent],
   styleUrls: ['assets/stylesheets/style.css',
               'app/trader/trader-bids/view-bids/view-bids.component.css'],
   templateUrl: 'app/trader/trader-bids/view-bids/view-bids.component.html',

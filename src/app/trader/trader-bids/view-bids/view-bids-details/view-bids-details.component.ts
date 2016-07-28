@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { TraderBid } from '../../shared/index';
 import { BidStatus } from '../../../../shared/index';
-import { Router, RouterLink, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router';
 
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES],
   selector: 'sg-view-bids-details',
   styleUrls:
       ['app/trader/trader-bids/view-bids/view-bids-details/view-bids-details.component.css'],

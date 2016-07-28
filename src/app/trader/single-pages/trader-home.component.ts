@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 
 import { Logger, Config, UserType } from '../../shared/index';
 import { NavBarService } from '../../shared/main-navbar/index';
