@@ -17,9 +17,8 @@
         <li><a routerLink="/bids" routerLinkActive="active" class="smoothScroll">BIDS</a></li>
         <li><a routerLink="/growers" routerLinkActive="active" class="smoothScroll">GROWERS</a></li>
         <li><a *ngIf="handler !== null" routerLink="/handler-login" routerLinkActive="active" class="smoothScroll"> {{ handler?.companyName }}</a>
+        <li><a *ngIf="handler !== null" (click)="logout()" style="cursor:pointer" class="smoothScroll">LOGOUT</a>
         </li>
-
-
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

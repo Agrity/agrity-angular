@@ -5,6 +5,9 @@ import { ROUTER_DIRECTIVES, Router }
 import { Handler, HandlerService } from '../../handlers/index';
 import { Config, Logger } from '../../../shared/index';
 
+import { HandlerLoginService } from '../../handlers/handler-login/handler-login.service';
+import { NavBarService } from '../../../shared/main-navbar/index';
+
 @Component({
     directives: [ROUTER_DIRECTIVES],
     providers: [HandlerService],
@@ -18,10 +21,12 @@ export class NavBarComponent implements OnInit {
   private handler: Handler = new Handler();
 
   constructor(
+    private handlerLoginService: HandlerLoginService,
     private router: Router,
     private handlerService: HandlerService,
     private logger: Logger,
-    private config: Config) {
+    private config: Config,
+    private navBarService: NavBarService) {
   }
 
   public ngOnInit() {
@@ -39,5 +44,22 @@ export class NavBarComponent implements OnInit {
                 this.logger.handleHttpError(error);
             }
           });
+  }
+
+  /* NOTE: Referenced in .html file. */
+  protected logout() {
+    this.handlerLoginService.logout()
+      .subscribe(
+        valid => {
+          this.handlerLoginService.eraseHandlerAuthToken();
+          this.navBarService.onHandlerLoggedIn(false);
+          alert('Successfully Logged Out');
+          this.router.navigateByUrl('/');
+        },
+        error => {
+          this.navBarService.onHandlerLoggedIn(false);
+          alert('Successfully Logged Out');
+          this.config.forceLogout();
+        });
   }
 }
