@@ -50,7 +50,7 @@ export class ViewBidsDetailsComponent {
   }
 
   protected viewHandler(handlerId: number): void {
-    this.router.navigateByUrl('/handler-sellers');
+    this.router.navigate(['/handler-sellers', { id: handlerId}]);
     return;
   }
 }

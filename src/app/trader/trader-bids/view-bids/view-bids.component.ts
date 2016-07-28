@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES }
+import { Router, ROUTER_DIRECTIVES, ActivatedRoute }
     from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -29,9 +29,13 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
   private closedTraderBids: TraderBid[];
 
   private selectedBid: TraderBid;
+  private passedBidId: number;
   private counters: Subscription[];
 
+  private sub: any;
+
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private traderBidService: TraderBidService,
     private logger: Logger,
@@ -40,6 +44,43 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
+
+    this.sub = this.route.params
+        .subscribe(params => {
+          this.passedBidId = +params['id'];
+
+          // Load Bids
+          this.counters = [];
+          this.traderBids = [];
+          this.closedTraderBids = [];
+          this.openTraderBids = [];
+          this.traderBidService.getTraderBids()
+              .subscribe(
+                bids => { this.traderBids = bids;
+                          this.openTraderBids = this.traderBids
+                              .filter(traderBid => traderBid.currentlyOpen);
+                          this.closedTraderBids = this.traderBids
+                              .filter(traderBid => !traderBid.currentlyOpen);
+                          for (let bidIndex in this.traderBids) {
+                            if ((this.traderBids[bidIndex]).bidId === this.passedBidId) {
+                              this.selectedBid = this.traderBids[bidIndex];
+                            }
+                            this.traderBids[bidIndex].expirationTime
+                                .setHours(this.traderBids[bidIndex]
+                                .expirationTime.getHours());
+                            this.getCountDownString(this.traderBids[bidIndex]);
+                          }
+              },
+                error => {
+                    if (error.status === 401) {
+                      alert('An authorization error has occured. Please log out and try again.');
+                      this.router.navigateByUrl('/trader-login');
+                    } else {
+                      this.logger.handleHttpError(error);
+                  }
+              });
+
+        });
 
     if (this.config.loggedIn() === UserType.NONE) {
       alert('Please Login.');
@@ -52,34 +93,6 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl('/handler-home');
       return;
     }
-
-    // Load Bids
-    this.counters = [];
-    this.traderBids = [];
-    this.closedTraderBids = [];
-    this.openTraderBids = [];
-    this.traderBidService.getTraderBids()
-        .subscribe(
-          bids => { this.traderBids = bids;
-                    this.openTraderBids = this.traderBids
-                        .filter(traderBid => traderBid.currentlyOpen);
-                    this.closedTraderBids = this.traderBids
-                        .filter(traderBid => !traderBid.currentlyOpen);
-                    for (let bidIndex in this.traderBids) {
-                      this.traderBids[bidIndex].expirationTime
-                          .setHours(this.traderBids[bidIndex]
-                          .expirationTime.getHours());
-                      this.getCountDownString(this.traderBids[bidIndex]);
-                    }
-        },
-          error => {
-              if (error.status === 401) {
-                alert('An authorization error has occured. Please log out and try again.');
-                this.router.navigateByUrl('/trader-login');
-              } else {
-                this.logger.handleHttpError(error);
-            }
-        });
   }
 
   public onSelect(bid: TraderBid) {
@@ -90,6 +103,7 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
     for (let counterIndex in this.counters) {
       this.counters[counterIndex].unsubscribe();
     }
+    this.sub.unsubscribe();
   }
 
   protected getCountDownString(bid: TraderBid): void {

@@ -83,7 +83,7 @@ export class ViewHandlersDetailsComponent implements OnDestroy {
 
       /* NOTE: Called in .html file. */
   protected viewBid(bidId: number): void {
-    this.router.navigateByUrl('/trader-bids');
+    this.router.navigate(['/trader-bids', { id: bidId}]);
     return;
   }
 
