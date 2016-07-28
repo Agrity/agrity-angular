@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouteParams, RouterLink, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router';
 
 import { Config, Logger, UserType }
     from '../../../shared/index';
-import { NavBarService } from '../../../shared/main-navbar/index';
 
 import { Grower, GrowerService } from '../shared/index';
 
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES],
   styleUrls: ['app/handler/growers/grower-create/grower-create.component.css'],
   templateUrl: 'app/handler/growers/grower-create/grower-create.component.html',
 })
@@ -23,11 +22,9 @@ export class GrowerCreateComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private routeParams: RouteParams,
     private growerService: GrowerService,
     private config: Config,
-    private logger: Logger,
-    private navBarService: NavBarService
+    private logger: Logger
   ) {}
 
   public ngOnInit() {
@@ -43,23 +40,6 @@ export class GrowerCreateComponent implements OnInit {
       this.router.navigateByUrl('/trader-home');
       return;
     }
-
-    let id = this.routeParams.get('id');
-
-    this.title = id ? 'Edit Grower' : 'New Grower';
-
-    if (!id) {
-      return;
-    }
-
-    // TODO Determine if edit grower here or in seperate component.
-    // this.userService.getUser(+id)
-    //  .subscribe(
-    //    grower => this.grower = grower,
-    //    error => {
-    //      this.logger.handleHttpError(error);
-    //      this.config.forceLogout();
-    //    });
   }
 
   /* NOTE: Referenced in .html file. */

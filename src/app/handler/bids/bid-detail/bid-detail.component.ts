@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RouterLink, ROUTER_DIRECTIVES, RouteParams, Router }
-    from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Router, ActivatedRoute }
+    from '@angular/router';
 
 import { Config, Logger, UserType } from '../../../shared/index';
 import { NavBarService } from '../../../shared/main-navbar/index';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
 
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
               'app/handler/bids/bid-detail/bid-detail.component.css'],
   templateUrl: 'app/handler/bids/bid-detail/bid-detail.component.html',
@@ -23,17 +23,15 @@ export class BidDetailComponent implements OnInit, OnDestroy {
   private bid: Bid = new Bid();
 
   private counter: Subscription;
+  private sub: any;
 
   constructor(
-      params: RouteParams,
+      private route: ActivatedRoute,
       private bidService: BidService,
       private logger: Logger,
       private config: Config,
       private router: Router,
       private navBarService: NavBarService) {
-
-    // TODO Verify id is integer.
-    this.bidId = +params.get('id');
   }
 
   public ngOnInit() {
@@ -50,25 +48,25 @@ export class BidDetailComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // Load Bid
-    this.bidService.getBid(this.bidId)
-      .subscribe(
-        bid => {
-          this.bid = bid;
-          this.getCountDownString(this.bid);
-          // TODO Temporary Hack. Should change to store growers in bid
-          //      item itself.
-        },
-        error => {
-          this.logger.handleHttpError(error);
-        });
+    this.sub = this.route.params.subscribe(params => {
+      this.bidId = +params['id'];
 
-    // Get countDownString
+      this.bidService.getBid(this.bidId)
+        .subscribe(
+          bid => {
+            this.bid = bid;
+            this.getCountDownString(this.bid);
+          },
+          error => {
+            this.logger.handleHttpError(error);
+          });
+    });
   }
 
   public ngOnDestroy() {
     if (this.counter !== null) {
       this.counter.unsubscribe();
+      this.sub.unsubscribe();
     }
   }
 

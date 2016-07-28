@@ -1,13 +1,13 @@
 import { Component, OnInit  } from '@angular/core';
-import { Router, RouterLink, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router';
 
 import { Config, Logger, UserType } from '../../../shared/index';
 import { NavBarService } from '../../../shared/main-navbar/index';
 import { Grower, GrowerService } from '../shared/index';
 
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
               'app/handler/growers/grower-list/grower-list.component.css'],
   templateUrl: 'app/handler/growers/grower-list/grower-list.component.html',

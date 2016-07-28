@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router';
 import { UserType, Config } from '../shared/index';
 
 @Component({
-  directives: [ROUTER_DIRECTIVES, RouterLink],
+  directives: [ROUTER_DIRECTIVES],
   styleUrls: ['app/home-page/home.component.css'],
   templateUrl: 'app/home-page/home.component.html',
 })
