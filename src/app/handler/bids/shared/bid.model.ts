@@ -35,7 +35,7 @@ export class Bid {
     switch (bidStatus) {
       case 'ACCEPTED':
         bid.bidStatus = BidStatus.ACCEPTED;
-        bid.currentlyOpen = true;
+        bid.currentlyOpen = false;
         break;
       case 'REJECTED':
         bid.bidStatus = BidStatus.REJECTED;
@@ -47,7 +47,7 @@ export class Bid {
         break;
       case 'OPEN':
         bid.bidStatus = BidStatus.OPEN;
-        bid.currentlyOpen = false;
+        bid.currentlyOpen = true;
         break;
       default:
         bid.bidStatus = null;
