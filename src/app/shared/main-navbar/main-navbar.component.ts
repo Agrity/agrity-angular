@@ -4,9 +4,6 @@ import { TraderNavBarComponent } from '../../trader/shared/navbar/index';
 import { RouterLink, ROUTER_DIRECTIVES, Router }
     from '@angular/router-deprecated';
 
-// DO NOT IMPORT THIS FROM INDEX! CAUSES A HELLISH BUG!
-import { NavBarService } from './main-navbar.service';
-
 @Component({
     directives: [
         TraderNavBarComponent,
@@ -14,7 +11,6 @@ import { NavBarService } from './main-navbar.service';
         RouterLink,
         ROUTER_DIRECTIVES,
         ],
-    providers: [ NavBarService ],
     selector: 'sg-main-navbar',
     styleUrls: ['app/shared/main-navbar/main-navbar.component.css'],
     templateUrl: 'app/shared/main-navbar/main-navbar.component.html',
