@@ -32,7 +32,7 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
   private passedBidId: number;
   private counters: Subscription[];
 
-  private sub: any;
+  private sub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,7 +47,11 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
 
     this.sub = this.route.params
         .subscribe(params => {
+
+          /* Disabling no-string for accessing query params. */
+          /* tslint:disable:no-string-literal */
           this.passedBidId = +params['id'];
+          /* tslint:enable:no-string-literal */
 
           // Load Bids
           this.counters = [];

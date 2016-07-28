@@ -10,6 +10,8 @@ import { ViewHandlersDetailsComponent }
 import { ViewHandlersSidebarComponent }
     from './view-handlers-sidebar/index';
 
+import { Subscription } from 'rxjs/Subscription';
+
 @Component({
   directives: [ROUTER_DIRECTIVES,
                ViewHandlersDetailsComponent,
@@ -23,7 +25,7 @@ export class ViewHandlersComponent implements OnInit, OnDestroy {
 
   private handlerSellers: HandlerSeller[];
   private selectedHandler: HandlerSeller;
-  private sub: any;
+  private sub: Subscription;
   private passedHandlerId: number;
 
   constructor(
@@ -51,7 +53,10 @@ export class ViewHandlersComponent implements OnInit, OnDestroy {
 
     this.sub = this.route.params
         .subscribe(params => {
+          /* Disabling no-string for accessing query params. */
+          /* tslint:disable:no-string-literal */
           this.passedHandlerId = +params['id'];
+          /* tslint:enable:no-string-literal */
 
           // Load Growers
           this.handlerSellers = [];
@@ -76,7 +81,7 @@ export class ViewHandlersComponent implements OnInit, OnDestroy {
         });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.sub.unsubscribe();
   }
 

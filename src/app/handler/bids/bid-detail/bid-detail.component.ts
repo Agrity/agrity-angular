@@ -23,7 +23,7 @@ export class BidDetailComponent implements OnInit, OnDestroy {
   private bid: Bid = new Bid();
 
   private counter: Subscription;
-  private sub: any;
+  private sub: Subscription;
 
   constructor(
       private route: ActivatedRoute,
@@ -49,8 +49,11 @@ export class BidDetailComponent implements OnInit, OnDestroy {
     }
 
     this.sub = this.route.params.subscribe(params => {
-      this.bidId = +params['id'];
 
+      /* Disabling no-string for accessing query params. */
+      /* tslint:disable:no-string-literal */
+      this.bidId = +params['id'];
+      /* tslint:enable:no-string-literal */
       this.bidService.getBid(this.bidId)
         .subscribe(
           bid => {

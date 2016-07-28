@@ -7,6 +7,8 @@ import { Config, Logger, UserType } from '../../../shared/index';
 import { NavBarService } from '../../../shared/main-navbar/index';
 import { Grower, GrowerService } from '../shared/index';
 
+import { Subscription } from 'rxjs/Subscription';
+
 @Component({
   directives: [ROUTER_DIRECTIVES],
   providers: [BidService],
@@ -20,7 +22,7 @@ export class GrowerDetailComponent implements OnInit, OnDestroy {
   private grower: Grower = new Grower();
   private bids: Bid[];
 
-  private sub: any;
+  private sub: Subscription;
 
   constructor(
       private route: ActivatedRoute,
@@ -47,7 +49,11 @@ export class GrowerDetailComponent implements OnInit, OnDestroy {
     }
 
     this.sub = this.route.params.subscribe(params => {
+
+      /* Disabling no-string for accessing query params. */
+      /* tslint:disable:no-string-literal */
       this.growerId = +params['id'];
+      /* tslint:enable:no-string-literal */
 
       this.growerService.getGrower(this.growerId)
         .subscribe(
