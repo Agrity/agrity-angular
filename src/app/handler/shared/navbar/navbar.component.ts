@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, ROUTER_DIRECTIVES, Router }
-    from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Router }
+    from '@angular/router';
 
 import { Handler, HandlerService } from '../../handlers/index';
 import { Config, Logger } from '../../../shared/index';
 
 @Component({
-    directives: [RouterLink, ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES],
     providers: [HandlerService],
     selector: 'sg-navbar',
     styleUrls: ['app/handler/shared/navbar/navbar.component.css'],

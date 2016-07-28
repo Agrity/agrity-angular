@@ -14,7 +14,7 @@ import { Grower, GrowerService } from '../shared/index';
   templateUrl: 'app/handler/growers/grower-detail/grower-detail.component.html',
 })
 
-export class GrowerDetailComponent implements OnInit {
+export class GrowerDetailComponent implements OnInit, OnDestroy {
 
   private growerId: number;
   private grower: Grower = new Grower();

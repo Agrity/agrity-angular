@@ -17,9 +17,6 @@ export class GrowerCreateComponent implements OnInit {
   /* NOTE: Referenced in .html file. */
   protected grower = new Grower();
 
-  /* NOTE: Referenced in .html file. */
-  protected title: string;
-
   constructor(
     private router: Router,
     private growerService: GrowerService,

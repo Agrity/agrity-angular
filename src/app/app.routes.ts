@@ -36,26 +36,26 @@ const routes: RouterConfig = [
 
   { component: HomeComponent, path: '' },
 
-  { component: HandlerHomeComponent, path: '/handler-home' },
+  { component: HandlerHomeComponent, path: 'handler-home' },
 
-  { component: TraderHomeComponent, path: '/trader-home' },
+  { component: TraderHomeComponent, path: 'trader-home' },
 
-  { component: HandlerLoginComponent, path: '/handler-login' },
+  { component: HandlerLoginComponent, path: 'handler-login' },
 
-  { component: TraderLoginComponent, path: '/trader-login' },
+  { component: TraderLoginComponent, path: 'trader-login' },
 
-  { component: BidListComponent, path: '/bids' },
-  { component: BidDetailComponent, path: '/bids/:id' },
-  { component: BidCreateComponent, path: '/bids/new' },
+  { component: BidListComponent, path: 'bids' },
+  { component: BidDetailComponent, path: 'bids/:id' },
+  { component: BidCreateComponent, path: 'new-bid' },
 
-  { component: GrowerListComponent, path: '/growers' },
-  { component: GrowerDetailComponent, path: '/growers/:id' },
-  { component: GrowerCreateComponent, path: '/growers/new' },
+  { component: GrowerListComponent, path: 'growers' },
+  { component: GrowerDetailComponent, path: 'growers/:id' },
+  { component: GrowerCreateComponent, path: 'new-grower' },
 
-  { component: ViewBidsComponent, path: '/trader-bids'},
-  { component: TraderBidCreateComponent, path: '/trader-bids/new'},
-  { component: ViewHandlersComponent, path: '/handler-sellers'},
-  { component: HandlerSellerCreateComponent, path: '/handler-sellers/new'},
+  { component: ViewBidsComponent, path: 'trader-bids'},
+  { component: TraderBidCreateComponent, path: 'new-trader-bid'},
+  { component: ViewHandlersComponent, path: 'handler-sellers'},
+  { component: HandlerSellerCreateComponent, path: 'new-handler-seller'},
 
   { component: NotFoundComponent, path: '**' },
 ];
