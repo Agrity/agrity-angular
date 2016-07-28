@@ -6,7 +6,6 @@ import { Handler, HandlerService } from '../../handlers/index';
 import { Config, Logger } from '../../../shared/index';
 
 import { HandlerLoginService } from '../../handlers/handler-login/handler-login.service';
-import { HandlerLoginComponent } from '../../handlers/handler-login/handler-login.component';
 import { NavBarService } from '../../../shared/main-navbar/index';
 
 @Component({

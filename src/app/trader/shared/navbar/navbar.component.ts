@@ -6,7 +6,6 @@ import { Trader, TraderService } from '../../traders/shared/index';
 import { Config, Logger } from '../../../shared/index';
 import { NavBarService } from '../../../shared/main-navbar/index';
 
-import { TraderLoginComponent } from '../../traders/trader-login/trader-login.component';
 import { TraderLoginService } from '../../traders/trader-login/trader-login.service';
 
 @Component({
