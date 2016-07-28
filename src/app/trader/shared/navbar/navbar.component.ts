@@ -6,9 +6,12 @@ import { Trader, TraderService } from '../../traders/shared/index';
 import { Config, Logger } from '../../../shared/index';
 import { NavBarService } from '../../../shared/main-navbar/index';
 
+import { TraderLoginComponent } from '../../traders/trader-login/trader-login.component';
+import { TraderLoginService } from '../../traders/trader-login/trader-login.service';
+
 @Component({
     directives: [RouterLink, ROUTER_DIRECTIVES],
-    providers: [TraderService],
+    providers: [TraderService, TraderLoginService],
     selector: 'sg-trader-navbar',
     styleUrls: ['app/trader/shared/navbar/navbar.component.css'],
     templateUrl: 'app/trader/shared/navbar/navbar.component.html',
@@ -21,6 +24,7 @@ export class TraderNavBarComponent implements OnInit {
   constructor(
     private router: Router,
     private traderService: TraderService,
+    private traderLoginService: TraderLoginService,
     private logger: Logger,
     private config: Config,
     private navBarService: NavBarService) {
@@ -41,5 +45,22 @@ export class TraderNavBarComponent implements OnInit {
                 this.logger.handleHttpError(error);
             }
           });
+  }
+
+  /* NOTE: Referenced in .html file. */
+  protected logout() {
+    this.traderLoginService.logout()
+      .subscribe(
+        valid => {
+          this.traderLoginService.eraseTraderAuthToken();
+          this.navBarService.onTraderLoggedIn(false);
+          alert('Successfully Logged Out');
+          this.router.navigateByUrl('/');
+        },
+        error => {
+          this.navBarService.onTraderLoggedIn(false);
+          alert('Successfully Logged Out');
+          this.config.forceLogout();
+        });
   }
 }
