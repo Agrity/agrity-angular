@@ -17,7 +17,7 @@
         <li><a routerLink="/trader-bids" routerLinkActive="active" class="smoothScroll">BIDS</a></li>
         <li><a routerLink="/handler-sellers" routerLinkActive="active" class="smoothScroll">HANDLERS</a></li>
         <li><a *ngIf="trader !== null" routerLink="/trader-login" routerLinkActive="active" class="smoothScroll"> {{ trader.companyName }}</a>
-        <li><a *ngIf="trader !== null" (click)="logout()" style="cursor:pointer" class="smoothScroll">LOGOUT</a></li>
+        <li><a *ngIf="trader !== null" (click)="logout()" style="cursor:pointer" class="smoothScroll">LOGOUT</a>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
