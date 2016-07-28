@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TraderBid } from '../../shared/index';
 import { BidStatus } from '../../../../shared/index';
-import { RouterLink, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { RouterLink, ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
   directives: [ROUTER_DIRECTIVES, RouterLink],
@@ -62,7 +62,7 @@ export class ViewBidsSidebarComponent {
   }
 
   protected viewHandler(handlerId: number): void {
-    // Will eventually link to handler page. 
+    // Will eventually link to handler page.
     return;
   }
 }

@@ -1,36 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, ROUTER_DIRECTIVES, RouteParams }
-    from '@angular/router-deprecated';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ROUTER_DIRECTIVES, ActivatedRoute }
+    from '@angular/router';
 
 import { Bid, BidService } from '../../bids/shared/index';
 import { Config, Logger, UserType } from '../../../shared/index';
 import { NavBarService } from '../../../shared/main-navbar/index';
 import { Grower, GrowerService } from '../shared/index';
 
+import { Subscription } from 'rxjs/Subscription';
+
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES],
   providers: [BidService],
   styleUrls: ['app/handler/growers/grower-detail/grower-detail.component.css'],
   templateUrl: 'app/handler/growers/grower-detail/grower-detail.component.html',
 })
 
-export class GrowerDetailComponent implements OnInit {
+export class GrowerDetailComponent implements OnInit, OnDestroy {
 
   private growerId: number;
-
   private grower: Grower = new Grower();
   private bids: Bid[];
 
+  private sub: Subscription;
+
   constructor(
-      params: RouteParams,
+      private route: ActivatedRoute,
       private growerService: GrowerService,
       private bidService: BidService,
       private logger: Logger,
       private config: Config,
       private router: Router,
       private navBarService: NavBarService) {
-
-    this.growerId = +params.get('id');
   }
 
   public ngOnInit() {
@@ -47,23 +48,35 @@ export class GrowerDetailComponent implements OnInit {
       return;
     }
 
-    // Load grower
-    this.growerService.getGrower(this.growerId)
-      .subscribe(
-        grower => {
-          this.grower = grower;
-        },
-        error => {
-          this.logger.handleHttpError(error);
-        });
+    this.sub = this.route.params.subscribe(params => {
 
-    this.bids = [];
-    this.bidService.getGrowerBids(this.growerId)
-      .subscribe(
-        bids => { this.bids = bids;
-        },
-        error => {
-          this.logger.handleHttpError(error);
-        });
+      /* Disabling no-string for accessing query params. */
+      /* tslint:disable:no-string-literal */
+      this.growerId = +params['id'];
+      /* tslint:enable:no-string-literal */
+
+      this.growerService.getGrower(this.growerId)
+        .subscribe(
+          grower => {
+            this.grower = grower;
+          },
+          error => {
+            this.logger.handleHttpError(error);
+          });
+
+      this.bids = [];
+      this.bidService.getGrowerBids(this.growerId)
+        .subscribe(
+          bids => { this.bids = bids;
+          },
+          error => {
+            this.logger.handleHttpError(error);
+          });
+
+      });
+  }
+
+  public ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

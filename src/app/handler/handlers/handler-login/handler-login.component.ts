@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Config, UserType } from '../../../shared/index';
@@ -9,7 +9,7 @@ import { HandlerLoginService } from './handler-login.service';
 import { NavBarService } from '../../../shared/main-navbar/index';
 
 @Component({
-    directives: [RouterLink, ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES],
     providers: [],
     styleUrls: ['app/handler/handlers/handler-login/handler-login.component.css'],
     templateUrl: 'app/handler/handlers/handler-login/handler-login.component.html',

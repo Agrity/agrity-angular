@@ -7,20 +7,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" [routerLink]="['Handler Login']">Agrity</a>
+      <a class="navbar-brand" routerLink="/handler-login" routerLinkActive="active">Agrity</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right main-navigation">
-        <li><a [routerLink]="['Handler Home']" class="smoothScroll">HOME</a></li>
-        <li><a [routerLink]="['View Bids']" class="smoothScroll">BIDS</a></li>
-        <li><a [routerLink]="['View Growers']" class="smoothScroll">GROWERS</a></li>
-        <li><a *ngIf="handler !== null" [routerLink]="['Handler Login']" class="smoothScroll"> {{ handler?.companyName }}</a></li>
-        <li><a *ngIf="handler !== null" [routerLink]="['Home']" (click)="logout()" style="cursor:pointer" class="smoothScroll">LOGOUT</a>
+        <li><a routerLink="/handler-home" routerLinkActive="active" class="smoothScroll">HOME</a></li>
+        <li><a routerLink="/bids" routerLinkActive="active" class="smoothScroll">BIDS</a></li>
+        <li><a routerLink="/growers" routerLinkActive="active" class="smoothScroll">GROWERS</a></li>
+        <li><a *ngIf="handler !== null" routerLink="/handler-login" routerLinkActive="active" class="smoothScroll"> {{ handler?.companyName }}</a>
+        <li><a *ngIf="handler !== null" (click)="logout()" style="cursor:pointer" class="smoothScroll">LOGOUT</a>
         </li>
-
-
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

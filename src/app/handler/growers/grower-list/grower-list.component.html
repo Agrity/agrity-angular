@@ -4,9 +4,9 @@
 		Growers in your Database
 	</h2>
       <div class="wow fadeInUp" data-wow-delay="0.3s">
-        <button type="button" class="btn btn-info" id="createBid" [routerLink]="['New Grower']">
-          <b>Create New Grower</b>
-        </button>
+        <a type="button" class="btn btn-info" id="createBid" routerLink="/new-grower" routerLinkActive="active">
+          Create New Grower
+        </a>
       </div>
 
     <div *ngFor="let grower of growers" class="wow fadeInDown" data-wow-delay="0.3s">

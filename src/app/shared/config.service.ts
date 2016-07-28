@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Router } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 import { UserType } from './index';
 
 // DO NOT IMPORT THIS FROM INDEX! CAUSES A HELLISH BUG!

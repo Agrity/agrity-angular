@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, RouterLink, ROUTER_DIRECTIVES }
-    from '@angular/router-deprecated';
+import { Router, ROUTER_DIRECTIVES }
+    from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
@@ -11,7 +11,7 @@ import { Bid, BidService } from '../shared/index';
 import { BidStatus } from '../../../shared/bid-status.model';
 
 @Component({
-  directives: [RouterLink, ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
               'app/handler/bids/bid-list/bid-list.component.css'],
   templateUrl: 'app/handler/bids/bid-list/bid-list.component.html',

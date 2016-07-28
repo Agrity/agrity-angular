@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, ROUTER_DIRECTIVES, Router }
-    from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES, Router }
+    from '@angular/router';
 
 import { Trader, TraderService } from '../../traders/shared/index';
 import { Config, Logger } from '../../../shared/index';
@@ -9,7 +9,7 @@ import { NavBarService } from '../../../shared/main-navbar/index';
 import { TraderLoginService } from '../../traders/trader-login/trader-login.service';
 
 @Component({
-    directives: [RouterLink, ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES],
     providers: [TraderService, TraderLoginService],
     selector: 'sg-trader-navbar',
     styleUrls: ['app/trader/shared/navbar/navbar.component.css'],

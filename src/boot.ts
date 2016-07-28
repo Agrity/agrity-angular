@@ -1,6 +1,6 @@
 import { bootstrap }    from '@angular/platform-browser-dynamic';
-import { ROUTER_PROVIDERS }
-    from '@angular/router-deprecated';
+import { appRouterProviders } from './app/app.routes';
+
 import { HTTP_PROVIDERS } from '@angular/http';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
@@ -19,8 +19,8 @@ import { MODAL_BROWSER_PROVIDERS } from 'angular2-modal/platform-browser';
 
 bootstrap(AppComponent,
           [/* Angular Providers */
-           ROUTER_PROVIDERS,
            HTTP_PROVIDERS,
+           appRouterProviders,
 
            { provide: LocationStrategy, useClass: HashLocationStrategy },
 
