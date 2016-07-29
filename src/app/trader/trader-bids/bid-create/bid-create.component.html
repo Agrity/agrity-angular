@@ -39,6 +39,11 @@
                 </option>
           </select>
 
+          <div>
+            <input type="checkbox" [(ngModel)]="aol" autocomplete="off" name="aol">
+            AOL
+          </div>
+
           <input type="text" class="form-control" required
               [(ngModel)]="traderBid.pricePerPound"
               ngControl="pricePerPound"
