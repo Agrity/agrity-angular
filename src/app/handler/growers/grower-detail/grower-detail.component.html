@@ -31,6 +31,7 @@
         <table class="pure-table pure-table-horizontal" style="width:100%">
           <thead>
             <tr>
+                <th>Bid Id</th>
                 <th>Almond Variety</th>
                 <th>Size</th>
                 <th>Market Price</th>
@@ -38,7 +39,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let bid of bids">
+            <tr *ngFor="let bid of bids" (click)="viewBid(bid.bidId)">
+              <td><p1> {{ bid.bidId }} </p1></td>
               <td><p1> {{ bid.almondVariety }}</p1></td>
               <td><p1> {{ bid.almondSize }} </p1></td>
               <td><p1> {{ bid.pricePerPound }} </p1></td>
