@@ -154,10 +154,10 @@ export class TraderBidCreateComponent implements OnInit {
     let bidsString: string = 'BIDS: ';
     for (let bid of this.traderBids) {
       bidsString = bidsString + '\n' +
-      'Variety: ' + bid.almondVariety +
-      'Price: ' + bid.pricePerPound +
-      'Pounds: ' + bid.almondPounds +
-      'Size: ' + bid.almondSize;
+      'Variety: ' + bid.almondVariety + ' ' +
+      'Price: ' + bid.pricePerPound + ' ' +
+      'Pounds: ' + bid.almondPounds + ' ' +
+      'Size: ' + bid.almondSize; + ' ';
     }
 
     let handlersString: string = 'TO: ';
@@ -165,22 +165,9 @@ export class TraderBidCreateComponent implements OnInit {
       handlersString = handlersString + '\n' + handler.firstName + ' ' + handler.lastName + ' ';
     }
 
-    let confirmMsg: string = bidsString + '\n' + '\n' + handlersString;
+    let confirmMsg: string = 'WOULD YOU LIKE TO SEND?: ' + '\n' + bidsString + '\n' + '\n' + handlersString;
 
-    let confirmed: boolean;
-
-      console.log(
-          this.modal.confirm()
-          .title('Are you sure you would like to send?')
-          .isBlocking(true)
-          .size('lg')
-          .message(confirmMsg)
-          .okBtn('Send Bids')
-          .open());
-
-      // isLogged().then(data => {
-      //   console.log(data);
-      // });
+    let confirmed: boolean = confirm(confirmMsg);
 
     if (confirmed === true) {
           this.traderBidService.createTraderBids(this.traderBids)
@@ -203,7 +190,7 @@ export class TraderBidCreateComponent implements OnInit {
                 }
               });
     } else {
-          this.handlersSelected = false;
+      this.handlersSelected = false;
     }
   }
 }
