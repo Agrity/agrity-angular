@@ -38,7 +38,8 @@ export class TraderNavBarComponent implements OnInit {
             },
             error => {
               if (error.status === 401) {
-                alert('An authorization error has occured. Please log out and try again.');
+                this.logger.alert('An authorization error has occured. ' +
+                'Please log out and try again.');
                 this.router.navigateByUrl('/trader-login');
               } else {
                 this.logger.handleHttpError(error);
@@ -53,12 +54,12 @@ export class TraderNavBarComponent implements OnInit {
         valid => {
           this.traderLoginService.eraseTraderAuthToken();
           this.navBarService.onTraderLoggedIn(false);
-          alert('Successfully Logged Out');
+          this.logger.alert('Successfully Logged Out');
           this.router.navigateByUrl('/');
         },
         error => {
           this.navBarService.onTraderLoggedIn(false);
-          alert('Successfully Logged Out');
+          this.logger.alert('Successfully Logged Out');
           this.config.forceLogout();
         });
   }

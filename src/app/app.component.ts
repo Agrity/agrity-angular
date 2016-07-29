@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
             }
           );
 
-    this.logger.errorEmitter
+    this.logger.modalEmitter
         .subscribe(
             (res: any) => {
               this.openAlert(res);
@@ -84,12 +84,13 @@ export class AppComponent implements OnInit {
     /* tslint:enable:no-any */
   }
 
-  private openAlert(errorMsg: string) {
+  private openAlert(modalMsg: string) {
     return this.modal.alert()
-        .size('lg')
-        .showClose(true)
-        .title('An Error has Occured')
-        .message(errorMsg)
+        .title('Alert')
+        .isBlocking(true)
+        .size('sm')
+        .message(modalMsg)
+        .okBtn('Close')
         .open();
     }
 }

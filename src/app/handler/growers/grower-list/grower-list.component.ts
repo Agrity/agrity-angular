@@ -28,13 +28,13 @@ export class GrowerListComponent implements OnInit {
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login.');
+      this.logger.alert('Please Login.');
       this.router.navigateByUrl('/');
       return;
     }
 
     if (this.config.loggedIn() === UserType.TRADER) {
-      alert('Please log out as a trader to access the handler side of Agrity!');
+      this.logger.alert('Please log out as a trader to access the handler side of Agrity!');
       this.router.navigateByUrl('/trader-home');
       return;
     }
@@ -47,7 +47,8 @@ export class GrowerListComponent implements OnInit {
         },
         error => {
               if (error.status === 401) {
-                alert('An authorization error has occured. Please log out and try again.');
+                this.logger.alert('An authorization error has occured. ' +
+                'Please log out and try again.');
                 this.router.navigateByUrl('/handler-login');
               } else {
                 this.logger.handleHttpError(error);

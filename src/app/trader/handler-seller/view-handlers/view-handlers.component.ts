@@ -40,13 +40,13 @@ export class ViewHandlersComponent implements OnInit, OnDestroy {
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login.');
+      this.logger.alert('Please Login.');
       this.router.navigateByUrl('/');
       return;
     }
 
     if (this.config.loggedIn() === UserType.HANDLER) {
-      alert('Please log out as a handler to access the trader side of Agrity!');
+      this.logger.alert('Please log out as a handler to access the trader side of Agrity!');
       this.router.navigateByUrl('/handler-home');
       return;
     }
@@ -72,7 +72,8 @@ export class ViewHandlersComponent implements OnInit, OnDestroy {
               },
               error => {
                     if (error.status === 401) {
-                      alert('An authorization error has occured. Please log out and try again.');
+                      this.logger.alert('An authorization error has occured.' +
+                          'Please log out and try again.');
                       this.router.navigateByUrl('/trader-login');
                     } else {
                       this.logger.handleHttpError(error);
@@ -82,7 +83,9 @@ export class ViewHandlersComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
+    if (this.sub) {
     this.sub.unsubscribe();
+    }
   }
 
   /* NOTE: Referenced in .html file. */
