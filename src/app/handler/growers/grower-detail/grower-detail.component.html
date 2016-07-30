@@ -11,23 +11,23 @@
 <!-- Profile section
 ================================================== -->
 <section id="testimonial" class="parallax-section">
-			<table>
+			<table class="center">
 				<tr>
 					<td><h8><u>Phone Number</u></h8></td>
 					<td><h8><u>E-Mail</u></h8></td>
-					<td><h8><u>Acreage</u></h8></td>
-					<td><h8><u>Almond Varieties</u></h8></td>
+          <td><h8><u>Acreage</u></h8></td>
+          <td><h8><u>Almond Varieties</u></h8></td>
 				</tr>
 				<tr>
-          <td><b><h7>{{ grower?.phone?.phoneOne }}-{{ grower?.phone?.phoneTwo }}-{{ grower?.phone?.phoneThree }}</h7></b></td>
+          <td><b><h7>({{ grower?.phone?.phoneOne }}) {{ grower?.phone?.phoneTwo }}-{{ grower?.phone?.phoneThree }}</h7></b></td>
 					<td><b><h7>{{ grower?.email }}</h7></b></td>
-					<td><b><h7>Under Construction</h7></b></td>
-					<td><b><h7>Under Construction</h7></b></td>
+          <td><b><h7>-- Under Construction --</h7></b></td>
+          <td><b><h7>-- Under Construction --</h7></b></td>
 				</tr>
 			</table>
 
 			<div class="Bio">
-        <h2>Bids from {{grower?.firstName}}</h2>
+        <h2>Bids to {{grower?.firstName}}</h2>
         <table class="pure-table pure-table-horizontal" style="width:100%">
           <thead>
             <tr>
@@ -35,14 +35,16 @@
                 <th>Size</th>
                 <th>Price</th>
                 <th>Pounds</th>
+                <th>Payment Date</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let bid of bids">
+          <tbody (click)="viewBid(bid.bidId)">
+            <tr class="hover-click" *ngFor="let bid of bids">
               <td><p1> {{ bid.almondVariety }}</p1></td>
               <td><p1> {{ bid.almondSize }} </p1></td>
               <td><p1> {{ bid.pricePerPound }} </p1></td>
               <td><p1> {{ bid.almondPounds }} </p1></td>
+              <td><p1> {{ bid?.countDownString }} </p1></td>
             </tr>
           </tbody>
         </table>

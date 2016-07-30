@@ -12,7 +12,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 h6 {
-  color:#ffffff;
+  color:#444444;
   font-size: 28px;
   letter-spacing: 28px;
   letter-spacing: 2px;
@@ -21,7 +21,8 @@ h6 {
 */}
 
 #contact {
-  background: url('assets/img/newgrower.jpg') 50% 0 repeat-y fixed;
+  // background: url('assets/img/newgrower.jpg') 50% 0 repeat-y fixed;
+  background-color: #efefef;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center;
@@ -29,11 +30,11 @@ h6 {
 
 #contact .form-control {
   background:white;
+	border-top-color: #959595;
+	border-bottom-color: #959595;
+	border-right-color: #959595;
   color:black;
   border-radius: 5px;
-  border-top-color: #ffffff;
-  border-bottom-color: #ffffff;
-  border-right-color: #ffffff;
   border-radius: 0px;
   box-shadow: none;
   margin-bottom: 22px;
@@ -43,9 +44,14 @@ h6 {
 }
 
 #contact .form-control1 {
-  background:white;
-  color:black;
-  border-radius: 5px;
+  background:#f3f3f3;
+  border-top-color: #959595;
+	border-bottom-color: #959595;
+  border-right-color: #959595;
+  color: #444444;
+  box-shadow: none;
+  border-radius: 0px;
+  transition: all 0.4s ease-in-out;
 }
 
 #contact input[type="submit"] {
@@ -85,14 +91,14 @@ h6 {
 }
 
 .form-control::-moz-placeholder {
-  color: #ffffff;
+  color: #959595;
   opacity: 1;
 }
 .form-control:-ms-input-placeholder {
-  color: #ffffff;
+  color: #959595;
 }
 .form-control::-webkit-input-placeholder {
-  color: #ffffff;
+  color: #959595;
 }
 
 #contact .contact-detail {
@@ -123,4 +129,15 @@ button {
   &:hover {
     background: #ffa400;
   }
+}
+
+label {
+  color: #444444;
+}
+
+.line-up {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
 }
