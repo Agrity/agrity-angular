@@ -7,15 +7,15 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class Logger {
 
-  public errorEmitter: EventEmitter<string>;
+  public modalEmitter: EventEmitter<string>;
 
   constructor(private config: Config) {
-    this.errorEmitter = new EventEmitter<string>();
+    this.modalEmitter = new EventEmitter<string>();
   };
 
   public handleHttpError(error: Response) {
-    if (this.errorEmitter) {
-      this.errorEmitter.emit('Error: ' + error);
+    if (this.modalEmitter) {
+      this.modalEmitter.emit('Error: ' + error);
     }
     console.error('ERROR: ' + error);
     return Observable.throw(error);
@@ -23,6 +23,12 @@ export class Logger {
 
   public handleError(error: string) {
     // TODO Implement.
+  }
+
+  public alert(message: string) {
+    if (this.modalEmitter) {
+      this.modalEmitter.emit(message);
+    }
   }
 
   public info(msg: string) {

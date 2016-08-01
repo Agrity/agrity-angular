@@ -37,13 +37,13 @@ export class BidDetailComponent implements OnInit, OnDestroy {
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login.');
+      this.logger.alert('Please Login.');
       this.router.navigateByUrl('/');
       return;
     }
 
     if (this.config.loggedIn() === UserType.TRADER) {
-      alert('Please log out as a trader to access the handler side of Agrity!');
+      this.logger.alert('Please log out as a trader to access the handler side of Agrity!');
       this.router.navigateByUrl('/trader-home');
       return;
     }
@@ -69,6 +69,8 @@ export class BidDetailComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
     if (this.counter !== null) {
       this.counter.unsubscribe();
+    }
+    if (this.sub) {
       this.sub.unsubscribe();
     }
   }

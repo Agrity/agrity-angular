@@ -45,6 +45,18 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
 
+    if (this.config.loggedIn() === UserType.NONE) {
+      this.logger.alert('Please Login.');
+      this.router.navigateByUrl('/');
+      return;
+    }
+
+    if (this.config.loggedIn() === UserType.HANDLER) {
+      this.logger.alert('Please log out as a handler to access the trader side of Agrity!');
+      this.router.navigateByUrl('/handler-home');
+      return;
+    }
+
     this.sub = this.route.params
         .subscribe(params => {
 
@@ -77,7 +89,8 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
               },
                 error => {
                     if (error.status === 401) {
-                      alert('An authorization error has occured. Please log out and try again.');
+                      this.logger.alert('An authorization error has occured. ' +
+                          ' Please log out and try again.');
                       this.router.navigateByUrl('/trader-login');
                     } else {
                       this.logger.handleHttpError(error);
@@ -85,18 +98,6 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
               });
 
         });
-
-    if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login.');
-      this.router.navigateByUrl('/');
-      return;
-    }
-
-    if (this.config.loggedIn() === UserType.HANDLER) {
-      alert('Please log out as a handler to access the trader side of Agrity!');
-      this.router.navigateByUrl('/handler-home');
-      return;
-    }
   }
 
   public onSelect(bid: TraderBid) {
@@ -107,7 +108,9 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
     for (let counterIndex in this.counters) {
       this.counters[counterIndex].unsubscribe();
     }
+    if (this.sub) {
     this.sub.unsubscribe();
+    }
   }
 
   protected getCountDownString(bid: TraderBid): void {

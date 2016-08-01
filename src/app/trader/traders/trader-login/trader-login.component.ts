@@ -3,7 +3,7 @@ import { Router, ROUTER_DIRECTIVES }
     from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Config, UserType } from '../../../shared/index';
+import { Config, UserType, Logger } from '../../../shared/index';
 import { LoginInfo } from './login-info';
 import { TraderLoginService } from './trader-login.service';
 
@@ -25,6 +25,7 @@ export class TraderLoginComponent implements OnInit {
 
   constructor(private traderLoginService: TraderLoginService,
               private config: Config,
+              private logger: Logger,
               private router: Router,
               private location: Location,
               private navBarService: NavBarService) {};
@@ -32,7 +33,7 @@ export class TraderLoginComponent implements OnInit {
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.HANDLER) {
-      alert('Please log out as a handler to access the trader side of Agrity!');
+      this.logger.alert('Please log out as a handler to access the trader side of Agrity!');
       this.router.navigateByUrl('/handler-home');
       return;
     }
@@ -51,9 +52,9 @@ export class TraderLoginComponent implements OnInit {
         },
         error => {
           if (error.status === 401) {
-            alert('Invalid Username or Password.');
+            this.logger.alert('Invalid Username or Password.');
           } else {
-            alert('Server Error: Unable to Log In.');
+            this.logger.alert('Server Error: Unable to Log In.');
           }
         });
   }
@@ -65,12 +66,12 @@ export class TraderLoginComponent implements OnInit {
         valid => {
           this.traderLoginService.eraseTraderAuthToken();
           this.navBarService.onTraderLoggedIn(false);
-          alert('Successfully Logged Out');
+          this.logger.alert('Successfully Logged Out');
           this.router.navigateByUrl('/');
         },
         error => {
           this.navBarService.onTraderLoggedIn(false);
-          alert('Successfully Logged Out');
+          this.logger.alert('Successfully Logged Out');
           this.config.forceLogout();
         });
   }

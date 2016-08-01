@@ -53,12 +53,12 @@ export class NavBarComponent implements OnInit {
         valid => {
           this.handlerLoginService.eraseHandlerAuthToken();
           this.navBarService.onHandlerLoggedIn(false);
-          alert('Successfully Logged Out');
+          this.logger.alert('Successfully Logged Out');
           this.router.navigateByUrl('/');
         },
         error => {
           this.navBarService.onHandlerLoggedIn(false);
-          alert('Successfully Logged Out');
+          this.logger.alert('Successfully Logged Out');
           this.config.forceLogout();
         });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router';
 
@@ -9,10 +9,13 @@ import { NavBarService } from '../../../shared/main-navbar/index';
 import { HandlerSeller, HandlerSellerService } from '../../handler-seller/shared/index';
 import { TraderBid, TraderBidService } from '../shared/index';
 
+import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
+
 @Component({
   directives: [ROUTER_DIRECTIVES],
   styleUrls: ['app/trader/trader-bids/bid-create/bid-create.component.css'],
   templateUrl: 'app/trader/trader-bids/bid-create/bid-create.component.html',
+  viewProviders: [ ...BS_MODAL_PROVIDERS ],
 })
 
 export class TraderBidCreateComponent implements OnInit {
@@ -67,19 +70,22 @@ export class TraderBidCreateComponent implements OnInit {
       private config: Config,
       private logger: Logger,
       private router: Router,
-      private navBarService: NavBarService
-      ) {}
+      private navBarService: NavBarService,
+      public modal: Modal,
+      public viewContainer: ViewContainerRef) {
+        modal.defaultViewContainer = viewContainer;
+      }
 
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login.');
+      this.logger.alert('Please Login.');
       this.router.navigateByUrl('/');
       return;
     }
 
     if (this.config.loggedIn() === UserType.HANDLER) {
-      alert('Please log out as a handler to access the trader side of Agrity!');
+      this.logger.alert('Please log out as a handler to access the trader side of Agrity!');
       this.router.navigateByUrl('/handler-home');
       return;
     }
@@ -120,8 +126,9 @@ export class TraderBidCreateComponent implements OnInit {
   }
 
   protected sendBids() {
+
     if (this.traderBids.length === 0) {
-      alert('Before sending make sure you add bids to your ' +
+      this.logger.alert('Before sending make sure you add bids to your ' +
           'bid sheet using the green plus sign on the right.');
       return;
     }
@@ -140,17 +147,74 @@ export class TraderBidCreateComponent implements OnInit {
     }
 
     if (this.handlersSelected === false) {
-      alert('Please select which handlers you would like to send your bids to.');
+      this.logger.alert('Please select which handlers you would like to send your bids to.');
       return;
     }
 
-    this.traderBidService.createTraderBids(this.traderBids)
-        .subscribe(
-        bid => {
-          this.router.navigateByUrl('/trader-bids');
-        },
-        error => {
-          this.logger.handleHttpError(error);
-        });
+    let bidsString: string = 'BIDS: ';
+    for (let bid of this.traderBids) {
+      bidsString = bidsString + '<br/>' +
+      'Variety: ' + bid.almondVariety + ' - ' +
+      'Price Per Pound: $' + bid.pricePerPound + ' - ' +
+      'Pounds: ' + bid.almondPounds + ' - ' +
+      'Size: ' + bid.almondSize;
+    }
+
+    let handlersString: string = 'TO: ';
+    for (let handler of this.handlerSellers) {
+      if (handler.selected) {
+        handlersString = handlersString + '<br/>' +
+            handler.firstName + ' ' + handler.lastName + ' ';
+      }
+    }
+
+    let confirmMsg: string = bidsString + '<br/>' +
+        '<br/>' + 'TIME TO RESPOND: ' + this.delay + ' HOURS' + '<br/>' +
+        '<br/>' + handlersString;
+
+    this.modal.confirm()
+    .size('lg')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm Bids to be Sent')
+    .body(confirmMsg)
+    .okBtn('Send Bids')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.sendConfirmedBids();
+          })
+          .catch(canceled => {
+            for (let bid of this.traderBids) {
+              bid.handlerSellerIds = [];
+            }
+            this.handlersSelected = false;
+            this.logger.alert('Sending has been canceled. Bids not sent.');
+          });
+    });
+  }
+
+  protected sendConfirmedBids() {
+          this.traderBidService.createTraderBids(this.traderBids)
+              .subscribe(
+              bid => {
+                this.logger.alert('Your bids have been sent.');
+                this.router.navigateByUrl('/trader-bids');
+              },
+              error => {
+                if (error.status === 500) {
+                  this.logger.alert('An internal server error has occured. ' +
+                      'This is likely caused by a phone number being entered incorrectly. ' +
+                      'If your bids were created, one or more of your handlers might not ' +
+                      'have recieved a text message notification. ' +
+                      'Please check that your handlers information is correct in the ' +
+                      'handler details page.');
+                  this.router.navigateByUrl('/trader-bids');
+                } else {
+                  this.logger.handleHttpError(error);
+                  this.router.navigateByUrl('/trader-bids');
+                }
+              });
   }
 }

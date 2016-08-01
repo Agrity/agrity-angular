@@ -37,13 +37,13 @@ export class GrowerDetailComponent implements OnInit, OnDestroy {
   public ngOnInit() {
 
     if (this.config.loggedIn() === UserType.NONE) {
-      alert('Please Login.');
+      this.logger.alert('Please Login.');
       this.router.navigateByUrl('/');
       return;
     }
 
     if (this.config.loggedIn() === UserType.TRADER) {
-      alert('Please log out as a trader to access the handler side of Agrity!');
+      this.logger.alert('Please log out as a trader to access the handler side of Agrity!');
       this.router.navigateByUrl('/trader-home');
       return;
     }
@@ -77,12 +77,13 @@ export class GrowerDetailComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   /* NOTE: Called in .html file. */
   protected viewBid(bidId: number): void {
     this.router.navigateByUrl('/bids/' + bidId);
   }
-
 }
