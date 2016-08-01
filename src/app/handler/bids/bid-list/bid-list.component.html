@@ -34,12 +34,12 @@
 	  	  <button [ngClass]="{ 'accepted': isAccepted(bid), 'partial': isPartial(bid), 'rejected': isRejected(bid) }" (click)="viewBid(bid.bidId)" style="width:90%; height:85px; font-size:2em; text-align:left; padding-left:50px; margin-bottom:10px;" type="button" class="btn btn-info">
 	  	  <table id="buttonCols" style="width:100%">
 		  <tr>
-		    <td class="offerButton">ID: {{ bid.bidId }}</td>
-	  		<td class="offerButton">{{ bid.almondVariety }}</td>
-	  		<td class="offerButton">Size: {{ bid.almondSize }}</td>
-	  		<td class="offerButton">Pounds: {{ bid.almondPounds }}</td>
-	  		<td class="offerButton">Market Price: {{ bid.pricePerPound }}</td>
-	  		<td class="offerButton">{{ bid?.countDownString }}</td>
+		    <td style="color:white;" class="offerButton">ID: {{ bid.bidId }}</td>
+	  		<td style="color:white;" class="offerButton">{{ bid.almondVariety }}</td>
+	  		<td style="color:white;" class="offerButton">Size: {{ bid.almondSize }}</td>
+	  		<td style="color:white;" class="offerButton">Pounds: {{ bid.almondPounds }}</td>
+	  		<td style="color:white;" class="offerButton">Market Price: {{ bid.pricePerPound }}</td>
+	  		<td style="color:white;" class="offerButton">{{ bid?.countDownString }}</td>
 	  	  </tr>
 		  <!--<tr>{{ bid.comment }}</tr>-->
 		  </table>

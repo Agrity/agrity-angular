@@ -5,10 +5,10 @@
 					<center><div>
               <p><strong>ID: </strong>{{ bid.bidId }} </p>
 							<p><strong>Almond Variety: </strong>{{ bid.almondVariety }}</p>
-              <p><strong>Almond Pounds: </strong>{{ bid.almondPounds }}</p>
+              <p><strong>Initial Almond Pounds: </strong>{{ bid.almondPounds }}</p>
               <p><strong>Market Price Per Pound: </strong>{{ bid.pricePerPound }}</p>
               <p><strong>Time Until Expired: </strong>{{ bid?.countDownString }}</p>
-              <p>Comment: &nbsp; {{ bid.comment }}</p>
+              <p *ngIf="bid.comment"><strong>Comment: </strong>&nbsp; {{ bid.comment }} </p>
 						</div></center>
 				</div>
 			</div>
