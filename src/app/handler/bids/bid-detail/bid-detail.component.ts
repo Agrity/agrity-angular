@@ -89,6 +89,6 @@ export class BidDetailComponent implements OnInit, OnDestroy {
 
   /* NOTE: Referenced in .html file. */
   protected viewGrower(growerId: number): void {
-    this.router.navigateByUrl('/growers/' + growerId);
+    this.router.navigate(['/growers', growerId]);
   }
 }

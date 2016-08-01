@@ -58,6 +58,6 @@ export class GrowerListComponent implements OnInit {
 
   /* NOTE: Referenced in .html file. */
   protected viewGrower(growerId: number): void {
-    this.router.navigateByUrl('/growers/' + growerId);
+    this.router.navigate(['/growers', growerId]);
   }
 }

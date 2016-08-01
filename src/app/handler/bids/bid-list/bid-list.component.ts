@@ -96,7 +96,7 @@ export class BidListComponent implements OnInit, OnDestroy {
 
   /* NOTE: Called in .html file. */
   protected viewBid(bidId: number): void {
-    this.router.navigateByUrl('/bids/' + bidId);
+    this.router.navigate(['/bids', bidId]);
   }
 
   protected isAccepted(bid: Bid): boolean {
