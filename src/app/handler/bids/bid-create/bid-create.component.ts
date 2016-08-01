@@ -101,28 +101,29 @@ export class BidCreateComponent implements OnInit {
     let selectedGrowers = this.growers.filter(grower => grower.selected);
     this.bid.growerIds = [];
 
-    if (this.aol) {
-      this.bid.almondSize = this.bid.almondSize.concat(' AOL');
-    }
-
     if (selectedGrowers.length === 0) {
       this.logger.alert('Please select which growers you would like to send your bid to.');
       return;
     }
 
-    let bidsString: string = 'BID DETAILS: ';
+    let bidsString: string = 'BID DETAILS:';
     bidsString = bidsString + '<br/>' +
     'Variety: ' + this.bid.almondVariety + '<br/>' +
     'Price Per Pound: $' + this.bid.pricePerPound + '<br/>' +
     'Pounds: ' + this.bid.almondPounds + '<br/>' +
-    'Size: ' + this.bid.almondSize + '<br/>' +
+    'Size: ' + this.bid.almondSize;
+    if (this.aol) {
+      bidsString = bidsString + ' AOL';
+    }
+    bidsString = bidsString +
+    '<br/>' +
     'Time to Respond: ' + this.bid.managementTypeDelay + ' HOURS';
 
-    let growersString: string = 'TO: ';
+    let growersString: string = 'TO:';
     for (let grower of selectedGrowers) {
         this.bid.growerIds.push(grower.growerId);
         growersString = growersString + '<br/>' +
-            grower.firstName + ' ' + grower.lastName + ' ';
+            grower.firstName + ' ' + grower.lastName;
       }
 
     let confirmMsg: string = bidsString + '<br/>' + '<br/>' + growersString;
@@ -165,12 +166,19 @@ export class BidCreateComponent implements OnInit {
       this.bid.managementTypeDelay *= -1;
     }
 
+    if (this.aol) {
+      this.bid.almondSize = this.bid.almondSize.concat(' AOL');
+    }
+
     this.bidService.createBid(this.bid)
       .subscribe(
         bid => {
           this.router.navigateByUrl('/bids');
         },
         error => {
+          if (this.aol) {
+            this.bid.almondSize = this.bid.almondSize.substring(0, this.bid.almondSize.length - 4);
+          }
           this.logger.handleHttpError(error);
         });
   }
