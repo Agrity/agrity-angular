@@ -6,7 +6,11 @@ import { Router, ROUTER_DIRECTIVES }
     from '@angular/router';
 
 import { HandlerSeller } from '../../shared/index';
-import { TraderBidService, TraderBid } from '../../../trader-bids/shared/index';
+import { TraderBid } from '../../../trader-bids/shared/index';
+
+// NOTE: Importing this service through index causes a bug. Not sure why.
+import { TraderBidService } from '../../../trader-bids/shared/trader-bid.service';
+
 import { BidStatus } from '../../../../shared/index';
 
 import { Observable } from 'rxjs/Observable';
