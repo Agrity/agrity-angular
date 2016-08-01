@@ -173,6 +173,7 @@ export class BidCreateComponent implements OnInit {
     this.bidService.createBid(this.bid)
       .subscribe(
         bid => {
+          this.logger.alert('Your bid has been sent.');
           this.router.navigateByUrl('/bids');
         },
         error => {
