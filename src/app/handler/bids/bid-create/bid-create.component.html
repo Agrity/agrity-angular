@@ -20,13 +20,17 @@
                                     ngControl="almondVariety" 
                                     class="form-control" name="almond variety" 
                                     id="almond variety" required>
+
+                            <select type="text" 
+                                    [(ngModel)]="bid.almondVariety" 
+                                    ngControl="almondVariety" class="form-control" 
+                                    name="almond variety" id="almond variety" required>
                                 <option style="color:#959595" [value]="almondVariety" disabled selected hidden> Select Almond Variety </option>
                                 <option *ngFor="let variety of varieties"
                                     [value]="variety"> {{variety}}
                                 </option>
                             </select>
 
-                            <!--<label for="size"> Select Size </label>-->
                             <select [(ngModel)]="bid.almondSize" 
                                     ngControl="almondSize" 
                                     type="text" class="form-control" 
@@ -39,12 +43,17 @@
                         </div>
 
                         <!--<div id="aol-checkbox" style="width:20%; float:right; color:#444444; vertical-align:middle; padding:35px 0 0 15px;">
+
+                        <!--<div id="aol-checkbox" style="width:20%; float:right; color:white; vertical-align:middle; padding:15px 0 0 15px;">
+
                           <input type="checkbox" [(ngModel)]="aol" autocomplete="off" name="aol">
                           AOL
                         </div>-->
 
                         <div class="form-group center">
                             <!--<label for="price"> Market Price Per Pound </label>-->
+
+                            <div class="form-group center">
                             <input [(ngModel)]="bid.pricePerPound" 
                                     ngControl="pricePerPound" type="string" 
                                     class="form-control" name="price" id="price" 
@@ -52,8 +61,7 @@
                                     placeholder="Market Price Per Pound"
                                     required pattern="^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*\.[0-9]{2}$">
 
-                            <!--<label for="pounds"> Pounds </label>-->
-                            <input [(ngModel)]="bid.almondPounds" 
+                        <input [(ngModel)]="bid.almondPounds" 
                                     ngControl="almondPounds" type="number" 
                                     class="form-control" name="pounds" 
                                     placeholder="Pounds"
@@ -114,6 +122,6 @@
         </form>
 
        </div>
-	</div>
+	</div>                   
 </section>
 </div>

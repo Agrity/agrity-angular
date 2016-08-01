@@ -1,5 +1,3 @@
-<!-- Profile Pic and Cover Photo
-====================================================-->
 <section class="picSection">
 	<div class="resizeImage">
 		<img src="assets/img/farmer3.jpg" onError="this.onerror=null;this.src='images/profile-icon.jpg';">
@@ -8,8 +6,7 @@
 
 </section>
 
-<!-- Profile section
-================================================== -->
+
 <section id="testimonial" class="parallax-section">
 			<table class="center">
 				<tr>
@@ -31,15 +28,20 @@
         <table class="pure-table pure-table-horizontal" style="width:100%">
           <thead>
             <tr>
+                <th>Bid Id</th>
                 <th>Almond Variety</th>
                 <th>Size</th>
-                <th>Price</th>
+                <th>Market Price</th>
                 <th>Pounds</th>
                 <th>Payment Date</th>
             </tr>
           </thead>
+
           <tbody (click)="viewBid(bid.bidId)">
             <tr class="hover-click" *ngFor="let bid of bids">
+          <tbody>
+            <tr *ngFor="let bid of bids" (click)="viewBid(bid.bidId)">
+              <td><p1> {{ bid.bidId }} </p1></td>
               <td><p1> {{ bid.almondVariety }}</p1></td>
               <td><p1> {{ bid.almondSize }} </p1></td>
               <td><p1> {{ bid.pricePerPound }} </p1></td>
