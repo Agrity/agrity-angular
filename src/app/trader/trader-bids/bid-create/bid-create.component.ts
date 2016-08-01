@@ -168,7 +168,9 @@ export class TraderBidCreateComponent implements OnInit {
       }
     }
 
-    let confirmMsg: string = bidsString + '<br/>' + '<br/>' + handlersString;
+    let confirmMsg: string = bidsString + '<br/>' +
+        '<br/>' + 'Time To Respond: ' + this.delay + ' HOURS' '<br/>' + '<br/>' +
+        '<br/>' + handlersString;
 
     this.modal.confirm()
     .size('lg')

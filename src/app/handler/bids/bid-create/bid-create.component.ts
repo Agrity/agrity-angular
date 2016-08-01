@@ -100,10 +100,11 @@ export class BidCreateComponent implements OnInit {
   protected save() {
     let bidsString: string = 'BID DETAILS: ';
     bidsString = bidsString + '<br/>' +
-    'Variety: ' + this.bid.almondVariety + ' - ' +
-    'Price: ' + this.bid.pricePerPound + ' - ' +
-    'Pounds: ' + this.bid.almondPounds + ' - ' +
-    'Size: ' + this.bid.almondSize;
+    'Variety: ' + this.bid.almondVariety + '<br/>' +
+    'Price: ' + this.bid.pricePerPound + '<br/>' +
+    'Pounds: ' + this.bid.almondPounds + '<br/>' +
+    'Size: ' + this.bid.almondSize + '<br/>' +
+    'Time to Respond: ' + this.bid.managementTypeDelay + ' HOURS';
 
     let selectedGrowers = this.growers.filter(grower => grower.selected);
 
