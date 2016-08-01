@@ -153,21 +153,22 @@ export class TraderBidCreateComponent implements OnInit {
 
     let bidsString: string = 'BIDS: ';
     for (let bid of this.traderBids) {
-      bidsString = bidsString + "<br/>" +
+      bidsString = bidsString + '<br/>' +
       'Variety: ' + bid.almondVariety + ' - ' +
       'Price: ' + bid.pricePerPound + ' - ' +
       'Pounds: ' + bid.almondPounds + ' - ' +
-      'Size: ' + bid.almondSize; + ' - ';
+      'Size: ' + bid.almondSize;
     }
 
     let handlersString: string = 'TO: ';
     for (let handler of this.handlerSellers) {
       if (handler.selected) {
-        handlersString = handlersString + "<br/>" + handler.firstName + ' ' + handler.lastName + ' ';
+        handlersString = handlersString + '<br/>' +
+            handler.firstName + ' ' + handler.lastName + ' ';
       }
     }
 
-    let confirmMsg: string = bidsString + "<br/>" + "<br/>" + handlersString;
+    let confirmMsg: string = bidsString + '<br/>' + '<br/>' + handlersString;
 
     this.modal.confirm()
     .size('lg')
@@ -187,7 +188,7 @@ export class TraderBidCreateComponent implements OnInit {
               bid.handlerSellerIds = [];
             }
             this.handlersSelected = false;
-            this.logger.alert('Sending has been canceled. Bids not sent.')
+            this.logger.alert('Sending has been canceled. Bids not sent.');
           });
     });
   }
@@ -196,7 +197,7 @@ export class TraderBidCreateComponent implements OnInit {
           this.traderBidService.createTraderBids(this.traderBids)
               .subscribe(
               bid => {
-                this.logger.alert('Your bids have been sent.')
+                this.logger.alert('Your bids have been sent.');
                 this.router.navigateByUrl('/trader-bids');
               },
               error => {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router';
 
@@ -9,11 +9,14 @@ import { NavBarService }
     from '../../../shared/main-navbar/index';
 import { Grower, GrowerService } from '../../growers/shared/index';
 
+import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
+
 @Component({
   directives: [ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
               'app/handler/bids/bid-create/bid-create.component.css'],
   templateUrl: 'app/handler/bids/bid-create/bid-create.component.html',
+  viewProviders: [ ...BS_MODAL_PROVIDERS ],
 })
 
 export class BidCreateComponent implements OnInit {
@@ -57,12 +60,16 @@ export class BidCreateComponent implements OnInit {
   private growers: Grower[];
 
   constructor(
-    private bidService: BidService,
-    private growerService: GrowerService,
-    private logger: Logger,
-    private config: Config,
-    private router: Router,
-    private navBarService: NavBarService) {}
+      private bidService: BidService,
+      private growerService: GrowerService,
+      private logger: Logger,
+      private config: Config,
+      private router: Router,
+      private navBarService: NavBarService,
+      public modal: Modal,
+      public viewContainer: ViewContainerRef) {
+        modal.defaultViewContainer = viewContainer;
+      }
 
   public ngOnInit() {
 
@@ -91,10 +98,43 @@ export class BidCreateComponent implements OnInit {
 
   /* NOTE: Called in .html file. */
   protected save() {
-    this.bid.growerIds
-        = this.growers
-            .filter(grower => grower.selected)
-            .map(grower => grower.growerId);
+    let bidsString: string = 'BID DETAILS: ';
+    bidsString = bidsString + '<br/>' +
+    'Variety: ' + this.bid.almondVariety + ' - ' +
+    'Price: ' + this.bid.pricePerPound + ' - ' +
+    'Pounds: ' + this.bid.almondPounds + ' - ' +
+    'Size: ' + this.bid.almondSize;
+
+    let selectedGrowers = this.growers.filter(grower => grower.selected);
+
+    let growersString: string = 'TO: ';
+    for (let grower of selectedGrowers) {
+        growersString = growersString + '<br/>' +
+            grower.firstName + ' ' + grower.lastName + ' ';
+      }
+
+    let confirmMsg: string = bidsString + '<br/>' + '<br/>' + growersString;
+
+    this.modal.confirm()
+    .size('lg')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm Bid to be Sent')
+    .body(confirmMsg)
+    .okBtn('Send Bid')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.sendConfirmed();
+          })
+          .catch(canceled => {
+            this.logger.alert('Sending has been canceled. Bid not sent.');
+          });
+    });
+  }
+
+  protected sendConfirmed() {
 
     this.bid.startPaymentMonth = 'January';
     this.bid.startPaymentYear = '2018';
