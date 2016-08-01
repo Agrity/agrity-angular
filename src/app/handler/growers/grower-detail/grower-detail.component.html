@@ -1,0 +1,52 @@
+<!-- Profile Pic and Cover Photo
+====================================================-->
+<section class="picSection">
+	<div class="resizeImage">
+		<img src="assets/img/farmer3.jpg" onError="this.onerror=null;this.src='images/profile-icon.jpg';">
+	</div>
+		<h1>{{ grower?.firstName }} {{ grower?.lastName }}</h1>
+
+</section>
+
+<!-- Profile section
+================================================== -->
+<section id="testimonial" class="parallax-section">
+			<table>
+				<tr>
+					<td><h8><u>Phone Number</u></h8></td>
+					<td><h8><u>E-Mail</u></h8></td>
+					<td><h8><u>Acreage</u></h8></td>
+					<td><h8><u>Almond Varieties</u></h8></td>
+				</tr>
+				<tr>
+          <td><b><h7>{{ grower?.phone?.phoneOne }}-{{ grower?.phone?.phoneTwo }}-{{ grower?.phone?.phoneThree }}</h7></b></td>
+					<td><b><h7>{{ grower?.email }}</h7></b></td>
+					<td><b><h7>Under Construction</h7></b></td>
+					<td><b><h7>Under Construction</h7></b></td>
+				</tr>
+			</table>
+
+			<div class="Bio">
+        <h2>Bids to {{grower?.firstName}}</h2>
+        <table class="pure-table pure-table-horizontal" style="width:100%">
+          <thead>
+            <tr>
+                <th>Bid Id</th>
+                <th>Almond Variety</th>
+                <th>Size</th>
+                <th>Market Price</th>
+                <th>Pounds</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bid of bids" (click)="viewBid(bid.bidId)">
+              <td><p1> {{ bid.bidId }} </p1></td>
+              <td><p1> {{ bid.almondVariety }}</p1></td>
+              <td><p1> {{ bid.almondSize }} </p1></td>
+              <td><p1> {{ bid.pricePerPound }} </p1></td>
+              <td><p1> {{ bid.almondPounds }} </p1></td>
+            </tr>
+          </tbody>
+        </table>
+			</div>
+</section>
