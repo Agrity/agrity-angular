@@ -41,11 +41,11 @@
             <tr class="hover-click" *ngFor="let bid of bids">
           <tbody>
             <tr *ngFor="let bid of bids" (click)="viewBid(bid.bidId)">
-              <td><p1> {{ bid.bidId }} </p1></td>
-              <td><p1> {{ bid.almondVariety }}</p1></td>
-              <td><p1> {{ bid.almondSize }} </p1></td>
-              <td><p1> {{ bid.pricePerPound }} </p1></td>
-              <td><p1> {{ bid.almondPounds }} </p1></td>
+              <td><p1> {{ bid?.bidId }} </p1></td>
+              <td><p1> {{ bid?.almondVariety }}</p1></td>
+              <td><p1> {{ bid?.almondSize }} </p1></td>
+              <td><p1> {{ bid?.pricePerPound }} </p1></td>
+              <td><p1> {{ bid?.almondPounds }} </p1></td>
             </tr>
           </tbody>
         </table>
