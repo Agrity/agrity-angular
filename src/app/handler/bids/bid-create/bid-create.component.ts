@@ -101,7 +101,7 @@ export class BidCreateComponent implements OnInit {
     let bidsString: string = 'BID DETAILS: ';
     bidsString = bidsString + '<br/>' +
     'Variety: ' + this.bid.almondVariety + '<br/>' +
-    'Price: ' + this.bid.pricePerPound + '<br/>' +
+    'Price Per Pound: $' + this.bid.pricePerPound + '<br/>' +
     'Pounds: ' + this.bid.almondPounds + '<br/>' +
     'Size: ' + this.bid.almondSize + '<br/>' +
     'Time to Respond: ' + this.bid.managementTypeDelay + ' HOURS';

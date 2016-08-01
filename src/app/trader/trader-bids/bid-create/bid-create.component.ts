@@ -155,7 +155,7 @@ export class TraderBidCreateComponent implements OnInit {
     for (let bid of this.traderBids) {
       bidsString = bidsString + '<br/>' +
       'Variety: ' + bid.almondVariety + ' - ' +
-      'Price: ' + bid.pricePerPound + ' - ' +
+      'Price Per Pound: $' + bid.pricePerPound + ' - ' +
       'Pounds: ' + bid.almondPounds + ' - ' +
       'Size: ' + bid.almondSize;
     }
@@ -169,7 +169,7 @@ export class TraderBidCreateComponent implements OnInit {
     }
 
     let confirmMsg: string = bidsString + '<br/>' +
-        '<br/>' + 'Time To Respond: ' + this.delay + ' HOURS' '<br/>' + '<br/>' +
+        '<br/>' + 'TIME TO RESPOND: ' + this.delay + ' HOURS' + '<br/>' +
         '<br/>' + handlersString;
 
     this.modal.confirm()
