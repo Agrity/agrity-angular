@@ -98,7 +98,7 @@ export class TraderBidCreateComponent implements OnInit {
   /* NOTE: Called in .html file. */
   protected addBid() {
     if (this.aol) {
-      this.traderBid.almondSize.concat(' AOL');
+      this.traderBid.almondSize += ' AOL';
       this.aol = false;
     }
     this.traderBids.push(this.traderBid);

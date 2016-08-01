@@ -16,7 +16,7 @@
     <div class="lineup">
       <h1 class="spacetop center"> OPEN BIDS
 
-			<a routerLink="/new-traderbid" routerLinkActive="active" style="border:none; background:none; padding:none;" type="button">
+			<a routerLink="/new-trader-bid" routerLinkActive="active" style="border:none; background:none; padding:none;" type="button">
         <div class="cssCircle plusSign">
 			  &#43;
         </div>
@@ -33,6 +33,7 @@
             <!--TO Design Man: These are all the properties
                 so you can pick which you want to display
                 in the sidebar.-->
+            <td><p1>{{ bid?.bidId }}</p1></td>
             <td><p1>{{ bid?.almondVariety }}</p1></td>
             <td><p1>{{ bid?.pricePerPound }}</p1></td>
             <!--countDownString is a countdown string that
@@ -54,7 +55,8 @@
         <table style="border-top:1px solid #1f1f1f">
           <tbody>
          <tr (click)="selectBid(bid)">
-            <td style="float:left"><p2>{{ bid?.almondVariety }}</p2></td>
+
+            <td style="float:left"><p2> {{ bid?.almondVariety }}</p2></td>
 
             <td style="padding-left:30px; float:right;"><p2>{{ bid?.pricePerPound }}</p2></td>
 
