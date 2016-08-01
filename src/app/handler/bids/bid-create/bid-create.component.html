@@ -18,7 +18,8 @@
                             <select type="text" 
                                     [(ngModel)]="bid.almondVariety" 
                                     ngControl="almondVariety" class="form-control" 
-                                    name="almond variety" id="almond variety" required>
+                                    name="almond variety" id="almond variety" 
+                                    style="width:35%;" required>
                                 <option style="color:#959595" [value]="almondVariety" disabled selected hidden> Select Almond Variety </option>
                                 <option *ngFor="let variety of varieties"
                                     [value]="variety"> {{variety}}
@@ -28,21 +29,18 @@
                             <select [(ngModel)]="bid.almondSize" 
                                     ngControl="almondSize" 
                                     type="text" class="form-control" 
-                                    name="size" id="size" required>
+                                    name="size" id="size" 
+                                    style="width:31%;" required>
                                 <option style="color:#959595" [value]="almondSize" disabled selected hidden> Select Size </option>
                                <option *ngFor="let size of sizes"
                                     [value]="size"> {{size}}
                                 </option>
                              </select>
-                        </div>
-
-                        <!--<div id="aol-checkbox" style="width:20%; float:right; color:#444444; vertical-align:middle; padding:35px 0 0 15px;">
-
-                        <!--<div id="aol-checkbox" style="width:20%; float:right; color:white; vertical-align:middle; padding:15px 0 0 15px;">
-
-                          <input type="checkbox" [(ngModel)]="aol" autocomplete="off" name="aol">
+<div style="margin-top:10px;">
+                          <input type="checkbox" [(ngModel)]="aol" autocomplete="off" name="aol"> 
                           AOL
-                        </div>-->
+</div>
+                        </div>
 
                         <div class="form-group center">
                             <input [(ngModel)]="bid.pricePerPound" 
