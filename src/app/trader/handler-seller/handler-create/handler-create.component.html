@@ -12,6 +12,7 @@
           <input type="text" class="form-control center" required
               [(ngModel)]="handlerSeller.firstName"
               ngControl="firstName"
+              autocomplete="off"
               name="first name"
               placeholder="First Name">
         </div>
@@ -20,6 +21,7 @@
           <input type="text" class="form-control" required
               [(ngModel)]="handlerSeller.lastName"
               ngControl="lastName"
+              autocomplete="off"
               name="last name"
               placeholder="Last Name">
         </div>
@@ -28,6 +30,7 @@
           <input type="text" class="form-control" required
               [(ngModel)]="handlerSeller.companyName"
               ngControl="companyName"
+              autocomplete="off"
               name="company name"
               placeholder="Company Name">
         </div>
@@ -36,6 +39,7 @@
           <input type="email" class="form-control" required
               [(ngModel)]="handlerSeller.email"
               ngControl="email"
+              autocomplete="off"
               name="email"
               placeholder="Email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
@@ -48,18 +52,21 @@
           <input type="text" class="form-control" required
               [(ngModel)]="handlerSeller.phone.phoneOne"
               ngControl="phoneOne"
+              autocomplete="off"
               name="phone one" pattern="\d{3}"
               placeholder="(xxx)">
 
           <input type="text" class="form-control" required
               [(ngModel)]="handlerSeller.phone.phoneTwo"
               ngControl="phoneTwo"
+              autocomplete="off"
               name="phone two" pattern="\d{3}"
               placeholder="(xxx)">
 
           <input type="text" class="form-control" required
               [(ngModel)]="handlerSeller.phone.phoneThree"
               ngControl="phoneThree"
+              autocomplete="off"
               name="phone three" pattern="\d{4}"
               placeholder="(xxxx)">
 
