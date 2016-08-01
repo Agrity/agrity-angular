@@ -162,7 +162,9 @@ export class TraderBidCreateComponent implements OnInit {
 
     let handlersString: string = 'TO: ';
     for (let handler of this.handlerSellers) {
-      handlersString = handlersString + "<br/>" + handler.firstName + ' ' + handler.lastName + ' ';
+      if (handler.selected) {
+        handlersString = handlersString + "<br/>" + handler.firstName + ' ' + handler.lastName + ' ';
+      }
     }
 
     let confirmMsg: string = bidsString + "<br/>" + "<br/>" + handlersString;
@@ -185,7 +187,7 @@ export class TraderBidCreateComponent implements OnInit {
               bid.handlerSellerIds = [];
             }
             this.handlersSelected = false;
-            this.logger.alert('Send bids canceled. Bids not sent.')
+            this.logger.alert('Sending has been canceled. Bids not sent.')
           });
     });
   }
