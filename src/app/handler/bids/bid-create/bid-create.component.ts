@@ -99,6 +99,11 @@ export class BidCreateComponent implements OnInit {
   /* NOTE: Called in .html file. */
   protected save() {
     let selectedGrowers = this.growers.filter(grower => grower.selected);
+    this.bid.growerIds = [];
+
+    if (this.aol) {
+      this.bid.almondSize = this.bid.almondSize.concat(' AOL');
+    }
 
     if (selectedGrowers.length === 0) {
       this.logger.alert('Please select which growers you would like to send your bid to.');
@@ -115,6 +120,7 @@ export class BidCreateComponent implements OnInit {
 
     let growersString: string = 'TO: ';
     for (let grower of selectedGrowers) {
+        this.bid.growerIds.push(grower.growerId);
         growersString = growersString + '<br/>' +
             grower.firstName + ' ' + grower.lastName + ' ';
       }
@@ -152,10 +158,6 @@ export class BidCreateComponent implements OnInit {
 
     let temp2 = this.bid.endPaymentMonth.concat(space);
     this.bid.endPaymentDate = temp2.concat(this.bid.endPaymentYear);
-
-    if (this.aol) {
-      this.bid.almondSize = this.bid.almondSize.concat(' AOL');
-    }
 
     this.bid.managementType = 'FCFSService';
 
