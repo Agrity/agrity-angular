@@ -153,7 +153,7 @@ export class TraderBidCreateComponent implements OnInit {
 
     let bidsString: string = 'BIDS: ';
     for (let bid of this.traderBids) {
-      bidsString = bidsString + '\n' +
+      bidsString = bidsString + "<br/>" +
       'Variety: ' + bid.almondVariety + ' ' +
       'Price: ' + bid.pricePerPound + ' ' +
       'Pounds: ' + bid.almondPounds + ' ' +
@@ -162,14 +162,32 @@ export class TraderBidCreateComponent implements OnInit {
 
     let handlersString: string = 'TO: ';
     for (let handler of this.handlerSellers) {
-      handlersString = handlersString + '\n' + handler.firstName + ' ' + handler.lastName + ' ';
+      handlersString = handlersString + "<br/>" + handler.firstName + ' ' + handler.lastName + ' ';
     }
 
-    let confirmMsg: string = 'WOULD YOU LIKE TO SEND?: ' + '\n' + bidsString + '\n' + '\n' + handlersString;
+    let confirmMsg: string = bidsString + "<br/>" + "<br/>" + handlersString;
 
-    let confirmed: boolean = confirm(confirmMsg);
+    this.modal.confirm()
+    .size('lg')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm Bids to be Sent')
+    .body(confirmMsg)
+    .okBtn('Send Bids')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.sendConfirmedBids();
+          })
+          .catch(canceled => {
+            this.handlersSelected = false;
+            this.logger.alert('Send bids canceled. Bids not sent.')
+          });
+    });
+  }
 
-    if (confirmed === true) {
+  protected sendConfirmedBids() {
           this.traderBidService.createTraderBids(this.traderBids)
               .subscribe(
               bid => {
@@ -189,8 +207,5 @@ export class TraderBidCreateComponent implements OnInit {
                   this.router.navigateByUrl('/trader-bids');
                 }
               });
-    } else {
-      this.handlersSelected = false;
-    }
   }
 }

@@ -27,7 +27,7 @@ export class Logger {
 
   public alert(message: string) {
     if (this.modalEmitter) {
-      this.modalEmitter.emit('Alert: ' + message);
+      this.modalEmitter.emit(message);
     }
   }
 
