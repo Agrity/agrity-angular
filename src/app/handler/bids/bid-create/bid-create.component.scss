@@ -22,16 +22,37 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #contact .form-control {
-	background:white;
-	color:black;
-	border-radius: 5px;
+	background-color:#ffffff;
+  width: 35%;
+  color: #000000;
+	border-top-color: #959595;
+	border-bottom-color: #959595;
+	border-right-color: #959595;
+  margin-right: 10px;
+}
+
+.form-control {
+	&::-moz-placeholder {
+		color: #959595;
+		opacity: 1;
+	}
+	&:-ms-input-placeholder {
+		color: #959595;
+	}
+	&::-webkit-input-placeholder {
+		color: #959595;
+	}
 }
 
 #contact .contact-detail {
 	background:white;
 	color:black;
-	border-radius: 5px;
-}
+  }
+
+#contact .contact-detail {
+	background:white;
+	color:black;
+  }
 
 button {
   background: #000000;
@@ -49,3 +70,44 @@ button {
     background: #ffa400;
   }
 }
+
+.hover-red {
+  &:hover {
+    background: #a70000;
+  }
+}
+
+	select[type="text"] {
+		padding:10px;
+		height:42px;
+		-webkit-appearance: none;
+		-webkit-border-radius: 0px;
+		color: #959595;
+	}
+
+  .center {
+    justify-content: center;
+    align-content: center;
+    display: flex;
+  }
+
+  label {
+    color:#444444;
+  }
+
+  .grower-box {
+    width: 50%;
+    min-height: 200px;
+    max-height: 2000px;
+    border:1px solid #ffa400;
+    background-color: white;
+    margin-bottom: 20px;
+    padding:30px;
+  }
+
+  .center-growers {
+    align-content: center;
+    justify-content:center;
+    padding-top:20px;
+    margin: 15px;
+  }
