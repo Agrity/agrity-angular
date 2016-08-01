@@ -98,6 +98,13 @@ export class BidCreateComponent implements OnInit {
 
   /* NOTE: Called in .html file. */
   protected save() {
+    let selectedGrowers = this.growers.filter(grower => grower.selected);
+
+    if (selectedGrowers.length === 0) {
+      this.logger.alert('Please select which growers you would like to send your bid to.');
+      return;
+    }
+
     let bidsString: string = 'BID DETAILS: ';
     bidsString = bidsString + '<br/>' +
     'Variety: ' + this.bid.almondVariety + '<br/>' +
@@ -105,8 +112,6 @@ export class BidCreateComponent implements OnInit {
     'Pounds: ' + this.bid.almondPounds + '<br/>' +
     'Size: ' + this.bid.almondSize + '<br/>' +
     'Time to Respond: ' + this.bid.managementTypeDelay + ' HOURS';
-
-    let selectedGrowers = this.growers.filter(grower => grower.selected);
 
     let growersString: string = 'TO: ';
     for (let grower of selectedGrowers) {
