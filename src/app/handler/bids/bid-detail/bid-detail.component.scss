@@ -15,6 +15,9 @@
 
   button {
     margin-bottom:10px; 
+    border: 1px solid #ffa400;
+    border-radius: 8px;
+    background-color: white;
     width:90%; 
     height:50px; 
     font-size:1.5em; 
@@ -28,4 +31,8 @@
     background-color: #5bc0de;
     border-color: #46b8da;
     text-align:left; 
+  }
+
+  p {
+    color: #444444;
   }

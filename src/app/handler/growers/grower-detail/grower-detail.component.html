@@ -1,5 +1,3 @@
-<!-- Profile Pic and Cover Photo
-====================================================-->
 <section class="picSection">
 	<div class="resizeImage">
 		<img src="assets/img/farmer3.jpg" onError="this.onerror=null;this.src='images/profile-icon.jpg';">
@@ -8,21 +6,20 @@
 
 </section>
 
-<!-- Profile section
-================================================== -->
+
 <section id="testimonial" class="parallax-section">
-			<table>
+			<table class="center">
 				<tr>
 					<td><h8><u>Phone Number</u></h8></td>
 					<td><h8><u>E-Mail</u></h8></td>
-					<td><h8><u>Acreage</u></h8></td>
-					<td><h8><u>Almond Varieties</u></h8></td>
+          <td><h8><u>Acreage</u></h8></td>
+          <td><h8><u>Almond Varieties</u></h8></td>
 				</tr>
 				<tr>
-          <td><b><h7>{{ grower?.phone?.phoneOne }}-{{ grower?.phone?.phoneTwo }}-{{ grower?.phone?.phoneThree }}</h7></b></td>
+          <td><b><h7>({{ grower?.phone?.phoneOne }}) {{ grower?.phone?.phoneTwo }}-{{ grower?.phone?.phoneThree }}</h7></b></td>
 					<td><b><h7>{{ grower?.email }}</h7></b></td>
-					<td><b><h7>Under Construction</h7></b></td>
-					<td><b><h7>Under Construction</h7></b></td>
+          <td><b><h7>-- Under Construction --</h7></b></td>
+          <td><b><h7>-- Under Construction --</h7></b></td>
 				</tr>
 			</table>
 
@@ -36,8 +33,12 @@
                 <th>Size</th>
                 <th>Market Price</th>
                 <th>Pounds</th>
+                <th>Payment Date</th>
             </tr>
           </thead>
+
+          <tbody (click)="viewBid(bid.bidId)">
+            <tr class="hover-click" *ngFor="let bid of bids">
           <tbody>
             <tr *ngFor="let bid of bids" (click)="viewBid(bid.bidId)">
               <td><p1> {{ bid.bidId }} </p1></td>
@@ -45,6 +46,7 @@
               <td><p1> {{ bid.almondSize }} </p1></td>
               <td><p1> {{ bid.pricePerPound }} </p1></td>
               <td><p1> {{ bid.almondPounds }} </p1></td>
+              <td><p1> {{ bid?.countDownString }} </p1></td>
             </tr>
           </tbody>
         </table>
