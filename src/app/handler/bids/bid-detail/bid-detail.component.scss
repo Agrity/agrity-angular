@@ -1,38 +1,111 @@
-  body {
-    background-image:url("assets/img/viewbidpic.jpg");
-    background-repeat:no-repeat;
-    background-attachment: fixed;
+.details {
+    float:right;
+    width:70%
+}
+
+.spacetop {
+    padding-top:50px;
+}
+
+.commentbox {
+    padding: 10px 0px 10px 0px;
+}
+
+h1 {
+    font-size: 25px;
+    color: #565656;
+    text-shadow: none;
+}
+
+p {
+	font-size: 16px;
+	letter-spacing: 0.9px;
+	line-height: 32px;
+    color: #000000;
+    cursor: pointer;
+}
+
+comment {
+	font-size: 12px;
+	letter-spacing: 0.9px;
+	line-height: 20px;
+    color: #000000;
+}
+
+.details {
+    background-color:#efefef;
     width:100%;
     height:100%;
-    background-size:cover;
-  }
+    padding-bottom:30px;
+}
 
-  footer {
-    padding-top:80px;
-    background-color:white;
-    background-size:100% 100%;
-  }
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-  button {
-    margin-bottom:10px; 
-    border: 1px solid #ffa400;
+.listbidbutton {
+	width: 80%;
+	height: 80px;
+	font-size: 1em;
+  color:#000000;
+	text-align: left;
+	background-color: #ffffff;
+	border-radius: 6px;
+	border: 1px solid #ffa400;
+}
+
+.center-responses {
+	align-items: top;
+	justify-content: top;
+  display:flex;
+}
+
+.accepted {
+    background-color:rgba(61,184,55,0.30);
+    width: 30%;
+    height: auto;
     border-radius: 8px;
-    background-color: white;
-    width:90%; 
-    height:50px; 
-    font-size:1.5em; 
-    text-align:left; 
-    padding-bottom:10px;
+    padding:5px;
+    margin:5px;
+}
+
+
+.rejected {
+    background-color:rgba(184,79,55,0.30);
+    width: 30%;
+    height: auto;
+    border-radius: 8px;
+    padding:5px;
+    margin:5px;
+}
+
+.pending {
+    background-color:rgba(55,134,184,0.30);
+    width: 30%;
+    height: auto;
+    border-radius: 8px;
+    padding:5px;
+    margin:5px;
+}
+
+li {
+    padding-left:10px;
+}
+
+.comment-back {
+    background-color: #ffffff;
+    border: 1px solid #979797;
+    width: 80%;
+    height: auto;
+}
+
+.comment-button {
+    background-color: #ffffff;
+    border: 1px solid #979797;
     height:auto;
-  }
+    width: 70%;
+}
 
-  .grower-catagory{
-    color: white;
-    background-color: #5bc0de;
-    border-color: #46b8da;
-    text-align:left; 
-  }
 
-  p {
-    color: #444444;
-  }

@@ -1,4 +1,4 @@
-<div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.9s" style="background-color: #efefef; background-size:cover; padding:80px 0 160px 0;">
+<!--<div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.9s" style="background-color: #efefef; background-size:cover; padding:80px 0 160px 0;">
     <center><h2>BID DETAILS</h2></center>
 <div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s" style="padding-left:10px; width:50%; background-color: rgba(255,164,0,.25)">
 	  <div class="contact-detail">
@@ -57,4 +57,95 @@
 
 				</div>
 			  </div>
+</div>-->
+
+
+
+
+
+
+<div class="details">
+
+    <!--TO Design Man: I explained some things in the sidebar html.
+        probably best to start by go through that one real quick before you
+        start styling-->
+
+    <div id="bid-info">
+
+    <h1 class="center spacetop"> BID DETAILS </h1>
+
+    		<div class="wow fadeInDown center" data-wow-delay="0.6s">
+			  <button type="button" class="listbidbutton center">
+			  	<table id="buttonCols" style="width:100%">
+				<tr>
+            <td class="offerButton"><p>
+              ID: {{ bid.bidId }}</p></td>
+			  		<td class="offerButton"><p>
+              {{ bid.almondVariety }}</p></td>
+			  		<td class="offerButton"><p>
+              {{ bid.pricePerPound }}</p></td>
+			  		<td class="offerButton"><p>
+              {{ bid.almondPounds | number }}</p></td>
+            <td class="offerButton"><p>
+              {{ bid.almondSize }}</p></td>
+			  		<td class="offerButton"><p>
+              {{ bid?.countDownString }}</p></td>
+			  	</tr>
+				  <!--<tr>{{ bid.comment }}</tr>-->
+				</table>
+			  	</button>
+       </div>
+
+        <div class="wow fadeInDown center commentbox" data-wow-delay="0.6s">
+
+         <button type="button" class="comment-button center">
+         <table>
+           <tr>
+             <td style="padding: 15px 20px 15px 20px;"><img src="assets/img/comment-icon.png"/></td>
+             <td>
+                <comment>
+                  {{ bid.comment }}
+                </comment>
+             </td>
+           </tr>
+         </table>
+         </button>
+
+        </div>
+       <!--</div>-->
+
+
+    <div class="center-responses" id="handler-responses">
+
+      <div class="col-md-4 accepted" id="accepted-handlers">
+        <h1 style="color:#2E9566" class="center">ACCEPTED</h1>
+          <li
+            *ngFor="let grower of bid?.acceptedGrower"
+            type="button"
+            (click)="viewGrower(grower.growerId)">
+            <p>{{ grower.firstName }} {{ grower.lastName }}</p>
+            <p>Pounds Accepted: {{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} </p>
+          </li>
+      </div>
+
+      <div class="col-md-4 rejected" id="rejected-handlers">
+        <h1 style="color:#9F1B17" class="center">REJECTED</h1>
+          <li *ngFor="let grower of bid?.rejectedGrowers"
+                type="button"
+                (click)="viewGrower(grower.growerId)">
+                <p>{{ grower.firstName }} {{ grower.lastName }}</p>
+          </li>
+      </div>
+
+      <div class="col-md-4 pending" id="no-response-handlers">
+        <h1 style="color:#419ed2" class="center">PENDING</h1>
+          <li
+            *ngFor="let grower of bid?.noResponseGrowers"
+            type="button"
+            (click)="viewGrower(grower.growerId)">
+            <p>{{ grower.firstName }} {{ grower.lastName }}</p>
+          </li>
+      </div>
+  </div>
+</div>
 </div>
