@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Config, Logger } from '../../../../shared/index';
 
@@ -27,13 +27,16 @@ import 'rxjs/add/observable/interval';
       'app/trader/handler-seller/view-handlers/' // 2 Line URL
       + 'view-handlers-details/view-handlers-details.component.html',
 })
-export class ViewHandlersDetailsComponent implements OnDestroy {
+export class ViewHandlersDetailsComponent implements OnInit, OnDestroy {
 
   private recievedSelectedHandler: HandlerSeller;
   private traderBids: TraderBid[];
   private openTraderBids: TraderBid[];
   private closedTraderBids: TraderBid[];
   private counters: Subscription[] = [];
+  private utcOnInit: Date;
+  private timezoneOffset: number;
+
 
   constructor(
       private traderBidService: TraderBidService,
@@ -41,6 +44,11 @@ export class ViewHandlersDetailsComponent implements OnDestroy {
       private config: Config,
       private router: Router
       ) {
+  }
+
+  public ngOnInit() {
+    this.utcOnInit = new Date();
+    this.timezoneOffset = this.utcOnInit.getTimezoneOffset() / 60;
   }
 
   public ngOnDestroy() {
@@ -76,8 +84,10 @@ export class ViewHandlersDetailsComponent implements OnDestroy {
     let counter = Observable.interval(1000)
         .map(
           res => {
+            let currentTime = new Date();
+            currentTime.setHours(currentTime.getHours() - this.timezoneOffset);
             bid.timeToExpire = Math.floor((bid.expirationTime.getTime()
-                                    - new Date().getTime()) / 1000);
+                                    - currentTime.getTime()) / 1000);
             }).subscribe(
               res => {
                 TraderBid.updateCountDownString(bid);
