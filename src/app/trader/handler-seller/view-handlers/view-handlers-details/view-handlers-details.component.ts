@@ -37,7 +37,6 @@ export class ViewHandlersDetailsComponent implements OnInit, OnDestroy {
   private utcOnInit: Date;
   private timezoneOffset: number;
 
-
   constructor(
       private traderBidService: TraderBidService,
       private logger: Logger,
