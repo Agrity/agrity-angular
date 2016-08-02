@@ -35,7 +35,7 @@
 			  		<td class="offerButton"><p>
               {{ recievedSelectedBid?.pricePerPound }}</p></td>
 			  		<td class="offerButton"><p>
-              {{ recievedSelectedBid?.almondPounds }}</p></td>
+              {{ recievedSelectedBid?.almondPounds | number }}</p></td>
             <td class="offerButton"><p>
               {{ recievedSelectedBid?.almondSize }}</p></td>
 			  		<td class="offerButton"><p>
@@ -77,7 +77,7 @@
                 <!--{{ handler?.firstName }}
                 {{ handler?.lastName }}
                 {{ handler?.email }} -->
-                {{ handler?.companyName }} ({{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted}} lbs)
+                {{ handler?.companyName }} ({{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} lbs)
                 <!--{{ handler?.phone.getAsString()}}-->
             </p>
           </li>

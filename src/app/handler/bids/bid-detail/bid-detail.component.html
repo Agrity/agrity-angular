@@ -5,7 +5,7 @@
 					<center><div>
               <p><strong>ID: </strong>{{ bid.bidId }} </p>
 							<p><strong>Almond Variety: </strong>{{ bid.almondVariety }}</p>
-              <p><strong>Initial Almond Pounds: </strong>{{ bid.almondPounds }}</p>
+              <p><strong>Initial Almond Pounds: </strong>{{ bid.almondPounds | number }}</p>
               <p><strong>Market Price Per Pound: </strong>{{ bid.pricePerPound }}</p>
               <p><strong>Time Until Expired: </strong>{{ bid?.countDownString }}</p>
               <p *ngIf="bid.comment"><strong>Comment: </strong>&nbsp; {{ bid.comment }} </p>
@@ -21,7 +21,7 @@
                 <button *ngFor="let grower of bid?.acceptedGrowers" type="button" (click)="viewGrower(grower.growerId)" data-toggle="sgCollapse">
                   <li>
                     <p> {{ grower.firstName }} {{ grower.lastName }}</p>
-                    <p> Pounds Accepted: {{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted}} </p>
+                    <p> Pounds Accepted: {{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} </p>
                   </li>
                 </button>
               </div>
