@@ -1,74 +1,4 @@
-<!--<div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.9s" style="background-color: #efefef; background-size:cover; padding:80px 0 160px 0;">
-    <center><h2>BID DETAILS</h2></center>
-<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s" style="padding-left:10px; width:50%; background-color: rgba(255,164,0,.25)">
-	  <div class="contact-detail">
-					<center><div>
-              <p><strong>ID: </strong>{{ bid?.bidId }} </p>
-              <p><strong>Date Created: </strong>{{ bid?.dateCreated | date:"MM/dd/yy" }}</p>
-							<p><strong>Almond Variety: </strong>{{ bid?.almondVariety }}</p>
-              <p><strong>Initial Almond Pounds: </strong>{{ bid?.almondPounds | number }}</p>
-              <p><strong>Pounds Remaining: </strong>{{ bid?.poundsRemaining | number }}</p>
-              <p><strong>Market Price Per Pound: </strong>{{ bid?.pricePerPound }}</p>
-              <p><strong>Time Until Expired: </strong>{{ bid?.countDownString }}</p>
-              <p *ngIf="bid.comment"><strong>Comment: </strong>&nbsp; {{ bid?.comment }} </p>
-						</div></center>
-				</div>
-			</div>
-
-      	<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
-				<div class="contact-detail">
-
-              <div>
-                <p class="grower-catagory-name">  Accepted Growers </p>
-                <button *ngFor="let grower of bid?.acceptedGrowers" type="button" (click)="viewGrower(grower.growerId)" data-toggle="sgCollapse">
-                  <li>
-                    <p> {{ grower?.firstName }} {{ grower?.lastName }}</p>
-                    <p> Pounds Accepted: {{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} </p>
-                  </li>
-                </button>
-              </div>
-
-              <div>
-                <p class="grower-catagory-name">  Call Requested Growers </p>
-                <button *ngFor="let grower of bid?.callRequestedGrowers" type="button" (click)="viewGrower(grower.growerId)" data-toggle="sgCollapse">
-                  <li >
-                    <p >{{ grower?.firstName }} {{ grower?.lastName }}</p>
-                  </li>
-                </button>
-              </div>
-
-              <div>
-                <p class="grower-catagory-name">  Rejected Growers </p>
-                <button *ngFor="let grower of bid?.rejectedGrowers" type="button" (click)="viewGrower(grower.growerId)" data-toggle="sgCollapse">
-                  <li>
-                    <p >{{ grower?.firstName }} {{ grower?.lastName }}</p>
-                  </li>
-                </button>
-              </div>
-
-              <div>
-                <p class="grower-catagory-name">  No Response Growers </p>
-                <button *ngFor="let grower of bid?.noResponseGrowers" type="button" (click)="viewGrower(grower.growerId)" data-toggle="sgCollapse">
-                  <li>
-                    <p >{{ grower?.firstName }} {{ grower?.lastName }}</p>
-                  </li>
-                </button>
-              </div>
-
-				</div>
-			  </div>
-</div>-->
-
-
-
-
-
-
 <div class="details">
-
-    <!--TO Design Man: I explained some things in the sidebar html.
-        probably best to start by go through that one real quick before you
-        start styling-->
 
     <div id="bid-info">
 
@@ -91,7 +21,6 @@
 			  		<td class="offerButton"><p>
               {{ bid?.countDownString }}</p></td>
 			  	</tr>
-				  <!--<tr>{{ bid.comment }}</tr>-->
 				</table>
 			  	</button>
        </div>
@@ -112,8 +41,6 @@
          </button>
 
         </div>
-       <!--</div>-->
-
 
     <div class="center-responses" id="handler-responses">
 
