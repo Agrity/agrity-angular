@@ -33,6 +33,8 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
   private counters: Subscription[];
 
   private sub: Subscription;
+  private utcOnInit: Date;
+  private timezoneOffset: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,6 +58,9 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl('/handler-home');
       return;
     }
+
+    this.utcOnInit = new Date();
+    this.timezoneOffset = this.utcOnInit.getTimezoneOffset() / 60;
 
     this.sub = this.route.params
         .subscribe(params => {
@@ -117,8 +122,10 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
     let counter = Observable.interval(1000)
         .map(
           res => {
+            let currentTime = new Date();
+            currentTime.setHours(currentTime.getHours() - this.timezoneOffset);
             bid.timeToExpire = Math.floor((bid.expirationTime.getTime()
-                                    - new Date().getTime()) / 1000);
+                                    - currentTime.getTime()) / 1000);
             }).subscribe(
               res => {
                 TraderBid.updateCountDownString(bid);
