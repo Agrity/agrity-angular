@@ -29,6 +29,7 @@
                 <th>Size</th>
                 <th>Market Price</th>
                 <th>Pounds</th>
+                <th>Date Created</th>
 
             </tr>
           </thead>
@@ -40,6 +41,7 @@
               <td><p1> {{ bid?.almondSize }} </p1></td>
               <td><p1> {{ bid?.pricePerPound }} </p1></td>
               <td><p1> {{ bid?.almondPounds | number }} </p1></td>
+              <td><p1> {{ bid?.dateCreated | date:"MM/dd/yy"  }} </p1></td>
             </tr>
           </tbody>
         </table>

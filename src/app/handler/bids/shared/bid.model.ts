@@ -30,6 +30,8 @@ export class Bid {
     bid.endPaymentDate = bidJson['endPaymentDateAsString'];
     bid.comment = bidJson['comment'];
 
+    bid.poundsRemaining = bidJson['poundsRemaining'];
+
     let bidStatus: string = bidJson['bidStatus'];
 
     switch (bidStatus) {
@@ -58,6 +60,7 @@ export class Bid {
     bid.rejectedGrowers = this.decodeBidRejectGrowers(bidJson);
     bid.callRequestedGrowers = this.decodeBidCallRequestedGrowers(bidJson);
     bid.expirationTime = new Date(bidJson['expirationTimeAsString']);
+    bid.dateCreated = new Date(bidJson['createdAtAsString']);
     bid.noResponseGrowers = this.decodeBidNoResponseGrowers(bidJson);
 
     bid.bidResponses = this.decodeBidResponses(bidJson['bidResponses']);
@@ -181,6 +184,8 @@ export class Bid {
   public endPaymentDate: string;
   public comment: string;
 
+  public poundsRemaining: number;
+
   public managementType: string;
   public managementTypeDelay: number;
 
@@ -192,6 +197,7 @@ export class Bid {
   public noResponseGrowers: Grower[];
 
   public expirationTime: Date;
+  public dateCreated: Date;
 
   public currentlyOpen: boolean;
   public bidStatus: BidStatus;
