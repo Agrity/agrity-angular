@@ -12,14 +12,10 @@
 				<tr>
 					<td><h8><u>Phone Number</u></h8></td>
 					<td><h8><u>E-Mail</u></h8></td>
-          <td><h8><u>Acreage</u></h8></td>
-          <td><h8><u>Almond Varieties</u></h8></td>
 				</tr>
 				<tr>
           <td><b><h7>({{ grower?.phone?.phoneOne }}) {{ grower?.phone?.phoneTwo }}-{{ grower?.phone?.phoneThree }}</h7></b></td>
 					<td><b><h7>{{ grower?.email }}</h7></b></td>
-          <td><b><h7>-- Under Construction --</h7></b></td>
-          <td><b><h7>-- Under Construction --</h7></b></td>
 				</tr>
 			</table>
 
@@ -43,7 +39,7 @@
               <td><p1> {{ bid?.almondVariety }}</p1></td>
               <td><p1> {{ bid?.almondSize }} </p1></td>
               <td><p1> {{ bid?.pricePerPound }} </p1></td>
-              <td><p1> {{ bid?.almondPounds }} </p1></td>
+              <td><p1> {{ bid?.almondPounds | number }} </p1></td>
             </tr>
           </tbody>
         </table>
