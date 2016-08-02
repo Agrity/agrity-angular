@@ -129,7 +129,7 @@ export class TraderBidCreateComponent implements OnInit {
 
     if (this.traderBids.length === 0) {
       this.logger.alert('Before sending make sure you add bids to your ' +
-          'bid sheet using the green plus sign on the right.');
+          'bid sheet using the plus sign on the right.');
       return;
     }
 

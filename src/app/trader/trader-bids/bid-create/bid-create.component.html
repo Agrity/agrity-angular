@@ -3,7 +3,7 @@
     <title class="center spaceunder">CREATE YOUR BID SHEET</title>
 
     <instruction class="center">
-        (CLICK ON THE GREEN PLUS BUTTON TO ADD A BID TO YOUR SHEET)
+        (CLICK ON THE PLUS BUTTON TO ADD A BID TO YOUR SHEET)
     </instruction>
 
     <div class="container">
@@ -76,9 +76,12 @@
                     type="button"
                     class="spaceover"
                     (click)="addBid()">
-             <div class="cssCircle plusSign">
+             <div *ngIf="!traderBidForm.form.valid" class="cssCircleInvalid plusSign">
 			  &#43;
-			    </div></button>
+			    </div>
+             <div *ngIf="traderBidForm.form.valid" class="cssCircleValid plusSign">
+        &#43;
+          </div></button>
             </div>
 
     </form>
