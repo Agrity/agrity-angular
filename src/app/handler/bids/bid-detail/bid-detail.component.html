@@ -29,15 +29,6 @@
               </div>
 
               <div>
-                <p class="grower-catagory-name">  Call Requested Growers </p>
-                <button *ngFor="let grower of bid?.callRequestedGrowers" type="button" (click)="viewGrower(grower.growerId)" data-toggle="sgCollapse">
-                  <li >
-                    <p >{{ grower?.firstName }} {{ grower?.lastName }}</p>
-                  </li>
-                </button>
-              </div>
-
-              <div>
                 <p class="grower-catagory-name">  Rejected Growers </p>
                 <button *ngFor="let grower of bid?.rejectedGrowers" type="button" (click)="viewGrower(grower.growerId)" data-toggle="sgCollapse">
                   <li>

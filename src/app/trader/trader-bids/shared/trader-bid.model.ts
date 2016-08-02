@@ -89,6 +89,8 @@ export class TraderBid {
 
     traderBid.expirationTime = new Date(traderBidJson['expirationTimeAsString']);
 
+    traderBid.dateCreated = new Date(traderBidJson['createdAtAsString']);
+
     traderBid.bidResponses = this.decodeBidResponses(traderBidJson['bidResponses']);
 
     return traderBid;
@@ -182,7 +184,8 @@ export class TraderBid {
   public rejectedHandlerSellers: HandlerSeller[];
   public noResponseHandlerSellers: HandlerSeller[];
 
-   public expirationTime: Date;
+  public expirationTime: Date;
+  public dateCreated: Date;
 
     // NOTE: Two extra variables to help the countdown clock.
   //       Do not send, or expect to recieve, to/from server.

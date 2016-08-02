@@ -75,7 +75,9 @@
               <td class="offerButton"><p>
                 {{ bid?.almondPounds | number }}</p></td>
               <td class="offerButton"><p>
-                {{ bid?.countDownString }}</p></td>
+                {{ bid?.dateCreated | date:"MM/dd/yy"  }}</p></td>
+              <td class="offerButton"><p>
+                {{ bid?.getBidResponse(bid, recievedSelectedHandler.handlerId)?.getResponseStatus() }}</p></td>
             </tr>
             <!--<tr> <p>{{ bid.comment }} </p></tr>-->
           </table>
