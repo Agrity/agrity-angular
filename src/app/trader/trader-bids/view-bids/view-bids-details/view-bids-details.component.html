@@ -1,26 +1,10 @@
 <div class="details">
 
 <div *ngIf="recievedSelectedBid">
-    <!--TO Design Man: I explained some things in the sidebar html.
-        probably best to start by go through that one real quick before you
-        start styling-->
 
     <div id="bid-info">
-    <!-- Currently white on white, so you can't see it before styling,
-         but this is the information you have to work with. -->
-        <!--<table>
-          <tr>
-            <td>{{ recievedSelectedBid?.almondVariety }}</td>
-            <td>{{ recievedSelectedBid?.pricePerPound }}</td>
-            <td>{{ recievedSelectedBid?.almondPounds }}</td>
-            <td>{{ recievedSelectedelectedBid?.countDownString }}</td>
-            <td>{{ isPartial(recievedSelectedBid) }}
-                {{ isAccepted(recievedSelectedBid) }}
-                {{ isRejected(recievedSelectedBid) }}
-            </td>
-          </tr>
-        </table>
-    </div>-->
+        
+    <button class="right closebidbutton">CLOSE BID</button>
 
     <h1 class="center spacetop"> BID DETAILS </h1>
 
@@ -41,7 +25,6 @@
 			  		<td class="offerButton"><p>
               {{ recievedSelectedBid?.countDownString }}</p></td>
 			  	</tr>
-				  <!--<tr>{{ bid.comment }}</tr>-->
 				</table>
 			  	</button>
        </div>
@@ -62,8 +45,6 @@
          </button>
 
         </div>
-       <!--</div>-->
-
 
     <div class="center-responses" id="handler-responses">
 

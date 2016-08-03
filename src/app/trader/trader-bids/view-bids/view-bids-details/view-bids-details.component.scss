@@ -4,7 +4,7 @@
 }
 
 .spacetop {
-    padding-top:50px;
+    padding:50px 0px 0px 160px;
 }
 
 .commentbox {
@@ -54,6 +54,23 @@ comment {
 	background-color: #ffffff;
 	border-radius: 6px;
 	border: 1px solid #419ed2;
+}
+
+.closebidbutton {
+    width:10%;
+    height:25px;
+	font-size: 0.7em;
+    color:#000000;
+    text-align:center;
+    vertical-align: middle;
+    background-color: white;
+    border-radius:4px;
+    border: 1px solid #Bf4f4f;
+    float:right;
+}
+
+.right {
+    margin: 25px 70px 0 0;
 }
 
 .center-responses {
