@@ -1,2 +1,2 @@
 <sg-view-bids-sidebar [traderBids]=traderBids [closedTraderBids]=closedTraderBids [openTraderBids]=openTraderBids (onSelect)="onSelect($event)"></sg-view-bids-sidebar>
-<sg-view-bids-details [selectedBid]=selectedBid> </sg-view-bids-details>
+<sg-view-bids-details [selectedBid]=selectedBid (onCloseBid)="onCloseBid($event)"> </sg-view-bids-details>

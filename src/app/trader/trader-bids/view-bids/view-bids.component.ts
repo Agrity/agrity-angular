@@ -109,6 +109,11 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
     this.selectedBid = bid;
   }
 
+  public onCloseBid(bid: TraderBid) {
+    this.ngOnInit();
+    this.selectedBid = null;
+  }
+
   public ngOnDestroy() {
     for (let counterIndex in this.counters) {
       this.counters[counterIndex].unsubscribe();

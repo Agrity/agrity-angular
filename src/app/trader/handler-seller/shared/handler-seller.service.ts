@@ -57,7 +57,7 @@ export class HandlerSellerService {
       this.logger.handleError('Attempted to edit with null HandlerSeller.');
       return null;
     }
-  return this.http.jsonPut(this.getHandlerSellerUrl(handler.handlerId), handler.encode())
+    return this.http.jsonPut(this.getHandlerSellerUrl(handler.handlerId), handler.encode())
      .map(res => res.json())
      .catch(this.logger.handleHttpError);
   }

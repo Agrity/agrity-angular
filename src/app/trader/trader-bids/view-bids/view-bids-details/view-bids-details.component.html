@@ -3,9 +3,8 @@
 <div *ngIf="recievedSelectedBid">
 
     <div id="bid-info">
-        
-    <button class="right closebidbutton" (click)="closeTraderBid(bidId)">CLOSE BID</button>
 
+    <button class="right closebidbutton" *ngIf="recievedSelectedBid.currentlyOpen" (click)="closeTraderBid(recievedSelectedBid.bidId)">CLOSE BID</button>
     <h1 class="center spacetop"> BID DETAILS </h1>
 
     		<div class="wow fadeInDown center" data-wow-delay="0.6s">

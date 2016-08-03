@@ -57,7 +57,7 @@ export class GrowerService {
       this.logger.handleError('Attempted to edit with null Grower.');
       return null;
     }
-  return this.http.jsonPut(this.getGrowerUrl(grower.growerId), grower.encode())
+    return this.http.jsonPut(this.getGrowerUrl(grower.growerId), grower.encode())
      .map(res => res.json())
      .catch(this.logger.handleHttpError);
   }

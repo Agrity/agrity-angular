@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute }
     from '@angular/router';
 
@@ -8,12 +8,14 @@ import { Bid, BidService } from '../shared/index';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
+import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
               'app/handler/bids/bid-detail/bid-detail.component.css'],
   templateUrl: 'app/handler/bids/bid-detail/bid-detail.component.html',
+  viewProviders: [ ...BS_MODAL_PROVIDERS ],
 })
 
 export class BidDetailComponent implements OnInit, OnDestroy {
@@ -33,8 +35,11 @@ export class BidDetailComponent implements OnInit, OnDestroy {
       private logger: Logger,
       private config: Config,
       private router: Router,
-      private navBarService: NavBarService) {
-  }
+      private navBarService: NavBarService,
+      public modal: Modal,
+      public viewContainer: ViewContainerRef) {
+        modal.defaultViewContainer = viewContainer;
+      }
 
   public ngOnInit() {
 
@@ -97,5 +102,35 @@ export class BidDetailComponent implements OnInit, OnDestroy {
   /* NOTE: Referenced in .html file. */
   protected viewGrower(growerId: number): void {
     this.router.navigate(['/growers', growerId]);
+  }
+
+  protected closeBid(bidId: number) {
+  this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to close this bid?')
+    .okBtn('Close Bid')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            if (bidId !== null) {
+              this.bidService.closeBid(bidId)
+                  .subscribe(
+                    success => {
+                      this.logger.alert('Bid Closed');
+                      this.router.navigateByUrl('/bids');
+                  },
+                    error => {
+                    this.logger.handleHttpError(error);
+                  });
+            }
+          })
+          .catch(canceled => {
+            this.logger.alert('Closing bid has been canceled. The bid remains open.');
+          });
+    });
   }
 }
