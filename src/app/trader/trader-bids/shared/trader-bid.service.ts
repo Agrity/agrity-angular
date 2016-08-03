@@ -70,6 +70,17 @@ export class TraderBidService {
         .catch(this.logger.handleHttpError);
   }
 
+  public closeTraderBid(bidId: number) {
+    if (bidId == null) {
+      this.logger.handleError('Attempted to close null Bid');
+      return null;
+    }
+
+    return this.http.get(this.traderBidsUrl + '/' + bidId + '/close')
+      .map(res => res.json())
+      .catch(this.logger.handleHttpError);
+  }
+
   private getTraderBidUrl(traderBidId: number) {
     return this.traderBidsUrl + '/' + traderBidId;
   }

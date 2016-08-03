@@ -61,6 +61,17 @@ export class BidService {
       .catch(this.logger.handleHttpError);
   }
 
+  public closeBid(bidId: number) {
+    if (bidId == null) {
+      this.logger.handleError('Attempted to close null Bid');
+      return null;
+    }
+
+    return this.http.get(this.bidsUrl + '/' + bidId + '/close')
+      .map(res => res.json())
+      .catch(this.logger.handleHttpError);
+  }
+
   private getBidUrl(bidId: number) {
     return this.bidsUrl + '/' + bidId;
   }
