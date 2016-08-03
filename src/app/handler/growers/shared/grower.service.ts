@@ -52,11 +52,15 @@ export class GrowerService {
       .catch(this.logger.handleHttpError);
   }
 
-  // TODO Updating Not Implemented on Server Side Yet.
-  // updateUser(user){
-  // return this.http.put(this.getUserUrl(user.id), JSON.stringify(user))
-  //    .map(res => res.json());
-  // }
+  public editGrower(grower: Grower) {
+    if (grower == null) {
+      this.logger.handleError('Attempted to edit with null Grower.');
+      return null;
+    }
+  return this.http.jsonPut(this.getGrowerUrl(grower.growerId), grower.encode())
+     .map(res => res.json())
+     .catch(this.logger.handleHttpError);
+  }
 
   // TODO Deleteing Not Implemented on Server Side Yet.
   public deleteGrower(growerId: number) {

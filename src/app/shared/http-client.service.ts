@@ -25,6 +25,15 @@ export class HttpClient {
     });
   }
 
+  public jsonPut(url: string, data: string) {
+    let headers = new Headers();
+    this.appendAuthorizationHeader(headers);
+    this.appendJsonFormatHeader(headers);
+    return this.http.put(url, data, {
+      headers: headers,
+    });
+  }
+
   public post(url: string, data: string) {
     let headers = new Headers();
     this.appendAuthorizationHeader(headers);
