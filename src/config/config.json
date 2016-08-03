@@ -1,5 +1,5 @@
 {
-  "env": "test",
+  "env": "dev",
 
   "handler-key": "X-HANDLER-TOKEN",
   "trader-key": "X-TRADER-TOKEN",
@@ -16,7 +16,7 @@
   },
 
   "prod": {
-    "endpoint": "http://server.test.agrity.net",
+    "endpoint": "http://server.agrity.net",
     "debug": false
   },
 }
