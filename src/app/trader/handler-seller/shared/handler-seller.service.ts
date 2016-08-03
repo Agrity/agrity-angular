@@ -52,11 +52,15 @@ export class HandlerSellerService {
         .catch(this.logger.handleHttpError);
   }
 
-  // TODO Updating Not Implemented on Server Side Yet.
-  // updateUser(user){
-  // return this.http.put(this.getUserUrl(user.id), JSON.stringify(user))
-  //    .map(res => res.json());
-  // }
+  public editHandlerSeller(handler: HandlerSeller) {
+    if (handler == null) {
+      this.logger.handleError('Attempted to edit with null HandlerSeller.');
+      return null;
+    }
+  return this.http.jsonPut(this.getHandlerSellerUrl(handler.handlerId), handler.encode())
+     .map(res => res.json())
+     .catch(this.logger.handleHttpError);
+  }
 
   // TODO Deleteing Not Implemented on Server Side Yet.
   public deleteHandlerSeller(handlerSellerId: number) {
