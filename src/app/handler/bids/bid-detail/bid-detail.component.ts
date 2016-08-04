@@ -4,7 +4,7 @@ import { ROUTER_DIRECTIVES, Router, ActivatedRoute }
 
 import { Config, Logger, UserType } from '../../../shared/index';
 import { NavBarService } from '../../../shared/main-navbar/index';
-import { Bid, BidService } from '../shared/index';
+import { Bid, BidService, ManualBidResponseService } from '../shared/index';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
@@ -38,6 +38,7 @@ export class BidDetailComponent implements OnInit, OnDestroy {
       private route: ActivatedRoute,
       private bidService: BidService,
       private growerService: GrowerService,
+      private manualBidResponseService: ManualBidResponseService,
       private logger: Logger,
       private config: Config,
       private router: Router,

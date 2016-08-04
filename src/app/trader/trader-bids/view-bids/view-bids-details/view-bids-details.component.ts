@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewContainerRef } from '@angular/core';
-import { TraderBid, TraderBidService } from '../../shared/index';
+import { TraderBid, TraderBidService, ManualTraderBidResponseService } from '../../shared/index';
 import { BidStatus, Logger } from '../../../../shared/index';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router';
@@ -32,6 +32,7 @@ export class ViewBidsDetailsComponent {
       private traderBidService: TraderBidService,
       private logger: Logger,
       private handlerSellerSevice: HandlerSellerService,
+      private manualTraderBidResponseService: ManualTraderBidResponseService,
       public modal: Modal,
       public viewContainer: ViewContainerRef) {
         modal.defaultViewContainer = viewContainer;
