@@ -134,6 +134,18 @@ export class BidDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['/growers', growerId]);
   }
 
+  protected acceptBid(growerId: number, pounds: number) {
+    this.manualBidResponseService.acceptBid(this.bid.bidId, pounds, growerId)
+        .subscribe(
+            success => {
+              this.logger.alert('Response set to accepted.');
+              this.router.navigateByUrl('/bids');
+            },
+            error => {
+              this.logger.handleHttpError(error);
+            });
+  }
+
   protected closeBid(bidId: number) {
   this.modal.confirm()
     .size('sm')

@@ -84,12 +84,16 @@
 
       <div class="col-md-4 pending" id="no-response-handlers">
         <h1 style="color:#419ed2" class="center">PENDING</h1>
+
+        <div *ngFor="let grower of bid?.noResponseGrowers">
           <li
-            *ngFor="let grower of bid?.noResponseGrowers"
             type="button"
             (click)="viewGrower(grower.growerId)">
             <p>{{ grower.firstName }} {{ grower.lastName }}</p>
           </li>
+          <button (click)="acceptBid(grower.growerId, bid.poundsRemaining)" > ACCEPT REMAINING </button>
+          <button> REJECT </button>
+        </div>
       </div>
   </div>
 </div>

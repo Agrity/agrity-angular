@@ -13,14 +13,38 @@ export class ManualBidResponseService {
       private config: Config,
       private logger: Logger
       ) {
-    this.bidsUrl = config.getServerDomain() + '/handler/handlerBids';
+    this.bidsUrl = config.getServerDomain() + '/handlerBids';
   }
 
   public acceptBid(bidId: number, pounds: number, growerId: number) {
-    // Do Nothing
+    if (bidId == null) {
+      this.logger.handleError('BidId is null.');
+      return null;
+    }
+
+    if (growerId == null) {
+      this.logger.handleError('GrowerId is null.');
+      return null;
+    }
+
+    if (pounds == null) {
+      this.logger.handleError('Pounds is null');
+    }
+
+    return this.http.get(this.bidsUrl + '/' + bidId + '/accept/' + growerId + '/' + pounds);
   }
 
   public rejectBid(bidId: number, growerId: number) {
-    // Do
+    if (bidId == null) {
+      this.logger.handleError('BidId is null.');
+      return null;
+    }
+
+    if (growerId == null) {
+      this.logger.handleError('GrowerId is null.');
+      return null;
+    }
+
+    return this.http.get(this.bidsUrl + '/' + bidId + '/reject/' + growerId);
   }
 }
