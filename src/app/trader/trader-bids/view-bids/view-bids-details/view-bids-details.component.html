@@ -47,10 +47,23 @@
 
     <div class="center-responses" id="handler-responses">
 
+        <div *ngIf="addHandlersDivToggle">
+          <div>
+            <title>CHOOSE HANDLERS</title>
+          </div>
+          <div>
+            <p *ngFor="let handler of notAddedHandlerSellers">
+              <input type="checkbox" [(ngModel)]="handler.selected">
+              <label>{{ handler.firstName }} {{ handler.lastName }}</label>
+            </p>
+          </div>
+          <button (click)="addHandlers()"> Finish Adding Handlers </button>
+        </div>
+
         <table class="table-border" cellpadding="4">
           <tr>
             <td><p>HANDLERS</p></td>
-            <td style="float:right"><button type="button" class="add-handlers"><span>&#43;</span>ADD HANDLERS</button></td>
+            <td style="float:right"><button type="button" class="add-handlers" (click)="toggleAddHandlersDiv()"><span>&#43;</span>ADD HANDLERS</button></td>
           </tr>
 
           <tr>
@@ -128,8 +141,7 @@
       </div>-->
 
 
-      
+
   </div>
-</div>
 </div>
 </div>

@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
 import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
 
+import { Grower, GrowerService } from '../../growers/shared/index';
+
 @Component({
   directives: [ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
@@ -29,9 +31,13 @@ export class BidDetailComponent implements OnInit, OnDestroy {
   private timezoneOffset: number;
   private sub: Subscription;
 
+  private addGrowersDivToggle: boolean = false;
+  private notAddedGrowers: Grower[];
+
   constructor(
       private route: ActivatedRoute,
       private bidService: BidService,
+      private growerService: GrowerService,
       private logger: Logger,
       private config: Config,
       private router: Router,
@@ -69,6 +75,26 @@ export class BidDetailComponent implements OnInit, OnDestroy {
           bid => {
             this.bid = bid;
             this.getCountDownString(this.bid);
+            this.growerService.getGrowers()
+                .subscribe(
+                    res => {
+                      this.notAddedGrowers = [];
+                      for (let growerOfAll of res) {
+                        let hasMatch: boolean = false;
+                        for (let growerOfAllInBid of this.bid.allGrowers) {
+                          if (growerOfAll.growerId === growerOfAllInBid.growerId) {
+                            hasMatch = true;
+                          }
+                        }
+                        if (hasMatch === false) {
+                          this.notAddedGrowers.push(growerOfAll);
+                        }
+                      }
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+
           },
           error => {
             this.logger.handleHttpError(error);
@@ -133,4 +159,16 @@ export class BidDetailComponent implements OnInit, OnDestroy {
           });
     });
   }
+
+  protected addGrowers() {
+    this.bidService.addGrowers(
+        this.bid.bidId,
+        this.notAddedGrowers
+        .filter(grower => grower.selected));
+  }
+
+  protected toggleAddGrowersDiv() {
+    this.addGrowersDivToggle = !this.addGrowersDivToggle;
+  }
+
 }

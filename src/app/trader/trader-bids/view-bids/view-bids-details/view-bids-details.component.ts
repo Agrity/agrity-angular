@@ -45,7 +45,7 @@ export class ViewBidsDetailsComponent {
                 for (let handlerOfAll of res) {
                   let hasMatch: boolean = false;
                   for (let handlerOfAllInBid of selectedBid.allHandlerSellers) {
-                    if (handlerOfAll === handlerOfAllInBid) {
+                    if (handlerOfAll.handlerId === handlerOfAllInBid.handlerId) {
                       hasMatch = true;
                     }
                   }
