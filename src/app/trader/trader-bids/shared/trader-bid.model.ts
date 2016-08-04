@@ -50,6 +50,15 @@ export class TraderBid {
       }
     }
 
+    traderBid.managementType = null;
+    let managementString = traderBidJson['managementType'];
+    if (managementString === 'FCFS') {
+      traderBid.managementType = ManagementType.FCFS;
+    }
+    if (managementString === 'STFC') {
+      traderBid.managementType = ManagementType.STFC;
+    }
+
     traderBid.almondVariety = traderBidJson['almondVariety'];
     traderBid.almondSize = traderBidJson['almondSize'];
     traderBid.almondPounds = traderBidJson['almondPounds'];
@@ -209,13 +218,21 @@ export class TraderBid {
       'almond_pounds': this.getString(this.almondPounds),
       'price_per_pound': this.getString(this.pricePerPound),
       'comment': this.getString(this.comment),
-
-      // NOTE: Management Type currently always set to first come first serve.
       'management_type': {
-        'type': this.managementType,
+        'type': this.getString(this.getManagementString()),
         'delay': this.delay,
       },
     });
+  }
+
+  public getManagementString(): string {
+    if (this.managementType === ManagementType.FCFS) {
+      return 'FCFS';
+    }
+    if (this.managementType === ManagementType.STFC) {
+      return 'STFC';
+    }
+    return null;
   }
 
   public getBidResponse(bid: TraderBid, handlerId: number): BidResponse {

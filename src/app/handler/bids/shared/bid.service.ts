@@ -111,7 +111,7 @@ export class BidService {
         '/handlerBids/' + bidId + '/approve/' + growerId);
   }
 
-  public disapprove(bidId: number, growerId: number) {
+  public reject(bidId: number, growerId: number) {
     if (growerId == null) {
       this.logger.handleError('Grower Id is null');
       return null;

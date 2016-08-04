@@ -118,7 +118,7 @@ export class TraderBidService {
         '/traderBids' + bidId + '/approve/' + handlerId);
   }
 
-  public disapprove(bidId: number, handlerId: number) {
+  public reject(bidId: number, handlerId: number) {
     if (handlerId == null) {
       this.logger.handleError('Handler Id is null');
       return null;
