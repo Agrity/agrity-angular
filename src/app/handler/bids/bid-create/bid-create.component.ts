@@ -3,7 +3,7 @@ import { Router, ROUTER_DIRECTIVES }
     from '@angular/router';
 
 import { Bid, BidService } from '../shared/index';
-import { Config, Logger, UserType }
+import { Config, Logger, UserType, ManagementType }
     from '../../../shared/index';
 import { NavBarService }
     from '../../../shared/main-navbar/index';
@@ -160,7 +160,7 @@ export class BidCreateComponent implements OnInit {
     let temp2 = this.bid.endPaymentMonth.concat(space);
     this.bid.endPaymentDate = temp2.concat(this.bid.endPaymentYear);
 
-    this.bid.managementType = 'FCFSService';
+    this.bid.managementType = ManagementType.FCFS;
 
     if (this.bid.managementTypeDelay < 0) {
       this.bid.managementTypeDelay *= -1;

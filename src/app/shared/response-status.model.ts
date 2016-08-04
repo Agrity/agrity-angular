@@ -2,5 +2,7 @@
     NO_RESPONSE,
     ACCEPTED,
     REJECTED,
-    PARTIAL,
+    PENDING,
+    APPROVED,
+    DISAPPROVED
   };

@@ -1,5 +1,5 @@
 import { HandlerSeller } from '../../handler-seller/shared/index';
-import { BidStatus, BidResponse, ResponseStatus } from '../../../shared/index';
+import { BidStatus, BidResponse, ResponseStatus, ManagementType } from '../../../shared/index';
 
 export class TraderBid {
 
@@ -48,6 +48,15 @@ export class TraderBid {
       for (let handlerIdx in handlerSellers) {
         traderBid.handlerSellerIds.push(handlerSellers[handlerIdx]['id']);
       }
+    }
+
+    traderBid.managementType = null;
+    let managementString = traderBidJson['managementType'];
+    if (managementString === 'FCFS') {
+      traderBid.managementType = ManagementType.FCFS;
+    }
+    if (managementString === 'STFC') {
+      traderBid.managementType = ManagementType.STFC;
     }
 
     traderBid.almondVariety = traderBidJson['almondVariety'];
@@ -138,8 +147,11 @@ export class TraderBid {
       case 'REJECTED':
         bidResponse.responseStatus = ResponseStatus.REJECTED;
         break;
-      case 'PARTIAL':
-        bidResponse.responseStatus = ResponseStatus.PARTIAL;
+      case 'APPROVED':
+        bidResponse.responseStatus = ResponseStatus.APPROVED;
+        break;
+      case 'DISAPPROVED':
+        bidResponse.responseStatus = ResponseStatus.DISAPPROVED;
         break;
       default:
         bidResponse.responseStatus = null;
@@ -189,6 +201,8 @@ export class TraderBid {
   public expirationTime: Date;
   public dateCreated: Date;
 
+  public managementType: ManagementType;
+
     // NOTE: Two extra variables to help the countdown clock.
   //       Do not send, or expect to recieve, to/from server.
   public timeToExpire: number;
@@ -204,13 +218,21 @@ export class TraderBid {
       'almond_pounds': this.getString(this.almondPounds),
       'price_per_pound': this.getString(this.pricePerPound),
       'comment': this.getString(this.comment),
-
-      // NOTE: Management Type currently always set to first come first serve.
       'management_type': {
-        'type': 'FCFSService',
+        'type': this.getString(this.getManagementString()),
         'delay': this.delay,
       },
     });
+  }
+
+  public getManagementString(): string {
+    if (this.managementType === ManagementType.FCFS) {
+      return 'FCFS';
+    }
+    if (this.managementType === ManagementType.STFC) {
+      return 'STFC';
+    }
+    return null;
   }
 
   public getBidResponse(bid: TraderBid, handlerId: number): BidResponse {

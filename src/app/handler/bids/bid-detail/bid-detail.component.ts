@@ -224,6 +224,68 @@ export class BidDetailComponent implements OnInit, OnDestroy {
     });
   }
 
+  protected approve(grower: Grower, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to approve ' +
+        grower.firstName + ' ' + grower.lastName +
+        '\'s acceptance of ' + pounds + ' lbs?')
+    .okBtn('Approve')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.bidService
+                .approve(this.bid.bidId, grower.growerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to approved');
+                      this.router.navigateByUrl('/bids');
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Approval canceled.');
+          });
+    });
+  }
+
+  protected disapprove(grower: Grower, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to disapprove ' +
+        grower.firstName + ' ' + grower.lastName +
+        '\'s acceptance of ' + pounds + ' lbs?')
+    .okBtn('Disapprove')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.bidService
+                .reject(this.bid.bidId, grower.growerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to disapproved');
+                      this.router.navigateByUrl('/bids');
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Approval canceled.');
+          });
+    });
+  }
+
   protected addGrowers() {
     let selectedGrowers = this.notAddedGrowers.filter(grower => grower.selected);
     let confirmMsg: string = 'Are you sure you would like to add these growers?' + '<br/>';

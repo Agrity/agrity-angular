@@ -21,10 +21,7 @@ import { ManualTraderBidResponseService } from '../../shared/manual-trader-bid-r
 export class ViewBidsDetailsComponent {
 
   @Output()
-  public onCloseBid = new EventEmitter<TraderBid>();
-
-  @Output()
-  public onAddHandlers = new EventEmitter<TraderBid>();
+  public onCallRefresh = new EventEmitter<TraderBid>();
 
   private recievedSelectedBid: TraderBid;
   private notAddedHandlerSellers: HandlerSeller[];
@@ -110,7 +107,7 @@ export class ViewBidsDetailsComponent {
                 .subscribe(
                     success => {
                       this.logger.alert('Response set to accepted.');
-                      this.router.navigateByUrl('/bids');
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
                     },
                     error => {
                       this.logger.handleHttpError(error);
@@ -141,7 +138,7 @@ export class ViewBidsDetailsComponent {
                 .subscribe(
                     success => {
                       this.logger.alert('Response set to rejected.');
-                      this.router.navigateByUrl('/bids');
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
                     },
                     error => {
                       this.logger.handleHttpError(error);
@@ -170,7 +167,7 @@ export class ViewBidsDetailsComponent {
                   .subscribe(
                     success => {
                       this.logger.alert('Bid Closed');
-                      this.onCloseBid.emit(this.recievedSelectedBid);
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
                   },
                     error => {
                     this.logger.handleHttpError(error);
@@ -179,6 +176,68 @@ export class ViewBidsDetailsComponent {
           })
           .catch(canceled => {
             this.logger.alert('Closing bid has been canceled. The bid is still open.');
+          });
+    });
+  }
+
+  protected approve(handler: HandlerSeller, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to approve ' +
+        handler.firstName + ' ' + handler.lastName +
+        '\'s acceptance of ' + pounds + ' lbs?')
+    .okBtn('Approve')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.traderBidService
+                .approve(this.recievedSelectedBid.bidId, handler.handlerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to approved');
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Approval canceled.');
+          });
+    });
+  }
+
+  protected disapprove(handler: HandlerSeller, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to disapprove ' +
+        handler.firstName + ' ' + handler.lastName +
+        '\'s acceptance of ' + pounds + ' lbs?')
+    .okBtn('Disapprove')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.traderBidService
+                .reject(this.recievedSelectedBid.bidId, handler.handlerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to disapproved');
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Approval canceled.');
           });
     });
   }
@@ -207,7 +266,7 @@ export class ViewBidsDetailsComponent {
                   .subscribe(
                     success => {
                       this.logger.alert('Handlers Added');
-                      this.onAddHandlers.emit(this.recievedSelectedBid);
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
                   },
                     error => {
                       this.logger.handleHttpError(error);

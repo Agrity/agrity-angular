@@ -6,3 +6,4 @@ export * from './phone.model';
 export * from './user-type.model';
 export * from './response-status.model';
 export * from './bid-response.model'
+export * from './management-type.model';
