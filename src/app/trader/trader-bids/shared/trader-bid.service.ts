@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { Config, HttpClient, Logger } from '../../../shared/index';
 import { TraderBid } from './index';
 
+import { HandlerSeller } from '../../handler-seller/shared/index';
+
 @Injectable()
 export class TraderBidService {
   private traderBidsUrl: string;
@@ -79,6 +81,26 @@ export class TraderBidService {
     return this.http.get(this.traderBidsUrl + '/' + bidId + '/close')
       .map(res => res.json())
       .catch(this.logger.handleHttpError);
+  }
+
+  public addHandlers(bidId: number, handlers: HandlerSeller[]) {
+    if (handlers == null) {
+      this.logger.handleError('Attempted to add null handlers.');
+      return null;
+    }
+
+    if (handlers == null) {
+      this.logger.handleError('Bid Id is null.');
+      return null;
+    }
+
+    let handlerJson: Object[] = [];
+
+    for (let handlerSeller of handlers) {
+      handlerJson.push(handlerSeller.encode());
+    }
+    return this.http.jsonPost(this.traderBidsUrl + '/' + bidId +
+        '/addHandlerSellers', '[' + handlerJson.toString() + ']');
   }
 
   private getTraderBidUrl(traderBidId: number) {

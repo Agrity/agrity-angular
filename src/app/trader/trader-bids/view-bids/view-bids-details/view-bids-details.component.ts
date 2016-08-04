@@ -22,6 +22,7 @@ export class ViewBidsDetailsComponent {
 
   private recievedSelectedBid: TraderBid;
   private notAddedHandlerSellers: HandlerSeller[];
+  private addHandlersDivToggle: boolean = false;
 
   constructor(
       private router: Router,
@@ -36,16 +37,27 @@ export class ViewBidsDetailsComponent {
   @Input()
   set selectedBid(selectedBid: TraderBid) {
     this.recievedSelectedBid = selectedBid;
-    if (this.recievedSelectedBid) {
-      this.handlerSellerSevice.getHandlerSellers()
+    this.handlerSellerSevice.getHandlerSellers()
         .subscribe(
             res => {
-              this.notAddedHandlerSellers = res.filter(this.isNotAddedHandlerSeller);
+              if (selectedBid) {
+                this.notAddedHandlerSellers = [];
+                for (let handlerOfAll of res) {
+                  let hasMatch: boolean = false;
+                  for (let handlerOfAllInBid of selectedBid.allHandlerSellers) {
+                    if (handlerOfAll === handlerOfAllInBid) {
+                      hasMatch = true;
+                    }
+                  }
+                  if (hasMatch === false) {
+                    this.notAddedHandlerSellers.push(handlerOfAll);
+                  }
+                }
+              }
             },
             error => {
               this.logger.handleHttpError(error);
             });
-    }
   }
 
   protected isAccepted(bid: TraderBid): boolean {
@@ -102,15 +114,14 @@ export class ViewBidsDetailsComponent {
     });
   }
 
-  private isNotAddedHandlerSeller(handler: HandlerSeller) {
-  //   if (this.recievedSelectedBid !== null) {
-  //     if (this.recievedSelectedBid.allHandlerSellers.includes(handler)) {
-  //       return false;
-  //     } else {
-  //       return true;
-  //     }
-  //   }
-  // }
-    return false;
+  protected addHandlers() {
+    this.traderBidService.addHandlers(
+        this.recievedSelectedBid.bidId,
+        this.notAddedHandlerSellers
+        .filter(handler => handler.selected));
+  }
+
+  protected toggleAddHandlersDiv() {
+    this.addHandlersDivToggle = !this.addHandlersDivToggle;
   }
 }
