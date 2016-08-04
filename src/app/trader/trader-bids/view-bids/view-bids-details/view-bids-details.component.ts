@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, Output, ViewContainerRef } from '@angular/core';
-import { TraderBid, TraderBidService, ManualTraderBidResponseService } from '../../shared/index';
+import { TraderBid, TraderBidService } from '../../shared/index';
 import { BidStatus, Logger } from '../../../../shared/index';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router';
 import { HandlerSeller, HandlerSellerService } from '../../../handler-seller/shared/index';
 import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
+
+import { ManualTraderBidResponseService } from '../../shared/manual-trader-bid-response.service';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
@@ -32,7 +34,7 @@ export class ViewBidsDetailsComponent {
       private traderBidService: TraderBidService,
       private logger: Logger,
       private handlerSellerSevice: HandlerSellerService,
-      private manualTraderBidResponseService: ManualTraderBidResponseService,
+      // private manualTraderBidResponseService: ManualTraderBidResponseService,
       public modal: Modal,
       public viewContainer: ViewContainerRef) {
         modal.defaultViewContainer = viewContainer;
@@ -156,7 +158,8 @@ export class ViewBidsDetailsComponent {
 
   protected toggleAddHandlersDiv() {
     if (this.notAddedHandlerSellers.length === 0) {
-      this.logger.alert('You have already added all of your handlers to this bid. There are no handlers left to add.');
+      this.logger.alert('You have already added all of your handlers ' +
+          'to this bid. There are no handlers left to add.');
     } else {
     this.addHandlersDivToggle = !this.addHandlersDivToggle;
     }
