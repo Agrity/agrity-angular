@@ -47,18 +47,59 @@
 
     <div class="center-responses" id="handler-responses">
 
-      <div class="col-md-4 accepted" id="accepted-handlers">
+        <table class="table-border" cellpadding="4">
+          <tr>
+            <td><p>HANDLERS</p></td>
+            <td style="float:right"><button type="button" class="add-handlers"><span>&#43;</span>ADD HANDLERS</button></td>
+          </tr>
+
+          <tr>
+            <th rowspan="2">PENDING</th>
+            <td class="table-lines"><p>HANDLER A</p></td>
+          </tr>
+          <tr>
+            <td class="table-lines"><p>HANDLER B</p></td>
+          </tr>
+
+          <tr>
+            <th rowspan="1">ACCEPTED</th>
+            <td class="table-lines"><p>HANDLER C</p></td>
+          </tr>
+
+          <tr>
+            <th rowspan="3">REJECTED</th>
+            <td class="table-lines"><p>HANDLER D</p></td>
+          </tr>
+
+          <tr>
+            <td class="table-lines"><p>HANDLER E</p></td>
+          </tr>
+
+          <tr>
+            <td class="table-lines"><p>HANDLER F</p></td>
+          </tr>
+
+          <tr>
+            <th rowspan="3">NO RESPONSE</th>
+            <td class="table-lines"><p>HANDLER G</p></td>
+          </tr>
+          <tr>
+            <td class="table-lines"><p>HANDLER H</p></td>
+          </tr>
+          <tr>
+            <td class="table-lines"><p>HANDLER I</p></td>
+          </tr>
+
+        </table>
+
+      <!--<div class="col-md-4 accepted" id="accepted-handlers">
         <h1 style="color:#2E9566" class="center">ACCEPTED</h1>
           <li
             *ngFor="let handler of recievedSelectedBid?.acceptedHandlerSellers"
             type="button"
             (click)="viewHandler(handler?.handlerId)">
             <p>
-                <!--{{ handler?.firstName }}
-                {{ handler?.lastName }}
-                {{ handler?.email }} -->
                 {{ handler?.companyName }} ({{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} lbs)
-                <!--{{ handler?.phone.getAsString()}}-->
             </p>
           </li>
       </div>
@@ -69,11 +110,7 @@
                 type="button"
                 (click)="viewHandler(handler?.handlerId)">
             <p>
-                <!--{{ handler?.firstName }}
-                {{ handler?.lastName }}
-                {{ handler?.email }} -->
                 {{ handler?.companyName }}
-                <!--{{ handler?.phone.getAsString()}}-->
             </p>
           </li>
       </div>
@@ -85,14 +122,13 @@
             type="button"
             (click)="viewHandler(handler?.handlerId)">
             <p>
-                <!--{{ handler?.firstName }}
-                {{ handler?.lastName }}
-                {{ handler?.email }} -->
                 {{ handler?.companyName }}
-                <!--{{ handler?.phone.getAsString()}}-->
             </p>
           </li>
-      </div>
+      </div>-->
+
+
+      
   </div>
 </div>
 </div>

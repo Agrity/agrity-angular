@@ -35,7 +35,8 @@ comment {
 .details {
     background-color:#efefef;
     width:75%;
-    height:100%;
+    min-height: 600px;
+    height:auto;
     padding-bottom:30px;
 }
 
@@ -125,3 +126,46 @@ li {
     width: 70%;
 }
 
+/* HANDLER Table Styles 
+------------------------------------- */
+
+.table-border {
+    border: 0.5px solid #959595;
+    width: 90%;
+}
+
+th {
+    border: 0.5px solid #959595;
+    width:30%;
+    height:auto;
+    padding: 10px 0px 10px 10px;
+    float: middle;
+}
+
+.table-lines {
+    border:0.5px solid #959595;
+    padding:15px;
+}
+
+.add-handlers {
+    width:120%;
+    height:40px;
+	font-size: 0.7em;
+    color:white;
+    background-color: #419ed2;
+    border-radius:4px;
+    border: 0.1px solid #000000;
+    letter-spacing: 3px;
+}
+
+.add-handlers span {
+    left:0;
+    background-color: #419ed2;
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-right: 1px solid  rgba(0,0,0,0.15);
+}
