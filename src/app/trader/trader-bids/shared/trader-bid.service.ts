@@ -89,7 +89,7 @@ export class TraderBidService {
       return null;
     }
 
-    if (handlers == null) {
+    if (bidId == null) {
       this.logger.handleError('Bid Id is null.');
       return null;
     }
@@ -101,6 +101,35 @@ export class TraderBidService {
     }
     return this.http.jsonPost(this.traderBidsUrl + '/' + bidId +
         '/addHandlerSellers', '[' + handlerJson.toString() + ']');
+  }
+
+  public approve(bidId: number, handlerId: number) {
+    if (handlerId == null) {
+      this.logger.handleError('Handler Id is null');
+      return null;
+    }
+
+    if (bidId == null) {
+      this.logger.handleError('Bid Id is null.');
+      return null;
+    }
+
+    return this.http.get(this.config.getServerDomain() +
+        '/traderBids' + bidId + '/approve/' + handlerId);
+  }
+
+  public disapprove(bidId: number, handlerId: number) {
+    if (handlerId == null) {
+      this.logger.handleError('Handler Id is null');
+      return null;
+    }
+
+    if (bidId == null) {
+      this.logger.handleError('Bid Id is null.');
+      return null;
+    }
+
+    return this.http.get(this.traderBidsUrl + '/' + bidId + '/disapprove/' + handlerId);
   }
 
   private getTraderBidUrl(traderBidId: number) {

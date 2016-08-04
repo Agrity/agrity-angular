@@ -96,6 +96,36 @@ export class BidService {
       .catch(this.logger.handleHttpError);
   }
 
+  public approve(bidId: number, growerId: number) {
+    if (growerId == null) {
+      this.logger.handleError('Grower Id is null');
+      return null;
+    }
+
+    if (bidId == null) {
+      this.logger.handleError('Bid Id is null.');
+      return null;
+    }
+
+    return this.http.get(this.config.getServerDomain() +
+        '/handlerBids/' + bidId + '/approve/' + growerId);
+  }
+
+  public disapprove(bidId: number, growerId: number) {
+    if (growerId == null) {
+      this.logger.handleError('Grower Id is null');
+      return null;
+    }
+
+    if (bidId == null) {
+      this.logger.handleError('Bid Id is null.');
+      return null;
+    }
+
+    return this.http.get(this.config.getServerDomain() +
+        '/handlerBids' + bidId + '/disapprove/' + growerId);
+  }
+
   private getBidUrl(bidId: number) {
     return this.bidsUrl + '/' + bidId;
   }

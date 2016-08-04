@@ -1,5 +1,5 @@
 import { HandlerSeller } from '../../handler-seller/shared/index';
-import { BidStatus, BidResponse, ResponseStatus } from '../../../shared/index';
+import { BidStatus, BidResponse, ResponseStatus, ManagementType } from '../../../shared/index';
 
 export class TraderBid {
 
@@ -138,8 +138,11 @@ export class TraderBid {
       case 'REJECTED':
         bidResponse.responseStatus = ResponseStatus.REJECTED;
         break;
-      case 'PARTIAL':
-        bidResponse.responseStatus = ResponseStatus.PARTIAL;
+      case 'APPROVED':
+        bidResponse.responseStatus = ResponseStatus.APPROVED;
+        break;
+      case 'DISAPPROVED':
+        bidResponse.responseStatus = ResponseStatus.DISAPPROVED;
         break;
       default:
         bidResponse.responseStatus = null;
@@ -189,6 +192,8 @@ export class TraderBid {
   public expirationTime: Date;
   public dateCreated: Date;
 
+  public managementType: ManagementType;
+
     // NOTE: Two extra variables to help the countdown clock.
   //       Do not send, or expect to recieve, to/from server.
   public timeToExpire: number;
@@ -207,7 +212,7 @@ export class TraderBid {
 
       // NOTE: Management Type currently always set to first come first serve.
       'management_type': {
-        'type': 'FCFSService',
+        'type': this.managementType,
         'delay': this.delay,
       },
     });
