@@ -91,6 +91,68 @@ export class ViewBidsDetailsComponent {
     return;
   }
 
+  protected acceptBid(handler: HandlerSeller, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to set ' +
+        handler.firstName + ' ' + handler.lastName +
+        '\'s response to to accepted ' + pounds + ' lbs?')
+    .okBtn('Set Response')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.manualTraderBidResponseService
+                .acceptBid(this.recievedSelectedBid.bidId, pounds, handler.handlerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to accepted.');
+                      this.router.navigateByUrl('/bids');
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Setting response canceled.');
+          });
+    });
+  }
+
+  protected rejectBid(handler: HandlerSeller) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to set ' +
+        handler.firstName + ' ' + handler.lastName +
+        '\'s response to to rejected?')
+    .okBtn('Set Response')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.manualTraderBidResponseService
+                .rejectBid(this.recievedSelectedBid.bidId, handler.handlerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to rejected.');
+                      this.router.navigateByUrl('/bids');
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Setting response canceled.');
+          });
+    });
+  }
+
   protected closeTraderBid(bidId: number) {
     this.modal.confirm()
     .size('sm')
