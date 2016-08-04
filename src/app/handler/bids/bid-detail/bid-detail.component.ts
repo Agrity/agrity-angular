@@ -4,13 +4,16 @@ import { ROUTER_DIRECTIVES, Router, ActivatedRoute }
 
 import { Config, Logger, UserType } from '../../../shared/index';
 import { NavBarService } from '../../../shared/main-navbar/index';
-import { Bid, BidService, ManualBidResponseService } from '../shared/index';
+import { Bid, BidService } from '../shared/index';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
 import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
 
 import { Grower, GrowerService } from '../../growers/shared/index';
+
+// Do Not Import from index.
+import { ManualBidResponseService } from '../shared/manual-bid-response.service';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],

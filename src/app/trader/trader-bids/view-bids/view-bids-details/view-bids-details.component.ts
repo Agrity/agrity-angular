@@ -6,6 +6,7 @@ import { Router, ROUTER_DIRECTIVES }
 import { HandlerSeller, HandlerSellerService } from '../../../handler-seller/shared/index';
 import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
 
+// Do No Import this from index.
 import { ManualTraderBidResponseService } from '../../shared/manual-trader-bid-response.service';
 
 @Component({
@@ -34,7 +35,7 @@ export class ViewBidsDetailsComponent {
       private traderBidService: TraderBidService,
       private logger: Logger,
       private handlerSellerSevice: HandlerSellerService,
-      // private manualTraderBidResponseService: ManualTraderBidResponseService,
+      private manualTraderBidResponseService: ManualTraderBidResponseService,
       public modal: Modal,
       public viewContainer: ViewContainerRef) {
         modal.defaultViewContainer = viewContainer;
