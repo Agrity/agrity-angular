@@ -134,16 +134,64 @@ export class BidDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['/growers', growerId]);
   }
 
-  protected acceptBid(growerId: number, pounds: number) {
-    this.manualBidResponseService.acceptBid(this.bid.bidId, pounds, growerId)
-        .subscribe(
-            success => {
-              this.logger.alert('Response set to accepted.');
-              this.router.navigateByUrl('/bids');
-            },
-            error => {
-              this.logger.handleHttpError(error);
-            });
+  protected acceptBid(grower: Grower, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to set ' +
+        grower.firstName + ' ' + grower.lastName +
+        '\'s response to to accepted ' + pounds + ' lbs?')
+    .okBtn('Set Response')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.manualBidResponseService.acceptBid(this.bid.bidId, pounds, grower.growerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to accepted.');
+                      this.router.navigateByUrl('/bids');
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Setting response canceled.');
+          });
+    });
+  }
+
+  protected rejectBid(grower: Grower) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to set ' +
+        grower.firstName + ' ' + grower.lastName +
+        '\'s response to to rejected?')
+    .okBtn('Set Response')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.manualBidResponseService.rejectBid(this.bid.bidId, grower.growerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to rejected.');
+                      this.router.navigateByUrl('/bids');
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Setting response canceled.');
+          });
+    });
   }
 
   protected closeBid(bidId: number) {

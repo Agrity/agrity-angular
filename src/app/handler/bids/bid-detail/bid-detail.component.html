@@ -91,8 +91,8 @@
             (click)="viewGrower(grower.growerId)">
             <p>{{ grower.firstName }} {{ grower.lastName }}</p>
           </li>
-          <button (click)="acceptBid(grower.growerId, bid.poundsRemaining)" > ACCEPT REMAINING </button>
-          <button> REJECT </button>
+          <button (click)="acceptBid(grower, bid.poundsRemaining)" > ACCEPT REMAINING </button>
+          <button (click)="rejectBid(grower)" > REJECT </button>
         </div>
       </div>
   </div>
