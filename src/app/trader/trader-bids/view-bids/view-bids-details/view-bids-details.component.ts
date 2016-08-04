@@ -20,6 +20,9 @@ export class ViewBidsDetailsComponent {
   @Output()
   public onCloseBid = new EventEmitter<TraderBid>();
 
+  @Output()
+  public onAddHandlers = new EventEmitter<TraderBid>();
+
   private recievedSelectedBid: TraderBid;
   private notAddedHandlerSellers: HandlerSeller[];
   private addHandlersDivToggle: boolean = false;
@@ -115,13 +118,46 @@ export class ViewBidsDetailsComponent {
   }
 
   protected addHandlers() {
-    this.traderBidService.addHandlers(
-        this.recievedSelectedBid.bidId,
-        this.notAddedHandlerSellers
-        .filter(handler => handler.selected));
+    let selectedHandlers = this.notAddedHandlerSellers.filter(handler => handler.selected);
+    let confirmMsg: string = 'Are you sure you would like to add these handlers?' + '<br/>';
+    for (let handler of selectedHandlers) {
+      confirmMsg += '<br/>' + handler.firstName + ' ' + handler.lastName;
+    }
+
+    this.modal.confirm()
+      .size('sm')
+      .isBlocking(true)
+      .showClose(false)
+      .title('Confirm')
+      .body(confirmMsg)
+      .okBtn('Send to Handlers')
+      .open()
+      .then(res => {
+        res.result
+            .then(confirmed => {
+              this.traderBidService.addHandlers(
+                  this.recievedSelectedBid.bidId,
+                  selectedHandlers)
+                  .subscribe(
+                    success => {
+                      this.logger.alert('Handlers Added');
+                      this.onAddHandlers.emit(this.recievedSelectedBid);
+                  },
+                    error => {
+                      this.logger.handleHttpError(error);
+                  });
+            })
+            .catch(canceled => {
+              this.logger.alert('Adding handlers canceled.');
+            });
+      });
   }
 
   protected toggleAddHandlersDiv() {
+    if (this.notAddedHandlerSellers.length === 0) {
+      this.logger.alert('You have already added all of your handlers to this bid. There are no handlers left to add.');
+    } else {
     this.addHandlersDivToggle = !this.addHandlersDivToggle;
+    }
   }
 }

@@ -161,10 +161,39 @@ export class BidDetailComponent implements OnInit, OnDestroy {
   }
 
   protected addGrowers() {
-    this.bidService.addGrowers(
-        this.bid.bidId,
-        this.notAddedGrowers
-        .filter(grower => grower.selected));
+    let selectedGrowers = this.notAddedGrowers.filter(grower => grower.selected);
+    let confirmMsg: string = 'Are you sure you would like to add these growers?' + '<br/>';
+    for (let grower of selectedGrowers) {
+      confirmMsg += '<br/>' + grower.firstName + ' ' + grower.lastName;
+    }
+
+    this.modal.confirm()
+      .size('sm')
+      .isBlocking(true)
+      .showClose(false)
+      .title('Confirm')
+      .body(confirmMsg)
+      .okBtn('Send to Growers')
+      .open()
+      .then(res => {
+        res.result
+            .then(confirmed => {
+              this.bidService.addGrowers(
+                  this.bid.bidId,
+                  selectedGrowers)
+                  .subscribe(
+                    success => {
+                      this.logger.alert('Growers Added');
+                      this.router.navigateByUrl('/bids');
+                  },
+                    error => {
+                      this.logger.handleHttpError(error);
+                  });
+            })
+            .catch(canceled => {
+              this.logger.alert('Adding growers canceled.');
+            });
+      });
   }
 
   protected toggleAddGrowersDiv() {
