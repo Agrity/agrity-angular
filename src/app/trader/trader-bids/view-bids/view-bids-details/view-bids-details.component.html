@@ -193,7 +193,7 @@
             <th rowspan="3"><p class="no-response-handler center">NO RESPONSE</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.noResponseHandlerSellers">
               <p style="margin-right:27px" (click)="viewHandler(handler.handlerId)">{{handler?.companyName}}</p>
-              <input type="number" min="0" class="number" placeholder="22 MT" [(ngModel)]="handler.amountManual">
+              <input type="number" min="0" class="number" placeholder="MT" [(ngModel)]="handler.amountManual">
               <div class="separate">
               <button type="button" class="accept-partial"
               [disabled]="!(handler.amountManual > 0)"
