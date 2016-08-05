@@ -47,6 +47,12 @@
 
     <div class="center-responses" id="handler-responses">
 
+<!--THIS IS THE HARDCODED TABLE TO VISUALIZE FCFS RESPONSES-->
+        <!--<table class="table-border" cellpadding="4">
+          <tr>
+            <td><p class="handler-title">HANDLERS</p></td>
+            <td style="float:right; padding:15px 15px 0px 0px;"><button type="button" class="add-handlers"><span>&#43;</span>ADD HANDLERS</button></td>
+=======
         <div *ngIf="addHandlersDivToggle">
           <div>
             <title>CHOOSE HANDLERS</title>
@@ -64,23 +70,16 @@
           <tr>
             <td><p>HANDLERS</p></td>
             <td style="float:right"><button type="button" class="add-handlers" (click)="toggleAddHandlersDiv()"><span>&#43;</span>ADD HANDLERS</button></td>
+>>>>>>> master
           </tr>
 
           <tr>
-            <th rowspan="2">PENDING</th>
-            <td class="table-lines"><p>HANDLER A</p></td>
-          </tr>
-          <tr>
-            <td class="table-lines"><p>HANDLER B</p></td>
+            <th rowspan="1"><p class="accepted-handler center">ACCEPTED</p></th>
+            <td class="table-lines"><p>HANDLER C</p><p style="padding-left:50px">22 tons accepted</p></td>
           </tr>
 
           <tr>
-            <th rowspan="1">ACCEPTED</th>
-            <td class="table-lines"><p>HANDLER C</p></td>
-          </tr>
-
-          <tr>
-            <th rowspan="3">REJECTED</th>
+            <th rowspan="3"><p class="rejected-handler center">REJECTED</p></th>
             <td class="table-lines"><p>HANDLER D</p></td>
           </tr>
 
@@ -93,17 +92,146 @@
           </tr>
 
           <tr>
-            <th rowspan="3">NO RESPONSE</th>
-            <td class="table-lines"><p>HANDLER G</p></td>
+            <th rowspan="3"><p class="no-response-handler center">NO RESPONSE</p></th>
+            <td class="table-lines"><p style="margin-right:27px">HANDLER G</p>
+              <input type="number" min="0" class="number" placeholder="22 MT">
+              <div class="separate">
+              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="accept-button">ACCEPT</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="reject-button">REJECT</button>
+              </div>
+            </td>
           </tr>
           <tr>
-            <td class="table-lines"><p>HANDLER H</p></td>
+            <td class="table-lines"><p style="margin-right:27px">HANDLER H</p>
+              <input type="number" min="0" class="number" placeholder="22 MT">
+              <div class="separate">
+              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="accept-button">ACCEPT</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="reject-button">REJECT</button>
+              </div>
+            </td>
           </tr>
           <tr>
-            <td class="table-lines"><p>HANDLER I</p></td>
+            <td class="table-lines"><p style="margin-right:35px">HANDLER I</p>
+              <input type="number" min="0" class="number" placeholder="22 MT">
+              <div class="separate">
+              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="accept-button">ACCEPT</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="reject-button">REJECT</button>
+              </div>
+            </td>
+          </tr>
+
+        </table>-->
+
+<!--THIS IS THE HARDCODED TABLE TO VISUALIZE STFC RESPONSES-->
+
+      <table class="table-border" cellpadding="4">
+          <tr>
+            <td><p class="handler-title">HANDLERS</p></td>
+            <td style="float:right; padding:15px 15px 0px 0px;"><button type="button" class="add-handlers"><span>&#43;</span>ADD HANDLERS</button></td>
+          </tr>
+
+          <tr>
+            <th rowspan="1"><p class="pending-handler center">PENDING</p></th>
+            <td class="table-lines"><p>HANDLER C</p>
+            <p style="padding:0 20px 0 30px">22 tons accepted</p>
+              <div class="separate">
+              <button type="button" class="accept-button">APPROVE</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="reject-button">REJECT</button>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th rowspan="1"><p class="accepted-handler center">ACCEPTED</p></th>
+            <td class="table-lines"><p>HANDLER C</p><p style="padding-left:50px">22 tons accepted</p></td>
+          </tr>
+
+          <tr>
+            <th rowspan="1"><p class="disapproved-handler center">DISAPPROVED</p></th>
+            <td class="table-lines"><p>HANDLER C</p><p style="padding-left:50px">2 tons disapproved</p></td>
+          </tr>
+
+          <tr>
+            <th rowspan="2"><p class="rejected-handler center">REJECTED</p></th>
+            <td class="table-lines"><p>HANDLER D</p></td>
+          </tr>
+
+          <tr>
+            <td class="table-lines"><p>HANDLER F</p></td>
+          </tr>
+
+          <tr>
+            <th rowspan="3"><p class="no-response-handler center">NO RESPONSE</p></th>
+            <td class="table-lines"><p style="margin-right:27px">HANDLER G</p>
+              <input type="number" min="0" class="number" placeholder="22 MT">
+              <div class="separate">
+              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="accept-button">ACCEPT</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="reject-button">REJECT</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-lines"><p style="margin-right:27px">HANDLER H</p>
+              <input type="number" min="0" class="number" placeholder="22 MT">
+              <div class="separate">
+              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="accept-button">ACCEPT</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="reject-button">REJECT</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-lines"><p style="margin-right:35px">HANDLER I</p>
+              <input type="number" min="0" class="number" placeholder="22 MT">
+              <div class="separate">
+              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="accept-button">ACCEPT</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="reject-button">REJECT</button>
+              </div>
+            </td>
           </tr>
 
         </table>
+
+
+
+  </div>
+</div>
+</div>
+</div>
+
+
+<!--OLD (BUT FUNCTIONING) HANDLER RESPONSES-->
 
       <!--<div class="col-md-4 accepted" id="accepted-handlers">
         <h1 style="color:#2E9566" class="center">ACCEPTED</h1>
@@ -138,10 +266,5 @@
                 {{ handler?.companyName }}
             </p>
           </li>
+<<<<<<< HEAD
       </div>-->
-
-
-
-  </div>
-</div>
-</div>
