@@ -136,20 +136,22 @@ li {
 
 th {
     border: 0.5px solid #959595;
-    width:30%;
+    width:20%;
     height:auto;
-    padding: 10px 0px 10px 10px;
+    padding: 15px 0px 10px 0px;
     float: middle;
 }
 
 .table-lines {
-    border:0.5px solid #959595;
-    padding:15px;
+    border:0.1px solid #959595;
+    padding:15px 10px 0px 20px;
+    display:flex;
+    vertical-align: middle;
 }
 
 .add-handlers {
-    width:120%;
-    height:40px;
+    width:100%;
+    height:35px;
 	font-size: 0.7em;
     color:white;
     background-color: #419ed2;
@@ -168,4 +170,81 @@ th {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     border-right: 1px solid  rgba(0,0,0,0.15);
+}
+
+.pending-handler {
+    font: 20px Gotham Medium, sans-serif;
+    color: #3d85ad;
+}
+
+.accepted-handler {
+    font: 20px Gotham Medium, sans-serif;
+    color: #298959;
+}
+
+.rejected-handler {
+    font: 20px Gotham Medium, sans-serif;
+    color: #9a2620;
+}
+
+.no-response-handler {
+    font: 20px Gotham Medium, sans-serif;
+    color: #808080;
+}
+
+.disapproved-handler {
+    font: 20px Gotham Medium, sans-serif;
+    color: #000000;
+}
+
+.handler-title {
+    font: 25px Gotham Bold, sans-serif;
+    color: #565656;
+    letter-spacing: 5px;
+    padding: 20px 0 5px 60px;
+}
+
+.accept-partial {
+    background-color: #3193ce;
+    color: white;
+    border-radius:4px;
+    border: 0.1px solid #3193ce;
+    font-size:0.7em;
+    height:25px;
+    padding:5px;
+    vertical-align: middle;
+}
+
+.accept-button {
+    background-color: #45af5b;
+    color: white;
+    border-radius:4px;
+    border: 0px solid #45af5b;
+    font-size:0.7em;
+    height:25px;
+    padding:5px;
+    vertical-align: middle;
+}
+
+.reject-button {
+    background-color: #d44040;
+    color: white;
+    border-radius:4px;
+    border: 0px solid #d44040;
+    font-size:0.7em;
+    height:25px;
+    padding:5px;
+    vertical-align: middle;
+}
+
+input {
+    width:15%;
+    height:25px;
+    color:#000000;
+    font-size:0.8em;
+    margin-right:10px;
+}
+
+.separate {
+    margin-right:10px;
 }
