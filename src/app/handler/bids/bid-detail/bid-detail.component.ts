@@ -10,6 +10,11 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/interval';
 import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
 
+import { Grower, GrowerService } from '../../growers/shared/index';
+
+// Do Not Import from index.
+import { ManualBidResponseService } from '../shared/manual-bid-response.service';
+
 @Component({
   directives: [ROUTER_DIRECTIVES],
   styleUrls: ['assets/stylesheets/style.css',
@@ -29,9 +34,14 @@ export class BidDetailComponent implements OnInit, OnDestroy {
   private timezoneOffset: number;
   private sub: Subscription;
 
+  private addGrowersDivToggle: boolean = false;
+  private notAddedGrowers: Grower[];
+
   constructor(
       private route: ActivatedRoute,
       private bidService: BidService,
+      private growerService: GrowerService,
+      private manualBidResponseService: ManualBidResponseService,
       private logger: Logger,
       private config: Config,
       private router: Router,
@@ -69,6 +79,26 @@ export class BidDetailComponent implements OnInit, OnDestroy {
           bid => {
             this.bid = bid;
             this.getCountDownString(this.bid);
+            this.growerService.getGrowers()
+                .subscribe(
+                    res => {
+                      this.notAddedGrowers = [];
+                      for (let growerOfAll of res) {
+                        let hasMatch: boolean = false;
+                        for (let growerOfAllInBid of this.bid.allGrowers) {
+                          if (growerOfAll.growerId === growerOfAllInBid.growerId) {
+                            hasMatch = true;
+                          }
+                        }
+                        if (hasMatch === false) {
+                          this.notAddedGrowers.push(growerOfAll);
+                        }
+                      }
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+
           },
           error => {
             this.logger.handleHttpError(error);
@@ -104,6 +134,66 @@ export class BidDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['/growers', growerId]);
   }
 
+  protected acceptBid(grower: Grower, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to set ' +
+        grower.firstName + ' ' + grower.lastName +
+        '\'s response to to accepted ' + pounds + ' lbs?')
+    .okBtn('Set Response')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.manualBidResponseService.acceptBid(this.bid.bidId, pounds, grower.growerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to accepted.');
+                      this.router.navigateByUrl('/bids');
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Setting response canceled.');
+          });
+    });
+  }
+
+  protected rejectBid(grower: Grower) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to set ' +
+        grower.firstName + ' ' + grower.lastName +
+        '\'s response to to rejected?')
+    .okBtn('Set Response')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.manualBidResponseService.rejectBid(this.bid.bidId, grower.growerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to rejected.');
+                      this.router.navigateByUrl('/bids');
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Setting response canceled.');
+          });
+    });
+  }
+
   protected closeBid(bidId: number) {
   this.modal.confirm()
     .size('sm')
@@ -132,5 +222,112 @@ export class BidDetailComponent implements OnInit, OnDestroy {
             this.logger.alert('Closing bid has been canceled. The bid remains open.');
           });
     });
+  }
+
+  protected approve(grower: Grower, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to approve ' +
+        grower.firstName + ' ' + grower.lastName +
+        '\'s acceptance of ' + pounds + ' lbs?')
+    .okBtn('Approve')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.bidService
+                .approve(this.bid.bidId, grower.growerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to approved');
+                      this.router.navigateByUrl('/bids');
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Approval canceled.');
+          });
+    });
+  }
+
+  protected disapprove(grower: Grower, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to disapprove ' +
+        grower.firstName + ' ' + grower.lastName +
+        '\'s acceptance of ' + pounds + ' lbs?')
+    .okBtn('Disapprove')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.bidService
+                .reject(this.bid.bidId, grower.growerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to disapproved');
+                      this.router.navigateByUrl('/bids');
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Approval canceled.');
+          });
+    });
+  }
+
+  protected addGrowers() {
+    let selectedGrowers = this.notAddedGrowers.filter(grower => grower.selected);
+    let confirmMsg: string = 'Are you sure you would like to add these growers?' + '<br/>';
+    for (let grower of selectedGrowers) {
+      confirmMsg += '<br/>' + grower.firstName + ' ' + grower.lastName;
+    }
+
+    this.modal.confirm()
+      .size('sm')
+      .isBlocking(true)
+      .showClose(false)
+      .title('Confirm')
+      .body(confirmMsg)
+      .okBtn('Send to Growers')
+      .open()
+      .then(res => {
+        res.result
+            .then(confirmed => {
+              this.bidService.addGrowers(
+                  this.bid.bidId,
+                  selectedGrowers)
+                  .subscribe(
+                    success => {
+                      this.logger.alert('Growers Added');
+                      this.router.navigateByUrl('/bids');
+                  },
+                    error => {
+                      this.logger.handleHttpError(error);
+                  });
+            })
+            .catch(canceled => {
+              this.logger.alert('Adding growers canceled.');
+            });
+      });
+  }
+
+  protected toggleAddGrowersDiv() {
+    if (this.notAddedGrowers.length === 0) {
+      this.logger.alert('You have already added all of your handlers to ' +
+          'this bid. There are no handlers left to add.');
+    } else {
+    this.addGrowersDivToggle = !this.addGrowersDivToggle;
+    }
   }
 }

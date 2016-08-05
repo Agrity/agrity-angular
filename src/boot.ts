@@ -14,6 +14,8 @@ import { BidService } from './app/handler/bids/shared/index';
 import { TraderBidService } from './app/trader/trader-bids/shared/index';
 import { HandlerSellerService } from './app/trader/handler-seller/shared/index';
 import { TraderLoginService } from './app/trader/traders/trader-login/index';
+import { ManualTraderBidResponseService } from './app/trader/trader-bids/shared/index';
+import { ManualBidResponseService } from './app/handler/bids/shared/index';
 
 import { MODAL_BROWSER_PROVIDERS } from 'angular2-modal/platform-browser';
 
@@ -38,9 +40,11 @@ bootstrap(AppComponent,
 
            /* Bid Providers */
            BidService,
+           ManualBidResponseService,
 
            /* Trader Bid Providers */
            TraderBidService,
+           ManualTraderBidResponseService,
 
            /* Handler Seller Providers */
            HandlerSellerService,

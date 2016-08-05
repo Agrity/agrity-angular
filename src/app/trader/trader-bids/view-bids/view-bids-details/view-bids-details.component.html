@@ -52,6 +52,25 @@
           <tr>
             <td><p class="handler-title">HANDLERS</p></td>
             <td style="float:right; padding:15px 15px 0px 0px;"><button type="button" class="add-handlers"><span>&#43;</span>ADD HANDLERS</button></td>
+=======
+        <div *ngIf="addHandlersDivToggle">
+          <div>
+            <title>CHOOSE HANDLERS</title>
+          </div>
+          <div>
+            <p *ngFor="let handler of notAddedHandlerSellers">
+              <input type="checkbox" [(ngModel)]="handler.selected">
+              <label>{{ handler.firstName }} {{ handler.lastName }}</label>
+            </p>
+          </div>
+          <button (click)="addHandlers()"> Finish Adding Handlers </button>
+        </div>
+
+        <table class="table-border" cellpadding="4">
+          <tr>
+            <td><p>HANDLERS</p></td>
+            <td style="float:right"><button type="button" class="add-handlers" (click)="toggleAddHandlersDiv()"><span>&#43;</span>ADD HANDLERS</button></td>
+>>>>>>> master
           </tr>
 
           <tr>
@@ -98,7 +117,7 @@
               </div>
               <div class="separate">
               <button type="button" class="reject-button">REJECT</button>
-              </div>            
+              </div>
             </td>
           </tr>
           <tr>
@@ -112,7 +131,7 @@
               </div>
               <div class="separate">
               <button type="button" class="reject-button">REJECT</button>
-              </div>            
+              </div>
             </td>
           </tr>
 
@@ -135,7 +154,7 @@
               </div>
               <div class="separate">
               <button type="button" class="reject-button">REJECT</button>
-              </div>             
+              </div>
             </td>
           </tr>
 
@@ -184,7 +203,7 @@
               </div>
               <div class="separate">
               <button type="button" class="reject-button">REJECT</button>
-              </div>            
+              </div>
             </td>
           </tr>
           <tr>
@@ -198,14 +217,14 @@
               </div>
               <div class="separate">
               <button type="button" class="reject-button">REJECT</button>
-              </div>            
+              </div>
             </td>
           </tr>
 
         </table>
 
 
-      
+
   </div>
 </div>
 </div>
@@ -247,4 +266,5 @@
                 {{ handler?.companyName }}
             </p>
           </li>
+<<<<<<< HEAD
       </div>-->

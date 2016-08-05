@@ -105,13 +105,13 @@ export class ViewBidsComponent implements OnInit, OnDestroy {
         });
   }
 
-  public onSelect(bid: TraderBid) {
-    this.selectedBid = bid;
+  public onSelect(traderBid: TraderBid) {
+    this.selectedBid = traderBid;
   }
 
-  public onCloseBid(bid: TraderBid) {
-    this.ngOnInit();
+  public onCallRefresh(bid: TraderBid) {
     this.selectedBid = null;
+    this.ngOnInit();
   }
 
   public ngOnDestroy() {

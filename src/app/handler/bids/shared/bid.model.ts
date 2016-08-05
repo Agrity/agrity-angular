@@ -1,5 +1,5 @@
 import { Grower } from '../../growers/shared/index';
-import { BidStatus, ResponseStatus, BidResponse } from '../../../shared/index';
+import { BidStatus, ResponseStatus, BidResponse, ManagementType } from '../../../shared/index';
 
 export class Bid {
 
@@ -25,6 +25,14 @@ export class Bid {
     bid.almondPounds = bidJson['almondPounds'];
     bid.pricePerPound = bidJson['pricePerPound'];
     bid.managementType = null;
+    let managementString = bidJson['managementType'];
+    if (managementString === 'FCFS') {
+      bid.managementType = ManagementType.FCFS;
+    }
+    if (managementString === 'STFC') {
+      bid.managementType = ManagementType.STFC;
+    }
+
     bid.managementTypeDelay = null;
     bid.startPaymentDate = bidJson['startPaymentDateAsString'];
     bid.endPaymentDate = bidJson['endPaymentDateAsString'];
@@ -62,6 +70,8 @@ export class Bid {
     bid.expirationTime = new Date(bidJson['expirationTimeAsString']);
     bid.dateCreated = new Date(bidJson['createdAtAsString']);
     bid.noResponseGrowers = this.decodeBidNoResponseGrowers(bidJson);
+    bid.allGrowers = bid.acceptedGrowers.concat(
+        bid.rejectedGrowers).concat(bid.noResponseGrowers);
 
     bid.bidResponses = this.decodeBidResponses(bidJson['bidResponses']);
 
@@ -143,9 +153,13 @@ export class Bid {
       case 'REJECTED':
         bidResponse.responseStatus = ResponseStatus.REJECTED;
         break;
-      case 'PARTIAL':
-        bidResponse.responseStatus = ResponseStatus.PARTIAL;
+      case 'APPROVED':
+        bidResponse.responseStatus = ResponseStatus.APPROVED;
         break;
+      case 'DISAPPROVED':
+        bidResponse.responseStatus = ResponseStatus.DISAPPROVED;
+        break;
+
       default:
         bidResponse.responseStatus = null;
         break;
@@ -186,7 +200,7 @@ export class Bid {
 
   public poundsRemaining: number;
 
-  public managementType: string;
+  public managementType: ManagementType;
   public managementTypeDelay: number;
 
   public growerIds: number[];
@@ -195,6 +209,7 @@ export class Bid {
   public rejectedGrowers: Grower[];
   public callRequestedGrowers: Grower[];
   public noResponseGrowers: Grower[];
+  public allGrowers: Grower[];
 
   public expirationTime: Date;
   public dateCreated: Date;
@@ -221,7 +236,7 @@ export class Bid {
       'almond_pounds': this.getString(this.almondPounds),
       'price_per_pound': this.getString(this.pricePerPound),
       'management_type': {
-        'type': this.getString(this.managementType),
+        'type': this.getString(this.getManagementString()),
         'delay': this.managementTypeDelay,
       },
       'start_payment_date': this.getString(this.startPaymentDate),
@@ -244,6 +259,16 @@ export class Bid {
       return paymentDateString;
     }
     return '';
+  }
+
+  public getManagementString(): string {
+    if (this.managementType === ManagementType.FCFS) {
+      return 'FCFS';
+    }
+    if (this.managementType === ManagementType.STFC) {
+      return 'STFC';
+    }
+    return null;
   }
 
   public getBidResponse(bid: Bid, growerId: number): BidResponse {

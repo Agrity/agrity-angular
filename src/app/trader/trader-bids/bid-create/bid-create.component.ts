@@ -2,7 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router';
 
-import { Config, Logger, UserType }
+import { Config, Logger, UserType, ManagementType }
     from '../../../shared/index';
 import { NavBarService } from '../../../shared/main-navbar/index';
 
@@ -107,6 +107,7 @@ export class TraderBidCreateComponent implements OnInit {
       this.traderBid.almondSize += ' AOL';
       this.aol = false;
     }
+    this.traderBid.managementType = ManagementType.FCFS;
     this.traderBids.push(this.traderBid);
     this.traderBid = new TraderBid();
     this.active = false;
@@ -125,7 +126,10 @@ export class TraderBidCreateComponent implements OnInit {
     }
   }
 
-  protected sendBids() {
+  protected sendBids(plusValid: boolean) {
+    if (plusValid) {
+      this.addBid();
+    }
 
     if (this.traderBids.length === 0) {
       this.logger.alert('Before sending make sure you add bids to your ' +

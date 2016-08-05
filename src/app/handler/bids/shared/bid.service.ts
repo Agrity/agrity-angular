@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { Config, HttpClient, Logger } from '../../../shared/index';
 import { Bid } from './index';
 
+import { Grower } from '../../growers/shared/index';
+
 @Injectable()
 export class BidService {
   private bidsUrl: string;
@@ -61,6 +63,28 @@ export class BidService {
       .catch(this.logger.handleHttpError);
   }
 
+  public addGrowers(bidId: number, growers: Grower[]) {
+    if (growers == null) {
+      this.logger.handleError('Attempted to add null growers.');
+      return null;
+    }
+
+    if (bidId == null) {
+      this.logger.handleError('Bid Id is null.');
+      return null;
+    }
+
+    let growerJson: Object[] = [];
+
+    for (let grower of growers) {
+      growerJson.push(grower.encode());
+    }
+    return this.http.jsonPost(
+        this.bidsUrl + '/' + bidId +
+        '/addGrowers',
+        '[' + growerJson.toString() + ']');
+  }
+
   public closeBid(bidId: number) {
     if (bidId == null) {
       this.logger.handleError('Attempted to close null Bid');
@@ -70,6 +94,36 @@ export class BidService {
     return this.http.get(this.bidsUrl + '/' + bidId + '/close')
       .map(res => res.json())
       .catch(this.logger.handleHttpError);
+  }
+
+  public approve(bidId: number, growerId: number) {
+    if (growerId == null) {
+      this.logger.handleError('Grower Id is null');
+      return null;
+    }
+
+    if (bidId == null) {
+      this.logger.handleError('Bid Id is null.');
+      return null;
+    }
+
+    return this.http.get(this.config.getServerDomain() +
+        '/handlerBids/' + bidId + '/approve/' + growerId);
+  }
+
+  public reject(bidId: number, growerId: number) {
+    if (growerId == null) {
+      this.logger.handleError('Grower Id is null');
+      return null;
+    }
+
+    if (bidId == null) {
+      this.logger.handleError('Bid Id is null.');
+      return null;
+    }
+
+    return this.http.get(this.config.getServerDomain() +
+        '/handlerBids' + bidId + '/disapprove/' + growerId);
   }
 
   private getBidUrl(bidId: number) {

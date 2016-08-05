@@ -45,6 +45,21 @@
 
         </div>
 
+      <button (click)="toggleAddGrowersDiv()"> ADD GROWERS </button>
+      <div *ngIf="addGrowersDivToggle">
+        <div>
+          CHOOSE GROWERS TO ADD
+        </div>
+        <div>
+          <p *ngFor="let grower of notAddedGrowers">
+            <input type="checkbox" [(ngModel)]="grower.selected">
+            <label>{{ grower.firstName }} {{ grower.lastName }}</label>
+          </p>
+        <button (click)="addGrowers()">Send To Checked Growers</button>
+        </div>
+      </div>
+
+
     <div class="center-responses" id="handler-responses">
 
       <div class="col-md-4 accepted" id="accepted-handlers">
@@ -69,12 +84,16 @@
 
       <div class="col-md-4 pending" id="no-response-handlers">
         <h1 style="color:#419ed2" class="center">PENDING</h1>
+
+        <div *ngFor="let grower of bid?.noResponseGrowers">
           <li
-            *ngFor="let grower of bid?.noResponseGrowers"
             type="button"
             (click)="viewGrower(grower.growerId)">
             <p>{{ grower.firstName }} {{ grower.lastName }}</p>
           </li>
+          <button (click)="acceptBid(grower, bid.poundsRemaining)" > ACCEPT REMAINING </button>
+          <button (click)="rejectBid(grower)" > REJECT </button>
+        </div>
       </div>
   </div>
 </div>

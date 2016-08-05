@@ -6,6 +6,9 @@ import { Router, ROUTER_DIRECTIVES }
 import { HandlerSeller, HandlerSellerService } from '../../../handler-seller/shared/index';
 import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
 
+// Do No Import this from index.
+import { ManualTraderBidResponseService } from '../../shared/manual-trader-bid-response.service';
+
 @Component({
   directives: [ROUTER_DIRECTIVES],
   selector: 'sg-view-bids-details',
@@ -18,7 +21,7 @@ import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
 export class ViewBidsDetailsComponent {
 
   @Output()
-  public onCloseBid = new EventEmitter<TraderBid>();
+  public onCallRefresh = new EventEmitter<TraderBid>();
 
   private recievedSelectedBid: TraderBid;
   private notAddedHandlerSellers: HandlerSeller[];
@@ -29,6 +32,7 @@ export class ViewBidsDetailsComponent {
       private traderBidService: TraderBidService,
       private logger: Logger,
       private handlerSellerSevice: HandlerSellerService,
+      private manualTraderBidResponseService: ManualTraderBidResponseService,
       public modal: Modal,
       public viewContainer: ViewContainerRef) {
         modal.defaultViewContainer = viewContainer;
@@ -45,7 +49,7 @@ export class ViewBidsDetailsComponent {
                 for (let handlerOfAll of res) {
                   let hasMatch: boolean = false;
                   for (let handlerOfAllInBid of selectedBid.allHandlerSellers) {
-                    if (handlerOfAll === handlerOfAllInBid) {
+                    if (handlerOfAll.handlerId === handlerOfAllInBid.handlerId) {
                       hasMatch = true;
                     }
                   }
@@ -84,6 +88,68 @@ export class ViewBidsDetailsComponent {
     return;
   }
 
+  protected acceptBid(handler: HandlerSeller, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to set ' +
+        handler.firstName + ' ' + handler.lastName +
+        '\'s response to to accepted ' + pounds + ' lbs?')
+    .okBtn('Set Response')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.manualTraderBidResponseService
+                .acceptBid(this.recievedSelectedBid.bidId, pounds, handler.handlerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to accepted.');
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Setting response canceled.');
+          });
+    });
+  }
+
+  protected rejectBid(handler: HandlerSeller) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to set ' +
+        handler.firstName + ' ' + handler.lastName +
+        '\'s response to to rejected?')
+    .okBtn('Set Response')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.manualTraderBidResponseService
+                .rejectBid(this.recievedSelectedBid.bidId, handler.handlerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to rejected.');
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Setting response canceled.');
+          });
+    });
+  }
+
   protected closeTraderBid(bidId: number) {
     this.modal.confirm()
     .size('sm')
@@ -101,7 +167,7 @@ export class ViewBidsDetailsComponent {
                   .subscribe(
                     success => {
                       this.logger.alert('Bid Closed');
-                      this.onCloseBid.emit(this.recievedSelectedBid);
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
                   },
                     error => {
                     this.logger.handleHttpError(error);
@@ -114,14 +180,110 @@ export class ViewBidsDetailsComponent {
     });
   }
 
+  protected approve(handler: HandlerSeller, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to approve ' +
+        handler.firstName + ' ' + handler.lastName +
+        '\'s acceptance of ' + pounds + ' lbs?')
+    .okBtn('Approve')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.traderBidService
+                .approve(this.recievedSelectedBid.bidId, handler.handlerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to approved');
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Approval canceled.');
+          });
+    });
+  }
+
+  protected disapprove(handler: HandlerSeller, pounds: number) {
+    this.modal.confirm()
+    .size('sm')
+    .isBlocking(true)
+    .showClose(false)
+    .title('Confirm')
+    .body('Are you sure you would like to disapprove ' +
+        handler.firstName + ' ' + handler.lastName +
+        '\'s acceptance of ' + pounds + ' lbs?')
+    .okBtn('Disapprove')
+    .open()
+    .then(res => {
+      res.result
+          .then(confirmed => {
+            this.traderBidService
+                .reject(this.recievedSelectedBid.bidId, handler.handlerId)
+                .subscribe(
+                    success => {
+                      this.logger.alert('Response set to disapproved');
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
+                    },
+                    error => {
+                      this.logger.handleHttpError(error);
+                    });
+                  })
+          .catch(canceled => {
+            this.logger.alert('Approval canceled.');
+          });
+    });
+  }
+
   protected addHandlers() {
-    this.traderBidService.addHandlers(
-        this.recievedSelectedBid.bidId,
-        this.notAddedHandlerSellers
-        .filter(handler => handler.selected));
+    let selectedHandlers = this.notAddedHandlerSellers.filter(handler => handler.selected);
+    let confirmMsg: string = 'Are you sure you would like to add these handlers?' + '<br/>';
+    for (let handler of selectedHandlers) {
+      confirmMsg += '<br/>' + handler.firstName + ' ' + handler.lastName;
+    }
+
+    this.modal.confirm()
+      .size('sm')
+      .isBlocking(true)
+      .showClose(false)
+      .title('Confirm')
+      .body(confirmMsg)
+      .okBtn('Send to Handlers')
+      .open()
+      .then(res => {
+        res.result
+            .then(confirmed => {
+              this.traderBidService.addHandlers(
+                  this.recievedSelectedBid.bidId,
+                  selectedHandlers)
+                  .subscribe(
+                    success => {
+                      this.logger.alert('Handlers Added');
+                      this.onCallRefresh.emit(this.recievedSelectedBid);
+                  },
+                    error => {
+                      this.logger.handleHttpError(error);
+                  });
+            })
+            .catch(canceled => {
+              this.logger.alert('Adding handlers canceled.');
+            });
+      });
   }
 
   protected toggleAddHandlersDiv() {
+    if (this.notAddedHandlerSellers.length === 0) {
+      this.logger.alert('You have already added all of your handlers ' +
+          'to this bid. There are no handlers left to add.');
+    } else {
     this.addHandlersDivToggle = !this.addHandlersDivToggle;
+    }
   }
 }
