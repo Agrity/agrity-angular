@@ -107,7 +107,7 @@ export class TraderBidCreateComponent implements OnInit {
       this.traderBid.almondSize += ' AOL';
       this.aol = false;
     }
-    this.traderBid.managementType = ManagementType.FCFS
+    this.traderBid.managementType = ManagementType.FCFS;
     this.traderBids.push(this.traderBid);
     this.traderBid = new TraderBid();
     this.active = false;
