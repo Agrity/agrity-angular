@@ -64,6 +64,7 @@ export class TraderBid {
     traderBid.almondPounds = traderBidJson['almondPounds'];
     traderBid.pricePerPound = traderBidJson['pricePerPound'];
     traderBid.comment = traderBidJson['comment'];
+    traderBid.poundsRemaining = traderBidJson['poundsRemaining'];
 
     let bidStatus: string = traderBidJson['bidStatus'];
 
@@ -91,6 +92,10 @@ export class TraderBid {
 
     traderBid.acceptedHandlerSellers =
         this.decodeTraderBidAcceptHandlerSellers(traderBidJson);
+    traderBid.pendingHandlerSellers =
+        this.decodeTraderBidPendingHandlerSellers(traderBidJson);
+    traderBid.disapprovedHandlerSellers =
+        this.decodeTraderBidDisapprovedHandlerSellers(traderBidJson);
     traderBid.rejectedHandlerSellers =
         this.decodeTraderBidRejectHandlerSellers(traderBidJson);
     traderBid.noResponseHandlerSellers =
@@ -117,6 +122,14 @@ export class TraderBid {
 
   public static decodeTraderBidNoResponseHandlerSellers(traderBidJson: Object): HandlerSeller[] {
     return this.decodeTraderBidHandlerSellers('noResponseHandlerSellers', traderBidJson);
+  }
+
+  public static decodeTraderBidPendingHandlerSellers(traderBidJson: Object): HandlerSeller[] {
+    return this.decodeTraderBidHandlerSellers('pendingHandlerSellers', traderBidJson);
+  }
+
+  public static decodeTraderBidDisapprovedHandlerSellers(traderBidJson: Object): HandlerSeller[] {
+    return this.decodeTraderBidHandlerSellers('disapprovedHandlerSellers', traderBidJson);
   }
 
   public static decodeBidResponses(bidResponsesJson: Object): BidResponse[] {
@@ -191,11 +204,14 @@ export class TraderBid {
   public currentlyOpen: boolean;
   public bidStatus: BidStatus;
   public bidResponses: BidResponse[];
+  public poundsRemaining: number;
 
   public handlerSellerIds: number[];
   public acceptedHandlerSellers: HandlerSeller[];
   public rejectedHandlerSellers: HandlerSeller[];
   public noResponseHandlerSellers: HandlerSeller[];
+  public disapprovedHandlerSellers: HandlerSeller[];
+  public pendingHandlerSellers: HandlerSeller[];
   public allHandlerSellers: HandlerSeller[];
 
   public expirationTime: Date;

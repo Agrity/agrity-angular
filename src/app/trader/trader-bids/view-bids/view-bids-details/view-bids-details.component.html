@@ -142,85 +142,73 @@
       <table class="table-border" cellpadding="4">
           <tr>
             <td><p class="handler-title">HANDLERS</p></td>
-            <td style="float:right; padding:15px 15px 0px 0px;"><button type="button" class="add-handlers"><span>&#43;</span>ADD HANDLERS</button></td>
+            <td style="float:right; padding:15px 15px 0px 0px;"><button (click)="toggleAddHandlersDiv()" type="button" class="add-handlers"><span>&#43;</span>ADD HANDLERS</button></td>
+
+            <div *ngIf="addHandlersDivToggle">
+              <p *ngFor="let handler of notAddedHandlerSellers">
+              <input type="checkbox" [(ngModel)]="handler.selected">
+              <label>{{ handler.firstName }} {{ handler.lastName }}</label>
+              </p>
+              <button (click)="addHandlers()"> SEND TO CHECKED HANDLERS</button>
+            </div>
           </tr>
 
-          <tr>
+          <tr *ngIf="recievedSelectedBid.pendingHandlerSellers.length > 0">
             <th rowspan="1"><p class="pending-handler center">PENDING</p></th>
-            <td class="table-lines"><p>HANDLER C</p>
-            <p style="padding:0 20px 0 30px">22 tons accepted</p>
+            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.pendingHandlerSellers">
+            <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
+            <p style="padding:0 20px 0 30px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} tons accepted</p>
               <div class="separate">
-              <button type="button" class="accept-button">APPROVE</button>
+              <button type="button" class="accept-button"
+              (click)="approve(handler,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted))">APPROVE</button>
               </div>
               <div class="separate">
-              <button type="button" class="reject-button">REJECT</button>
+              <button type="button" class="reject-button"
+              (click)="approve(handler,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted))">REJECT</button>
               </div>
             </td>
           </tr>
 
-          <tr>
+          <tr *ngIf="recievedSelectedBid.acceptedHandlerSellers.length > 0">
             <th rowspan="1"><p class="accepted-handler center">ACCEPTED</p></th>
-            <td class="table-lines"><p>HANDLER C</p><p style="padding-left:50px">22 tons accepted</p></td>
+            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.acceptedHandlerSellers">
+            <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
+            <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} tons accepted</p></td>
           </tr>
 
-          <tr>
+          <tr *ngIf="recievedSelectedBid.disapprovedHandlerSellers.length > 0">
             <th rowspan="1"><p class="disapproved-handler center">DISAPPROVED</p></th>
-            <td class="table-lines"><p>HANDLER C</p><p style="padding-left:50px">2 tons disapproved</p></td>
+            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.disapprovedHandlerSellers">
+            <p>(click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
+            <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} tons disapproved</p></td>
           </tr>
 
-          <tr>
+          <tr *ngIf="recievedSelectedBid.rejectedHandlerSellers.length > 0">
             <th rowspan="2"><p class="rejected-handler center">REJECTED</p></th>
-            <td class="table-lines"><p>HANDLER D</p></td>
+            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.disapprovedHandlerSellers">
+            <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p></td>
           </tr>
 
-          <tr>
-            <td class="table-lines"><p>HANDLER F</p></td>
-          </tr>
-
-          <tr>
+          <tr *ngIf="recievedSelectedBid.noResponseHandlerSellers.length > 0">
             <th rowspan="3"><p class="no-response-handler center">NO RESPONSE</p></th>
-            <td class="table-lines"><p style="margin-right:27px">HANDLER G</p>
-              <input type="number" min="0" class="number" placeholder="22 MT">
+            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.noResponseHandlerSellers">
+              <p style="margin-right:27px" (click)="viewHandler(handler.handlerId)">{{handler?.companyName}}</p>
+              <input type="number" min="0" class="number" placeholder="22 MT" [(ngModel)]="handler.amountManual">
               <div class="separate">
-              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
+              <button type="button" class="accept-partial"
+              [disabled]="!(handler.amountManual > 0)"
+              (click)="acceptBid(handler, handler.amountManual)">ACCEPT PARTIAL</button>
               </div>
               <div class="separate">
-              <button type="button" class="accept-button">ACCEPT</button>
+              <button type="button" class="accept-button"
+              (click)="acceptBid(handler, recievedSelectedBid.poundsRemaining)">ACCEPT REMAINING</button>
               </div>
               <div class="separate">
-              <button type="button" class="reject-button">REJECT</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="table-lines"><p style="margin-right:27px">HANDLER H</p>
-              <input type="number" min="0" class="number" placeholder="22 MT">
-              <div class="separate">
-              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
-              </div>
-              <div class="separate">
-              <button type="button" class="accept-button">ACCEPT</button>
-              </div>
-              <div class="separate">
-              <button type="button" class="reject-button">REJECT</button>
+              <button type="button" class="reject-button"
+              (click)="rejectBid(handler)">REJECT</button>
               </div>
             </td>
           </tr>
-          <tr>
-            <td class="table-lines"><p style="margin-right:35px">HANDLER I</p>
-              <input type="number" min="0" class="number" placeholder="22 MT">
-              <div class="separate">
-              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
-              </div>
-              <div class="separate">
-              <button type="button" class="accept-button">ACCEPT</button>
-              </div>
-              <div class="separate">
-              <button type="button" class="reject-button">REJECT</button>
-              </div>
-            </td>
-          </tr>
-
         </table>
 
 

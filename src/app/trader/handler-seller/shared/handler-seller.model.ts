@@ -35,6 +35,10 @@ export class HandlerSeller {
   //       Do not send, or expect to recieve, to/from server.
   public selected: boolean;
 
+  // NOTE: Temporary hack to allow manual input ammounts to be handler specific.
+  //       Do not send, or expect to recieve, to/from server.
+  public amountManual: number;
+
   public encode(): string {
     // NOTE: Play Framework won't recognize fields that aren't changed to
     //       String class. Unsure why.

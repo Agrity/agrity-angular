@@ -96,7 +96,7 @@ export class ViewBidsDetailsComponent {
     .title('Confirm')
     .body('Are you sure you would like to set ' +
         handler.firstName + ' ' + handler.lastName +
-        '\'s response to to accepted ' + pounds + ' lbs?')
+        '\'s response to to accepted ' + pounds + ' MT?')
     .okBtn('Set Response')
     .open()
     .then(res => {
@@ -188,7 +188,7 @@ export class ViewBidsDetailsComponent {
     .title('Confirm')
     .body('Are you sure you would like to approve ' +
         handler.firstName + ' ' + handler.lastName +
-        '\'s acceptance of ' + pounds + ' lbs?')
+        '\'s acceptance of ' + pounds + ' MT?')
     .okBtn('Approve')
     .open()
     .then(res => {
@@ -219,7 +219,7 @@ export class ViewBidsDetailsComponent {
     .title('Confirm')
     .body('Are you sure you would like to disapprove ' +
         handler.firstName + ' ' + handler.lastName +
-        '\'s acceptance of ' + pounds + ' lbs?')
+        '\'s acceptance of ' + pounds + ' MT?')
     .okBtn('Disapprove')
     .open()
     .then(res => {
