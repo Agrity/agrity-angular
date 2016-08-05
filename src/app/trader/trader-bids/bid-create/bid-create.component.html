@@ -84,8 +84,6 @@
           </div></button>
             </div>
 
-    </form>
-
 <div class="col-md-12 centerbuttons">
 
 <div class="center message">
@@ -128,7 +126,7 @@
 <div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
         <div class="form-group spaceover">
           <input type="number" step="1" min="1" class="form-control" required
-              [(ngModel)]="delay"
+              [(ngModel)]="delay" [ngModelOptions]="{standalone: true}"
               ngControl="delay"
               autocomplete="off"
               name="delay"
@@ -148,7 +146,7 @@
 			<div class="col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
 				<div class="whitebox">
 					<p *ngFor="let handler of handlerSellers">
-    					<input type="checkbox" [(ngModel)]="handler.selected">
+    					<input type="checkbox" [(ngModel)]="handler.selected" [ngModelOptions]="{standalone: true}">
     					<label>{{ handler.firstName }} {{ handler.lastName }}</label>
   					</p>
   				</div>
@@ -162,13 +160,23 @@
             </div>
 
       <div class="col-md-12 col-sm-12 center">
-					<input
+					<button *ngIf="!traderBidForm.form.valid"
             [disabled]="!delay"
-            (click)="sendBids()"
-            name="submit" type="submit"
-            class="form-control" id="submit"
-            value="SEND BIDS">
+            (click)="sendBids(false)"
+            type="button"
+            class="form-control">
+            SEND {{ traderBids.length }} BIDS
+          </button>
+          <button *ngIf="traderBidForm.form.valid"
+            [disabled]="!delay"
+            (click)="sendBids(true)"
+            type="button"
+            class="form-control">
+            SEND {{ traderBids.length + 1 }} BIDS
+          </button>
 				</div>
+  </form>
+
     </div>
 </section>
 </div>

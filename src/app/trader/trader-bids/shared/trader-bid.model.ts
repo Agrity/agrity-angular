@@ -227,7 +227,7 @@ export class TraderBid {
 
   public getManagementString(): string {
     if (this.managementType === ManagementType.FCFS) {
-      return 'FCFS';
+      return 'FCFSService';
     }
     if (this.managementType === ManagementType.STFC) {
       return 'STFC';
