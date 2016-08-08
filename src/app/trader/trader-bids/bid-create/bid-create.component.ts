@@ -131,7 +131,6 @@ export class TraderBidCreateComponent implements OnInit {
     }
     this.traderBids.push(this.traderBid);
     this.traderBid = new TraderBid();
-    this.managementTypeSelection = this.FCFS;
     this.active = false;
     setTimeout(() => this.active = true, 0);
   }
