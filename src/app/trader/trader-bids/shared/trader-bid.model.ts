@@ -1,3 +1,5 @@
+import { DatePipe } from '@angular/common';
+
 import { HandlerSeller } from '../../handler-seller/shared/index';
 import { BidStatus, BidResponse, ResponseStatus, ManagementType } from '../../../shared/index';
 
@@ -5,9 +7,9 @@ export class TraderBid {
 
   /* ===================================== Static Methods ===================================== */
 
-    public static updateCountDownString(bid: TraderBid): void {
+  public static updateCountDownString(bid: TraderBid): void {
     if (!bid.currentlyOpen) {
-       bid.countDownString = 'Bid Closed';
+       bid.countDownString = new DatePipe().transform(bid.dateCreated, 'shortDate');
        return;
      }
 
