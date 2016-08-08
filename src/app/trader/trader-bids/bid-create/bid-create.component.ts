@@ -37,11 +37,16 @@ export class TraderBidCreateComponent implements OnInit {
 
   protected grades: string[] = [
     'Not Specified',
-    'Fancy',
-    'Extra No. 1',
-    'No. 1 (Supreme)',
-    'Select Sheller Run',
-    'Standard Sheller Run',
+    'US Fancy',
+    'US Extra No. 1',
+    'US No. 1 (Supreme)',
+    'US Select Sheller Run (SSR)',
+    'US Standard Sheller Run',
+    'US No. 1 Whole & Broken',
+    'US No. 1 Pieces',
+    'Standard 5%',
+    'Japan Spec',
+    'Ungraded',
   ];
 
   protected sizes: string[] = [
