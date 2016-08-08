@@ -129,12 +129,6 @@ export class TraderBidCreateComponent implements OnInit {
     if (this.traderBid.grade === undefined) {
       this.traderBid.grade = 'Not Specified';
     }
-    if (this.managementTypeSelection === 'FCFS') {
-      this.traderBid.managementType = ManagementType.FCFS;
-    }
-    if (this.managementTypeSelection === 'STFC') {
-      this.traderBid.managementType = ManagementType.STFC;
-    }
     this.traderBids.push(this.traderBid);
     this.traderBid = new TraderBid();
     this.managementTypeSelection = this.FCFS;
@@ -167,6 +161,12 @@ export class TraderBidCreateComponent implements OnInit {
 
     for (let bid of this.traderBids) {
       bid.delay = this.delay;
+      if (this.managementTypeSelection === 'FCFS') {
+        this.bid.managementType = ManagementType.FCFS;
+      }
+      if (this.managementTypeSelection === 'STFC') {
+        this.bid.managementType = ManagementType.STFC;
+      }
       bid.handlerSellerIds = [];
       for (let handler of this.handlerSellers) {
         if (handler.selected) {

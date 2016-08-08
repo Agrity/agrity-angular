@@ -83,16 +83,6 @@
               style="width:685px;">
         </div>
 
-          <select type="text" class="grade-form-control"
-            [(ngModel)]="managementTypeSelection"
-            ngControl="managementType"
-            name="managementType"
-            list="almonds"
-            style="color:#444444;">>
-                <option [value]="FCFS"> Firm Bid, First Come First Serve </option>
-                <option [value]="STFC"> Subject to Final Confirmation </option>
-          </select>
-
     </div>
 
 		<div class="col-sm-2">
@@ -157,6 +147,16 @@
               name="delay"
               placeholder="Type Duration (in hours)">
         </div>
+
+          <select type="text" class="grade-form-control"
+            [(ngModel)]="managementTypeSelection"
+            ngControl="managementType"
+            name="managementType"
+            list="almonds"
+            style="color:#444444;">>
+                <option [value]="FCFS"> Firm Bid, First Come First Serve </option>
+                <option [value]="STFC"> Subject to Final Confirmation </option>
+          </select>
 </div>
 
 
