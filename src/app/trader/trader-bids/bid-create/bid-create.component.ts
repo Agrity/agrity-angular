@@ -186,7 +186,7 @@ export class TraderBidCreateComponent implements OnInit {
     let bidsString: string = 'BIDS: ';
     for (let bid of this.traderBids) {
       bidsString = bidsString + '<br/>' +
-      'Pounds: ' + bid.almondPounds + 'MT - ' +
+      'Pounds: ' + bid.almondPounds.toLocaleString() + 'MT - ' +
       'Variety: ' + bid.almondVariety + ' - ' +
       'Grade: ' + bid.grade + ' - ' +
       'Size: ' + bid.almondSize + ' - ' +
