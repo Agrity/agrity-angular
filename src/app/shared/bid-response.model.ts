@@ -23,4 +23,23 @@ export class BidResponse {
     }
     return null;
   }
+
+    public getResponseStatusTrader(): string {
+    if (this.responseStatus === ResponseStatus.ACCEPTED) {
+      return 'Accepted ' + this.poundsAccepted + ' MT';
+    }
+    if (this.responseStatus === ResponseStatus.REJECTED) {
+      return 'Rejected';
+    }
+    if (this.responseStatus === ResponseStatus.NO_RESPONSE) {
+      return 'No Response';
+    }
+    if (this.responseStatus === ResponseStatus.PENDING) {
+      return 'Pending: ' + this.poundsAccepted + ' MT';
+    }
+    if (this.responseStatus === ResponseStatus.DISAPPROVED) {
+      return 'Disapproved: ' + this.poundsAccepted + ' MT';
+    }
+    return null;
+  }
 }
