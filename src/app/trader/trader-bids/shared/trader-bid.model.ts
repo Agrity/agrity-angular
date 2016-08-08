@@ -54,10 +54,10 @@ export class TraderBid {
 
     traderBid.managementType = null;
     let managementString = traderBidJson['managementType'];
-    if (managementString === 'FCFS') {
+    if (managementString === 'FCFSService') {
       traderBid.managementType = ManagementType.FCFS;
     }
-    if (managementString === 'STFC') {
+    if (managementString === 'STFCService') {
       traderBid.managementType = ManagementType.STFC;
     }
 
@@ -251,7 +251,7 @@ export class TraderBid {
       return 'FCFSService';
     }
     if (this.managementType === ManagementType.STFC) {
-      return 'STFC';
+      return 'STFCService';
     }
     return null;
   }

@@ -8,7 +8,7 @@
 
     <div class="container">
 
-    <form *ngIf="active" (ngSubmit)="addBid()" #traderBidForm="ngForm">
+    <form *ngIf="active" #traderBidForm="ngForm">
 
     <div class="col-sm-10 wow fadeInDown" data-wow-delay="0.6s">
 
@@ -54,7 +54,7 @@
             name="size"
             placeholder="Select Size"
             list="size">
-                <option [value]="variety" disabled selected hidden> Select Size </option>
+                <option [value]="size" disabled selected hidden> Select Size </option>
                 <option *ngFor="let size of sizes"
                     [value]="size"> {{ size }}
                 </option>
@@ -83,10 +83,20 @@
               style="width:685px;">
         </div>
 
+          <select type="text" class="grade-form-control"
+            [(ngModel)]="managementTypeSelection"
+            ngControl="managementType"
+            name="managementType"
+            list="almonds"
+            style="color:#444444;">>
+                <option [value]="FCFS"> Firm Bid, First Come First Serve </option>
+                <option [value]="STFC"> Subject to Final Confirmation </option>
+          </select>
+
     </div>
 
 		<div class="col-sm-2">
-            <button [disabled]="!traderBidForm.form.valid"
+            <button formnovalidate [disabled]="!traderBidForm.form.valid"
                     style="border:none; background:none; padding:none;"
                     type="button"
                     class="spaceover"
@@ -109,7 +119,7 @@
 			  <div *ngFor="let bid of traderBids"
                     class="wow fadeInDown spaceunder"
                     data-wow-delay="0.3s">
-			  <button
+			  <button formnovalidate
                 type="button" class="listbidbutton">
 			  	<table id="buttonCols">
 				<tr>
@@ -127,7 +137,7 @@
 				</table>
 			  </button>
 
-            <button
+            <button formnovalidate
                     style="border:none; background:none; padding:none;"
                     type="button"
                     (click)="removeBid(index)">
@@ -175,16 +185,16 @@
             </div>
 
       <div class="col-md-12 col-sm-12 center">
-					<button *ngIf="!traderBidForm.form.valid"
+					<button formnovalidate *ngIf="!traderBidForm.form.valid"
             [disabled]="!delay"
             (click)="sendBids(false)"
-            type="submit">
+            >
             SEND {{ traderBids.length }} {{ getBidOrBidsInvalid() }}
           </button>
-          <button *ngIf="traderBidForm.form.valid"
+          <button formnovalidate *ngIf="traderBidForm.form.valid"
             [disabled]="!delay"
             (click)="sendBids(true)"
-            type="submit">
+            >
             SEND {{ traderBids.length + 1 }} {{ getBidOrBidsValid() }}
           </button>
 				</div>

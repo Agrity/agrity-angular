@@ -21,6 +21,10 @@ import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
 
 export class BidCreateComponent implements OnInit {
 
+  protected STFC: string = 'STFC';
+  protected FCFS: string = 'FCFS';
+  protected managementTypeSelection: string = 'FCFS';
+
   protected varieties: string[] = [
     'NONPAREIL',
     'CARMEL',
@@ -84,6 +88,7 @@ export class BidCreateComponent implements OnInit {
       this.router.navigateByUrl('/trader-home');
       return;
     }
+    this.managementTypeSelection = this.FCFS;
 
     // Load in Growers
     this.growers = [];
@@ -106,6 +111,13 @@ export class BidCreateComponent implements OnInit {
       return;
     }
 
+    if (this.managementTypeSelection === 'FCFS') {
+      this.bid.managementType = ManagementType.FCFS;
+    }
+    if (this.managementTypeSelection === 'STFC') {
+      this.bid.managementType = ManagementType.STFC;
+    }
+
     let bidsString: string = 'BID DETAILS:';
     bidsString = bidsString + '<br/>' +
     'Pounds: ' + this.bid.almondPounds + ' lbs <br/>' +
@@ -116,12 +128,18 @@ export class BidCreateComponent implements OnInit {
     }
     bidsString = bidsString + '<br/>' + 'Price Per Pound: $' + this.bid.pricePerPound + '<br/>';
     if (this.bid.comment !== undefined) {
-      bidsString = bidsString + 'Other Details: ' + this.bid.comment + '<br/>' + '<br/>';
+      bidsString = bidsString + 'Other Details: ' + this.bid.comment + '<br/>';
     } else {
-      bidsString = bidsString + 'Other Details: Not Specified' + '<br/>' + '<br/>';
+      bidsString = bidsString + 'Other Details: Not Specified' + '<br/>';
     }
-
-    bidsString = bidsString + 'Time to Respond: ' + this.bid.managementTypeDelay + ' HOURS';
+    if (this.bid.managementType === ManagementType.FCFS) {
+      bidsString = bidsString + 'Firm Bid, First Come First Serve' + '<br/>';
+    }
+    if (this.bid.managementType === ManagementType.STFC) {
+      bidsString = bidsString + 'Subject to Final Confirmation' + '<br/>';
+    }
+    bidsString = bidsString + '<br/>' + 'Time to Respond: ' +
+        this.bid.managementTypeDelay + ' HOURS';
 
     let growersString: string = 'TO:';
     for (let grower of selectedGrowers) {

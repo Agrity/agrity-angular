@@ -10,7 +10,7 @@
       <div class="col-md-12 col-sm-12 wow fadeInDown">
         <h9 class="wow fadeInDown center">CREATE YOUR BID</h9>
       </div>
-				<form #newBidForm="ngForm" (ngSubmit)="save()">
+				<form #newBidForm="ngForm">
 					<div class="col-md-12 col-sm-12">
 
                         <div class="form-group center">
@@ -19,7 +19,8 @@
                                     ngControl="almondPounds" type="number"
                                     class="form-control" name="pounds"
                                     placeholder="Pounds"
-                                    autocomplete="off" required>
+                                    autocomplete="off" required
+                                    pattern="[0-9]{1,9}">
 
                             <select type="text"
                                     [(ngModel)]="bid.almondVariety"
@@ -69,6 +70,15 @@
                                     placeholder="Other Details (e.g., grade, export/domestic, price to grower, etc.)"
                                     style="border: 0.1px solid #959595;">
 
+                            <select type="text"
+                                    [(ngModel)]="managementTypeSelection"
+                                    ngControl="managementType" class="form-control"
+                                    name="management type" id="management type"
+                                    style="width:35%; color:#444444;">
+                                  <option [value]="FCFS"> Firm Bid, First Come First Serve </option>
+                                  <option [value]="STFC"> Subject to Final Confirmation </option>
+                            </select>
+
                             <input [(ngModel)]="bid.managementTypeDelay"
                                     ngControl="delay" type="number" step="1"
                                     class="form-control" name="delay"
@@ -103,7 +113,7 @@
 			</div>
 
             <div class="col-md-12 center">
-              <button [disabled]="!newBidForm.valid"  name="submit" type="submit" id="submit" style="padding-bottom:0px; margin-bottom:0px;"> Submit Bid </button>
+              <button [disabled]="!newBidForm.valid" (click)="save()" name="submit" id="submit" style="padding-bottom:0px; margin-bottom:0px;"> Submit Bid </button>
               <!--<div style="background-color:#993333; color:white; text-align:center; width:300px;" *ngIf="!newBidForm.form.valid">
                 You must fill out all fields before you can complete your bid!
               </div>-->

@@ -27,10 +27,10 @@ export class Bid {
     bid.pricePerPound = bidJson['pricePerPound'];
     bid.managementType = null;
     let managementString = bidJson['managementType'];
-    if (managementString === 'FCFS') {
+    if (managementString === 'FCFSService') {
       bid.managementType = ManagementType.FCFS;
     }
-    if (managementString === 'STFC') {
+    if (managementString === 'STFCService') {
       bid.managementType = ManagementType.STFC;
     }
 
@@ -267,7 +267,7 @@ export class Bid {
       return 'FCFSService';
     }
     if (this.managementType === ManagementType.STFC) {
-      return 'STFC';
+      return 'STFCService';
     }
     return null;
   }

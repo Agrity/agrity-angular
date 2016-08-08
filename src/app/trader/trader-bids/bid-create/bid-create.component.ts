@@ -22,6 +22,10 @@ export class TraderBidCreateComponent implements OnInit {
 
   protected active: boolean = true;
 
+  protected STFC: string = 'STFC';
+  protected FCFS: string = 'FCFS';
+  protected managementTypeSelection: string;
+
   protected varieties: string[] = [
     'NONPAREIL',
     'CARMEL',
@@ -72,7 +76,6 @@ export class TraderBidCreateComponent implements OnInit {
 
   private traderBid: TraderBid = new TraderBid();
   private traderBids: TraderBid[] = [];
-
   private handlerSellers: HandlerSeller[];
   private delay: number;
   private aol: boolean = false;
@@ -104,6 +107,8 @@ export class TraderBidCreateComponent implements OnInit {
       return;
     }
 
+    this.managementTypeSelection = this.FCFS;
+
     // Load in handlerSellers
     this.handlerSellers = [];
     this.handlerSellerService.getHandlerSellers()
@@ -124,9 +129,15 @@ export class TraderBidCreateComponent implements OnInit {
     if (this.traderBid.grade === undefined) {
       this.traderBid.grade = 'Not Specified';
     }
-    this.traderBid.managementType = ManagementType.FCFS;
+    if (this.managementTypeSelection === 'FCFS') {
+      this.traderBid.managementType = ManagementType.FCFS;
+    }
+    if (this.managementTypeSelection === 'STFC') {
+      this.traderBid.managementType = ManagementType.STFC;
+    }
     this.traderBids.push(this.traderBid);
     this.traderBid = new TraderBid();
+    this.managementTypeSelection = this.FCFS;
     this.active = false;
     setTimeout(() => this.active = true, 0);
   }
@@ -181,9 +192,15 @@ export class TraderBidCreateComponent implements OnInit {
       'Size: ' + bid.almondSize + ' - ' +
       'Market Price Per Pound: $' + bid.pricePerPound + '</br>';
       if (bid.comment !== undefined) {
-        bidsString = bidsString + ' - Other Details: ' + bid.comment + '</br>';
+        bidsString = bidsString + 'Other Details: ' + bid.comment + '</br>';
       } else {
-      bidsString = bidsString + ' - Other Details: Not Specified' + '</br>';
+      bidsString = bidsString + 'Other Details: Not Specified' + '</br>';
+      }
+      if (bid.managementType === ManagementType.FCFS) {
+        bidsString = bidsString + 'Firm Bid, First Come First Serve' + '<br/>';
+      }
+      if (bid.managementType === ManagementType.STFC) {
+        bidsString = bidsString + 'Subject to Final Confirmation' + '<br/>';
       }
     }
 
