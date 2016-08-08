@@ -11,7 +11,7 @@ import { TraderBid } from '../../../trader-bids/shared/index';
 // NOTE: Importing this service through index causes a bug. Not sure why.
 import { TraderBidService } from '../../../trader-bids/shared/trader-bid.service';
 
-import { BidStatus } from '../../../../shared/index';
+import { ResponseStatus } from '../../../../shared/index';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -101,19 +101,28 @@ export class ViewHandlersDetailsComponent implements OnInit, OnDestroy {
   }
 
   protected isAccepted(bid: TraderBid): boolean {
-    if (bid.bidStatus === BidStatus.ACCEPTED) {
+    if (bid.getBidResponse(bid, this.recievedSelectedHandler.handlerId).responseStatus ===
+        ResponseStatus.ACCEPTED ||
+        bid.getBidResponse(bid, this.recievedSelectedHandler.handlerId).responseStatus ===
+        ResponseStatus.APPROVED) {
       return true;
     }
     return false;
   }
+
   protected isRejected(bid: TraderBid): boolean {
-    if (bid.bidStatus === BidStatus.REJECTED) {
+    if (bid.getBidResponse(bid, this.recievedSelectedHandler.handlerId).responseStatus ===
+        ResponseStatus.REJECTED ||
+        bid.getBidResponse(bid, this.recievedSelectedHandler.handlerId).responseStatus ===
+        ResponseStatus.DISAPPROVED) {
       return true;
     }
     return false;
   }
-  protected isPartial(bid: TraderBid): boolean {
-    if (bid.bidStatus === BidStatus.PARTIAL) {
+
+  protected isNoResponse(bid: TraderBid): boolean {
+    if (bid.getBidResponse(bid, this.recievedSelectedHandler.handlerId).responseStatus ===
+        ResponseStatus.NO_RESPONSE) {
       return true;
     }
     return false;

@@ -6,7 +6,8 @@ export class BidResponse {
   public poundsAccepted: number;
 
   public getResponseStatus(): string {
-    if (this.responseStatus === ResponseStatus.ACCEPTED) {
+    if (this.responseStatus === ResponseStatus.ACCEPTED ||
+        this.responseStatus === ResponseStatus.APPROVED) {
       return 'Accepted ' + this.poundsAccepted + ' lbs';
     }
     if (this.responseStatus === ResponseStatus.REJECTED) {
@@ -25,7 +26,8 @@ export class BidResponse {
   }
 
     public getResponseStatusTrader(): string {
-    if (this.responseStatus === ResponseStatus.ACCEPTED) {
+    if (this.responseStatus === ResponseStatus.ACCEPTED ||
+        this.responseStatus === ResponseStatus.APPROVED) {
       return 'Accepted ' + this.poundsAccepted + ' MT';
     }
     if (this.responseStatus === ResponseStatus.REJECTED) {

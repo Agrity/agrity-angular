@@ -262,7 +262,7 @@ export class TraderBidCreateComponent implements OnInit {
   }
 
   protected disableDollarSign(keyIdentifier: string) {
-    if (keyIdentifier == 'U+0024') {
+    if (keyIdentifier === 'U+0024') {
       return false;
     } else {
       return true;

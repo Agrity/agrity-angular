@@ -65,18 +65,18 @@
         class="wow fadeInDown makespace" data-wow-delay="0.6s">
         <button type="button"
                 (click)="viewBid(bid?.bidId)"
-                class="closedbidbutton center">
+                [ngClass]="{ 'accepted': isAccepted(bid), 'rejected': isRejected(bid), 'no-response': isNoResponse(bid) }">
           <table id="buttonCols" style="width:100%;">
             <tr>
-              <td class="offerButton"><p>
+              <td class="offerButton"><p style="color:white">
                 {{ bid?.almondVariety }}</p></td>
-              <td class="offerButton"><p>
+              <td class="offerButton"><p style="color:white">
                 {{ bid?.pricePerPound }}</p></td>
-              <td class="offerButton"><p>
+              <td class="offerButton"><p style="color:white">
                 {{ bid?.almondPounds | number }}</p></td>
-              <td class="offerButton"><p>
+              <td class="offerButton"><p style="color:white">
                 {{ bid?.dateCreated | date:"MM/dd/yy"  }}</p></td>
-              <td class="offerButton"><p>
+              <td class="offerButton"><p style="color:white">
                 {{ bid?.getBidResponse(bid, recievedSelectedHandler.handlerId)?.getResponseStatusTrader() }}</p></td>
             </tr>
             <!--<tr> <p>{{ bid.comment }} </p></tr>-->
