@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Grower } from '../../growers/shared/index';
 import { BidStatus, ResponseStatus, BidResponse, ManagementType } from '../../../shared/index';
 
@@ -81,8 +82,8 @@ export class Bid {
 
   public static updateCountDownString(bid: Bid): void {
     if (!bid.currentlyOpen) {
-       bid.countDownString = 'Bid Closed';
-       return;
+      bid.countDownString = new DatePipe().transform(bid.dateCreated, 'shortDate');
+      return;
      }
 
     if (bid.timeToExpire <= 0) {
