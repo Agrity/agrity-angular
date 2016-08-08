@@ -162,10 +162,10 @@ export class TraderBidCreateComponent implements OnInit {
     for (let bid of this.traderBids) {
       bid.delay = this.delay;
       if (this.managementTypeSelection === 'FCFS') {
-        this.bid.managementType = ManagementType.FCFS;
+        bid.managementType = ManagementType.FCFS;
       }
       if (this.managementTypeSelection === 'STFC') {
-        this.bid.managementType = ManagementType.STFC;
+        bid.managementType = ManagementType.STFC;
       }
       bid.handlerSellerIds = [];
       for (let handler of this.handlerSellers) {
