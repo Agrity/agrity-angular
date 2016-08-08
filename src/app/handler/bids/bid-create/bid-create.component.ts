@@ -187,4 +187,12 @@ export class BidCreateComponent implements OnInit {
           this.logger.handleHttpError(error);
         });
   }
+
+  protected disableDollarSign(keyIdentifier: string) {
+    if (keyIdentifier == 'U+0024') {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

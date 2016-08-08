@@ -65,7 +65,7 @@
         </div>
 
           <input type="text" class="form-control" required
-              [(ngModel)]="traderBid.pricePerPound"
+              [(ngModel)]="traderBid.pricePerPound" (keypress)="disableDollarSign($event.keyIdentifier)"
               ngControl="pricePerPound"
               autocomplete="off"
               name="price"

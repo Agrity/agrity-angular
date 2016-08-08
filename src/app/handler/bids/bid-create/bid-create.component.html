@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="form-group center">
-                            <input [(ngModel)]="bid.pricePerPound"
+                            <input [(ngModel)]="bid.pricePerPound" (keypress)="disableDollarSign($event.keyIdentifier)"
                                     ngControl="pricePerPound" type="string"
                                     class="form-control" name="price" id="price"
                                     autocomplete="off"

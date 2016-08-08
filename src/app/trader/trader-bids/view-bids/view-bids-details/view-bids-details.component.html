@@ -157,7 +157,7 @@
             <th rowspan="1"><p class="pending-handler center">PENDING</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.pendingHandlerSellers">
             <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
-            <p style="padding:0 20px 0 30px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} tons accepted</p>
+            <p style="padding:0 20px 0 30px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} MT accepted</p>
               <div class="separate">
               <button type="button" class="accept-button"
               (click)="approve(handler,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted))">APPROVE</button>
@@ -173,14 +173,14 @@
             <th rowspan="1"><p class="accepted-handler center">ACCEPTED</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.acceptedHandlerSellers">
             <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
-            <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} tons accepted</p></td>
+            <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} MT accepted</p></td>
           </tr>
 
           <tr *ngIf="recievedSelectedBid.disapprovedHandlerSellers.length > 0">
             <th rowspan="1"><p class="disapproved-handler center">DISAPPROVED</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.disapprovedHandlerSellers">
             <p>(click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
-            <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} tons disapproved</p></td>
+            <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} MT  disapproved</p></td>
           </tr>
 
           <tr *ngIf="recievedSelectedBid.rejectedHandlerSellers.length > 0">
