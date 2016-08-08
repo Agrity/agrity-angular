@@ -99,6 +99,19 @@ td {
 			padding: 10px;
 			margin-right: 10px;
 			height: auto;
+			float: right;
+			width: 210px;
+		}
+
+		.grade-form-control {
+			border: 0.1px solid #959595;
+			color: #444444;
+			background-color: #f3f3f3;
+			border-radius: 0px;
+			transition: all 0.4s ease-in-out;
+			padding: 10px;
+			margin-right: 10px;
+			height: auto;
 			float: left;
 			width: 210px;
 		}
@@ -166,6 +179,19 @@ textarea:focus, input:focus{
 }
 
 .comment-form-control {
+	&::-moz-placeholder {
+		color: #959595;
+		opacity: 1;
+	}
+	&:-ms-input-placeholder {
+		color: #959595;
+	}
+	&::-webkit-input-placeholder {
+		color: #959595;
+	}
+}
+
+.grade-form-control {
 	&::-moz-placeholder {
 		color: #959595;
 		opacity: 1;
