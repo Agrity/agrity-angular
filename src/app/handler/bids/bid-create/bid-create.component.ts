@@ -108,16 +108,20 @@ export class BidCreateComponent implements OnInit {
 
     let bidsString: string = 'BID DETAILS:';
     bidsString = bidsString + '<br/>' +
+    'Pounds: ' + this.bid.almondPounds + ' lbs <br/>' +
     'Variety: ' + this.bid.almondVariety + '<br/>' +
-    'Price Per Pound: $' + this.bid.pricePerPound + '<br/>' +
-    'Pounds: ' + this.bid.almondPounds + '<br/>' +
     'Size: ' + this.bid.almondSize;
     if (this.aol) {
       bidsString = bidsString + ' AOL';
     }
-    bidsString = bidsString +
-    '<br/>' +
-    'Time to Respond: ' + this.bid.managementTypeDelay + ' HOURS';
+    bidsString = bidsString + '<br/>' + 'Price Per Pound: $' + this.bid.pricePerPound + '<br/>';
+    if (this.bid.comment !== undefined) {
+      bidsString = bidsString + 'Other Details: ' + this.bid.comment + '<br/>' + '<br/>';
+    } else {
+      bidsString = bidsString + 'Other Details: Not Specified' + '<br/>' + '<br/>';
+    }
+
+    bidsString = bidsString + 'Time to Respond: ' + this.bid.managementTypeDelay + ' HOURS';
 
     let growersString: string = 'TO:';
     for (let grower of selectedGrowers) {

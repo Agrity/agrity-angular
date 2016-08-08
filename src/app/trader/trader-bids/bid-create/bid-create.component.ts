@@ -35,6 +35,15 @@ export class TraderBidCreateComponent implements OnInit {
     'PEERLESS',
   ];
 
+  protected grades: string[] = [
+    'Not Specified',
+    'Fancy',
+    'Extra No. 1',
+    'No. 1 (Supreme)',
+    'Select Sheller Run',
+    'Standard Sheller Run',
+  ];
+
   protected sizes: string[] = [
     '16/18',
     '18/20',
@@ -107,6 +116,9 @@ export class TraderBidCreateComponent implements OnInit {
       this.traderBid.almondSize += ' AOL';
       this.aol = false;
     }
+    if (this.traderBid.grade === undefined) {
+      this.traderBid.grade = 'Not Specified';
+    }
     this.traderBid.managementType = ManagementType.FCFS;
     this.traderBids.push(this.traderBid);
     this.traderBid = new TraderBid();
@@ -158,10 +170,16 @@ export class TraderBidCreateComponent implements OnInit {
     let bidsString: string = 'BIDS: ';
     for (let bid of this.traderBids) {
       bidsString = bidsString + '<br/>' +
+      'Pounds: ' + bid.almondPounds + 'MT - ' +
       'Variety: ' + bid.almondVariety + ' - ' +
-      'Price Per Pound: $' + bid.pricePerPound + ' - ' +
-      'Pounds: ' + bid.almondPounds + ' - ' +
-      'Size: ' + bid.almondSize;
+      'Grade: ' + bid.grade + ' - ' +
+      'Size: ' + bid.almondSize + ' - ' +
+      'Market Price Per Pound: $' + bid.pricePerPound + '</br>';
+      if (bid.comment !== undefined) {
+        bidsString = bidsString + ' - Other Details: ' + bid.comment + '</br>';
+      } else {
+      bidsString = bidsString + ' - Other Details: Not Specified' + '</br>';
+      }
     }
 
     let handlersString: string = 'TO: ';
@@ -173,7 +191,7 @@ export class TraderBidCreateComponent implements OnInit {
     }
 
     let confirmMsg: string = bidsString + '<br/>' +
-        '<br/>' + 'TIME TO RESPOND: ' + this.delay + ' HOURS' + '<br/>' +
+        'TIME TO RESPOND: ' + this.delay + ' HOURS' + '<br/>' +
         '<br/>' + handlersString;
 
     this.modal.confirm()
@@ -220,5 +238,21 @@ export class TraderBidCreateComponent implements OnInit {
                   this.router.navigateByUrl('/trader-bids');
                 }
               });
+  }
+
+  protected getBidOrBidsInvalid(): string {
+    if (this.traderBids.length === 1) {
+      return 'BID';
+    } else {
+      return 'BIDS';
+    }
+  }
+
+  protected getBidOrBidsValid(): string {
+    if (this.traderBids.length === 0) {
+      return 'BID';
+    } else {
+      return 'BIDS';
+    }
   }
 }

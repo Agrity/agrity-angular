@@ -324,8 +324,8 @@ export class BidDetailComponent implements OnInit, OnDestroy {
 
   protected toggleAddGrowersDiv() {
     if (this.notAddedGrowers.length === 0) {
-      this.logger.alert('You have already added all of your handlers to ' +
-          'this bid. There are no handlers left to add.');
+      this.logger.alert('You have already added all of your growers to ' +
+          'this bid. There are no growers left to add.');
     } else {
     this.addGrowersDivToggle = !this.addGrowersDivToggle;
     }

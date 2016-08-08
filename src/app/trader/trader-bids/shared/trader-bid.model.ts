@@ -65,6 +65,7 @@ export class TraderBid {
     traderBid.pricePerPound = traderBidJson['pricePerPound'];
     traderBid.comment = traderBidJson['comment'];
     traderBid.poundsRemaining = traderBidJson['poundsRemaining'];
+    traderBid.grade = traderBidJson['grade'];
 
     let bidStatus: string = traderBidJson['bidStatus'];
 
@@ -205,6 +206,7 @@ export class TraderBid {
   public bidStatus: BidStatus;
   public bidResponses: BidResponse[];
   public poundsRemaining: number;
+  public grade: string;
 
   public handlerSellerIds: number[];
   public acceptedHandlerSellers: HandlerSeller[];
@@ -234,6 +236,7 @@ export class TraderBid {
       'almond_pounds': this.getString(this.almondPounds),
       'price_per_pound': this.getString(this.pricePerPound),
       'comment': this.getString(this.comment),
+      'grade': this.getString(this.grade),
       'management_type': {
         'type': this.getString(this.getManagementString()),
         'delay': this.delay,
