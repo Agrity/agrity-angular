@@ -9,26 +9,29 @@
 			    <div np-app="form" class="col-md-12 col-sm-12">
 
 					<div class="form-group">
-					<input type="text" [(ngModel)]="grower.firstName" 
-							ngControl="first_name" class="form-control" 
-							name="first name" id="firstname" 
-							placeholder="First Name" 
+					<label> First Name </label>
+					<input type="text" [(ngModel)]="grower.firstName"
+							ngControl="first_name" class="form-control"
+							name="first name" id="firstname"
+							placeholder="John"
 							autocomplete="off" required>
 					</div>
 
 					<div class="form-group">
-					<input type="text" [(ngModel)]="grower.lastName" 
-							ngControl="last_name" class="form-control" 
-							name="last name" id="lastname" 
-							placeholder="Last Name"
+          <label> Last Name </label>
+					<input type="text" [(ngModel)]="grower.lastName"
+							ngControl="last_name" class="form-control"
+							name="last name" id="lastname"
+							placeholder="Smith"
 							autocomplete="off" required>
 					</div>
 
 					<div class="form-group">
-                    <input type="email" [(ngModel)]="grower.email" 
-							ngControl="email" class="form-control" 
-							placeholder="Email"
-							name="email" autocomplete="off" required 
+				  <label> Email </label>
+          <input type="email" [(ngModel)]="grower.email"
+							ngControl="email" class="form-control"
+							placeholder="example@example.com"
+							name="email" autocomplete="off" required
 							type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 					</div>
 
@@ -39,17 +42,17 @@
 					</div>
 
 					<div class="form-group line-up">
-					<input style="width:100px;" 
-						[(ngModel)]="grower.phone.phoneOne" 
-						ngControl="phone_1" type="text" 
-						class="form-control" 
-						name="phone 1" 
-						id="phone1" 
-						autocomplete="off" 
-						pattern="\d{3}" 
-						placeholder="(xxx)" required>
-                	<input style="width:100px;" [(ngModel)]="grower.phone.phoneTwo" ngControl="phone_2" type="text" class="form-control" placeholder="xxx-" name="phone 2" id="phone2" autocomplete="off" pattern="\d{3}" required>
-					<input style="width:100px;" [(ngModel)]="grower.phone.phoneThree" ngControl="phone_3" type="text" class="form-control" placeholder="xxxx" name="phone 3" id="phone3" autocomplete="off" pattern="\d{4}" required>
+					<input style="width:100px;"
+						[(ngModel)]="grower.phone.phoneOne"
+						ngControl="phone_1" type="text"
+						class="form-control"
+						name="phone 1"
+						id="phone1"
+						autocomplete="off"
+						pattern="\d{3}"
+						placeholder="(555)" required>
+                	<input style="width:100px;" [(ngModel)]="grower.phone.phoneTwo" ngControl="phone_2" type="text" class="form-control" placeholder="555" name="phone 2" id="phone2" autocomplete="off" pattern="\d{3}" required>
+					<input style="width:100px;" [(ngModel)]="grower.phone.phoneThree" ngControl="phone_3" type="text" class="form-control" placeholder="5555" name="phone 3" id="phone3" autocomplete="off" pattern="\d{4}" required>
 					</div>
 
 				</div>
