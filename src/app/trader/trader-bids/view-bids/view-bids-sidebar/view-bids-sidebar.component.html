@@ -49,18 +49,18 @@
   </div>
 
   <div id="closed-bids">
-    <h2 class="center"> CLOSED BIDS </h2>
-    <div *ngFor="let bid of recievedClosedTraderBids" [ngClass]="{ 'accepted': isAccepted(bid), 'rejected': isRejected(bid), 'partial': isPartial(bid) }">
+    <h2 class="center" style="color:white"> CLOSED BIDS </h2>
+    <div *ngFor="let bid of recievedClosedTraderBids">
       <!--<button (click)="selectBid(bid)" type="button">-->
-        <table style="border-top:1px solid #1f1f1f">
+        <table style="border-top:1px solid rgb(255, 255, 255)">
           <tbody>
-         <tr (click)="selectBid(bid)">
+         <tr (click)="selectBid(bid)" [ngClass]="{ 'accepted': isAccepted(bid), 'rejected': isRejected(bid), 'partial': isPartial(bid) }">
+            <td><p1>{{ bid?.bidId }}</p1></td>
+            <td style="float:left"><p1> {{ bid?.almondVariety }}</p1></td>
 
-            <td style="float:left"><p2> {{ bid?.almondVariety }}</p2></td>
+            <td style="float:right;"><p1>{{ bid?.pricePerPound }}</p1></td>
 
-            <td style="padding-left:30px; float:right;"><p2>{{ bid?.pricePerPound }}</p2></td>
-
-            <td style="float:right;"><p2>{{ bid?.countDownString }}</p2></td>
+            <td style="float:right;"><p1>{{ bid?.countDownString }}</p1></td>
             <!--TO Design Man: Here are three methods that can be called with a closed bid.
                 we used them for styling the other bidslist page. You may find them usefull.
                 isPartial(bid) will return true if the bid was partially accepted before closing.

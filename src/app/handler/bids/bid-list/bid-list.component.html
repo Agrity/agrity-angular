@@ -19,9 +19,9 @@
 	  	<table id="buttonCols" style="width:100%">
 		<tr>
 		    <td class="offerButton">ID: {{ bid.bidId }}</td>
+		    <td class="offerButton">Pounds: {{ bid.almondPounds | number }}</td>
 	  		<td class="offerButton">{{ bid.almondVariety }}</td>
 	  		<td class="offerButton">Size: {{ bid.almondSize }}</td>
-	  		<td class="offerButton">Pounds: {{ bid.almondPounds | number }}</td>
 	  		<td class="offerButton">Market Price: {{ bid.pricePerPound }}</td>
 	  		<td class="offerButton">{{ bid?.countDownString }}</td>
 	  	</tr>
@@ -35,9 +35,9 @@
 	  	  <table id="buttonCols" style="width:100%">
 		  <tr>
 		    <td style="color:white;" class="offerButton">ID: {{ bid.bidId }}</td>
+		    <td style="color:white;" class="offerButton">Pounds: {{ bid.almondPounds | number }}</td>
 	  		<td style="color:white;" class="offerButton">{{ bid.almondVariety }}</td>
 	  		<td style="color:white;" class="offerButton">Size: {{ bid.almondSize }}</td>
-	  		<td style="color:white;" class="offerButton">Pounds: {{ bid.almondPounds | number }}</td>
 	  		<td style="color:white;" class="offerButton">Market Price: {{ bid.pricePerPound }}</td>
 	  		<td style="color:white;" class="offerButton">{{ bid?.countDownString }}</td>
 	  	  </tr>
