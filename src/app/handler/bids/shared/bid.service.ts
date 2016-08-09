@@ -77,9 +77,9 @@ export class BidService {
     let growerJson: Object[] = [];
 
     for (let grower of growers) {
-      growerJson.push(grower.encode());
+      growerJson.push(grower.growerId);
     }
-    return this.http.jsonPost(
+    return this.http.jsonPut(
         this.bidsUrl + '/' + bidId +
         '/addGrowers',
         '[' + growerJson.toString() + ']');

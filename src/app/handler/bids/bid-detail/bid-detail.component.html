@@ -98,7 +98,7 @@
 
         <tr *ngIf="bid.rejectedGrowers && bid?.rejectedGrowers.length > 0">
             <th rowspan="bid.rejectedGrowers.length"><p class="rejected-handler center">REJECTED</p></th>
-            <td class="table-lines" *ngFor="let grower of bid.disapprovedGrowers">
+            <td class="table-lines" *ngFor="let grower of bid.rejectedGrowers">
             <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p></td>
         </tr>
 

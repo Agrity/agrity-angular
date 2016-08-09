@@ -307,14 +307,14 @@ export class BidDetailComponent implements OnInit, OnDestroy {
               this.bidService.addGrowers(
                   this.bid.bidId,
                   selectedGrowers)
-                  .subscribe(
-                    success => {
-                      this.logger.alert('Growers Added');
-                      this.router.navigateByUrl('/bids');
-                  },
-                    error => {
-                      this.logger.handleHttpError(error);
-                  });
+                    .subscribe(
+                      success => {
+                        this.logger.alert('Growers Added');
+                        this.router.navigateByUrl('/bids');
+                      },
+                      error => {
+                        this.logger.handleHttpError(error);
+                      });
             })
             .catch(canceled => {
               this.logger.alert('Adding growers canceled.');
