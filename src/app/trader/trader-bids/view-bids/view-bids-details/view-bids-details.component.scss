@@ -10,6 +10,26 @@ input[type=number]::-webkit-outer-spin-button {
     width:70%
 }
 
+.align {
+  text-align: left;
+}
+
+#details-box {
+  display: inline-block;
+  text-align: left;
+  width: 90%;
+}
+
+#base-details {
+  margin: 0;
+  padding: 0;
+  padding-left: 5%;
+  border: 0.5px solid #959595;
+  width: 100%;
+  display: inline-block;
+  background-color: rgba(65,158,210,0.2);
+}
+
 .spacetop {
     padding:50px 0px 0px 160px;
 }
