@@ -88,6 +88,22 @@ td {
 		height: auto;
 		float: left;
 		width: 210px;
+		margin-bottom: 0px;
+	}
+
+  .form-control-select {
+		border-top-color: #959595;
+		border-bottom-color: #959595;
+		border-right-color: #959595;
+		color: #959595;
+		background-color: #f3f3f3;
+		border-radius: 0px;
+		transition: all 0.4s ease-in-out;
+		padding: 10px;
+		margin-right: 10px;
+		height: auto;
+		float: left;
+		width: 210px;
 	}
 
 		.comment-form-control {
@@ -104,6 +120,19 @@ td {
 		}
 
 		.grade-form-control {
+			border: 0.1px solid #959595;
+			color: #959595;
+			background-color: #f3f3f3;
+			border-radius: 0px;
+			transition: all 0.4s ease-in-out;
+			padding: 10px;
+			margin-right: 10px;
+			height: auto;
+			float: left;
+			width: 210px;
+		}
+
+	  .grade-form-control-selected {
 			border: 0.1px solid #959595;
 			color: #444444;
 			background-color: #f3f3f3;
@@ -155,7 +184,6 @@ td {
 		width:180px;
 		-webkit-appearance: none;
 		-webkit-border-radius: 0px;
-		color: #959595;
 
 	}
 

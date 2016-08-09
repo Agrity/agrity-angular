@@ -22,7 +22,7 @@
               placeholder="Amount in Metric Tons"
               pattern="[0-9]{1,9}">
 
-          <select type="text" class="form-control" required
+          <select type="text" class="form-control-select" required
             [(ngModel)]="traderBid.almondVariety"
             ngControl="variety"
             name="variety"
@@ -35,20 +35,21 @@
                 </option>
           </select>
 
-          <select type="text" class="grade-form-control"
+          <select type="text"
             [(ngModel)]="traderBid.grade"
             ngControl="grade"
             name="grade"
             placeholder="Select Grade"
             list="almonds"
-            [(ngModel)]="almonds">
+            [(ngModel)]="almonds"
+            [ngClass]="{'grade-form-control-selected': (traderBid.grade), 'grade-form-control': !(traderBid.grade) }">
                 <option [value]="grade" disabled selected hidden> Select Grade </option>
                 <option *ngFor="let grade of grades"
                     [value]="grade"> {{ grade }}
                 </option>
           </select>
 
-          <select type="text" class="form-control" required
+          <select type="text" class="form-control-select" required
             [(ngModel)]="traderBid.almondSize"
             ngControl="size"
             name="size"
@@ -152,8 +153,8 @@
                         ngControl="managementType"
                         name="managementType"
                         list="almonds"
-                        style="width:210px">
-                            <option style="color:444444;"[value]="FCFS"> Firm Bid, First Come First Serve </option>
+                        style="color:#444444; width: 300px">
+                            <option [value]="FCFS"> Firm Bid, First Come First Serve </option>
                             <option [value]="STFC"> Subject to Final Confirmation </option>
                     </select>
                     </div>
