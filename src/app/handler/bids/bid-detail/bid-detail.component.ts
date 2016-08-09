@@ -94,7 +94,6 @@ export class BidDetailComponent implements OnInit, OnDestroy {
                           this.notAddedGrowers.push(growerOfAll);
                         }
                       }
-                      console.log(this.bid);
                     },
                     error => {
                       this.logger.handleHttpError(error);
