@@ -8,6 +8,7 @@ import 'rxjs/add/observable/throw';
 export class Logger {
 
   public modalEmitter: EventEmitter<string>;
+  private ERROR_KEY = 'error';
 
   constructor(private config: Config) {
     this.modalEmitter = new EventEmitter<string>();
@@ -15,9 +16,9 @@ export class Logger {
 
   public handleHttpError(error: Response) {
     if (this.modalEmitter) {
-      this.modalEmitter.emit('Error: ' + error);
+      this.modalEmitter.emit('Error: ' + error.json()[this.ERROR_KEY]);
     }
-    console.error('ERROR: ' + error);
+    console.error('ERROR: ' + error.json()[this.ERROR_KEY]);
     return Observable.throw(error);
   }
 
