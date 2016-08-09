@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewContainerRef } from '@angular/core';
 import { TraderBid, TraderBidService } from '../../shared/index';
-import { BidStatus, Logger } from '../../../../shared/index';
+import { BidStatus, Logger, ManagementType } from '../../../../shared/index';
 import { Router, ROUTER_DIRECTIVES }
     from '@angular/router';
 import { HandlerSeller, HandlerSellerService } from '../../../handler-seller/shared/index';
@@ -276,6 +276,16 @@ export class ViewBidsDetailsComponent {
               this.logger.alert('Adding handlers canceled.');
             });
       });
+  }
+
+  protected getManagementType(bid: TraderBid): string {
+    if (bid.managementType === ManagementType.FCFS) {
+      return 'Firm Bid, First Come First Serve';
+    }
+    if (bid.managementType === ManagementType.STFC) {
+      return 'Subject to Final Confirmation';
+    }
+    return null;
   }
 
   protected toggleAddHandlersDiv() {

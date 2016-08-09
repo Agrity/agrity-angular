@@ -7,45 +7,21 @@
     <button class="right closebidbutton" *ngIf="recievedSelectedBid.currentlyOpen" (click)="closeTraderBid(recievedSelectedBid.bidId)">CLOSE BID</button>
     <h1 class="center spacetop"> BID DETAILS </h1>
 
-    		<div class="wow fadeInDown center" data-wow-delay="0.6s">
-			  <button type="button" class="listbidbutton center">
-			  	<table id="buttonCols" style="width:100%">
-				<tr>
-            <td class="offerButton"><p>
-              ID: {{ recievedSelectedBid?.bidId }}</p></td>
-			  		<td class="offerButton"><p>
-              {{ recievedSelectedBid?.almondVariety }}</p></td>
-			  		<td class="offerButton"><p>
-              {{ recievedSelectedBid?.pricePerPound }}</p></td>
-			  		<td class="offerButton"><p>
-              {{ recievedSelectedBid?.almondPounds | number }} MT</p></td>
-            <td class="offerButton"><p>
-              {{ recievedSelectedBid?.grade }}</p></td>
-            <td class="offerButton"><p>
-              {{ recievedSelectedBid?.almondSize }}</p></td>
-			  		<td class="offerButton"><p>
-              {{ recievedSelectedBid?.countDownString }}</p></td>
-			  	</tr>
-				</table>
-			  	</button>
-       </div>
-
-        <div class="wow fadeInDown center commentbox" data-wow-delay="0.6s">
-
-         <button type="button" class="comment-button center">
-         <table>
-           <tr>
-             <td style="padding: 15px 20px 15px 20px;"><img src="assets/img/comment-icon.png"/></td>
-             <td>
-                <comment>
-                  {{ recievedSelectedBid?.comment }}
-                </comment>
-             </td>
-           </tr>
-         </table>
-         </button>
-
+    <div class="align" style="margin-left:50px">
+      <div id=details-box>
+        <div id="base-details">
+          <p> Bid ID: {{ recievedSelectedBid?.bidId }} </p>
+          <p> Pounds Remaining: {{ recievedSelectedBid?.poundsRemaining }} of {{ recievedSelectedBid?.almondPounds }} MT </p>
+          <p> Variety: {{ recievedSelectedBid?.almondVariety }} </p>
+          <p> Grade: {{ recievedSelectedBid?.grade }} </p>
+          <p> Size: {{ recievedSelectedBid?.almondSize }} </p>
+          <p> Market Price Per Pound: {{ recievedSelectedBid?.pricePerPound }} </p>
+          <p> Other Details: {{ recievedSelectedBid?.comment }} </p>
+          <p> {{ getManagementType(recievedSelectedBid) }} </p>
+          <p> Time Remaining: {{ recievedSelectedBid?.countDownString }} </p>
         </div>
+      </div>
+    </div>
 
     <div class="center-responses" id="handler-responses">
 
