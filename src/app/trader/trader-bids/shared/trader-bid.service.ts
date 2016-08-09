@@ -116,7 +116,7 @@ export class TraderBidService {
     }
 
     return this.http.get(this.config.getServerDomain() +
-        '/traderBids' + bidId + '/approve/' + handlerId);
+        '/traderBids/' + bidId + '/approve/' + handlerId);
   }
 
   public reject(bidId: number, handlerId: number) {
@@ -130,7 +130,8 @@ export class TraderBidService {
       return null;
     }
 
-    return this.http.get(this.traderBidsUrl + '/' + bidId + '/disapprove/' + handlerId);
+    return this.http.get(this.config.getServerDomain() +
+        '/traderBids/' + bidId + '/disapprove/' + handlerId);
   }
 
   private getTraderBidUrl(traderBidId: number) {

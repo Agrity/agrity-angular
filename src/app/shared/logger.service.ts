@@ -8,16 +8,21 @@ import 'rxjs/add/observable/throw';
 export class Logger {
 
   public modalEmitter: EventEmitter<string>;
+  private ERROR_KEY = 'error';
 
   constructor(private config: Config) {
     this.modalEmitter = new EventEmitter<string>();
   };
 
   public handleHttpError(error: Response) {
+    let errorMessage = error.json()[this.ERROR_KEY] !== undefined
+        ? 'ERROR: ' + error.json()[this.ERROR_KEY]
+        : 'Whoops, there was an error.';
+
     if (this.modalEmitter) {
-      this.modalEmitter.emit('Error: ' + error);
+      this.modalEmitter.emit(errorMessage);
     }
-    console.error('ERROR: ' + error);
+    console.error(errorMessage);
     return Observable.throw(error);
   }
 

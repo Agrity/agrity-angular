@@ -25,114 +25,26 @@
 
     <div class="center-responses" id="handler-responses">
 
-<!--THIS IS THE HARDCODED TABLE TO VISUALIZE FCFS RESPONSES-->
-        <!--<table class="table-border" cellpadding="4">
-          <tr>
-            <td><p class="handler-title">HANDLERS</p></td>
-            <td style="float:right; padding:15px 15px 0px 0px;"><button type="button" class="add-handlers"><span>&#43;</span>ADD HANDLERS</button></td>
-=======
-        <div *ngIf="addHandlersDivToggle">
-          <div>
-            <title>CHOOSE HANDLERS</title>
-          </div>
-          <div>
-            <p *ngFor="let handler of notAddedHandlerSellers">
-              <input type="checkbox" [(ngModel)]="handler.selected">
-              <label>{{ handler.firstName }} {{ handler.lastName }}</label>
-            </p>
-          </div>
-          <button (click)="addHandlers()"> Finish Adding Handlers </button>
-        </div>
-
-        <table class="table-border" cellpadding="4">
-          <tr>
-            <td><p>HANDLERS</p></td>
-            <td style="float:right"><button type="button" class="add-handlers" (click)="toggleAddHandlersDiv()"><span>&#43;</span>ADD HANDLERS</button></td>
->>>>>>> master
-          </tr>
-
-          <tr>
-            <th rowspan="1"><p class="accepted-handler center">ACCEPTED</p></th>
-            <td class="table-lines"><p>HANDLER C</p><p style="padding-left:50px">22 tons accepted</p></td>
-          </tr>
-
-          <tr>
-            <th rowspan="3"><p class="rejected-handler center">REJECTED</p></th>
-            <td class="table-lines"><p>HANDLER D</p></td>
-          </tr>
-
-          <tr>
-            <td class="table-lines"><p>HANDLER E</p></td>
-          </tr>
-
-          <tr>
-            <td class="table-lines"><p>HANDLER F</p></td>
-          </tr>
-
-          <tr>
-            <th rowspan="3"><p class="no-response-handler center">NO RESPONSE</p></th>
-            <td class="table-lines"><p style="margin-right:27px">HANDLER G</p>
-              <input type="number" min="0" class="number" placeholder="22 MT">
-              <div class="separate">
-              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
-              </div>
-              <div class="separate">
-              <button type="button" class="accept-button">ACCEPT</button>
-              </div>
-              <div class="separate">
-              <button type="button" class="reject-button">REJECT</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="table-lines"><p style="margin-right:27px">HANDLER H</p>
-              <input type="number" min="0" class="number" placeholder="22 MT">
-              <div class="separate">
-              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
-              </div>
-              <div class="separate">
-              <button type="button" class="accept-button">ACCEPT</button>
-              </div>
-              <div class="separate">
-              <button type="button" class="reject-button">REJECT</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="table-lines"><p style="margin-right:35px">HANDLER I</p>
-              <input type="number" min="0" class="number" placeholder="22 MT">
-              <div class="separate">
-              <button type="button" class="accept-partial">ACCEPT PARTIAL</button>
-              </div>
-              <div class="separate">
-              <button type="button" class="accept-button">ACCEPT</button>
-              </div>
-              <div class="separate">
-              <button type="button" class="reject-button">REJECT</button>
-              </div>
-            </td>
-          </tr>
-
-        </table>-->
-
-<!--THIS IS THE HARDCODED TABLE TO VISUALIZE STFC RESPONSES-->
-
       <table class="table-border" cellpadding="4">
           <tr>
             <td><p class="handler-title">HANDLERS</p></td>
             <td style="float:right; padding:15px 15px 0px 0px;"><button (click)="toggleAddHandlersDiv()" type="button" class="add-handlers"><span>&#43;</span>ADD HANDLERS</button></td>
-
-            <div *ngIf="addHandlersDivToggle">
-              <p *ngFor="let handler of notAddedHandlerSellers">
-              <input type="checkbox" [(ngModel)]="handler.selected">
-              <label>{{ handler.firstName }} {{ handler.lastName }}</label>
-              </p>
-              <button (click)="addHandlers()"> SEND TO CHECKED HANDLERS</button>
-            </div>
           </tr>
 
+            <div *ngIf="addHandlersDivToggle">
+              <div class="back-box" style="padding-bottom:20px;">
+                <div *ngFor="let handler of notAddedHandlerSellers" >
+                  <input type="checkbox" [(ngModel)]="handler.selected">
+                    <label>{{ handler.firstName }} {{ handler.lastName }}</label>
+                </div>
+                <div class="center" style="margin-top:15px">
+                <button class="send-handlers-button" (click)="addHandlers()">SEND TO CHECKED HANDLERS</button>
+                </div>
+              </div>
+            </div>
+
           <tr *ngIf="recievedSelectedBid.pendingHandlerSellers.length > 0">
-            <th rowspan="1"><p class="pending-handler center">PENDING</p></th>
+            <th rowspan="recievedSelectedBid.pendingHandlerSellers.length"><p class="pending-handler center">PENDING</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.pendingHandlerSellers">
             <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
             <p style="padding:0 20px 0 30px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} MT accepted</p>
@@ -142,35 +54,35 @@
               </div>
               <div class="separate">
               <button type="button" class="reject-button"
-              (click)="approve(handler,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted))">REJECT</button>
+              (click)="disapprove(handler,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted))">DISAPPROVE</button>
               </div>
             </td>
           </tr>
 
           <tr *ngIf="recievedSelectedBid.acceptedHandlerSellers.length > 0">
-            <th rowspan="1"><p class="accepted-handler center">ACCEPTED</p></th>
+            <th rowspan="recievedSelectedBid.acceptedHandlerSellers.length"><p class="accepted-handler center">ACCEPTED</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.acceptedHandlerSellers">
             <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
             <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} MT accepted</p></td>
           </tr>
 
           <tr *ngIf="recievedSelectedBid.disapprovedHandlerSellers.length > 0">
-            <th rowspan="1"><p class="disapproved-handler center">DISAPPROVED</p></th>
+            <th rowspan="recievedSelectedBid.disapprovedHandlerSellers.length"><p class="disapproved-handler center">DISAPPROVED</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.disapprovedHandlerSellers">
-            <p>(click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
+            <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
             <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} MT  disapproved</p></td>
           </tr>
 
           <tr *ngIf="recievedSelectedBid.rejectedHandlerSellers.length > 0">
-            <th rowspan="2"><p class="rejected-handler center">REJECTED</p></th>
-            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.disapprovedHandlerSellers">
+            <th rowspan="recievedSelectedBid.rejectedHandlerSellers.length"><p class="rejected-handler center">REJECTED</p></th>
+            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.rejectedHandlerSellers">
             <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p></td>
           </tr>
 
           <tr *ngIf="recievedSelectedBid.noResponseHandlerSellers.length > 0">
-            <th rowspan="3"><p class="no-response-handler center">NO RESPONSE</p></th>
+            <th rowspan="recievedSelectedBid.noResponseHandlerSellers.length"><p class="no-response-handler center">NO RESPONSE</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.noResponseHandlerSellers">
-              <p style="margin-right:27px" (click)="viewHandler(handler.handlerId)">{{handler?.companyName}}</p>
+              <p (click)="viewHandler(handler.handlerId)">{{handler?.companyName}}</p>
               <input type="number" min="0" class="number" placeholder="MT" [(ngModel)]="handler.amountManual">
               <div class="separate">
               <button type="button" class="accept-partial"
@@ -189,48 +101,7 @@
           </tr>
         </table>
 
-
-
   </div>
 </div>
 </div>
 </div>
-
-
-<!--OLD (BUT FUNCTIONING) HANDLER RESPONSES-->
-
-      <!--<div class="col-md-4 accepted" id="accepted-handlers">
-        <h1 style="color:#2E9566" class="center">ACCEPTED</h1>
-          <li
-            *ngFor="let handler of recievedSelectedBid?.acceptedHandlerSellers"
-            type="button"
-            (click)="viewHandler(handler?.handlerId)">
-            <p>
-                {{ handler?.companyName }} ({{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} lbs)
-            </p>
-          </li>
-      </div>
-
-      <div class="col-md-4 rejected" id="rejected-handlers">
-        <h1 style="color:#9F1B17" class="center">REJECTED</h1>
-          <li *ngFor="let handler of recievedSelectedBid?.rejectedHandlerSellers"
-                type="button"
-                (click)="viewHandler(handler?.handlerId)">
-            <p>
-                {{ handler?.companyName }}
-            </p>
-          </li>
-      </div>
-
-      <div class="col-md-4 pending" id="no-response-handlers">
-        <h1 style="color:#419ed2" class="center">PENDING</h1>
-          <li
-            *ngFor="let handler of recievedSelectedBid?.noResponseHandlerSellers"
-            type="button"
-            (click)="viewHandler(handler?.handlerId)">
-            <p>
-                {{ handler?.companyName }}
-            </p>
-          </li>
-<<<<<<< HEAD
-      </div>-->

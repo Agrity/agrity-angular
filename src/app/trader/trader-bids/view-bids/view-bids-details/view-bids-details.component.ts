@@ -266,6 +266,7 @@ export class ViewBidsDetailsComponent {
                   .subscribe(
                     success => {
                       this.logger.alert('Handlers Added');
+                      this.toggleAddHandlersDiv();
                       this.onCallRefresh.emit(this.recievedSelectedBid);
                   },
                     error => {
