@@ -13,7 +13,7 @@ export class ManualTraderBidResponseService {
       private config: Config,
       private logger: Logger
       ) {
-    this.traderBidsUrl = config.getServerDomain() + '/trader/traderBids';
+    this.traderBidsUrl = config.getServerDomain() + '/traderBids';
   }
 
   public acceptBid(bidId: number, pounds: number, handlerId: number) {

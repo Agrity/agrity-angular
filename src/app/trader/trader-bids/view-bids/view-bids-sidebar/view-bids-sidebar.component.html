@@ -50,7 +50,7 @@
 
   <div id="closed-bids">
     <h2 class="center"> CLOSED BIDS </h2>
-    <div *ngFor="let bid of recievedClosedTraderBids">
+    <div *ngFor="let bid of recievedClosedTraderBids" [ngClass]="{ 'accepted': isAccepted(bid), 'rejected': isRejected(bid), 'partial': isPartial(bid) }">
       <!--<button (click)="selectBid(bid)" type="button">-->
         <table style="border-top:1px solid #1f1f1f">
           <tbody>

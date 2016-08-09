@@ -97,10 +97,11 @@ export class TraderBidService {
     let handlerJson: Object[] = [];
 
     for (let handlerSeller of handlers) {
-      handlerJson.push(handlerSeller.encode());
+      handlerJson.push(handlerSeller.handlerId);
     }
-    return this.http.jsonPost(this.traderBidsUrl + '/' + bidId +
-        '/addHandlerSellers', '[' + handlerJson.toString() + ']');
+    return this.http.jsonPut(
+        this.traderBidsUrl + '/' + bidId + '/addHandlerSellers',
+        '[' + handlerJson.toString() + ']');
   }
 
   public approve(bidId: number, handlerId: number) {

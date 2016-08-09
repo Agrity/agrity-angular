@@ -28,6 +28,24 @@ button.rejected {
   justify-content: center;
 }
 
+.accepted {
+  background-color: #408000;
+  border-color: #408000;
+  color: white;
+}
+
+.rejected {
+  background-color: #993333;
+  border-color: #993333;
+  color: white;
+}
+
+.partial {
+  background-color: #b3b300;
+  border-color: #b3b300;
+  color: white;
+}
+
 button.no-response {
   background-color: #5b5b5b;
   border-color: #5b5b5b;
