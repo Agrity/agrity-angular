@@ -25,7 +25,7 @@ h1 {
 }
 
 p {
-	font-size: 16px;
+	font-size: 14px;
 	letter-spacing: 0.9px;
 	line-height: 32px;
     color: #000000;
@@ -142,16 +142,14 @@ li {
 }
 
 th {
-    border: 0.5px solid #959595;
-    width:20%;
-    height:auto;
-    padding: 15px 0px 10px 0px;
+    border: 0.1px solid #959595;
+    height: auto;
     float: middle;
 }
 
 .table-lines {
     border:0.1px solid #959595;
-    padding:15px 10px 0px 20px;
+    padding:10px 8px 0px 8px;
     display:flex;
     vertical-align: middle;
 }
@@ -195,7 +193,7 @@ th {
 }
 
 .no-response-handler {
-    font: 20px Gotham Medium, sans-serif;
+    font: 16px Gotham Medium, sans-serif;
     color: #808080;
 }
 
@@ -216,8 +214,8 @@ th {
     color: white;
     border-radius:4px;
     border: 0.1px solid #3193ce;
-    font-size:0.7em;
-    height:25px;
+    font-size:0.4em;
+    height:30px;
     padding:5px;
     vertical-align: middle;
 }
@@ -227,8 +225,8 @@ th {
     color: white;
     border-radius:4px;
     border: 0px solid #45af5b;
-    font-size:0.7em;
-    height:25px;
+    font-size:0.4em;
+    height:30px;
     padding:5px;
     vertical-align: middle;
 }
@@ -238,8 +236,8 @@ th {
     color: white;
     border-radius:4px;
     border: 0px solid #d44040;
-    font-size:0.7em;
-    height:25px;
+    font-size:0.4em;
+    height:30px;
     padding:5px;
     vertical-align: middle;
 }
@@ -254,4 +252,32 @@ input {
 
 .separate {
     margin-right:10px;
+    vertical-align:middle;
+}
+
+.send-handlers-button {
+    width:auto;
+    background-color:#45af5b;
+    border-radius:4px;
+    color:white;
+    border: 0px solid #ffffff;
+    font: 15px Gotham Book, sans-serif;
+    padding: 7px;
+}
+
+.format-checkbox {
+	display: table;
+	align-items: center;
+	justify-content: center;
+    float:middle;
+    padding-left:400px;
+}
+
+.back-box {
+    background-color:white;
+    border: 1px solid #419ed2;
+    height: auto;
+    width: 100%;
+    margin: 10px 0px 10px 200px;
+    padding:10px;
 }
