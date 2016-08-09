@@ -45,24 +45,86 @@
 
         </div>
 
-      <button (click)="toggleAddGrowersDiv()"> ADD GROWERS </button>
-      <div *ngIf="addGrowersDivToggle">
-        <div>
-          CHOOSE GROWERS TO ADD
-        </div>
-        <div>
-          <p *ngFor="let grower of notAddedGrowers">
-            <input type="checkbox" [(ngModel)]="grower.selected">
-            <label>{{ grower.firstName }} {{ grower.lastName }}</label>
-          </p>
-        <button (click)="addGrowers()">Send To Checked Growers</button>
-        </div>
-      </div>
-
 
     <div class="center-responses" id="handler-responses">
 
-      <div class="col-md-4 accepted" id="accepted-handlers">
+      <table class="table-border" cellpadding="4">
+          <tr>
+            <td><p class="handler-title">GROWERS</p></td>
+            <td style="float:right; padding:15px 15px 0px 0px;"><button (click)="toggleAddGrowersDiv()" type="button" class="add-handlers"><span>&#43;</span>ADD GROWERS</button></td>
+          </tr>
+
+            <div *ngIf="addGrowersDivToggle">
+              <div class="back-box" style="padding-bottom:20px;">
+                <div *ngFor="let grower of notAddedGrowers" >
+                  <input type="checkbox" [(ngModel)]="grower.selected">
+                    <label>{{ grower.firstName }} {{ grower.lastName }}</label>
+                </div>
+                <div class="center" style="margin-top:15px">
+                <button class="send-handlers-button" (click)="addGrowers()">SEND TO CHECKED GROWERS</button>
+                </div>
+              </div>
+            </div>
+
+          <tr *ngIf="recievedSelectedBid.pendingGrowers.length > 0">
+            <th rowspan="recievedSelectedBid.pendingGrowers.length"><p class="pending-handler center">PENDING</p></th>
+            <td class="table-lines" *ngFor="let grower of recievedSelectedBid.pendingGrowers">
+            <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
+            <p style="padding:0 20px 0 30px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, grower.growerId)?.poundsAccepted | number}} pounds accepted</p>
+              <div class="separate">
+              <button type="button" class="accept-button"
+              (click)="approve(grower,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, grower.growerId)?.poundsAccepted))">APPROVE</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="reject-button"
+              (click)="approve(grower,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, grower.growerId)?.poundsAccepted))">REJECT</button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="recievedSelectedBid.acceptedGrowers.length > 0">
+            <th rowspan="recievedSelectedBid.acceptedGrowers.length"><p class="accepted-handler center">ACCEPTED</p></th>
+            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.acceptedGrowers">
+            <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
+            <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, grower.growerId)?.poundsAccepted | number}} pounds accepted</p></td>
+          </tr>
+
+          <tr *ngIf="recievedSelectedBid.disapprovedGrower.length > 0">
+            <th rowspan="recievedSelectedBid.disapprovedGrowers.length"><p class="disapproved-handler center">DISAPPROVED</p></th>
+            <td class="table-lines" *ngFor="let grower of recievedSelectedBid.disapprovedGrowers">
+            <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
+            <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, grower.growerId)?.poundsAccepted | number}} pounds disapproved</p></td>
+          </tr>
+
+          <tr *ngIf="recievedSelectedBid.rejectedGrowers.length > 0">
+            <th rowspan="recievedSelectedBid.rejectedGrowers.length"><p class="rejected-handler center">REJECTED</p></th>
+            <td class="table-lines" *ngFor="let grower of recievedSelectedBid.disapprovedGrowers">
+            <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p></td>
+          </tr>
+
+          <tr *ngIf="recievedSelectedBid.noResponseGrowers.length > 0">
+            <th rowspan="recievedSelectedBid.noResponseGrowers.length"><p class="no-response-handler center">NO RESPONSE</p></th>
+            <td class="table-lines" *ngFor="let grower of recievedSelectedBid.noResponseGrowers">
+              <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
+              <input type="number" min="0" class="number" placeholder="MT" [(ngModel)]="grower.amountManual">
+              <div class="separate">
+              <button type="button" class="accept-partial"
+              [disabled]="!(grower.amountManual > 0)"
+              (click)="acceptBid(grower, grower.amountManual)">ACCEPT PARTIAL</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="accept-button"
+              (click)="acceptBid(grower, recievedSelectedBid.poundsRemaining)">ACCEPT REMAINING</button>
+              </div>
+              <div class="separate">
+              <button type="button" class="reject-button"
+              (click)="rejectBid(grower)">REJECT</button>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+      <!--<div class="col-md-4 accepted" id="accepted-handlers">
         <h1 style="color:#2E9566" class="center">ACCEPTED</h1>
           <li
             *ngFor="let grower of bid?.acceptedGrower"
@@ -94,7 +156,10 @@
           <button (click)="acceptBid(grower, bid.poundsRemaining)" > ACCEPT REMAINING </button>
           <button (click)="rejectBid(grower)" > REJECT </button>
         </div>
-      </div>
+      </div>-->
+
+
+
   </div>
 </div>
 </div>

@@ -93,7 +93,7 @@
           <tr *ngIf="recievedSelectedBid.disapprovedHandlerSellers.length > 0">
             <th rowspan="recievedSelectedBid.disapprovedHandlerSellers.length"><p class="disapproved-handler center">DISAPPROVED</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.disapprovedHandlerSellers">
-            <p>(click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
+            <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
             <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} MT  disapproved</p></td>
           </tr>
 
