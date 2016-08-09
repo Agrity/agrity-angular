@@ -123,7 +123,7 @@ export class BidService {
     }
 
     return this.http.get(this.config.getServerDomain() +
-        '/handlerBids' + bidId + '/disapprove/' + growerId);
+        '/handlerBids/' + bidId + '/disapprove/' + growerId);
   }
 
   private getBidUrl(bidId: number) {

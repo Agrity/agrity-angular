@@ -26,11 +26,11 @@ export class Bid {
     bid.almondPounds = bidJson['almondPounds'];
     bid.pricePerPound = bidJson['pricePerPound'];
     bid.managementType = null;
-    let managementString = bidJson['managementType'];
-    if (managementString === 'FCFSService') {
+    let managementString = bidJson['managementService'];
+    if (managementString === 'services.bid_management.HandlerFCFSService') {
       bid.managementType = ManagementType.FCFS;
     }
-    if (managementString === 'STFCService') {
+    if (managementString === 'services.bid_management.HandlerSTFCService') {
       bid.managementType = ManagementType.STFC;
     }
 

@@ -111,13 +111,6 @@ export class BidCreateComponent implements OnInit {
       return;
     }
 
-    if (this.managementTypeSelection === 'FCFS') {
-      this.bid.managementType = ManagementType.FCFS;
-    }
-    if (this.managementTypeSelection === 'STFC') {
-      this.bid.managementType = ManagementType.STFC;
-    }
-
     let bidsString: string = 'BID DETAILS:';
     bidsString = bidsString + '<br/>' +
     'Pounds: ' + this.bid.almondPounds.toLocaleString() + ' lbs <br/>' +
@@ -181,8 +174,6 @@ export class BidCreateComponent implements OnInit {
 
     let temp2 = this.bid.endPaymentMonth.concat(space);
     this.bid.endPaymentDate = temp2.concat(this.bid.endPaymentYear);
-
-    this.bid.managementType = ManagementType.FCFS;
 
     if (this.bid.managementTypeDelay < 0) {
       this.bid.managementTypeDelay *= -1;
