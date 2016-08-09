@@ -190,7 +190,7 @@
             type="submit"
             [disabled]="!delay"
             (click)="sendBids(false)"
-            value="SEND {{ traderBids.length }} {{ getBidOrBidsValid() }} "
+            value="SEND {{ traderBids.length }} {{ getBidOrBidsInvalid() }} "
             >
           <input formnovalidate *ngIf="traderBidForm.form.valid"
             type="button"
