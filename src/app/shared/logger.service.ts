@@ -15,10 +15,14 @@ export class Logger {
   };
 
   public handleHttpError(error: Response) {
+    let errorMessage = error.json()[this.ERROR_KEY] !== undefined
+        ? 'ERROR: ' + error.json()[this.ERROR_KEY]
+        : 'Whoops, there was an error.';
+
     if (this.modalEmitter) {
-      this.modalEmitter.emit('Error: ' + error.json()[this.ERROR_KEY]);
+      this.modalEmitter.emit(errorMessage);
     }
-    console.error('ERROR: ' + error.json()[this.ERROR_KEY]);
+    console.error(errorMessage);
     return Observable.throw(error);
   }
 
