@@ -106,18 +106,18 @@
             <th rowspan="bid.noResponseGrowers.length"><p class="no-response-handler center">NO RESPONSE</p></th>
             <td class="table-lines" *ngFor="let grower of bid.noResponseGrowers">
               <p style="padding:0 20px 0 30px;" (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
-              <input type="number" min="0" class="number" placeholder="MT" [(ngModel)]="grower.amountManual">
+              <input *ngIf="bid?.currentlyOpen" type="number" min="0" class="number" placeholder="MT" [(ngModel)]="grower.amountManual">
               <div class="separate">
-              <button type="button" class="accept-partial"
+              <button *ngIf="bid?.currentlyOpen" type="button" class="accept-partial"
               [disabled]="!(grower.amountManual > 0)"
               (click)="acceptBid(grower, grower.amountManual)">ACCEPT PARTIAL</button>
               </div>
               <div class="separate">
-              <button type="button" class="accept-button"
+              <button *ngIf="bid?.currentlyOpen" type="button" class="accept-button"
               (click)="acceptBid(grower, bid.poundsRemaining)">ACCEPT REMAINING</button>
               </div>
               <div class="separate">
-              <button type="button" class="reject-button"
+              <button *ngIf="bid?.currentlyOpen" type="button" class="reject-button"
               (click)="rejectBid(grower)">REJECT</button>
               </div>
             </td>

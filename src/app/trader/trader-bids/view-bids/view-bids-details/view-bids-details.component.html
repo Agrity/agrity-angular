@@ -83,18 +83,18 @@
             <th rowspan="recievedSelectedBid.noResponseHandlerSellers.length"><p class="no-response-handler center">NO RESPONSE</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.noResponseHandlerSellers">
               <p (click)="viewHandler(handler.handlerId)">{{handler?.companyName}}</p>
-              <input type="number" min="0" class="number" placeholder="MT" [(ngModel)]="handler.amountManual">
+              <input *ngIf="recievedSelectedBid?.currentlyOpen" type="number" min="0" class="number" placeholder="MT" [(ngModel)]="handler.amountManual">
               <div class="separate">
-              <button type="button" class="accept-partial"
+              <button *ngIf="recievedSelectedBid?.currentlyOpen" type="button" class="accept-partial"
               [disabled]="!(handler.amountManual > 0)"
               (click)="acceptBid(handler, handler.amountManual)">ACCEPT PARTIAL</button>
               </div>
               <div class="separate">
-              <button type="button" class="accept-button"
+              <button *ngIf="recievedSelectedBid?.currentlyOpen" type="button" class="accept-button"
               (click)="acceptBid(handler, recievedSelectedBid.poundsRemaining)">ACCEPT REMAINING</button>
               </div>
               <div class="separate">
-              <button type="button" class="reject-button"
+              <button *ngIf="recievedSelectedBid?.currentlyOpen" type="button" class="reject-button"
               (click)="rejectBid(handler)">REJECT</button>
               </div>
             </td>
