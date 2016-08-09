@@ -78,7 +78,7 @@
               </div>
               <div class="separate">
               <button type="button" class="reject-button"
-              (click)="approve(handler,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted))">REJECT</button>
+              (click)="disapprove(handler,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted))">DISAPPROVE</button>
               </div>
             </td>
           </tr>
@@ -93,13 +93,13 @@
           <tr *ngIf="recievedSelectedBid.disapprovedHandlerSellers.length > 0">
             <th rowspan="recievedSelectedBid.disapprovedHandlerSellers.length"><p class="disapproved-handler center">DISAPPROVED</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.disapprovedHandlerSellers">
-            <p>(click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
+            <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
             <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} MT  disapproved</p></td>
           </tr>
 
           <tr *ngIf="recievedSelectedBid.rejectedHandlerSellers.length > 0">
             <th rowspan="recievedSelectedBid.rejectedHandlerSellers.length"><p class="rejected-handler center">REJECTED</p></th>
-            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.disapprovedHandlerSellers">
+            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.rejectedHandlerSellers">
             <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p></td>
           </tr>
 
