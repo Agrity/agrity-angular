@@ -138,27 +138,27 @@
 			 </div>
 </div>
 
-<div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
-        <div class="form-group">
-          <input type="number" step="1" min="1" class="form-control" required
-              [(ngModel)]="delay" [ngModelOptions]="{standalone: true}"
-              ngControl="delay"
-              autocomplete="off"
-              name="delay"
-              placeholder="Type Duration (in hours)">
+            <div class="col-md-12 col-sm-12 wow fadeInDown center" data-wow-delay="0.6s">
+                    <div class="form-group spaceover">
+                    <input type="number" step="1" min="1" class="form-control" required
+                        [(ngModel)]="delay" [ngModelOptions]="{standalone: true}"
+                        ngControl="delay"
+                        autocomplete="off"
+                        name="delay"
+                        placeholder="Type Duration (in hours)">
 
-          <select type="text" class="grade-form-control"
-            [(ngModel)]="managementTypeSelection"
-            ngControl="managementType"
-            name="managementType"
-            list="almonds"
-            style="width:210px">
-                <option [value]="managementTypeSelection" disabled selected hidden> Select Bid Type </option>
-                <option [value]="FCFS"> Firm Bid, First Come First Serve </option>
-                <option [value]="STFC"> Subject to Final Confirmation </option>
-          </select>
-        </div>
-</div>
+                    <select type="text" class="grade-form-control"
+                        [(ngModel)]="managementTypeSelection"
+                        ngControl="managementType"
+                        name="managementType"
+                        list="almonds"
+                        style="width:210px">
+                            <option [value]="managementTypeSelection" disabled selected hidden> Select Bid Type </option>
+                            <option [value]="FCFS"> Firm Bid, First Come First Serve </option>
+                            <option [value]="STFC"> Subject to Final Confirmation </option>
+                    </select>
+                    </div>
+            </div>
 
 
 
