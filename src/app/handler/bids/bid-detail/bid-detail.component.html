@@ -66,45 +66,54 @@
               </div>
             </div>
 
-          <tr *ngIf="recievedSelectedBid.pendingGrowers.length > 0">
-            <th rowspan="recievedSelectedBid.pendingGrowers.length"><p class="pending-handler center">PENDING</p></th>
-            <td class="table-lines" *ngFor="let grower of recievedSelectedBid.pendingGrowers">
+        <div *ngIf="bid.pendingGrowers">
+          <tr *ngIf="bid?.pendingGrowers.length > 0">
+            <th rowspan="bid.pendingGrowers.length"><p class="pending-handler center">PENDING</p></th>
+            <td class="table-lines" *ngFor="let grower of bid.pendingGrowers">
             <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
-            <p style="padding:0 20px 0 30px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, grower.growerId)?.poundsAccepted | number}} pounds accepted</p>
+            <p style="padding:0 20px 0 30px">{{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} pounds accepted</p>
               <div class="separate">
               <button type="button" class="accept-button"
-              (click)="approve(grower,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, grower.growerId)?.poundsAccepted))">APPROVE</button>
+              (click)="approve(grower,(bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted))">APPROVE</button>
               </div>
               <div class="separate">
               <button type="button" class="reject-button"
-              (click)="approve(grower,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, grower.growerId)?.poundsAccepted))">REJECT</button>
+              (click)="approve(grower,(bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted))">REJECT</button>
               </div>
             </td>
           </tr>
+        </div>
 
-          <tr *ngIf="recievedSelectedBid.acceptedGrowers.length > 0">
-            <th rowspan="recievedSelectedBid.acceptedGrowers.length"><p class="accepted-handler center">ACCEPTED</p></th>
-            <td class="table-lines" *ngFor="let handler of recievedSelectedBid.acceptedGrowers">
+        <div *ngIf="bid.acceptedGrowers">
+          <tr *ngIf="bid?.acceptedGrowers.length > 0">
+            <th rowspan="bid.acceptedGrowers.length"><p class="accepted-handler center">ACCEPTED</p></th>
+            <td class="table-lines" *ngFor="let grower of bid.acceptedGrowers">
             <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
-            <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, grower.growerId)?.poundsAccepted | number}} pounds accepted</p></td>
+            <p style="padding-left:50px">{{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} pounds accepted</p></td>
           </tr>
+        </div>
 
-          <tr *ngIf="recievedSelectedBid.disapprovedGrower.length > 0">
-            <th rowspan="recievedSelectedBid.disapprovedGrowers.length"><p class="disapproved-handler center">DISAPPROVED</p></th>
-            <td class="table-lines" *ngFor="let grower of recievedSelectedBid.disapprovedGrowers">
+        <div *ngIf="bid.disapprovedGrowers">
+          <tr *ngIf="bid?.disapprovedGrowers.length > 0">
+            <th rowspan="bid.disapprovedGrowers.length"><p class="disapproved-handler center">DISAPPROVED</p></th>
+            <td class="table-lines" *ngFor="let grower of bid.disapprovedGrowers">
             <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
-            <p style="padding-left:50px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, grower.growerId)?.poundsAccepted | number}} pounds disapproved</p></td>
+            <p style="padding-left:50px">{{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} pounds disapproved</p></td>
           </tr>
+        </div>
 
-          <tr *ngIf="recievedSelectedBid.rejectedGrowers.length > 0">
-            <th rowspan="recievedSelectedBid.rejectedGrowers.length"><p class="rejected-handler center">REJECTED</p></th>
-            <td class="table-lines" *ngFor="let grower of recievedSelectedBid.disapprovedGrowers">
+        <div *ngIf="bid.rejectedGrowers">
+          <tr *ngIf="bid?.rejectedGrowers.length > 0">
+            <th rowspan="bid.rejectedGrowers.length"><p class="rejected-handler center">REJECTED</p></th>
+            <td class="table-lines" *ngFor="let grower of bid.disapprovedGrowers">
             <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p></td>
           </tr>
+        </div>
 
-          <tr *ngIf="recievedSelectedBid.noResponseGrowers.length > 0">
-            <th rowspan="recievedSelectedBid.noResponseGrowers.length"><p class="no-response-handler center">NO RESPONSE</p></th>
-            <td class="table-lines" *ngFor="let grower of recievedSelectedBid.noResponseGrowers">
+        <div *ngIf="bid.noResponseGrowers">
+          <tr *ngIf="bid?.noResponseGrowers.length > 0">
+            <th rowspan="bid.noResponseGrowers.length"><p class="no-response-handler center">NO RESPONSE</p></th>
+            <td class="table-lines" *ngFor="let grower of bid.noResponseGrowers">
               <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
               <input type="number" min="0" class="number" placeholder="MT" [(ngModel)]="grower.amountManual">
               <div class="separate">
@@ -114,7 +123,7 @@
               </div>
               <div class="separate">
               <button type="button" class="accept-button"
-              (click)="acceptBid(grower, recievedSelectedBid.poundsRemaining)">ACCEPT REMAINING</button>
+              (click)="acceptBid(grower, bid.poundsRemaining)">ACCEPT REMAINING</button>
               </div>
               <div class="separate">
               <button type="button" class="reject-button"
@@ -122,6 +131,7 @@
               </div>
             </td>
           </tr>
+        </div>
         </table>
 
       <!--<div class="col-md-4 accepted" id="accepted-handlers">

@@ -105,7 +105,7 @@ export class TraderBid {
         this.decodeTraderBidNoResponseHandlerSellers(traderBidJson);
     traderBid.allHandlerSellers = traderBid.acceptedHandlerSellers.concat(
         traderBid.rejectedHandlerSellers).concat(traderBid.noResponseHandlerSellers)
-        .concat(traderBid.disapprovedHandlerSellers);
+        .concat(traderBid.disapprovedHandlerSellers).concat(traderBid.pendingHandlerSellers);
     traderBid.expirationTime = new Date(traderBidJson['expirationTimeAsString']);
 
     traderBid.dateCreated = new Date(traderBidJson['createdAtAsString']);

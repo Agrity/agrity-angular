@@ -68,11 +68,14 @@ export class Bid {
     bid.acceptedGrowers = this.decodeBidAcceptGrowers(bidJson);
     bid.rejectedGrowers = this.decodeBidRejectGrowers(bidJson);
     bid.callRequestedGrowers = this.decodeBidCallRequestedGrowers(bidJson);
+    bid.pendingGrowers = this.decodePendingGrowers(bidJson);
+    bid.disapprovedGrowers = this.decodeDisapprovedGrowers(bidJson);
     bid.expirationTime = new Date(bidJson['expirationTimeAsString']);
     bid.dateCreated = new Date(bidJson['createdAtAsString']);
     bid.noResponseGrowers = this.decodeBidNoResponseGrowers(bidJson);
     bid.allGrowers = bid.acceptedGrowers.concat(
-        bid.rejectedGrowers).concat(bid.noResponseGrowers);
+        bid.rejectedGrowers).concat(bid.noResponseGrowers)
+        .concat(bid.disapprovedGrowers).concat(bid.pendingGrowers);
 
     bid.bidResponses = this.decodeBidResponses(bidJson['bidResponses']);
 
@@ -120,6 +123,14 @@ export class Bid {
 
   public static decodeBidCallRequestedGrowers(bidJson: Object): Grower[] {
     return this.decodeBidGrowers('callRequestedGrowers', bidJson);
+  }
+
+  public static decodePendingGrowers(bidJson: Object): Grower[] {
+    return this.decodeBidGrowers('pendingGrowers', bidJson);
+  }
+
+  public static decodeDisapprovedGrowers(bidJson: Object): Grower[] {
+    return this.decodeBidGrowers('disapprovedGrowers', bidJson);
   }
 
   public static decodeBidNoResponseGrowers(bidJson: Object): Grower[] {
@@ -210,6 +221,8 @@ export class Bid {
   public rejectedGrowers: Grower[];
   public callRequestedGrowers: Grower[];
   public noResponseGrowers: Grower[];
+  public disapprovedGrowers: Grower[];
+  public pendingGrowers: Grower[];
   public allGrowers: Grower[];
 
   public expirationTime: Date;
