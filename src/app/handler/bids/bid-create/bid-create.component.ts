@@ -25,18 +25,52 @@ export class BidCreateComponent implements OnInit {
   protected FCFS: string = 'FCFS';
   protected managementTypeSelection: string = 'FCFS';
 
-  protected varieties: string[] = [
-    'NONPAREIL',
-    'CARMEL',
-    'BUTTE',
-    'PADRE',
-    'MISSION',
-    'MONTEREY',
-    'SONORA',
-    'FRITZ',
-    'PRICE',
-    'PEERLESS',
-  ];
+  protected NONPAREIL_TYPE: string = 'NONPAREIL-TYPE';
+  protected NP_NONPAREIL: string = 'NP-NONPAREIL';
+  protected NP_INDEPENDENCE: string = 'NP-INDEPENDENCE';
+  protected NP_SONORA: string = 'NP-SONORA';
+
+  protected CARMEL_TYPE: string = 'CARMEL-TYPE';
+  protected CR_ALDRICH: string = 'CR-ALDRICH';
+  protected CR_AVALON: string = 'CR-AVALON';
+  protected CR_CARMEL: string =   'CR-CARMEL';
+  protected CR_LIVINGSTON: string = 'CR-LIVINGSTON';
+  protected CR_MONTEREY: string = 'CR-MONTEREY';
+  protected CR_PRICE: string = 'CR-PRICE';
+  protected CR_WOOD_COLONY: string = 'CR-WOOD COLONY';
+
+  protected MISSION_TYPE: string = 'MISSION-TYPE';
+  protected MI_BUTTE: string = 'MI-BUTTE';
+  protected MI_BUTTE_PADRE: string = 'MI-BUTTE/PADRE';
+  protected MI_FRITZ: string = 'MI-FRITZ';
+  protected MI_MARCONA: string = 'MI-MARCONA';
+  protected MI_MISSION: string = 'MI-MISSION';
+  protected MI_PADRE: string = 'MI-PADRE';
+  protected MI_RUBY: string = 'MI-RUBY';
+
+  protected CALIFORNIA_TYPE = 'CALIFORNIA-TYPE';
+  protected CA_BLUE_GUM: string = 'CA-BLUE GUM';
+  protected CA_BUTTE: string = 'CA-BUTTE';
+  protected CA_BUTTE_PADRE: string = 'CA-BUTTE/PADRE';
+  protected CA_CAPITOLA: string = 'CA-CAPITOLA';
+  protected CA_CARMEL: string = 'CA-CARMEL';
+  protected CA_CROCKER: string = 'CA-CROCKER';
+  protected CA_FRITZ: string = 'CA-FRITZ';
+  protected CA_INDEPENDENCE: string = 'CA-INDEPENDENCE';
+  protected CA_LIVINGSTON: string = 'CA-LIVINGSTON';
+  protected CA_MONTEREY: string = 'CA-MONTEREY';
+  protected CA_PADRE: string = 'CA-PADRE';
+  protected CA_PEERLESS: string = 'CA-PEERLESS';
+  protected CA_PRICE: string = 'CA-PRICE';
+  protected CA_NEPLUS: string = 'CA-NEPLUS';
+  protected CA_RUBY: string = 'CA-RUBY';
+  protected CA_SONORA: string = 'CA-SONORA';
+  protected CA_SEEDLING = 'CA-SEEDLING';
+  protected CA_SUPREIL: string = 'CA-SUPREIL';
+  protected CA_TOKYO: string = 'CA-TOKYO';
+  protected CA_WINTERS: string = 'CA-WINTERS';
+  protected OTHER_TYPE: string = 'OTHER-TYPE';
+  protected MIXED_VARIETY: string = 'MIXED-VARIETY';
 
   protected sizes: string[] = [
     '16/18',

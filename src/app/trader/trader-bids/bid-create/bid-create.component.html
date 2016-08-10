@@ -30,10 +30,145 @@
             list="almonds"
             [(ngModel)]="almonds">
                 <option [value]="variety" disabled selected hidden> Select Almond Variety </option>
-                <option *ngFor="let variety of varieties"
-                    [value]="variety"> {{ variety }}
-                </option>
-          </select>
+                    <option
+                        [value]="NONPAREIL"> NONPAREIL-TYPE
+                    </option>
+                    <option
+                        [value]="NP_NONPAREIL"> &nbsp; &nbsp; NONPAREIL
+                    </option>
+                    <option
+                        [value]="NP_INDEPENDENCE"> &nbsp; &nbsp; INDEPENDENCE
+                    </option>
+                    <option
+                        [value]="NP_SONORA"> &nbsp; &nbsp; SONORA
+                    </option>
+                    <option
+                        [value]="CARMEL_TYPE"> CARMEL-TYPE
+                    </option>
+                    <option
+                        [value]="CR_ALDRICH"> &nbsp; &nbsp; ALDRICH
+                    </option>
+                    <option
+                        [value]="CR_AVALON"> &nbsp; &nbsp; AVALON
+                    </option>
+                    <option
+                        [value]="CR_CARMEL"> &nbsp; &nbsp; CARMEL
+                    </option>
+                    <option
+                        [value]="CR_LIVINGSTON"> &nbsp; &nbsp; LIVINGSTON
+                    </option>
+                    <option
+                        [value]="CR_MONTEREY"> &nbsp; &nbsp; MONTEREY
+                    </option>
+                    <option
+                        [value]="CR_PRICE"> &nbsp; &nbsp; PRICE
+                    </option>
+                    <option
+                        [value]="CR_WOOD_COLONY"> &nbsp; &nbsp; WOOD COLONY
+                    </option>
+                    <option
+                        [value]="MISSION_TYPE"> MISSION-TYPE
+                    </option>
+                    <option
+                        [value]="MI_BUTTE"> &nbsp; &nbsp; BUTTE
+                    </option>
+                    <option
+                        [value]="MI_BUTTE_PADRE"> &nbsp; &nbsp; BUTTE/PADRE
+                    </option>
+                    <option
+                        [value]="MI_FRITZ"> &nbsp; &nbsp; FRITZ
+                    </option>
+                    <option
+                        [value]="MI_MARCONA"> &nbsp; &nbsp; MARCONA
+                    </option>
+                    <option
+                        [value]="MI_MISSION"> &nbsp; &nbsp; MISSION
+                    </option>
+                    <option
+                        [value]="MI_PADRE"> &nbsp; &nbsp; PADRE
+                    </option>
+                    <option
+                        [value]="MI_RUBY"> &nbsp; &nbsp; RUBY
+                    </option>
+                    <option
+                        [value]="CALIFORNIA_TYPE"> CALIFORNIA-TYPE
+                    </option>
+                    <option
+                        [value]="CA_ALDRICH"> &nbsp; &nbsp; ALDRICH
+                    </option>
+                    <option
+                        [value]="CA_AVALON"> &nbsp; &nbsp; AVALON
+                    </option>
+                    <option
+                        [value]="CA_BLUE_GUM"> &nbsp; &nbsp; BLUE GUM
+                    </option>
+                    <option
+                        [value]="CA_BUTTE"> &nbsp; &nbsp; BUTTE
+                    </option>
+                    <option
+                        [value]="CA_BUTTE/PADRE"> &nbsp; &nbsp; BUTTE/PADRE
+                    </option>
+                    <option
+                        [value]="CA_CAPITOLA"> &nbsp; &nbsp; CAPITOLA
+                    </option>
+                    <option
+                        [value]="CA_CARMEL"> &nbsp; &nbsp; CARMEL
+                    </option>
+                    <option
+                        [value]="CA_CROCKER"> &nbsp; &nbsp; CROCKER
+                    </option>
+                    <option
+                        [value]="CA_FRITZ"> &nbsp; &nbsp; FRITZ
+                    </option>
+                    <option
+                        [value]="CA_INDEPENDENCE"> &nbsp; &nbsp; INDEPENDENCE
+                    </option>
+                    <option
+                        [value]="CA_LIVINGSTON"> &nbsp; &nbsp; LIVINGSTON
+                    </option>
+                    <option
+                        [value]="CA_MONTEREY"> &nbsp; &nbsp; MONTEREY
+                    </option>
+                    <option
+                        [value]="CA_PADRE"> &nbsp; &nbsp; PADRE
+                    </option>
+                    <option
+                        [value]="CA_PEERLESS"> &nbsp; &nbsp; PEERLESS
+                    </option>
+                    <option
+                        [value]="CA_PRICE"> &nbsp; &nbsp; PRICE
+                    </option>
+                    <option
+                        [value]="CA_NEPLUS"> &nbsp; &nbsp; NEPLUS
+                    </option>
+                    <option
+                        [value]="CA_RUBY"> &nbsp; &nbsp; RUBY
+                    </option>
+                    <option
+                        [value]="CA_SONORA"> &nbsp; &nbsp; SONORA
+                    </option>
+                    <option
+                        [value]="CA_SEEDLING"> &nbsp; &nbsp; SEEDLING
+                    </option>
+                    <option
+                        [value]="CA_SUPREIL"> &nbsp; &nbsp; SUPREIL
+                    </option>
+                    <option
+                        [value]="CA_TOKYO"> &nbsp; &nbsp; TOKYO
+                    </option>
+                    <option
+                        [value]="CA_WINTERS"> &nbsp; &nbsp; WINTERS
+                    </option>
+                    <option
+                        [value]="CA_WOOD_COLONY"> &nbsp; &nbsp; WOOD COLONY
+                    </option>
+                    <option
+                        [value]="OTHER_TYPE"> OTHER-TYPE
+                    </option>
+                    <option
+                        [value]="MIXED_VARIETY"> &nbsp; &nbsp; MIXED VARIETY
+                    </option>
+                </select>
 
           <select type="text"
             [(ngModel)]="traderBid.grade"
