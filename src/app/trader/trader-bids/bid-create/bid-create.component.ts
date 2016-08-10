@@ -182,28 +182,21 @@ export class TraderBidCreateComponent implements OnInit {
       return;
     }
 
-    let bidsString: string = 'BIDS: ';
+    let bidsString: string = '<u><b>BIDS: </b></u>';
     for (let bid of this.traderBids) {
       bidsString = bidsString + '<br/>' +
-      'Pounds: ' + bid.almondPounds.toLocaleString() + 'MT - ' +
-      'Variety: ' + bid.almondVariety + ' - ' +
-      'Grade: ' + bid.grade + ' - ' +
-      'Size: ' + bid.almondSize + ' - ' +
-      'Market Price Per Pound: $' + bid.pricePerPound + '</br>';
+      bid.almondPounds.toLocaleString() + 'MT - ' +
+      bid.almondVariety + ' - ' +
+      bid.grade + ' - ' +
+      bid.almondSize + ' - $' +
+      bid.pricePerPound;
       if (bid.comment !== undefined) {
-        bidsString = bidsString + 'Other Details: ' + bid.comment + '</br>';
-      } else {
-      bidsString = bidsString + 'Other Details: Not Specified' + '</br>';
-      }
-      if (bid.managementType === ManagementType.FCFS) {
-        bidsString = bidsString + 'Firm Bid, First Come First Serve' + '<br/>';
-      }
-      if (bid.managementType === ManagementType.STFC) {
-        bidsString = bidsString + 'Subject to Final Confirmation' + '<br/>';
+        bidsString = bidsString + ' - ' + bid.comment;
       }
     }
+    bidsString = bidsString + '<br/>';
 
-    let handlersString: string = 'TO: ';
+    let handlersString: string = '<u><b>TO: </b></u>';
     for (let handler of this.handlerSellers) {
       if (handler.selected) {
         handlersString = handlersString + '<br/>' +
@@ -211,9 +204,18 @@ export class TraderBidCreateComponent implements OnInit {
       }
     }
 
+    let termsString: string = '<u><b>TERMS: </b></u>' + '<br/>' +
+        this.delay + ' hours to respond' + '<br/>';
+    if (this.managementTypeSelection === this.FCFS) {
+      termsString = termsString + 'Firm Bid, First Come First Serve' + '<br/>';
+    }
+    if (this.managementTypeSelection === this.STFC) {
+      termsString = termsString + 'Subject to Final Confirmation' + '<br/>';
+    }
+
     let confirmMsg: string = bidsString + '<br/>' +
-        'TIME TO RESPOND: ' + this.delay + ' HOURS' + '<br/>' +
-        '<br/>' + handlersString;
+    termsString + '<br/>' +
+    handlersString;
 
     this.modal.confirm()
     .size('lg')

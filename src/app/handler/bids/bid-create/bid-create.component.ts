@@ -118,7 +118,7 @@ export class BidCreateComponent implements OnInit {
       this.bid.managementType = ManagementType.STFC;
     }
 
-    let bidsString: string = 'BID DETAILS:';
+    let bidsString: string = '<u><b>BID DETAILS: </b></u>';
     bidsString = bidsString + '<br/>' +
     'Pounds: ' + this.bid.almondPounds.toLocaleString() + ' lbs <br/>' +
     'Variety: ' + this.bid.almondVariety + '<br/>' +
@@ -129,26 +129,28 @@ export class BidCreateComponent implements OnInit {
     bidsString = bidsString + '<br/>' + 'Price Per Pound: $' + this.bid.pricePerPound + '<br/>';
     if (this.bid.comment !== undefined) {
       bidsString = bidsString + 'Other Details: ' + this.bid.comment + '<br/>';
-    } else {
-      bidsString = bidsString + 'Other Details: Not Specified' + '<br/>';
     }
+
+
+    let termsString = '<u><b>TERMS: </b></u>' + '<br/>';
     if (this.bid.managementType === ManagementType.FCFS) {
-      bidsString = bidsString + 'Firm Bid, First Come First Serve' + '<br/>';
+      termsString = termsString + 'Firm Bid, First Come First Serve' + '<br/>';
     }
     if (this.bid.managementType === ManagementType.STFC) {
-      bidsString = bidsString + 'Subject to Final Confirmation' + '<br/>';
+      termsString = termsString + 'Subject to Final Confirmation' + '<br/>';
     }
-    bidsString = bidsString + '<br/>' + 'Time to Respond: ' +
-        this.bid.managementTypeDelay + ' HOURS';
+    termsString = termsString +
+        this.bid.managementTypeDelay + ' hours to respond.' + '<br/>';
 
-    let growersString: string = 'TO:';
+    let growersString: string = '<u><b>TO: </b></u>';
     for (let grower of selectedGrowers) {
         this.bid.growerIds.push(grower.growerId);
         growersString = growersString + '<br/>' +
             grower.firstName + ' ' + grower.lastName;
-      }
+    }
 
-    let confirmMsg: string = bidsString + '<br/>' + '<br/>' + growersString;
+    let confirmMsg: string = bidsString + '<br/>' +
+        termsString + '<br/>' + growersString;
 
     this.modal.confirm()
     .size('lg')
