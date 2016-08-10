@@ -1,5 +1,5 @@
 #home {
-  background: url('assets/img/home-bg.jpg') 100% 0 repeat-y fixed;
+  background: url('assets/img/sky.jpg') 100% 0 repeat-y fixed;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center center;
@@ -37,10 +37,6 @@
 
 #home .btn:hover {
   background: #000000;
-}
-
-h1,h2,h3,h4,h5 {
-  font-weight: bold;
 }
 
 h1 {
