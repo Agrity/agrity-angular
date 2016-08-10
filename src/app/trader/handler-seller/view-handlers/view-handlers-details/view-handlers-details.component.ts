@@ -127,4 +127,14 @@ export class ViewHandlersDetailsComponent implements OnInit, OnDestroy {
     }
     return false;
   }
+
+  protected isPending(bid: TraderBid): boolean {
+    if (bid.getBidResponse(bid, this.recievedSelectedHandler.handlerId).responseStatus ===
+        ResponseStatus.PENDING) {
+      console.log('true');
+      return true;
+    }
+    console.log('false');
+    return false;
+  }
 }

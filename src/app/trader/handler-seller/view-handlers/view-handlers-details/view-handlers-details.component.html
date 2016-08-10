@@ -65,7 +65,7 @@
         class="wow fadeInDown makespace" data-wow-delay="0.6s">
         <button type="button"
                 (click)="viewBid(bid?.bidId)"
-                [ngClass]="{ 'accepted': isAccepted(bid), 'rejected': isRejected(bid), 'no-response': isNoResponse(bid) }">
+                [ngClass]="{ 'accepted': isAccepted(bid), 'rejected': isRejected(bid), 'no-response': isNoResponse(bid), 'pending': isPending(bid) }">
           <table id="buttonCols" style="width:100%;">
             <tr>
               <td class="offerButton"><p style="color:white">

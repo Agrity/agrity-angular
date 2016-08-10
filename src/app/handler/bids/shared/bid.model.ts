@@ -165,6 +165,9 @@ export class Bid {
       case 'REJECTED':
         bidResponse.responseStatus = ResponseStatus.REJECTED;
         break;
+      case 'PENDING':
+        bidResponse.responseStatus = ResponseStatus.PENDING;
+        break;
       case 'APPROVED':
         bidResponse.responseStatus = ResponseStatus.APPROVED;
         break;
