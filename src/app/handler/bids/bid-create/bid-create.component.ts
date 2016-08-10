@@ -154,15 +154,15 @@ export class BidCreateComponent implements OnInit {
 
     let bidsString: string = '<u><b>BID DETAILS: </b></u>';
     bidsString = bidsString + '<br/>' +
-    'Pounds: ' + this.bid.almondPounds.toLocaleString() + ' lbs <br/>' +
-    'Variety: ' + this.bid.almondVariety + '<br/>' +
-    'Size: ' + this.bid.almondSize;
+    this.bid.almondPounds.toLocaleString() + ' lbs <br/>' +
+    this.bid.almondVariety + '<br/>' +
+    this.bid.almondSize;
     if (this.aol) {
       bidsString = bidsString + ' AOL';
     }
-    bidsString = bidsString + '<br/>' + 'Price Per Pound: $' + this.bid.pricePerPound + '<br/>';
+    bidsString = bidsString + '<br/>' + '$' + this.bid.pricePerPound + '<br/>';
     if (this.bid.comment !== undefined) {
-      bidsString = bidsString + 'Other Details: ' + this.bid.comment + '<br/>';
+      bidsString = bidsString + this.bid.comment + '<br/>';
     }
 
     let termsString = '<u><b>TERMS: </b></u>' + '<br/>';
