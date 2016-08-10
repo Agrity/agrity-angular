@@ -65,4 +65,26 @@ export class ViewBidsSidebarComponent {
     // Will eventually link to handler page.
     return;
   }
+
+  protected shortenAlmondVariety(almondVariety: string): string {
+    if (almondVariety === null ||
+        almondVariety === undefined) {
+      return '';
+    }
+
+    if (almondVariety === 'NONPARIEL-TYPE') {
+      return 'NP';
+    } else if (almondVariety === 'CARMEL-TYPE') {
+      return 'CR';
+    } else if (almondVariety === 'MISSION-TYPE') {
+      return 'MI'
+    } else if (almondVariety === 'CALIFORNIA-TYPE') {
+      return 'CA';
+    } else if (almondVariety === 'OTHER-TYPE' ||
+               almondVariety === 'MIXED-VARIETY') {
+      return 'OT';
+    }
+
+    return almondVariety.substring(0, 2);
+  }
 }

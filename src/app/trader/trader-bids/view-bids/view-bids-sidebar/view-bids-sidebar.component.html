@@ -34,7 +34,7 @@
                 so you can pick which you want to display
                 in the sidebar.-->
             <td><p1>{{ bid?.bidId }}</p1></td>
-            <td><p1>{{ bid?.almondVariety }}</p1></td>
+            <td><p1>{{ shortenAlmondVariety(bid?.almondVariety) }}</p1></td>
             <td><p1>{{ bid?.pricePerPound }}</p1></td>
             <!--countDownString is a countdown string that
                 will display time remaining until bid expires.
@@ -56,7 +56,8 @@
           <tbody>
          <tr (click)="selectBid(bid)" [ngClass]="{ 'accepted': isAccepted(bid), 'rejected': isRejected(bid), 'partial': isPartial(bid) }">
             <td><p1>{{ bid?.bidId }}</p1></td>
-            <td style="float:left"><p1> {{ bid?.almondVariety }}</p1></td>
+            <td style="float:left"><p1> {{
+            shortenAlmondVariety(bid?.almondVariety) }}</p1></td>
 
             <td style="float:right;"><p1>{{ bid?.pricePerPound }}</p1></td>
 
