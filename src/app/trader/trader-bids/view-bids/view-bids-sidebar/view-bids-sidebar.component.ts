@@ -77,7 +77,7 @@ export class ViewBidsSidebarComponent {
     } else if (almondVariety === 'CARMEL-TYPE') {
       return 'CR';
     } else if (almondVariety === 'MISSION-TYPE') {
-      return 'MI'
+      return 'MI';
     } else if (almondVariety === 'CALIFORNIA-TYPE') {
       return 'CA';
     } else if (almondVariety === 'OTHER-TYPE' ||

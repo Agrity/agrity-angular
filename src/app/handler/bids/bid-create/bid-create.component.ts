@@ -165,7 +165,6 @@ export class BidCreateComponent implements OnInit {
       bidsString = bidsString + 'Other Details: ' + this.bid.comment + '<br/>';
     }
 
-
     let termsString = '<u><b>TERMS: </b></u>' + '<br/>';
     if (this.bid.managementType === ManagementType.FCFS) {
       termsString = termsString + 'Firm Bid, First Come First Serve' + '<br/>';
