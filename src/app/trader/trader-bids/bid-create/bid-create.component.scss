@@ -161,16 +161,18 @@ td {
 			background: #757575;
 		}
 	}
-	input[type="submit"] {
+	.send-button {
 		background: #419ed2;
 		color: #ffffff;
 		position: center;
+		cursor:pointer;
 		padding-left: 10px;
 		border: none;
 		border-radius: 4px;
 		font-size: 16px;
 		font-weight: bold;
 		letter-spacing: 1px;
+		text-align: center;
 		height: 80px;
 		margin-top: 20px;
 		&:hover {
