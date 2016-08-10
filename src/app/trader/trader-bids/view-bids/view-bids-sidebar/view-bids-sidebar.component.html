@@ -56,10 +56,10 @@
           <tbody>
          <tr (click)="selectBid(bid)" [ngClass]="{ 'accepted': isAccepted(bid), 'rejected': isRejected(bid), 'partial': isPartial(bid) }">
             <td><p1>{{ bid?.bidId }}</p1></td>
-            <td style="float:left"><p1> {{
+            <td style="float:left; padding-left:20px"><p1> {{
             shortenAlmondVariety(bid?.almondVariety) }}</p1></td>
 
-            <td style="float:right;"><p1>{{ bid?.pricePerPound }}</p1></td>
+            <td style="text-align:center;"><p1>{{ bid?.pricePerPound }}</p1></td>
 
             <td style="float:right;"><p1>{{ bid?.countDownString }}</p1></td>
             <!--TO Design Man: Here are three methods that can be called with a closed bid.
