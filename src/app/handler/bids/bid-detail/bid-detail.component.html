@@ -5,20 +5,18 @@
 
     <button *ngIf="bid.currentlyOpen" class="right closebidbutton" (click)="closeBid(bid.bidId)">CLOSE BID</button>
 
-    <h1 class="center spacetop"> BID DETAILS </h1>
+    <h1 class="center spacetop"> BID #{{ bid.bidId }} </h1>
 
     		<div class="wow fadeInDown center" data-wow-delay="0.6s">
 			  <button type="button" class="listbidbutton center">
 			  	<table id="buttonCols" style="width:100%">
 				<tr>
-            <td class="offerButton"><p>
-              ID: {{ bid.bidId }}</p></td>
 			  		<td class="offerButton"><p>
               {{ bid.almondVariety }}</p></td>
 			  		<td class="offerButton"><p>
-              {{ bid.pricePerPound }}</p></td>
+              {{ bid.pricePerPound }} OF </p></td>
 			  		<td class="offerButton"><p>
-              {{ bid.almondPounds | number }}</p></td>
+              {{ bid.almondPounds | number }} lbs</p></td>
             <td class="offerButton"><p>
               {{ bid.almondSize }}</p></td>
 			  		<td class="offerButton"><p>
@@ -44,7 +42,6 @@
          </button>
 
         </div>
-
 
     <div class="center-responses" id="handler-responses">
 
