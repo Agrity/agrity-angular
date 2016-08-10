@@ -36,7 +36,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(43,160,199);
   animation: cssload-fold-thecube 2.76s infinite linear both;
     -o-animation: cssload-fold-thecube 2.76s infinite linear both;
     -ms-animation: cssload-fold-thecube 2.76s infinite linear both;
@@ -69,7 +68,11 @@
     -webkit-transform: scale(1.1) rotateZ(270deg);
     -moz-transform: scale(1.1) rotateZ(270deg);
 }
+.cssload-thecube .cssload-c1:before {
+  background-image: url("../assets/logo_tl.png");
+}
 .cssload-thecube .cssload-c2:before {
+  background-image: url("../assets/logo_tr.png");
   animation-delay: 0.35s;
     -o-animation-delay: 0.35s;
     -ms-animation-delay: 0.35s;
@@ -77,6 +80,7 @@
     -moz-animation-delay: 0.35s;
 }
 .cssload-thecube .cssload-c3:before {
+  background-image: url("../assets/logo_br.png");
   animation-delay: 0.69s;
     -o-animation-delay: 0.69s;
     -ms-animation-delay: 0.69s;
@@ -84,6 +88,7 @@
     -moz-animation-delay: 0.69s;
 }
 .cssload-thecube .cssload-c4:before {
+  background-image: url("../assets/logo_bl.png");
   animation-delay: 1.04s;
     -o-animation-delay: 1.04s;
     -ms-animation-delay: 1.04s;
