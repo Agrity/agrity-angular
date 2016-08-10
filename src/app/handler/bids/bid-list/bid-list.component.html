@@ -19,7 +19,7 @@
 	  	<table id="buttonCols" style="width:100%">
 		<tr>
 		    <td class="offerButton">ID: {{ bid.bidId }}</td>
-		    <td class="offerButton">Pounds: {{ bid.almondPounds | number }}</td>
+		    <td class="offerButton">{{ bid?.poundsRemaining | number }} of <br> {{ bid?.almondPounds | number }} lbs <br> remaining</td>
 	  		<td class="offerButton">{{ bid.almondVariety }}</td>
 	  		<td class="offerButton">Size: {{ bid.almondSize }}</td>
 	  		<td class="offerButton">Market Price: {{ bid.pricePerPound }}</td>

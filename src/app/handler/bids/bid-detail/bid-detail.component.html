@@ -14,7 +14,7 @@
 			  		<td class="offerButton"><p>
               {{ bid.almondVariety }}</p></td>
 			  		<td class="offerButton"><p>
-              {{ bid.pricePerPound }} OF </p></td>
+              {{ bid?.poundsRemaining | number }} of <br> {{ bid?.almondPounds | number }} lbs <br> remaining </p></td>
 			  		<td class="offerButton"><p>
               {{ bid.almondPounds | number }} lbs</p></td>
             <td class="offerButton"><p>
