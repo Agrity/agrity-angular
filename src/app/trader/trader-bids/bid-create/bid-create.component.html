@@ -187,13 +187,13 @@
 
       <div class="col-md-12 col-sm-12 center">
 		  <input formnovalidate *ngIf="!traderBidForm.form.valid"
-            type="submit"
+            type="button"
             [disabled]="!delay"
             (click)="sendBids(false)"
             value="SEND {{ traderBids.length }} {{ getBidOrBidsInvalid() }} "
             >
           <input formnovalidate *ngIf="traderBidForm.form.valid"
-            type="submit"
+            type="button"
             [disabled]="!delay"
             (click)="sendBids(true)"
             value="SEND {{traderBids.length + 1}} {{ getBidOrBidsValid() }} ">
