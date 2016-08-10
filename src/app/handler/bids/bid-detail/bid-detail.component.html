@@ -11,14 +11,14 @@
 			  <button type="button" class="listbidbutton center">
 			  	<table id="buttonCols" style="width:100%">
 				<tr>
-			  		<td class="offerButton"><p>
+			  		<td class="offerButton"><p style="font-size:14px;">
+              {{ bid?.poundsRemaining | number }} of {{ bid?.almondPounds | number }} <br> pounds remaining </p></td>
+			  		<td class="offerButton center" style="padding-top:22px;"><p>
               {{ bid.almondVariety }}</p></td>
-			  		<td class="offerButton"><p>
-              {{ bid?.poundsRemaining | number }} of <br> {{ bid?.almondPounds | number }} lbs <br> remaining </p></td>
-			  		<td class="offerButton"><p>
-              {{ bid.almondPounds | number }} lbs</p></td>
-            <td class="offerButton"><p>
+            <td class="offerButton" style="padding-left:50px;"><p>
               {{ bid.almondSize }}</p></td>
+			  		<td class="offerButton"><p>
+              {{ bid.pricePerPound }}</p></td>
 			  		<td class="offerButton"><p>
               {{ bid?.countDownString }}</p></td>
 			  	</tr>

@@ -18,8 +18,8 @@
 	  <button (click)="viewBid(bid.bidId)" type="button">
 	  	<table id="buttonCols" style="width:100%">
 		<tr>
-		    <td class="offerButton">ID: {{ bid.bidId }}</td>
-		    <td class="offerButton">{{ bid?.poundsRemaining | number }} of <br> {{ bid?.almondPounds | number }} lbs <br> remaining</td>
+		    <td class="offerButton" style="width:100px;">ID: {{ bid.bidId }}</td>
+		    <td class="offerButton" style="width:200px;">{{ bid?.poundsRemaining | number }} of {{ bid?.almondPounds | number }} <br> pounds remaining</td>
 	  		<td class="offerButton">{{ bid.almondVariety }}</td>
 	  		<td class="offerButton">Size: {{ bid.almondSize }}</td>
 	  		<td class="offerButton">Market Price: {{ bid.pricePerPound }}</td>
@@ -34,7 +34,7 @@
 	  	  <button [ngClass]="{ 'accepted': isAccepted(bid), 'partial': isPartial(bid), 'rejected': isRejected(bid) }" (click)="viewBid(bid.bidId)" style="width:90%; height:85px; font-size:2em; text-align:left; padding-left:50px; margin-bottom:10px;" type="button" class="btn btn-info">
 	  	  <table id="buttonCols" style="width:100%">
 		  <tr>
-		    <td style="color:white;" class="offerButton">ID: {{ bid.bidId }}</td>
+		    <td style="color:white; width:100px;" class="offerButton">ID: {{ bid.bidId }}</td>
 		    <td style="color:white;" class="offerButton">Pounds: {{ bid.almondPounds | number }}</td>
 	  		<td style="color:white;" class="offerButton">{{ bid.almondVariety }}</td>
 	  		<td style="color:white;" class="offerButton">Size: {{ bid.almondSize }}</td>
