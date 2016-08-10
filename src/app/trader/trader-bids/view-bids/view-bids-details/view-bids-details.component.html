@@ -12,16 +12,16 @@
 			  <button type="button" class="listbidbutton center">
 			  	<table id="buttonCols" style="width:100%">
 				<tr>
-			  		<td class="offerButton" style="width:180px;"><p>
-              {{ recievedSelectedBid?.poundsRemaining | number }} of {{ recievedSelectedBid?.almondPounds | number }} <br> &nbsp; MT remaining</p></td>
-			  		<td class="offerButton"><p>
-              {{ recievedSelectedBid?.almondVariety }}</p></td>
-            <td class="offerButton"><p>
-              {{ recievedSelectedBid?.grade }}</p></td>
-            <td class="offerButton"><p>
-              {{ recievedSelectedBid?.almondSize }}</p></td>
-			  		<td class="offerButton"><p>
-              {{ recievedSelectedBid?.pricePerPound }}</p></td>
+			  		<td class="offerButton" style="width:160px; text-align:center"><types>
+              {{ recievedSelectedBid?.poundsRemaining | number }} of {{ recievedSelectedBid?.almondPounds | number }} <br> MT remaining</types></td>
+			  		<td class="offerButton" style="width:150px; text-align:center;"><types>
+              {{ recievedSelectedBid?.almondVariety }}</types></td>
+            <td class="offerButton" style="width:150px; text-align:center"><types>
+              {{ recievedSelectedBid?.grade }}</types></td>
+            <td class="offerButton" style="text-align:center"><types>
+              {{ recievedSelectedBid?.almondSize }}</types></td>
+			  		<td class="offerButton" style="text-align:center"><types>
+              {{ recievedSelectedBid?.pricePerPound }}</types></td>
 			  	</tr>
 				</table>
 			  	</button>
