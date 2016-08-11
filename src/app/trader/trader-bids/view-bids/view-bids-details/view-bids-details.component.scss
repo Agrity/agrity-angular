@@ -119,34 +119,6 @@ comment {
     margin-left:50px;
 }
 
-.accepted {
-    background-color:rgba(61,184,55,0.30);
-    width: 30%;
-    height: auto;
-    border-radius: 8px;
-    padding:5px;
-    margin:5px;
-}
-
-
-.rejected {
-    background-color:rgba(184,79,55,0.30);
-    width: 30%;
-    height: auto;
-    border-radius: 8px;
-    padding:5px;
-    margin:5px;
-}
-
-.pending {
-    background-color:rgba(55,134,184,0.30);
-    width: 30%;
-    height: auto;
-    border-radius: 8px;
-    padding:5px;
-    margin:5px;
-}
-
 li {
     padding-left:10px;
 }
@@ -168,6 +140,10 @@ li {
 /* HANDLER Table Styles
 ------------------------------------- */
 
+table {
+    width:100%;
+}
+
 .table-border {
     border: 0.5px solid #959595;
     width: 90%;
@@ -177,7 +153,8 @@ th {
     border: 0.1px solid #959595;
     height: auto;
     float: middle;
-    width:20px;
+    width:10%;
+    padding:0;
 }
 
 .table-lines {
@@ -211,17 +188,17 @@ th {
 }
 
 .pending-handler {
-    font: 20px Gotham Medium, sans-serif;
+    font: 16px Gotham Medium, sans-serif;
     color: #3d85ad;
 }
 
 .accepted-handler {
-    font: 20px Gotham Medium, sans-serif;
+    font: 16px Gotham Medium, sans-serif;
     color: #298959;
 }
 
 .rejected-handler {
-    font: 20px Gotham Medium, sans-serif;
+    font: 16px Gotham Medium, sans-serif;
     color: #9a2620;
 }
 
@@ -231,7 +208,7 @@ th {
 }
 
 .disapproved-handler {
-    font: 20px Gotham Medium, sans-serif;
+    font: 16px Gotham Medium, sans-serif;
     color: #000000;
 }
 
@@ -251,6 +228,7 @@ th {
     height:30px;
     padding:5px;
     vertical-align: middle;
+    width:70px;
 }
 
 .accept-button {
@@ -262,6 +240,7 @@ th {
     height:30px;
     padding:5px;
     vertical-align: middle;
+    width:70px;
 }
 
 .reject-button {
@@ -273,10 +252,11 @@ th {
     height:30px;
     padding:5px;
     vertical-align: middle;
+    width:70px;
 }
 
 input {
-    width:10%;
+    width:30px;
     height:25px;
     color:#000000;
     font-size:0.8em;
