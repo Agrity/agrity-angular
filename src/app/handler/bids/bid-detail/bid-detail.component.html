@@ -11,7 +11,7 @@
 			  <button type="button" class="listbidbutton center">
 			  	<table id="buttonCols" style="width:100%">
 				<tr>
-			  		<td class="offerButton"><p style="font-size:14px;">
+			  		<td class="offerButton"><p style="font-size:14px; text-align:center">
               {{ bid?.poundsRemaining | number }} of {{ bid?.almondPounds | number }} <br> pounds remaining </p></td>
 			  		<td class="offerButton center" style="padding-top:22px;"><p>
               {{ bid.almondVariety }}</p></td>
@@ -48,10 +48,11 @@
       <table class="table-border" cellpadding="4">
           <tr>
             <td><p class="handler-title">GROWERS</p></td>
-            <td style="float:right; padding:15px 15px 0px 0px;"><button (click)="toggleAddGrowersDiv()" type="button" class="add-handlers"><span>&#43;</span>ADD GROWERS</button></td>
+            <td style="float:right; padding:15px 15px 0px 0px;">
+              <button *ngIf="bid.currentlyOpen" (click)="toggleAddGrowersDiv()" type="button" class="add-handlers"><span>&#43;</span>ADD GROWERS</button></td>
           </tr>
 
-            <div *ngIf="addGrowersDivToggle">
+            <div *ngIf="addGrowersDivToggle && bid.currentlyOpen">
               <div class="back-box" style="padding-bottom:20px;">
                 <div *ngFor="let grower of notAddedGrowers" >
                   <input type="checkbox" [(ngModel)]="grower.selected">
