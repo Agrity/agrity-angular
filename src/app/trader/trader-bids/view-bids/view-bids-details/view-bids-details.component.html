@@ -78,7 +78,15 @@
             <th rowspan="recievedSelectedBid.pendingHandlerSellers.length"><p class="pending-handler center">PENDING</p></th>
             <td class="table-lines" *ngFor="let handler of recievedSelectedBid.pendingHandlerSellers">
             <p (click)="viewHandler(handler.handlerId)"> {{handler.companyName}}</p>
-            <p style="padding:0 20px 0 30px">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} MT accepted</p>
+            <p style="padding:0 20px 0 30px; font-size:12px; text-align:center">{{recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted | number}} MT accepted</p>
+              
+              <input *ngIf="recievedSelectedBid?.currentlyOpen" type="number" min="0" class="number" placeholder="MT" [(ngModel)]="handler.amountManual">
+              <div class="separate">
+                <button *ngIf="recievedSelectedBid?.currentlyOpen" type="button" class="accept-partial"
+                  [disabled]="!(handler.amountManual > 0)"
+                    (click)="acceptBid(handler, handler.amountManual)">APPROVE OTHER</button>
+              </div>   
+
               <div class="separate">
               <button type="button" class="accept-button"
               (click)="approve(handler,(recievedSelectedBid?.getBidResponse(recievedSelectedBid, handler.handlerId)?.poundsAccepted))">APPROVE</button>

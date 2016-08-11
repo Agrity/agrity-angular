@@ -9,7 +9,8 @@
 
     <button *ngIf="bid.currentlyOpen" class="right closebidbutton" (click)="closeBid(bid.bidId)">CLOSE BID</button>
 
-    <h1 class="center spacetop"> BID #{{ bid.bidId }} </h1>
+    <h1 *ngIf="bid.currentlyOpen" class="center spacetop"> BID #{{ bid.bidId }} </h1>
+    <h1 *ngIf="!bid.currentlyOpen" class="center" style="padding-top:60px;"> BID #{{ bid.bidId }} </h1>
 
     		<div class="wow fadeInDown center" data-wow-delay="0.6s">
 			  <button type="button" class="listbidbutton center">
@@ -17,11 +18,11 @@
 				<tr>
 			  		<td class="offerButton"><p style="font-size:14px; text-align:center">
               {{ bid?.poundsRemaining | number }} of {{ bid?.almondPounds | number }} <br> pounds remaining </p></td>
-			  		<td class="offerButton center" style="padding-top:22px;"><p>
+			  		<td class="offerButton" style="text-align:center; font-size:14px;"><p>
               {{ bid.almondVariety }}</p></td>
-            <td class="offerButton" style="padding-left:50px;"><p>
+            <td class="offerButton" style="text-align:center;"><p>
               {{ bid.almondSize }}</p></td>
-			  		<td class="offerButton"><p>
+			  		<td class="offerButton" style="text-align:center;"><p>
               {{ bid.pricePerPound }}</p></td>
 			  		<td class="offerButton"><p>
               {{ bid?.countDownString }}</p></td>
@@ -56,7 +57,7 @@
               <button *ngIf="bid.currentlyOpen" (click)="toggleAddGrowersDiv()" type="button" class="add-handlers"><span>&#43;</span>ADD GROWERS</button></td>
           </tr>
 
-            <div *ngIf="addGrowersDivToggle && bid.currentlyOpen">
+            <div *ngIf="addGrowersDivToggle">
               <div class="back-box" style="padding-bottom:20px;">
                 <div *ngFor="let grower of notAddedGrowers" >
                   <input type="checkbox" [(ngModel)]="grower.selected">
@@ -72,7 +73,15 @@
             <th rowspan="bid.pendingGrowers.length"><p class="pending-handler center">PENDING</p></th>
             <td class="table-lines" *ngFor="let grower of bid.pendingGrowers">
             <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
-            <p style="padding:0 20px 0 30px; float:right;">{{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} pounds accepted</p>
+            <p style="padding:0 20px 0 30px; float:right; font-size:12px;">{{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} lbs accepted</p>
+              
+              <input *ngIf="bid?.currentlyOpen" type="number" min="0" class="number" placeholder="MT" [(ngModel)]="grower.amountManual">
+              <div class="separate">
+              <button *ngIf="bid?.currentlyOpen" type="button" class="accept-partial"
+              [disabled]="!(grower.amountManual > 0)"
+              (click)="acceptBid(grower, grower.amountManual)">APPROVE SPECIFIED AMOUNT</button>
+              </div>   
+
               <div class="separate">
               <button type="button" class="accept-button"
               (click)="approve(grower,(bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted))">APPROVE</button>
@@ -88,14 +97,14 @@
             <th rowspan="bid.acceptedGrowers.length"><p class="accepted-handler center">ACCEPTED</p></th>
             <td class="table-lines" *ngFor="let grower of bid.acceptedGrowers">
             <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
-            <p style="padding-left:50px">{{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} pounds accepted</p></td>
+            <p style="padding-left:50px; font-size:12px;">{{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} lbs accepted</p></td>
         </tr>
 
         <tr *ngIf="bid.disapprovedGrowers && bid?.disapprovedGrowers.length > 0">
             <th rowspan="bid.disapprovedGrowers.length"><p class="disapproved-handler center">DISAPPROVED</p></th>
             <td class="table-lines" *ngFor="let grower of bid.disapprovedGrowers">
             <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
-            <p style="padding-left:50px">{{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} pounds disapproved</p></td>
+            <p style="padding-left:50px">{{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} lbs disapproved</p></td>
         </tr>
 
         <tr *ngIf="bid.rejectedGrowers && bid?.rejectedGrowers.length > 0">
