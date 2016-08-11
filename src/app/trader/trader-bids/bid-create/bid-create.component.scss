@@ -80,6 +80,7 @@ td {
 		border-bottom-color: #959595;
 		border-right-color: #959595;
 		color: #444444;
+		font-size:13px;
 		background-color: #f3f3f3;
 		border-radius: 0px;
 		transition: all 0.4s ease-in-out;
@@ -109,6 +110,7 @@ td {
 		.comment-form-control {
 			border: 0.1px solid #959595;
 			color: #444444;
+			font-size:13px;
 			background-color: #f3f3f3;
 			border-radius: 0px;
 			transition: all 0.4s ease-in-out;
@@ -144,7 +146,6 @@ td {
 			float: left;
 			width: 210px;
 		}
-
 
 	input[type="button"] {
 		background: #ffffff;
@@ -184,7 +185,10 @@ td {
 		padding:10px;
 		height:42px;
 		width:180px;
-		-webkit-appearance: none;
+		border:0;
+		font-size:13px;
+		outline:1px solid #959595;
+		-webkit-appearance: menulist;
 		-webkit-border-radius: 0px;
 
 	}
@@ -254,6 +258,11 @@ textarea:focus, input:focus{
 .spaceunder {
 	padding: 10px 0px 0px 0px;
 }
+
+.spacetop {
+	padding-top:5px;
+}
+
 .whitebox {
 	width: 300px;
 	height: auto;

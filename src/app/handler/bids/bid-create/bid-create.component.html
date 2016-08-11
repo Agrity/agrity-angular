@@ -178,7 +178,7 @@
                                     type="text" class="form-control"
                                     name="size" id="size"
                                     placeholder="Select Size"
-                                    style="width:31%;" required>
+                                    style="width:30.5%;" required>
                                 <option [value]="almondSize" disabled selected hidden> Select Size </option>
                                <option *ngFor="let size of sizes"
                                     [value]="size"> {{size}}
@@ -205,7 +205,7 @@
                                     [(ngModel)]="managementTypeSelection"
                                     ngControl="managementType" class="form-control"
                                     name="management type" id="management type"
-                                    style="width:35%; color:#444444; border: 0.1px solid #959595;">
+                                    style="width:35%; color:#444444;-webkit-appearance: menulist;">
                                   <option [value]="FCFS"> Firm Bid, First Come First Serve </option>
                                   <option [value]="STFC"> Subject to Final Confirmation </option>
                             </select>
