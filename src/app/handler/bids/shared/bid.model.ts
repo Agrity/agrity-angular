@@ -288,6 +288,16 @@ export class Bid {
     return null;
   }
 
+  public getManagementDisplay() {
+    if (this.managementType === ManagementType.FCFS) {
+      return 'Firm Bid, First Come First Serve';
+    }
+    if (this.managementType === ManagementType.STFC) {
+      return 'Subject to Final Confirmation';
+    }
+    return null;
+  }
+
   public getBidResponse(bid: Bid, growerId: number): BidResponse {
     for (let bidResponseIndex in bid.bidResponses) {
       let bidResponse: BidResponse = bid.bidResponses[bidResponseIndex];

@@ -7,7 +7,7 @@ export class BidResponse {
 
   public getResponseStatus(): string {
 
-    if (!this.responseStatus) {
+    if (this.responseStatus === undefined) {
       return null;
     }
 
@@ -32,7 +32,7 @@ export class BidResponse {
 
   public getResponseStatusTrader(): string {
 
-    if (!this.responseStatus) {
+    if (this.responseStatus === undefined) {
       return null;
     }
 

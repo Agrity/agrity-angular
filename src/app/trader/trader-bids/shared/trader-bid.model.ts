@@ -53,11 +53,11 @@ export class TraderBid {
     }
 
     traderBid.managementType = null;
-    let managementString = traderBidJson['managementType'];
-    if (managementString === 'FCFSService') {
+    let managementString = traderBidJson['managementService'];
+    if (managementString === 'services.bid_management.TraderFCFSService') {
       traderBid.managementType = ManagementType.FCFS;
     }
-    if (managementString === 'STFCService') {
+    if (managementString === 'services.bid_management.TraderSTFCService') {
       traderBid.managementType = ManagementType.STFC;
     }
 
@@ -256,6 +256,16 @@ export class TraderBid {
     }
     if (this.managementType === ManagementType.STFC) {
       return 'STFCService';
+    }
+    return null;
+  }
+
+  public getManagementDisplay() {
+    if (this.managementType === ManagementType.FCFS) {
+      return 'Firm Bid, First Come First Serve';
+    }
+    if (this.managementType === ManagementType.STFC) {
+      return 'Subject to Final Confirmation';
     }
     return null;
   }

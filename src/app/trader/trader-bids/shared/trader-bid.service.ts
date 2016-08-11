@@ -104,7 +104,7 @@ export class TraderBidService {
         '[' + handlerJson.toString() + ']');
   }
 
-  public approve(bidId: number, handlerId: number) {
+  public approve(bidId: number, handlerId: number, pounds: number) {
     if (handlerId == null) {
       this.logger.handleError('Handler Id is null');
       return null;
@@ -115,8 +115,13 @@ export class TraderBidService {
       return null;
     }
 
+    if (pounds == null) {
+      this.logger.handleError('Pounds is null.');
+      return null;
+    }
+
     return this.http.get(this.config.getServerDomain() +
-        '/traderBids/' + bidId + '/approve/' + handlerId);
+        '/traderBids/' + bidId + '/approve/' + handlerId + '/' + pounds);
   }
 
   public reject(bidId: number, handlerId: number) {

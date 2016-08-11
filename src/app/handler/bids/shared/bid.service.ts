@@ -96,7 +96,7 @@ export class BidService {
       .catch(this.logger.handleHttpError);
   }
 
-  public approve(bidId: number, growerId: number) {
+  public approve(bidId: number, growerId: number, pounds: number) {
     if (growerId == null) {
       this.logger.handleError('Grower Id is null');
       return null;
@@ -107,8 +107,13 @@ export class BidService {
       return null;
     }
 
+    if (pounds == null) {
+      this.logger.handleError('Pounds is null.');
+      return null;
+    }
+
     return this.http.get(this.config.getServerDomain() +
-        '/handlerBids/' + bidId + '/approve/' + growerId);
+        '/handlerBids/' + bidId + '/approve/' + growerId + '/' + pounds);
   }
 
   public reject(bidId: number, growerId: number) {
