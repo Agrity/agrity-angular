@@ -3,6 +3,10 @@
 
     <div id="bid-info">
 
+    <div style="text-align:center; padding-top: 70px;">
+    <label><small> *This page does not update as you view it. Refresh the page every few minutes for up to date information. </small></label>
+    </div>
+
     <button *ngIf="bid.currentlyOpen" class="right closebidbutton" (click)="closeBid(bid.bidId)">CLOSE BID</button>
 
     <h1 class="center spacetop"> BID #{{ bid.bidId }} </h1>
