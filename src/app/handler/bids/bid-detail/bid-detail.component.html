@@ -9,8 +9,8 @@
 
     <button *ngIf="bid.currentlyOpen" class="right closebidbutton" (click)="closeBid(bid.bidId)">CLOSE BID</button>
 
-    <h1 *ngIf="bid.currentlyOpen" class="center spacetop"> BID #{{ bid.bidId }} </h1>
-    <h1 *ngIf="!bid.currentlyOpen" class="center" style="padding-top:60px;"> BID #{{ bid.bidId }} </h1>
+    <h1 *ngIf="bid.currentlyOpen" class="center spacetop"> BID #{{ bid.bidId }} ({{bid.getManagementDisplay()}}) </h1>
+    <h1 *ngIf="!bid.currentlyOpen" class="center" style="padding-top:60px;"> BID #{{ bid.bidId }} ({{bid.getManagementDisplay()}}) </h1>
 
     		<div class="wow fadeInDown center" data-wow-delay="0.6s">
 			  <button type="button" class="listbidbutton center">
@@ -74,13 +74,13 @@
             <td class="table-lines" *ngFor="let grower of bid.pendingGrowers">
             <p (click)="viewGrower(grower.growerId)"> {{grower.firstName}} {{ grower.lastName }} </p>
             <p style="padding:0 20px 0 30px; float:right; font-size:12px;">{{bid?.getBidResponse(bid, grower.growerId)?.poundsAccepted | number}} lbs accepted</p>
-              
+
               <input *ngIf="bid?.currentlyOpen" type="number" min="0" class="number" placeholder="MT" [(ngModel)]="grower.amountManual">
               <div class="separate">
               <button *ngIf="bid?.currentlyOpen" type="button" class="accept-partial"
               [disabled]="!(grower.amountManual > 0)"
-              (click)="acceptBid(grower, grower.amountManual)">APPROVE SPECIFIED AMOUNT</button>
-              </div>   
+              (click)="approve(grower, grower.amountManual)">APPROVE PARTIAL</button>
+              </div>
 
               <div class="separate">
               <button type="button" class="accept-button"

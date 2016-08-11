@@ -195,7 +195,7 @@ export class ViewBidsDetailsComponent {
       res.result
           .then(confirmed => {
             this.traderBidService
-                .approve(this.recievedSelectedBid.bidId, handler.handlerId)
+                .approve(this.recievedSelectedBid.bidId, handler.handlerId, pounds)
                 .subscribe(
                     success => {
                       this.logger.alert('Response set to approved');

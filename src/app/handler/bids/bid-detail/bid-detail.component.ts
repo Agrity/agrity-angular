@@ -239,7 +239,7 @@ export class BidDetailComponent implements OnInit, OnDestroy {
       res.result
           .then(confirmed => {
             this.bidService
-                .approve(this.bid.bidId, grower.growerId)
+                .approve(this.bid.bidId, grower.growerId, pounds)
                 .subscribe(
                     success => {
                       this.logger.alert('Response set to approved');
